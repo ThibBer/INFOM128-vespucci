@@ -1,0 +1,460 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!--Mode names-->
+  <string name="mode_easy">Arrunta</string>
+  <string name="mode_tag_only">Etiketa besterik ez</string>
+  <string name="mode_indoor">Barnekoa</string>
+  <string name="mode_correct">C-Modua</string>
+  <!--Dialogs-->
+  <string name="transfer_download_current_dialog_title">Kontuz!</string>
+  <string name="transfer_download_current_dialog_message">Aldaketak egin dituzu. Baztertu ordez, aldaketak igotzea nahi duzu?</string>
+  <string name="transfer_download_current_upload">Igo</string>
+  <string name="transfer_download_current_download">Baztertu eta deskargatu</string>
+  <string name="transfer_download_current_back">Atzera (ez egin ezer)</string>
+  <string name="upload_problem_title">Ezin izan da igo</string>
+  <string name="upload_problem_message">Datu batzuk ez dira igo, agian bat ere ez. Saiatu berriro geroago.</string>
+  <string name="bad_request_message">API-ak errore batekin erantzun du, gorde zure datuak eta eman arazoaren berri:\n\n</string>
+  <string name="upload_conflict_title">Igo gatazka</string>
+  <string name="upload_conflict_message_deleted">%1$s \nbertsio lokal hau dun %2$d \neta zerbitzarian ezabatu da</string>
+  <string name="use_local_version">Erabili bertsio lokala</string>
+  <string name="use_server_version">Erabili zerbitzariko bertsioa</string>
+  <string name="no_login_data_title">Ezin izan da autentifikatu</string>
+  <string name="no_connection_title">Ez dago zerbitzarira konexiorik</string>
+  <string name="wrong_login_data_title">Ezin izan da autentifikatu</string>
+  <string name="forbidden_login_title">Saioa hastea debekatuta</string>
+  <string name="go_to_openstreetmap">Bisitatu openstreetmap.org</string>
+  <string name="bounding_box_too_large_title">Deskarga-area handiegia </string>
+  <!---->
+  <string name="welcome_title">Ongi etorri</string>
+  <string name="read_introduction">Irakurri sarrera</string>
+  <string name="read_upgrade">Irakurri bertsio berriari buruz</string>
+  <string name="progress_title">Kargatzen</string>
+  <string name="progress_message">Datuak memorian kargatzen...</string>
+  <string name="progress_download_message">Datuak zerbitzaritik kargatzen...</string>
+  <string name="progress_general_title">Itxaron mesedez...</string>
+  <string name="progress_deleting_message">Ezabatzen...</string>
+  <string name="progress_searching_message">Bilatzen...</string>
+  <string name="progress_saving_message">Gordetzen...</string>
+  <string name="progress_uploading_message">Igotzen...</string>
+  <string name="progress_preset_message">Aurre-ezarpena  deskargatzen...</string>
+  <string name="progress_running_message">Abioan...</string>
+  <!--Confirm upload dialog-->
+  <string name="changes_deleted">\"%1$s\" ezabatua</string>
+  <string name="changes_changed">\"%1$s\" aldatua</string>
+  <string name="changes_created">\"%1$s\" sortua</string>
+  <string name="confirm_upload_title">Igo aldaketak</string>
+  <string name="confirm_upload_edits_page">Aldaketak</string>
+  <string name="upload_comment_label">Iruzkina:</string>
+  <string name="upload_source_label">Iturria:</string>
+  <string name="upload_close_changeset_label">Itxi aldaketa multzoa:</string>
+  <!---->
+  <string name="upload_gpx_description_label">Deskripzioa</string>
+  <string name="upload_gpx_tags_label">Etiketak</string>
+  <string name="upload_gpx_visibility_label">Ikusgaitasuna</string>
+  <string name="upload_validation_error_empty_comment">Iruzkina ez luke hutsik egon behar</string>
+  <string name="upload_validation_error_empty_source">Iturria ez luke hutsik egon behar</string>
+  <!--task fragment-->
+  <string name="openstreetbug_new_title">Ohar berria</string>
+  <string name="openstreetbug_new_bug">Eman arazoaren berri</string>
+  <string name="openstreetbug_bug_title">Arazoa</string>
+  <string name="openstreetbug_new_nodeway">Sortu nodoa/bidea</string>
+  <string name="openstreetbug_edit_title">Editatu oharra</string>
+  <string name="openstreetbug_comment_label">Iruzkina:</string>
+  <string name="openstreetbug_unknown_task_type">Eginkizun mota ezezaguna</string>
+  <string name="openstreetbug_not_supported">%1$s ez da onartzen.</string>
+  <!--Unsaved data dialog-->
+  <string name="unsaved_data_title">Kontuz!</string>
+  <string name="unsaved_data_proceed">Baztertu eta aurrera jarraitu</string>
+  <!--Imagery offset dialog-->
+  <string name="imagery_offset_description">Deskripzioa</string>
+  <string name="imagery_offset_author">Egilea</string>
+  <string name="imagery_offset_date">Sortuta</string>
+  <string name="imagery_offset_zoom">Zooma</string>
+  <string name="imagery_offset_distance">Distantzia</string>
+  <string name="set_position_datum_label">Datu geodesikoa </string>
+  <string name="WGS84">WGS84</string>
+  <string name="tag_editor_name_suggestion">Izen proposamena</string>
+  <!--Search/Find dialog-->
+  <string name="search_results_title">Bilaketaren emaitzak</string>
+  <string name="find_message">Idatzi bilaketa-katea</string>
+  <!--Search objects dialog-->
+  <!---->
+  <string name="preset_search_hint">Aurre-ezarpenaren bilaketa-katea</string>
+  <string name="search">Bilatu</string>
+  <string name="no_valid_preset">Ez da baliozko aurre-ezarpena!</string>
+  <string name="save_file">Gorde hemen</string>
+  <!--element information dialog-->
+  <string name="id">IDa</string>
+  <string name="nodes">Nodoak</string>
+  <string name="relation_membership">Erlazioaren kidetza</string>
+  <string name="problem">Arazoa</string>
+  <string name="members">Kideak</string>
+  <string name="closed">Itxia</string>
+  <string name="version">Bertsioa</string>
+  <string name="length_m">Luzera (m)</string>
+  <string name="not_downloaded">Deskargatu gabe</string>
+  <string name="last_edited">Azken edizioa</string>
+  <string name="original">Jatorrizkoa</string>
+  <string name="current">Unekoa</string>
+  <!--GeoJSON feature display dialog-->
+  <!--API/Data layer info dialog-->
+  <!--Tile layer info dialog-->
+  <!---->
+  <string name="error">Errorea</string>
+  <string name="warning">Abisua</string>
+  <!--hidden object warning dialog-->
+  <!--This concerns a shown message that should be shown every time-->
+  <!--This concerns a shown message that should only be shown once-->
+  <!--debug dialog-->
+  <!--JS console dialog-->
+  <string name="evaluate">Ebaluatu</string>
+  <string name="js_console_msg_live">Zuzeneko modua!</string>
+  <string name="js_console_msg_debug">Arazketa modua!</string>
+  <!--Validator dialogs-->
+  <string name="max_age">Gehieneko adina</string>
+  <string name="age">Adina</string>
+  <!--Empty relation dialog-->
+  <string name="add_members">Gehitu kideak</string>
+  <string name="leave_empty">Laga hutsik</string>
+  <!--GPX waypoint dialog-->
+  <string name="waypoint_description">WPT: %1$s</string>
+  <string name="description">Deskripzioa</string>
+  <string name="created">Sortua</string>
+  <string name="altitude">Altitudea</string>
+  <!--Custom imagery dialogs-->
+  <string name="custom_layer_title">Irudi pertsonalak</string>
+  <string name="oam_layer_title">OAM irudiak</string>
+  <string name="coverage_top">Goian</string>
+  <string name="coverage_left">Ezkerrean</string>
+  <string name="coverage_right">Eskuinean</string>
+  <string name="coverage_bottom">Behean</string>
+  <string name="delete_layer">Ezabatu geruza?</string>
+  <!--Layer style dialog-->
+  <string name="layer_style_title">Geruzaren estiloa</string>
+  <string name="layer_style_color">Kolorea</string>
+  <string name="layer_style_label">Etiketa</string>
+  <!--Layer dialog-->
+  <string name="layer_geojson">GeoJSON</string>
+  <string name="layer_grid">Sareta</string>
+  <string name="layer_gpx">GPX</string>
+  <string name="layer_photos">Argazkiak</string>
+  <string name="layer_tasks">Eginkizunak</string>
+  <string name="layer_select_imagery">Hautatu irudiak</string>
+  <!--Layer info dialog-->
+  <string name="layer_info_terms">Baldintzak</string>
+  <string name="layer_info_privacy_policy">Pribatutasun politika</string>
+  <!--Photo viewer-->
+  <!--API info dialog-->
+  <!--Undo - Redo dialog-->
+  <!--Undo location not in view dialog-->
+  <!--Feedback activity-->
+  <!--BoxPicker-->
+  <string name="boxpicker_firsttimetitle">Deskargatu OpenStreetMap datuak</string>
+  <!--Clear/Reset GPX Track-->
+  <!--Tips-->
+  <!--NumberPicker-->
+  <string name="plus_sign">+</string>
+  <string name="minus_sign">-</string>
+  <string name="digit_one">1</string>
+  <!--NotificationChannels-->
+  <!--Toaster-->
+  <string name="toast_url_empty">Sartu URL</string>
+  <string name="toast_no_changes">Oraindik ez duzu ezer aldatu...</string>
+  <string name="clear_anyway">Garbitu hala ere?</string>
+  <string name="toast_save_done">Gordeta</string>
+  <string name="toast_save_failed">Ezin izan da gorde</string>
+  <string name="toast_export_failed">Ezin izan da esportatu</string>
+  <string name="toast_export_success">%1$s-ra esportatu da</string>
+  <string name="toast_preset_overwrote_tags">Oharra - aurre-ezarpenak etiketa(k) gainidatzi d(it)u</string>
+  <string name="toast_merge_overwrote_tags">Oharra - eragiketak etiketa)k) gainidatzi d(it)u</string>
+  <string name="toast_state_file_failed">Egoera fitxategi irakurgaitza edo hondatua</string>
+  <string name="read_mail">Irakurri</string>
+  <string name="toast_download_failed">Deskargak huts egin du %1$d errore kodearekin, mezua %2$s</string>
+  <!---->
+  <string name="toast_nothing_found">Ez da ezer aurkitu</string>
+  <string name="toast_file_not_found">ez da %1$s aurkitu.</string>
+  <string name="toast_min_one_preset">Gutxienez aurre-ezarpen bat aukeratu behar da!</string>
+  <string name="toast_tile_database_issue_short">Lauzen datu-basearen arazoa</string>
+  <string name="toast_file_exists">%1$s fitxategia badago aurretik.</string>
+  <!--Error messages-->
+  <!--Some generic labels/buttons-->
+  <string name="yes">Bai</string>
+  <string name="no">Ez</string>
+  <string name="okay">Ados</string>
+  <string name="cancel">Baztertu</string>
+  <string name="dismiss">Baztertu</string>
+  <string name="done">Egina</string>
+  <string name="locked">Blokeatuta</string>
+  <string name="next">Hurrengoa</string>
+  <string name="apply">Aplikatu</string>
+  <string name="set">Ezarri</string>
+  <string name="replace">Ordeztu</string>
+  <string name="save">Gorde</string>
+  <string name="save_and_set">Gorde eta ezarri</string>
+  <string name="back">Atzera</string>
+  <string name="forward">Aurrera</string>
+  <string name="keep">Mantendu</string>
+  <string name="enable">Gaitu</string>
+  <string name="disable">Desgaitu</string>
+  <string name="clear">Garbitu</string>
+  <string name="discard">Ukatu</string>
+  <string name="retry">Saiatu berriro</string>
+  <!--Read a file-->
+  <string name="read">Irakurri</string>
+  <string name="overwrite">Gainidatzi</string>
+  <string name="share">Partekatu</string>
+  <string name="share_position">Partekatu kokalekua</string>
+  <string name="min">Min.</string>
+  <string name="max">Max.</string>
+  <string name="geojson_object">%1$s (%2$s)</string>
+  <string name="none">Bat ere ez?</string>
+  <!--Dialog for back button-->
+  <string name="exit_text">Ziur irten nahi duzula?</string>
+  <!--Strings in PorpertyEditor-->
+  <string name="key">giltza</string>
+  <string name="Key">Gakoa</string>
+  <string name="value">balioa</string>
+  <string name="Value">Balioa</string>
+  <string name="link_mapfeatures">http://wiki.openstreetmap.org/index.php/Map_Features</string>
+  <string name="tag_menu_address">Gehitu helbide-etiketak</string>
+  <string name="tag_menu_sourcesurvey">Analizatua</string>
+  <string name="tag_menu_preset">Aurre-ezarpenak</string>
+  <string name="tag_menu_revert">Leheneratu</string>
+  <string name="tag_menu_addtorelation">Gehitu erlaziora</string>
+  <string name="tag_menu_reset_address_prediction">Berrezarri helbide iragarpena</string>
+  <string name="tag_menu_exit_no_save">Irten\ngorde gabe</string>
+  <string name="tag_menu_delete_unassociated_tags">Ezabatu lotu gabeko etiketak</string>
+  <string name="tag_menu_top">Korritu gora</string>
+  <string name="tag_menu_bottom">Korritu behera</string>
+  <string name="tag_value_hint">Idatzi balioa</string>
+  <string name="tag_autocomplete_value_hint">Idatzi edo sakatu balioak</string>
+  <string name="tag_autocomplete_name_hint">Idatzi edo sakatu izen proposametarako</string>
+  <string name="tag_tap_to_edit_hint">Sakatu editatzeko</string>
+  <string name="tag_multi_value_hint">Hainbat balio</string>
+  <string name="tag_dialog_value_hint">Sakatu balioentzat</string>
+  <string name="tag_action_tag_title">Etiketa(k) hautatuta</string>
+  <string name="tag_action_members_title">Kidea(k) hautatuta</string>
+  <string name="tag_action_parents_title">Erlazioa(k) hautatuta</string>
+  <string name="tag_additional_properties">Propietate gehigarriak</string>
+  <string name="tag_details">Xehetasunak</string>
+  <string name="tag_not_set">Ezarri gabe</string>
+  <string name="tag_menu_move_up">Eraman gora</string>
+  <string name="tag_menu_move_top">Eraman gora arte</string>
+  <string name="tag_menu_move_down">Eraman behera</string>
+  <string name="tag_menu_move_bottom">Eraman behera arte</string>
+  <string name="tag_menu_sort">Ordenatu</string>
+  <string name="tag_menu_reverse_order">Alderantzizko ordena</string>
+  <string name="tag_menu_download">Deskargatu</string>
+  <string name="menu_up">Gora</string>
+  <string name="menu_top">Goia</string>
+  <string name="menu_select_all">Hautatu denak</string>
+  <string name="menu_preset_help">Aurre-ezarpenen laguntza</string>
+  <string name="internationalized_hint">%1$s (%2$s)</string>
+  <string name="tag_restriction_header">Balioa</string>
+  <string name="tag_restriction_when">noiz</string>
+  <string name="tag_restriction_and">eta</string>
+  <string name="tag_restriction_add_restriction">Gehitu murrizketa</string>
+  <string name="tag_restriction_add_simple_condition">Gehitu baldintza sinplea</string>
+  <string name="tag_restriction_add_expression">Gehitu adierazpena</string>
+  <string name="tag_restriction_add_opening_hours">Gehitu irekiera-orduak</string>
+  <string name="tag_form_unknown_element">Elementu ezezaguna (ez da aurre-ezarpenik aurkitu)</string>
+  <!--Custom preset creation-->
+  <!--Strings in Box/LocationPicker-->
+  <string name="location_choose_radius">Erradioa aukeratu:</string>
+  <string name="location_default_radius">300m</string>
+  <string name="location_last_text">Azkeneko kokapena:</string>
+  <string name="location_current_text">Oraingo kokapena:</string>
+  <string name="location_text_unknown">Ezezaguna</string>
+  <string name="location_last_text_parameterized">Azkeneko kokapena: %1$s</string>
+  <string name="location_current_text_parameterized">Oraingo kokapena: %1$s</string>
+  <string name="location_coordinates_text">Koordenadetatik:</string>
+  <string name="location_lat_label">Lat:</string>
+  <string name="location_lon_label">Lon:</string>
+  <string name="location_search_label">Bilatu:</string>
+  <string name="location_load_button">Kargatu</string>
+  <string name="location_load_dismiss">Joan mapara</string>
+  <!--Strings in DownloadActivity-->
+  <!--Strings in Go to coordinates-->
+  <!--Menu-->
+  <string name="menu_move">Mugitu</string>
+  <string name="menu_edit">Aldatu</string>
+  <string name="menu_add">Berria</string>
+  <string name="menu_config">Hobespenak</string>
+  <string name="menu_find">Aurkitu</string>
+  <string name="menu_help">Laguntza</string>
+  <string name="menu_erase">Nodoa ezabatu</string>
+  <string name="menu_set_position">Posizioa</string>
+  <string name="menu_split">Zatitu</string>
+  <string name="menu_append">Erantsi</string>
+  <string name="menu_relation">Sortu erlazioa</string>
+  <string name="menu_edit_relation">Editatu erlazioa</string>
+  <string name="menu_add_relation_member">Gehitu kidea</string>
+  <string name="menu_select_relation_members">Hautatu kideak</string>
+  <string name="menu_tag">Etiketak editatu</string>
+  <string name="menu_openstreetbug">Gehitu oharra</string>
+  <string name="menu_easyedit">EdizioErraza</string>
+  <string name="menu_camera">Kamera</string>
+  <string name="menu_gps">GPS/GNSS…</string>
+  <string name="menu_gps_show">Erakutsi kokalekua</string>
+  <string name="menu_gps_follow">Jarraitu kokalekua</string>
+  <string name="menu_transfer">Transferitu...</string>
+  <string name="menu_transfer_download_current">Deskargatu uneko ikuspegia</string>
+  <string name="menu_transfer_upload">Datuak OSM zerbitzarira igo</string>
+  <string name="menu_transfer_file">Fitxategia...</string>
+  <string name="menu_transfer_bugs">Eginkizunak...</string>
+  <string name="menu_transfer_bugs_upload">Igo guztia</string>
+  <string name="menu_transfer_bugs_clear">Garbitu</string>
+  <string name="menu_transfer_write_custom_bugs">Gorde irekitako eginkizun pertsonalak...</string>
+  <string name="menu_save">Gorde fitxategi gisa</string>
+  <string name="menu_join">Elkartu</string>
+  <string name="menu_unjoin">Banandu</string>
+  <string name="menu_copy">Kopiatu</string>
+  <string name="menu_cut">Moztu</string>
+  <string name="menu_paste">Itsatsi</string>
+  <string name="menu_paste_from_clipboard">Itsatsi arbelean</string>
+  <string name="menu_zoom_to_selection">Zoom hautaketara</string>
+  <string name="menu_rotate">Biratu</string>
+  <string name="menu_information">Informazioa</string>
+  <string name="menu_voice_commands">Ahots-aginduak</string>
+  <string name="menu_tools">Tresnak…</string>
+  <string name="menu_tools_imagery">Irudien tresna gehiago</string>
+  <string name="menu_tools_add_imagery_from_oam">Gehitu irudiak OAM-etik</string>
+  <string name="menu_tools_update_imagery_configuration">Eguneratu irudien geruzaren konfigurazioa</string>
+  <!---->
+  <string name="menu_privacy">Pribatutasuna</string>
+  <!--Background alignment-->
+  <string name="menu_tools_background_align_zero">Zero</string>
+  <string name="menu_tools_background_align_retrieve_from_device">Gailutik</string>
+  <string name="menu_tools_background_align_save_db">Gorde datu-basean</string>
+  <string name="menu_tools_background_align_save_device">Gorde gailuan</string>
+  <!--Menus in layers dialog-->
+  <string name="menu_layers">Geruzak...</string>
+  <!---->
+  <string name="menu_tools_background_contrast">Kontrastea</string>
+  <string name="menu_enable_tagfilter">Etiketa iragazkia</string>
+  <string name="menu_enable_presetfilter">Aurre-ezarpenen iragazkia</string>
+  <!--element action mode menu-->
+  <string name="menu_tags">Propietateak</string>
+  <!--Text should be as short as possible-->
+  <string name="menu_history">Historiala</string>
+  <string name="menu_merge">Elkartu</string>
+  <string name="menu_reverse">Alderantzizkatu</string>
+  <string name="reverse_anyway">Alderantzizkatu hala ere</string>
+  <string name="deleteway_wayandnodes">Ezabatu bidea</string>
+  <string name="deletenode">Nodoa ezabatu</string>
+  <!--EasyEdit context menus-->
+  <!--EasyEdit action mode titles-->
+  <string name="actionmode_wayselect">Bidea aukeratua</string>
+  <string name="actionmode_nodeselect">Nodoa aukeratua</string>
+  <string name="actionmode_relationselect">Erlazioa aukeratua</string>
+  <string name="actionmode_createpath">Ibilbidea sortzen</string>
+  <!--EasyEdit action mode sub-titles-->
+  <string name="actionmode_restriction">Gehitu biratzeko murrizketa</string>
+  <!--Simple Action Mode-->
+  <!--Preferences-->
+  <string name="config_backgroundLayer_title">Maparen atzeko planoa</string>
+  <string name="config_advancedprefs">Hobespen aurreratuak</string>
+  <string name="config_presetbutton_title">Aurre-ezarpenak</string>
+  <string name="config_presetbutton_summary">Gehitu eta gaitu JOSM-rekin bateragarriak diren aurre-ezarpenak</string>
+  <!--Validator preferences-->
+  <string name="config_validatorprefs_title">Balioztatzailearen ezarpenak</string>
+  <!--opening hours templates-->
+  <!--these are no longer on the prefs page, but are used as menu entries-->
+  <string name="config_debugbutton_title">Arazketa</string>
+  <string name="config_category_info">Honi buruz</string>
+  <!--Advanced preferences-->
+  <!--User Interface Settings-->
+  <string name="config_iconbutton_title">Erakutsi nodoen ikonoak</string>
+  <string name="config_iconbutton_summary">Erakutsi hobeto datorren aurre-ezarpen ikonoa nodoen gainean.</string>
+  <string name="config_showWayIcons_summary">Erakutsi hobeto datorren aurre-ezarpen ikonoa eraikinen gainean.</string>
+  <string name="config_showTolerance_title">Erakutsi tolerantzia</string>
+  <string name="config_autoLockDelay_current">%1$d s</string>
+  <string name="config_enableAntiAliasing_summary">Bideak leunagoak egiten ditu.</string>
+  <string name="config_maxStrokeWidth_title">Lerroaren zab. max.</string>
+  <!--Data and Editing Settings-->
+  <string name="config_enableNameSuggestionsPresets_title">Gaitu izen proposamenen aurre-ezarpenak</string>
+  <string name="config_generateAlerts_summary">Sortu jakinarazpenak arazoak edo oharrak dituzten datuentzat</string>
+  <string name="config_enableAutoPresets_title">Gaitu aurre-ezarpen automatikoen sorrera</string>
+  <!--Auto-download settings-->
+  <string name="config_extTriggeredDownloadRadius_title">Deskarga-erradioa</string>
+  <string name="config_downloadSpeed_current">%1$d km/h</string>
+  <!--Location Settings-->
+  <string name="config_gps_source_tcp_title">NMEA sarearen iturria</string>
+  <string name="config_gps_interval_current">%1$d ms</string>
+  <!--Server Settings-->
+  <string name="config_apibutton_title">OSMren APIaren URLa</string>
+  <string name="config_loginbutton_title">Erabiltzaile kontua</string>
+  <string name="config_osmoseServer_title">OSMOSE zerbitzaria</string>
+  <!--Layer download and storage-->
+  <string name="config_downLoadThreads_current">%1$d hari</string>
+  <string name="config_tileCache_current">%1$d MB</string>
+  <!--Miscellaneous-->
+  <string name="config_showStats_title">Erakutsi estatistikak</string>
+  <!--Experimental-->
+  <string name="config_category_experimental">Esperimentala</string>
+  <!---->
+  <string name="manage_apis">Kudeatu APIak</string>
+  <string name="config_api_url_title">APIaren URLa</string>
+  <string name="manage_presets">Kudeatu aurre-ezarpenak</string>
+  <!--preset downloader messages-->
+  <string name="preset_update">Eguneratu aurre-ezarpena</string>
+  <string name="preset_download_parse_failed">Aurre-ezarpen fitxategia baliogabea da. Aurre-ezarpenak ez du funtzionatuko.</string>
+  <string name="preset_download_title">Aurre-ezarpenen deskargagailua</string>
+  <!--url handler activity-->
+  <string name="urldialog_add_preset">Gehitu aurre-ezarpena</string>
+  <string name="urldialog_preset_exists">Aurre-ezarpen hau badago aurretik</string>
+  <string name="urldialog_api_exists">URL hau daukan API bat dago iada. Hala ere, beste bat gehitu dezakezu (adb. kontuak erraz aldatzeko).</string>
+  <string name="urldialog_add_api">Gehitu APIa</string>
+  <string name="urldialog_nodata_text">Ezarpenen URLak ez du baliozko daturik.</string>
+  <!--API configuration-->
+  <string name="api_url">APIaren URLa</string>
+  <string name="notes_url">Oharren APIaren URLa (aukerazkoa)</string>
+  <!--common terms-->
+  <string name="add">Gehitu</string>
+  <string name="edit">Aldatu</string>
+  <string name="delete">Ezabatu</string>
+  <string name="name">Izena</string>
+  <string name="url">URLa</string>
+  <string name="default_">Lehenetsia</string>
+  <string name="state">Egoera</string>
+  <!---->
+  <string name="empty_list">Sarrerarik ez</string>
+  <!--"default" is a reserved Java keyword…-->
+  <string name="preset">Aurre-ezarpena</string>
+  <string name="api">APIa</string>
+  <string name="undo">Desegin</string>
+  <string name="redo">Berregin</string>
+  <string name="undo_nothing">ez dago desegiteko ezer</string>
+  <string name="gps_failure">GPS gaitzeak huts egin du</string>
+  <!--element description-->
+  <string name="address_housenumber">%1$s helbidea</string>
+  <!--undo actions - give a description of the action, in infinitive, to display in strings like "Undo: actionname" or "Redo: actionname"-->
+  <string name="undo_action_cut">Moztu</string>
+  <string name="undo_action_paste">Itsatsi</string>
+  <!--ACRA-->
+  <!--Exceptions messages-->
+  <!--Notifications-->
+  <string name="alert_data_issue">OSM datuekin arazo bat antzeman da</string>
+  <string name="alert_note">Hurbileko OSM ohar bat antzeman da</string>
+  <string name="bearing_ne">IE ↗</string>
+  <string name="bearing_e">E →</string>
+  <string name="bearing_se">HE ↘</string>
+  <string name="bearing_s">H ↓</string>
+  <string name="bearing_sw">HM ↙</string>
+  <string name="bearing_w">M ←</string>
+  <string name="bearing_nw">IM ↖</string>
+  <string name="bearing_n">I ↑</string>
+  <!--Misc relation related stuff-->
+  <string name="role">Rola</string>
+  <string name="membership_relation_heading">Erlazioaren partaide</string>
+  <string name="relation">Erlazioa</string>
+  <string name="relations">Erlazioak</string>
+  <string name="type">Mota</string>
+  <string name="object">Objetua</string>
+  <string name="deleterelation">Erlazioa ezabatu</string>
+  <string name="delete_from_relation_description">Elementu hau erlazio batetatik ezabatzeko zorian zaude</string>
+  <!--time and distance-->
+  <!--Help system-->
+  <!--Arrays-->
+  <!--The entries need to match the order of the CheckStatus enum-->
+</resources>

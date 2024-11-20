@@ -1,0 +1,679 @@
+<?xml version="1.0" ?>
+<TableAccesses>
+  <Database>
+    <Statement Id="117" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" Line="111">
+      <Tables>
+        <Table name="DB.SCH.filterentries"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.filterentries.key"></Column>
+        <Column name="DB.SCH.filterentries.include"></Column>
+        <Column name="DB.SCH.filterentries.value"></Column>
+        <Column name="DB.SCH.filterentries.active"></Column>
+        <Column name="DB.SCH.filterentries.type"></Column>
+        <Column name="DB.SCH.filterentries.filter"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="132" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" Line="148">
+      <Tables>
+        <Table name="DB.SCH.filterentries"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.filterentries.key"></Column>
+        <Column name="DB.SCH.filterentries.include"></Column>
+        <Column name="DB.SCH.filterentries.value"></Column>
+        <Column name="DB.SCH.filterentries.active"></Column>
+        <Column name="DB.SCH.filterentries.type"></Column>
+        <Column name="DB.SCH.filterentries.filter"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="147" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" Line="325">
+      <Tables>
+        <Table name="DB.SCH.filterentries"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.filterentries.key"></Column>
+        <Column name="DB.SCH.filterentries.include"></Column>
+        <Column name="DB.SCH.filterentries.value"></Column>
+        <Column name="DB.SCH.filterentries.active"></Column>
+        <Column name="DB.SCH.filterentries.type"></Column>
+        <Column name="DB.SCH.filterentries.filter"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="162" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" Line="411">
+      <Tables>
+        <Table name="DB.SCH.filterentries"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.filterentries.key"></Column>
+        <Column name="DB.SCH.filterentries.include"></Column>
+        <Column name="DB.SCH.filterentries.value"></Column>
+        <Column name="DB.SCH.filterentries.active"></Column>
+        <Column name="DB.SCH.filterentries.type"></Column>
+        <Column name="DB.SCH.filterentries.filter"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="164" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java" Line="26">
+      <Tables>
+        <Table name="DB.SCH.filters"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="171" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java" Line="27">
+      <Tables>
+        <Table name="DB.SCH.filters"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.filters.name"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="176" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java" Line="28">
+      <Tables>
+        <Table name="DB.SCH.filterentries"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="211" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/imageryoffset/ImageryOffsetDatabase.java" Line="44">
+      <Tables>
+        <Table name="DB.SCH.offsets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="246" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="88">
+      <Tables>
+        <Table name="DB.SCH.photos"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="277" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="92">
+      <Tables>
+        <Table name="DB.SCH.directories"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="291" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="107">
+      <Tables>
+        <Table name="DB.SCH.directories"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.directories.dir"></Column>
+        <Column name="DB.SCH.directories.tag"></Column>
+        <Column name="DB.SCH.directories.last_scan"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="298" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="107">
+      <Tables>
+        <Table name="DB.SCH.directories"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.directories.dir"></Column>
+        <Column name="DB.SCH.directories.tag"></Column>
+        <Column name="DB.SCH.directories.last_scan"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="305" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="107">
+      <Tables>
+        <Table name="DB.SCH.directories"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.directories.dir"></Column>
+        <Column name="DB.SCH.directories.tag"></Column>
+        <Column name="DB.SCH.directories.last_scan"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="312" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="107">
+      <Tables>
+        <Table name="DB.SCH.directories"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.directories.dir"></Column>
+        <Column name="DB.SCH.directories.tag"></Column>
+        <Column name="DB.SCH.directories.last_scan"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="319" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="114">
+      <Tables>
+        <Table name="DB.SCH.photos"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="325" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="117">
+      <Tables>
+        <Table name="DB.SCH.photos"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.photos.lat"></Column>
+        <Column name="DB.SCH.photos.direction"></Column>
+        <Column name="DB.SCH.photos.source"></Column>
+        <Column name="DB.SCH.photos.dir"></Column>
+        <Column name="DB.SCH.photos.lon"></Column>
+        <Column name="DB.SCH.photos.name"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="327" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="120">
+      <Tables>
+        <Table name="DB.SCH.photos"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="333" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="121">
+      <Tables>
+        <Table name="DB.SCH.directories"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="339" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="123">
+      <Tables>
+        <Table name="DB.SCH.photos"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.photos.lat"></Column>
+        <Column name="DB.SCH.photos.direction"></Column>
+        <Column name="DB.SCH.photos.source"></Column>
+        <Column name="DB.SCH.photos.dir"></Column>
+        <Column name="DB.SCH.photos.lon"></Column>
+        <Column name="DB.SCH.photos.name"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="341" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="130">
+      <Tables>
+        <Table name="DB.SCH.photos"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="343" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" Line="131">
+      <Tables>
+        <Table name="DB.SCH.directories"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="345" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="128">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="388" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="130">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="436" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="132">
+      <Tables>
+        <Table name="DB.SCH.geocoders"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="461" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="135">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="480" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="146">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="486" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="149">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="492" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="150">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="498" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="151">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="508" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="152">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.apis.id"></Column>
+        <Column name="DB.SCH.apis.url"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="513" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="155">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="523" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="156">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.presets.active"></Column>
+        <Column name="DB.SCH.presets.id"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="532" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="159">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.apis.id"></Column>
+        <Column name="DB.SCH.apis.url"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="537" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="162">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="543" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="163">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="549" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="169">
+      <Tables>
+        <Table name="DB.SCH.geocoders"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="567" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="177">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="573" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="181">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="579" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="192">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="597" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="214">
+      <Tables>
+        <Table name="DB.SCH.geocoders"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.geocoders.url"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="602" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="226">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="608" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="227">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="614" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="228">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="620" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="241">
+      <Tables>
+        <Table name="DB.SCH.apis"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="622" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="242">
+      <Tables>
+        <Table name="DB.SCH.presets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="624" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="243">
+      <Tables>
+        <Table name="DB.SCH.geocoders"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="626" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" Line="244">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="628" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java" Line="67">
+      <Tables>
+        <Table name="DB.SCH.keys"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="661" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java" Line="79">
+      <Tables>
+        <Table name="DB.SCH.keys"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="668" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="99">
+      <Tables>
+        <Table name="DB.SCH.sources"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="679" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="104">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="831" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="114">
+      <Tables>
+        <Table name="DB.SCH.coverages"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="876" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="131">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="882" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="132">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="888" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="135">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="894" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="136">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="900" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="139">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="906" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="142">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="912" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="145">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="918" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="148">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="924" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="161">
+      <Tables>
+        <Table name="DB.SCH.headers"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="945" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="171">
+    </Statement>
+    <Statement Id="984" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="459">
+      <Tables>
+        <Table name="DB.SCH.coverages"></Table>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.coverages.id"></Column>
+        <Column name="DB.SCH.coverages.left"></Column>
+        <Column name="DB.SCH.coverages.zoom_min"></Column>
+        <Column name="DB.SCH.layers.id"></Column>
+        <Column name="DB.SCH.coverages.top"></Column>
+        <Column name="DB.SCH.coverages.zoom_max"></Column>
+        <Column name="DB.SCH.coverages.right"></Column>
+        <Column name="DB.SCH.coverages.bottom"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="992" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="463">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.layers.logo"></Column>
+        <Column name="DB.SCH.layers.attribution_url"></Column>
+        <Column name="DB.SCH.layers.tile_width"></Column>
+        <Column name="DB.SCH.layers.logo_url"></Column>
+        <Column name="DB.SCH.layers.url"></Column>
+        <Column name="DB.SCH.layers.overlay"></Column>
+        <Column name="DB.SCH.layers.over_zoom_max"></Column>
+        <Column name="DB.SCH.layers.source"></Column>
+        <Column name="DB.SCH.layers.tile_type"></Column>
+        <Column name="DB.SCH.layers.end_date"></Column>
+        <Column name="DB.SCH.layers.zoom_max"></Column>
+        <Column name="DB.SCH.layers.tou_url"></Column>
+        <Column name="DB.SCH.layers.attribution"></Column>
+        <Column name="DB.SCH.layers.start_date"></Column>
+        <Column name="DB.SCH.layers.visible"></Column>
+        <Column name="DB.SCH.layers.no_tile_tile"></Column>
+        <Column name="DB.SCH.layers.content_id"></Column>
+        <Column name="DB.SCH.layers.no_tile_header"></Column>
+        <Column name="DB.SCH.layers.default_layer"></Column>
+        <Column name="DB.SCH.layers.preference"></Column>
+        <Column name="DB.SCH.layers.id"></Column>
+        <Column name="DB.SCH.layers.proj"></Column>
+        <Column name="DB.SCH.layers.description"></Column>
+        <Column name="DB.SCH.layers.type"></Column>
+        <Column name="DB.SCH.layers.no_tile_value"></Column>
+        <Column name="DB.SCH.layers.server_type"></Column>
+        <Column name="DB.SCH.layers.category"></Column>
+        <Column name="DB.SCH.layers.name"></Column>
+        <Column name="DB.SCH.layers.privacy_policy_url"></Column>
+        <Column name="DB.SCH.layers.position"></Column>
+        <Column name="DB.SCH.layers.zoom_min"></Column>
+        <Column name="DB.SCH.layers.tile_height"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1002" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="633">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.layers.name"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1019" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="643">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.layers.source"></Column>
+        <Column name="DB.SCH.layers.name"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1035" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="653">
+      <Tables>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.layers.server_type"></Column>
+        <Column name="DB.SCH.layers.name"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1063" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="716">
+      <Tables>
+        <Table name="DB.SCH.headers"></Table>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.headers.name"></Column>
+        <Column name="DB.SCH.layers.id"></Column>
+        <Column name="DB.SCH.headers.value"></Column>
+        <Column name="DB.SCH.headers.id"></Column>
+        <Column name="DB.SCH.layers.overlay"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1099" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" Line="746">
+      <Tables>
+        <Table name="DB.SCH.coverages"></Table>
+        <Table name="DB.SCH.layers"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.coverages.id"></Column>
+        <Column name="DB.SCH.coverages.left"></Column>
+        <Column name="DB.SCH.coverages.zoom_min"></Column>
+        <Column name="DB.SCH.layers.id"></Column>
+        <Column name="DB.SCH.coverages.top"></Column>
+        <Column name="DB.SCH.coverages.zoom_max"></Column>
+        <Column name="DB.SCH.coverages.right"></Column>
+        <Column name="DB.SCH.coverages.bottom"></Column>
+        <Column name="DB.SCH.layers.overlay"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1114" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" Line="281">
+      <Tables>
+        <Table name="DB.SCH.tiles"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.tiles.timestamp"></Column>
+        <Column name="DB.SCH.tiles.zoom_level"></Column>
+        <Column name="DB.SCH.tiles.tile_column"></Column>
+        <Column name="DB.SCH.tiles.rendererID"></Column>
+        <Column name="DB.SCH.tiles.tile_row"></Column>
+        <Column name="DB.SCH.tiles.filesize"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1116" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" Line="343">
+      <Tables>
+        <Table name="DB.SCH.tiles"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.tiles.countused"></Column>
+        <Column name="DB.SCH.tiles.tile_data"></Column>
+        <Column name="DB.SCH.tiles.timestamp"></Column>
+        <Column name="DB.SCH.tiles.zoom_level"></Column>
+        <Column name="DB.SCH.tiles.tile_column"></Column>
+        <Column name="DB.SCH.tiles.rendererID"></Column>
+        <Column name="DB.SCH.tiles.tile_row"></Column>
+        <Column name="DB.SCH.tiles.filesize"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1130" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" Line="346">
+      <Tables>
+        <Table name="DB.SCH.tiles"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.tiles.timestamp"></Column>
+        <Column name="DB.SCH.tiles.zoom_level"></Column>
+        <Column name="DB.SCH.tiles.tile_column"></Column>
+        <Column name="DB.SCH.tiles.tile_row"></Column>
+        <Column name="DB.SCH.tiles.filesize"></Column>
+        <Column name="DB.SCH.tiles.rendererID"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1143" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" Line="399">
+      <Tables>
+        <Table name="DB.SCH.tiles"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.tiles.filesize"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1145" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" Line="428">
+      <Tables>
+        <Table name="DB.SCH.t_renderer"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="1174" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" Line="429">
+      <Tables>
+        <Table name="DB.SCH.tiles"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="1215" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" Line="441">
+      <Tables>
+        <Table name="DB.SCH.tiles"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="1223" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MBTileProviderDataBase.java" Line="242">
+      <Tables>
+        <Table name="DB.SCH.tiles"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.tiles.zoom_level"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1234" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesUI.java" Line="169">
+      <Tables>
+        <Table name="DB.SCH.resurveytags"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.resurveytags.key"></Column>
+        <Column name="DB.SCH.resurveytags.value"></Column>
+        <Column name="DB.SCH.resurveytags.days"></Column>
+        <Column name="DB.SCH.resurveytags.is_regexp"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1243" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesUI.java" Line="295">
+      <Tables>
+        <Table name="DB.SCH.checktags"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.checktags.key"></Column>
+        <Column name="DB.SCH.checktags.optional"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1245" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" Line="30">
+      <Tables>
+        <Table name="DB.SCH.rulesets"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="1254" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" Line="33">
+      <Tables>
+        <Table name="DB.SCH.resurveytags"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="1281" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" Line="47">
+      <Tables>
+        <Table name="DB.SCH.checktags"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="1298" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" Line="60">
+      <Tables>
+        <Table name="DB.SCH.resurveytags"></Table>
+      </Tables>
+    </Statement>
+    <Statement Id="1308" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" Line="63">
+      <Tables>
+        <Table name="DB.SCH.checktags"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.checktags.key"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1332" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" Line="108">
+      <Tables>
+        <Table name="DB.SCH.resurveytags"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.resurveytags.key"></Column>
+        <Column name="DB.SCH.resurveytags.value"></Column>
+        <Column name="DB.SCH.resurveytags.ruleset"></Column>
+        <Column name="DB.SCH.resurveytags.days"></Column>
+        <Column name="DB.SCH.resurveytags.is_regexp"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1363" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" Line="110">
+      <Tables>
+        <Table name="DB.SCH.resurveytags"></Table>
+        <Table name="DB.SCH.rulesets"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.rulesets.name"></Column>
+        <Column name="DB.SCH.resurveytags.key"></Column>
+        <Column name="DB.SCH.resurveytags.value"></Column>
+        <Column name="DB.SCH.rulesets.id"></Column>
+        <Column name="DB.SCH.resurveytags.ruleset"></Column>
+        <Column name="DB.SCH.resurveytags.days"></Column>
+        <Column name="DB.SCH.resurveytags.is_regexp"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1380" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" Line="196">
+      <Tables>
+        <Table name="DB.SCH.checktags"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.checktags.ruleset"></Column>
+        <Column name="DB.SCH.checktags.key"></Column>
+        <Column name="DB.SCH.checktags.optional"></Column>
+      </Columns>
+    </Statement>
+    <Statement Id="1407" Path="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" Line="198">
+      <Tables>
+        <Table name="DB.SCH.checktags"></Table>
+        <Table name="DB.SCH.rulesets"></Table>
+      </Tables>
+      <Columns>
+        <Column name="DB.SCH.checktags.ruleset"></Column>
+        <Column name="DB.SCH.rulesets.name"></Column>
+        <Column name="DB.SCH.checktags.key"></Column>
+        <Column name="DB.SCH.rulesets.id"></Column>
+        <Column name="DB.SCH.checktags.optional"></Column>
+      </Columns>
+    </Statement>
+</Database>  
+</TableAccesses>

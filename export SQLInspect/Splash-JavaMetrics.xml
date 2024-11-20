@@ -1,0 +1,255 @@
+<?xml version="1.0" ?>
+<JavaMetrics>
+<JavaElement Kind="JavaProject" Name="Splash">
+  <Metrics>
+    <Metric name="Hotspots" value="99"></Metric>
+    <Metric name="Queries" value="100"></Metric>
+    <Metric name="Inserts" value="5"></Metric>
+    <Metric name="Selects" value="21"></Metric>
+    <Metric name="Updates" value="5"></Metric>
+    <Metric name="Deletes" value="3"></Metric>
+  </Metrics>
+  <Children>
+    <JavaElement Kind="PackageFragmentRoot" Name="java">
+      <Metrics>
+        <Metric name="Hotspots" value="99"></Metric>
+        <Metric name="Queries" value="100"></Metric>
+        <Metric name="Inserts" value="5"></Metric>
+        <Metric name="Selects" value="21"></Metric>
+        <Metric name="Updates" value="5"></Metric>
+        <Metric name="Deletes" value="3"></Metric>
+      </Metrics>
+      <Children>
+        <JavaElement Kind="PackageFragment" Name="de.blau.android.filter">
+          <Metrics>
+            <Metric name="Hotspots" value="7"></Metric>
+            <Metric name="Queries" value="7"></Metric>
+            <Metric name="Inserts" value="1"></Metric>
+            <Metric name="Selects" value="4"></Metric>
+            <Metric name="Updates" value="0"></Metric>
+            <Metric name="Deletes" value="0"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="TagFilterActivity.java">
+              <Metrics>
+                <Metric name="Hotspots" value="4"></Metric>
+                <Metric name="Queries" value="4"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="4"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="TagFilterDatabaseHelper.java">
+              <Metrics>
+                <Metric name="Hotspots" value="3"></Metric>
+                <Metric name="Queries" value="3"></Metric>
+                <Metric name="Inserts" value="1"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+        <JavaElement Kind="PackageFragment" Name="de.blau.android.imageryoffset">
+          <Metrics>
+            <Metric name="Hotspots" value="2"></Metric>
+            <Metric name="Queries" value="2"></Metric>
+            <Metric name="Inserts" value="0"></Metric>
+            <Metric name="Selects" value="0"></Metric>
+            <Metric name="Updates" value="0"></Metric>
+            <Metric name="Deletes" value="0"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="ImageryOffsetDatabase.java">
+              <Metrics>
+                <Metric name="Hotspots" value="2"></Metric>
+                <Metric name="Queries" value="2"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+        <JavaElement Kind="PackageFragment" Name="de.blau.android.photos">
+          <Metrics>
+            <Metric name="Hotspots" value="12"></Metric>
+            <Metric name="Queries" value="15"></Metric>
+            <Metric name="Inserts" value="4"></Metric>
+            <Metric name="Selects" value="0"></Metric>
+            <Metric name="Updates" value="0"></Metric>
+            <Metric name="Deletes" value="2"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="PhotoIndex.java">
+              <Metrics>
+                <Metric name="Hotspots" value="12"></Metric>
+                <Metric name="Queries" value="15"></Metric>
+                <Metric name="Inserts" value="4"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="2"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+        <JavaElement Kind="PackageFragment" Name="de.blau.android.prefs">
+          <Metrics>
+            <Metric name="Hotspots" value="28"></Metric>
+            <Metric name="Queries" value="26"></Metric>
+            <Metric name="Inserts" value="0"></Metric>
+            <Metric name="Selects" value="0"></Metric>
+            <Metric name="Updates" value="4"></Metric>
+            <Metric name="Deletes" value="0"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="AdvancedPrefDatabase.java">
+              <Metrics>
+                <Metric name="Hotspots" value="28"></Metric>
+                <Metric name="Queries" value="26"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="4"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+        <JavaElement Kind="PackageFragment" Name="de.blau.android.resources">
+          <Metrics>
+            <Metric name="Hotspots" value="29"></Metric>
+            <Metric name="Queries" value="29"></Metric>
+            <Metric name="Inserts" value="0"></Metric>
+            <Metric name="Selects" value="7"></Metric>
+            <Metric name="Updates" value="0"></Metric>
+            <Metric name="Deletes" value="0"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="KeyDatabaseHelper.java">
+              <Metrics>
+                <Metric name="Hotspots" value="5"></Metric>
+                <Metric name="Queries" value="5"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="TileLayerDatabase.java">
+              <Metrics>
+                <Metric name="Hotspots" value="24"></Metric>
+                <Metric name="Queries" value="24"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="7"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+        <JavaElement Kind="PackageFragment" Name="de.blau.android.services.util">
+          <Metrics>
+            <Metric name="Hotspots" value="10"></Metric>
+            <Metric name="Queries" value="10"></Metric>
+            <Metric name="Inserts" value="0"></Metric>
+            <Metric name="Selects" value="4"></Metric>
+            <Metric name="Updates" value="0"></Metric>
+            <Metric name="Deletes" value="1"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="MapTileProviderDataBase.java">
+              <Metrics>
+                <Metric name="Hotspots" value="8"></Metric>
+                <Metric name="Queries" value="8"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="3"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="1"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="MBTileProviderDataBase.java">
+              <Metrics>
+                <Metric name="Hotspots" value="2"></Metric>
+                <Metric name="Queries" value="2"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="1"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+        <JavaElement Kind="PackageFragment" Name="de.blau.android.validation">
+          <Metrics>
+            <Metric name="Hotspots" value="11"></Metric>
+            <Metric name="Queries" value="11"></Metric>
+            <Metric name="Inserts" value="0"></Metric>
+            <Metric name="Selects" value="6"></Metric>
+            <Metric name="Updates" value="1"></Metric>
+            <Metric name="Deletes" value="0"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="ValidatorRulesUI.java">
+              <Metrics>
+                <Metric name="Hotspots" value="2"></Metric>
+                <Metric name="Queries" value="2"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="2"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="ValidatorRulesDatabaseHelper.java">
+              <Metrics>
+                <Metric name="Hotspots" value="5"></Metric>
+                <Metric name="Queries" value="5"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="1"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="ValidatorRulesDatabase.java">
+              <Metrics>
+                <Metric name="Hotspots" value="4"></Metric>
+                <Metric name="Queries" value="4"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="4"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+      </Children>
+    </JavaElement>
+  </Children>
+</JavaElement>
+</JavaMetrics>

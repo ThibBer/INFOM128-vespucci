@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Preference keys used directly by the Tip system -->
+    <!-- End the key names with ...Tip to avoid conflicts -->
+    <string name="tip_show_key">showTips</string>
+    <string name="tip_undo_key">showUndoTip</string>
+    <string name="tip_imagery_privacy_key">showImageryPrivacyTip</string>
+    <string name="tip_mapillary_privacy_key">showMapillaryPrivacyTip</string>
+    <string name="tip_pan_and_zoom_auto_download_key">panAndZoomAutoDownloadTip</string>
+    <string name="tip_locked_mode_key">lockedModeTip</string>
+    <string name="tip_longpress_simple_mode_key">longPressSimpleModeTip</string>
+    <string name="tip_gpx_no_elevation_key">gpxNoElevationTip</string>
+    <string name="tip_tag_conflict_key">tagConflictTip</string>
+    <string name="tip_gpx_recording_key">gpxRecordingTip</string>
+    <string name="tip_auto_download_key">autoDownloadTip</string>
+    <string name="tip_tristate_checkbox_key">tristateCheckbox</string>
+    <string name="tip_alternative_tagging_key">alternativeTagging</string>¨
+    <string name="tip_mode_switching_key">modeSwitching</string>
+    <string name="tip_empty_gpx_download_key">emptyGpxDownload</string>
+    <string name="tip_no_redo_key">noRedo</string>
+    <string name="tip_way_splitting_key">waySplitting</string>
+    <string name="tip_closed_way_splitting_key">closedWaySplitting</string>
+    <string name="tip_disambiguation_menu_key">disambiguationMenu</string>
+    <string name="tip_file_import_key">fileImport</string>
+    <string name="tip_wms_tile_size_key">wmsTileSize</string>
+</resources>

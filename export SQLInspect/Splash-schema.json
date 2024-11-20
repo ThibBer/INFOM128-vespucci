@@ -1,0 +1,441 @@
+{
+  "Databases" : [ {
+    "Name" : "DB",
+    "Schemas" : [ {
+      "Name" : "SCH",
+      "Tables" : [ {
+        "Name" : "filters",
+        "Columns" : [ {
+          "Name" : "name",
+          "Type" : "TEXT"
+        } ]
+      }, {
+        "Name" : "filterentries",
+        "Columns" : [ {
+          "Name" : "filter",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "include",
+          "Type" : "INT"
+        }, {
+          "Name" : "type",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "key",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "value",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "active",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "offsets",
+        "Columns" : [ {
+          "Name" : "imagery_id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "lon",
+          "Type" : "NUMERIC"
+        }, {
+          "Name" : "lat",
+          "Type" : "NUMERIC"
+        }, {
+          "Name" : "min_zoom",
+          "Type" : "INT"
+        }, {
+          "Name" : "max_zoom",
+          "Type" : "INT"
+        }, {
+          "Name" : "imagery_lon",
+          "Type" : "NUMERIC"
+        }, {
+          "Name" : "imagery_lat",
+          "Type" : "NUMERIC"
+        } ]
+      }, {
+        "Name" : "photos",
+        "Columns" : [ {
+          "Name" : "lat",
+          "Type" : "NUMERIC"
+        }, {
+          "Name" : "lon",
+          "Type" : "NUMERIC"
+        }, {
+          "Name" : "direction",
+          "Type" : "NUMERIC"
+        }, {
+          "Name" : "dir",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "source",
+          "Type" : "TEXT"
+        } ]
+      }, {
+        "Name" : "directories",
+        "Columns" : [ {
+          "Name" : "dir",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "last_scan",
+          "Type" : "NUMERIC"
+        }, {
+          "Name" : "tag",
+          "Type" : "TEXT"
+        } ]
+      }, {
+        "Name" : "apis",
+        "Columns" : [ {
+          "Name" : "id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "url",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "readonlyurl",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "notesurl",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "user",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "pass",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "preset",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "showicon",
+          "Type" : "INT"
+        }, {
+          "Name" : "oauth",
+          "Type" : "INT"
+        }, {
+          "Name" : "accesstoken",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "accesstokensecret",
+          "Type" : "TEXT"
+        } ]
+      }, {
+        "Name" : "presets",
+        "Columns" : [ {
+          "Name" : "id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "url",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "version",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "shortdescription",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "description",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "lastupdate",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "data",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "position",
+          "Type" : "INT"
+        }, {
+          "Name" : "active",
+          "Type" : "INT"
+        }, {
+          "Name" : "usetranslations",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "geocoders",
+        "Columns" : [ {
+          "Name" : "id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "type",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "version",
+          "Type" : "INT"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "url",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "active",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "layers",
+        "Columns" : [ {
+          "Name" : "type",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "position",
+          "Type" : "INT"
+        }, {
+          "Name" : "visible",
+          "Type" : "INT"
+        }, {
+          "Name" : "content_id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "server_type",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "category",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "tile_type",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "source",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "url",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "tou_url",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "attribution",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "overlay",
+          "Type" : "INT"
+        }, {
+          "Name" : "default_layer",
+          "Type" : "INT"
+        }, {
+          "Name" : "zoom_min",
+          "Type" : "INT"
+        }, {
+          "Name" : "zoom_max",
+          "Type" : "INT"
+        }, {
+          "Name" : "over_zoom_max",
+          "Type" : "INT"
+        }, {
+          "Name" : "tile_width",
+          "Type" : "INT"
+        }, {
+          "Name" : "tile_height",
+          "Type" : "INT"
+        }, {
+          "Name" : "proj",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "preference",
+          "Type" : "INT"
+        }, {
+          "Name" : "start_date",
+          "Type" : "INT"
+        }, {
+          "Name" : "end_date",
+          "Type" : "INT"
+        }, {
+          "Name" : "no_tile_header",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "no_tile_value",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "no_tile_tile",
+          "Type" : "BLOB"
+        }, {
+          "Name" : "logo_url",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "logo",
+          "Type" : "BLOB"
+        }, {
+          "Name" : "description",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "privacy_policy_url",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "attribution_url",
+          "Type" : "TEXT"
+        } ]
+      }, {
+        "Name" : "keys",
+        "Columns" : [ {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "type",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "key",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "add1",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "add2",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "custom",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "sources",
+        "Columns" : [ {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "updated",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "coverages",
+        "Columns" : [ {
+          "Name" : "id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "zoom_min",
+          "Type" : "INT"
+        }, {
+          "Name" : "zoom_max",
+          "Type" : "INT"
+        }, {
+          "Name" : "left",
+          "Type" : "INT"
+        }, {
+          "Name" : "bottom",
+          "Type" : "INT"
+        }, {
+          "Name" : "right",
+          "Type" : "INT"
+        }, {
+          "Name" : "top",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "headers",
+        "Columns" : [ {
+          "Name" : "id",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "value",
+          "Type" : "TEXT"
+        } ]
+      }, {
+        "Name" : "t_renderer",
+        "Columns" : [ {
+          "Name" : "id",
+          "Type" : "TEXT(255)"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT(255)"
+        }, {
+          "Name" : "base_url",
+          "Type" : "TEXT(255)"
+        }, {
+          "Name" : "zoom_min",
+          "Type" : "INT"
+        }, {
+          "Name" : "zoom_max",
+          "Type" : "INT"
+        }, {
+          "Name" : "tile_size_log",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "tiles",
+        "Columns" : [ {
+          "Name" : "rendererID",
+          "Type" : "TEXT(255)"
+        }, {
+          "Name" : "zoom_level",
+          "Type" : "INT"
+        }, {
+          "Name" : "tile_column",
+          "Type" : "INT"
+        }, {
+          "Name" : "tile_row",
+          "Type" : "INT"
+        }, {
+          "Name" : "timestamp",
+          "Type" : "INT"
+        }, {
+          "Name" : "countused",
+          "Type" : "INT"
+        }, {
+          "Name" : "filesize",
+          "Type" : "INT"
+        }, {
+          "Name" : "tile_data",
+          "Type" : "BLOB"
+        } ]
+      }, {
+        "Name" : "rulesets",
+        "Columns" : [ {
+          "Name" : "id",
+          "Type" : "INT"
+        }, {
+          "Name" : "name",
+          "Type" : "TEXT"
+        } ]
+      }, {
+        "Name" : "resurveytags",
+        "Columns" : [ {
+          "Name" : "ruleset",
+          "Type" : "INT"
+        }, {
+          "Name" : "key",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "value",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "is_regexp",
+          "Type" : "INT"
+        }, {
+          "Name" : "days",
+          "Type" : "INT"
+        } ]
+      }, {
+        "Name" : "checktags",
+        "Columns" : [ {
+          "Name" : "ruleset",
+          "Type" : "INT"
+        }, {
+          "Name" : "key",
+          "Type" : "TEXT"
+        }, {
+          "Name" : "optional",
+          "Type" : "INT"
+        } ]
+      } ]
+    } ]
+  } ]
+}

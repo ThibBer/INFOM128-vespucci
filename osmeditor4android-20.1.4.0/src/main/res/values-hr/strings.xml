@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!--Mode names-->
+  <string name="mode_easy">Normalno</string>
+  <string name="mode_tag_only">Samo tag</string>
+  <!--Dialogs-->
+  <string name="transfer_download_current_dialog_title">Oprez!</string>
+  <string name="transfer_download_current_dialog_message">Napravili ste promjene. Želite li ih poslati umjesto da ih odbacite?</string>
+  <string name="transfer_download_current_upload">Spremi</string>
+  <string name="transfer_download_current_download">Obriši i skini nove</string>
+  <string name="transfer_download_current_back">Natrag (ne napravi ništa)</string>
+  <string name="upload_problem_title">Slanje nije uspjelo</string>
+  <string name="upload_problem_message">Dio ili svi podaci nisu poslani. Pokušajte kasnije.</string>
+  <string name="bad_request_message">API je vratio grešku, spremite podatke i prijavite problem:\n\n</string>
+  <string name="upload_conflict_title">Konflikt u podacima</string>
+  <string name="use_local_version">Koristi lokalnu verziju</string>
+  <string name="use_server_version">Koristi verziju sa poslužitelja</string>
+  <string name="no_login_data_title">Prijava nije uspjela</string>
+  <string name="data_conflict_title">Konflikt u verzijama</string>
+  <!---->
+  <string name="welcome_title">Dobrodošli</string>
+  <string name="progress_title">Učitavanje</string>
+  <string name="progress_message">Učitavanje podataka u memoriju…</string>
+  <string name="progress_download_message">Skidanje podataka sa poslužitelja…</string>
+  <string name="progress_general_title">Molim pričekajte</string>
+  <string name="progress_deleting_message">Brisanje...</string>
+  <string name="progress_searching_message">Traženje...</string>
+  <string name="progress_saving_message">Spremanje...</string>
+  <!--Confirm upload dialog-->
+  <string name="changes_deleted">\"%1$s\" obrisano</string>
+  <string name="changes_changed">\"%1$s\" promjenjeno</string>
+  <string name="changes_created">\"%1$s\" stvoreno</string>
+  <string name="upload_comment_label">Komentar:</string>
+  <string name="upload_source_label">Izvor:</string>
+  <string name="upload_close_changeset_label">Zatvaranje changeseta:</string>
+  <!---->
+  <string name="upload_gpx_description_label">Opis</string>
+  <string name="upload_gpx_tags_label">Oznake</string>
+  <!--task fragment-->
+  <string name="openstreetbug_comment_label">Komentar:</string>
+  <!--Unsaved data dialog-->
+  <string name="unsaved_data_title">Oprez!</string>
+  <string name="unsaved_data_proceed">Odbaci i nastavi</string>
+  <!--Imagery offset dialog-->
+  <string name="imagery_offset_description">Opis</string>
+  <string name="imagery_offset_not_found">Pomaci pozadine nisu pronađeni unutar 10 km!</string>
+  <string name="imagery_offset_author">Autor</string>
+  <string name="imagery_offset_offset">Pomak</string>
+  <string name="imagery_offset_date">Stvoreno</string>
+  <string name="imagery_offset_distance">Daljina</string>
+  <!--Search/Find dialog-->
+  <string name="search_results_title">Rezultati traženja</string>
+  <!--Search objects dialog-->
+  <!---->
+  <string name="search">Pretraži</string>
+  <!--element information dialog-->
+  <string name="closed">Zatvoren</string>
+  <!--GeoJSON feature display dialog-->
+  <!--API/Data layer info dialog-->
+  <!--Tile layer info dialog-->
+  <!---->
+  <!--hidden object warning dialog-->
+  <!--This concerns a shown message that should be shown every time-->
+  <!--This concerns a shown message that should only be shown once-->
+  <!--debug dialog-->
+  <!--JS console dialog-->
+  <!--Validator dialogs-->
+  <!--Empty relation dialog-->
+  <!--GPX waypoint dialog-->
+  <!--Custom imagery dialogs-->
+  <!--Layer style dialog-->
+  <!--Layer dialog-->
+  <!--Layer info dialog-->
+  <!--Photo viewer-->
+  <!--API info dialog-->
+  <!--Undo - Redo dialog-->
+  <!--Undo location not in view dialog-->
+  <!--Feedback activity-->
+  <!--BoxPicker-->
+  <!--Clear/Reset GPX Track-->
+  <!--Tips-->
+  <!--NumberPicker-->
+  <!--NotificationChannels-->
+  <!--Toaster-->
+  <string name="toast_no_changes">Još niste ništa promjenili…</string>
+  <string name="toast_unlock_to_edit">Otključaj za uređivanje</string>
+  <string name="toast_export_success">Izvezeno u %1$s</string>
+  <!---->
+  <string name="toast_nothing_found">Ništa nije nađeno</string>
+  <!--Error messages-->
+  <!--Some generic labels/buttons-->
+  <string name="yes">Da</string>
+  <string name="no">Ne</string>
+  <string name="cancel">Odustani</string>
+  <string name="locked">Zaključano</string>
+  <string name="replace">Zamjeni</string>
+  <string name="save">Spremi</string>
+  <!--Read a file-->
+  <!--Dialog for back button-->
+  <string name="exit_text">Jeste li sigurni da želite izaći?</string>
+  <!--Strings in PorpertyEditor-->
+  <string name="key">oznaka</string>
+  <string name="value">vrijednost</string>
+  <string name="link_mapfeatures">http://wiki.openstreetmap.org/index.php/Map_Features</string>
+  <string name="tag_menu_revert">Vrati</string>
+  <string name="tag_menu_addtorelation">Dodaj relaciji</string>
+  <string name="tag_details">Detalji</string>
+  <string name="menu_up">Gore</string>
+  <string name="tag_restriction_add_restriction">Dodaj zabranu</string>
+  <!--Custom preset creation-->
+  <!--Strings in Box/LocationPicker-->
+  <string name="location_choose_radius">Odaberi veličinu površine:</string>
+  <string name="location_default_radius">300m</string>
+  <string name="location_last_text">Zadnja poznata pozicija:</string>
+  <string name="location_current_text">Trenutna pozicija: nepoznata</string>
+  <string name="location_last_text_parameterized">Zadnja poznata pozicija: %1$s</string>
+  <string name="location_current_text_parameterized">Trenutna pozicija: %1$s</string>
+  <string name="location_coordinates_text">Iz koordinata:</string>
+  <string name="location_lat_label">Lat:</string>
+  <string name="location_lon_label">Lon:</string>
+  <string name="location_search_label">Traži:</string>
+  <string name="location_load_button">Učitaj</string>
+  <!--Strings in DownloadActivity-->
+  <!--Strings in Go to coordinates-->
+  <!--Menu-->
+  <string name="menu_move">Pomakni</string>
+  <string name="menu_edit">Promijeni</string>
+  <string name="menu_add">Novo</string>
+  <string name="menu_config">Postavke</string>
+  <string name="menu_help">Pomoć</string>
+  <string name="menu_erase">Obriši točku</string>
+  <string name="menu_split">Podijeli put</string>
+  <string name="menu_append">Nastavi</string>
+  <string name="menu_relation">Stvori relaciju</string>
+  <string name="menu_tag">Uredi oznake</string>
+  <string name="menu_easyedit">MultiAlat</string>
+  <string name="menu_gps_show">Prikaži lokaciju</string>
+  <string name="menu_transfer">Prijenos…</string>
+  <string name="menu_transfer_download_current">Skini trenutni pogled</string>
+  <string name="menu_transfer_upload">Spremi na OSM poslužitelj</string>
+  <string name="menu_join">Spoji</string>
+  <string name="menu_unjoin">Odspoji</string>
+  <string name="menu_copy">Kopiraj</string>
+  <string name="menu_cut">Izreži</string>
+  <string name="menu_paste">Zalijepi</string>
+  <string name="menu_rotate">Rotiraj</string>
+  <string name="menu_tools_background_properties">Opcije pozadine</string>
+  <!---->
+  <!--Background alignment-->
+  <string name="menu_tools_background_align_reset">Resetiraj</string>
+  <!--Menus in layers dialog-->
+  <!---->
+  <!--element action mode menu-->
+  <!--Text should be as short as possible-->
+  <string name="menu_history">Povijest</string>
+  <string name="menu_merge">Spoji</string>
+  <string name="menu_reverse">Obrni smjer</string>
+  <string name="reverse_anyway">Svejedno promjeni smjer</string>
+  <string name="deletenode">Obriši točku</string>
+  <!--EasyEdit context menus-->
+  <!--EasyEdit action mode titles-->
+  <string name="actionmode_wayselect">Odabrana linija</string>
+  <string name="actionmode_nodeselect">Odabrana točka</string>
+  <string name="actionmode_relationselect">Relacija odabrana</string>
+  <string name="actionmode_createpath">Stvaranje linije</string>
+  <!--EasyEdit action mode sub-titles-->
+  <!--Simple Action Mode-->
+  <!--Preferences-->
+  <string name="config_backgroundLayer_title">Karta u pozadini</string>
+  <string name="config_enablePhotoLayer_summary">Prikaži geo-referencirane fotke.</string>
+  <string name="config_advancedprefs">Napredne postavke</string>
+  <!--Validator preferences-->
+  <!--opening hours templates-->
+  <!--these are no longer on the prefs page, but are used as menu entries-->
+  <string name="config_debugbutton_title">Debug</string>
+  <string name="config_category_info">Više o</string>
+  <!--Advanced preferences-->
+  <!--User Interface Settings-->
+  <string name="config_iconbutton_title">Prikaži ikone točaka</string>
+  <string name="config_showTolerance_title">Površina tolerancije</string>
+  <string name="config_maxStrokeWidth_title">Maksimalna širina linije</string>
+  <!--Data and Editing Settings-->
+  <!--Auto-download settings-->
+  <!--Location Settings-->
+  <!--Server Settings-->
+  <string name="config_loginbutton_title">Korisnički račun</string>
+  <!--Layer download and storage-->
+  <!--Miscellaneous-->
+  <string name="config_showStats_title">Statistika</string>
+  <!--Experimental-->
+  <!---->
+  <!--preset downloader messages-->
+  <!--url handler activity-->
+  <!--API configuration-->
+  <!--common terms-->
+  <string name="add">Dodaj</string>
+  <string name="edit">Uredi</string>
+  <string name="delete">Obriši</string>
+  <string name="name">Ime</string>
+  <string name="url">URL</string>
+  <string name="default_">Predefinirano</string>
+  <!---->
+  <!--"default" is a reserved Java keyword…-->
+  <string name="undo">Opovrgni</string>
+  <string name="redo">Ponovi</string>
+  <string name="undo_nothing">nema se što opovrgnuti</string>
+  <!--element description-->
+  <!--undo actions - give a description of the action, in infinitive, to display in strings like "Undo: actionname" or "Redo: actionname"-->
+  <!--ACRA-->
+  <!--Exceptions messages-->
+  <!--Notifications-->
+  <!--Misc relation related stuff-->
+  <string name="role">Rola</string>
+  <string name="relation">Relacija</string>
+  <string name="type">Tip</string>
+  <string name="object">Objekt</string>
+  <string name="deleterelation">Obriši relaciju</string>
+  <string name="delete_from_relation_description">Spremate se obrisati ovaj element iz relacije</string>
+  <!--time and distance-->
+  <!--Help system-->
+  <!--Arrays-->
+  <!--The entries need to match the order of the CheckStatus enum-->
+</resources>

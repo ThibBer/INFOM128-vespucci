@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/menu_config">
+    <PreferenceCategory
+        android:title="@string/config_category_view">
+        <androidx.preference.ListPreference
+            android:key="@string/config_mapProfile_key"
+            android:title="@string/config_mapProfile_title"
+            android:summary="@string/config_mapProfile_summary"
+            android:defaultValue="Color Round Nodes" />
+        <androidx.preference.Preference
+            android:title="@string/config_customlayers_title"
+            android:key="@string/config_customlayers_key"
+            android:summary="@string/config_customlayers_summary" />
+        <androidx.preference.CheckBoxPreference
+            android:title="@string/config_enableKeepScreenOn_title"
+            android:key="@string/config_enableKeepScreenOn_key"
+            android:summary="@string/config_enableKeepScreenOn_summary"
+            android:defaultValue="false" />
+        <androidx.preference.CheckBoxPreference
+            android:key="@string/config_largeDragArea_key"
+            android:title="@string/config_largeDragArea_title"
+            android:summary="@string/config_largeDragArea_summary"
+            android:defaultValue="false" />
+       <androidx.preference.CheckBoxPreference
+            android:key="@string/config_wayNodeDragging_key"
+            android:title="@string/config_wayNodeDragging_title"
+            android:summary="@string/config_wayNodeDragging_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/config_moreprefs">
+        <androidx.preference.Preference
+            android:key="@string/config_presetbutton_key"
+            android:summary="@string/config_presetbutton_summary"
+            android:title="@string/config_presetbutton_title" />
+        <androidx.preference.PreferenceScreen
+            android:title="@string/config_validatorprefs_title"
+            android:key="config_category_validator">
+            <androidx.preference.Preference
+                android:title="@string/config_validatorprefs_title"
+                android:key="@string/config_validatorprefs_key"
+                android:summary="@string/config_validatorprefs_summary" />
+            <ch.poole.android.numberpickerpreference.NumberPickerPreference
+                android:defaultValue="2"
+                android:dialogTitle="@string/config_connectedNodeTolerance_title"
+                android:key="@string/config_connectedNodeTolerance_key"
+                android:numeric="integer"
+                android:summary="@string/config_connectedNodeTolerance_summary"
+                android:title="@string/config_connectedNodeTolerance_title"
+                app:spt_maxValue="10"
+                app:spt_minValue="1"
+                app:spt_currentValueText="@string/config_maxAlertDistance_current"
+                app:spt_setWrapSelectorWheel="false" />
+            <androidx.preference.MultiSelectListPreference
+                android:key="@string/config_enabledValidations_key"
+                android:title="@string/config_enabledValidations_title"
+                android:summary="@string/config_enabledValidations_summary"
+                android:entries="@array/validations_entries"
+                android:entryValues="@array/validations_values"
+                android:defaultValue="@array/validations_values" />
+        </androidx.preference.PreferenceScreen>
+        <androidx.preference.Preference
+            android:title="@string/config_opening_hours_title"
+            android:key="@string/config_opening_hours_key"
+            android:summary="@string/config_opening_hours_summary" />
+        <androidx.preference.MultiSelectListPreference
+            android:key="@string/config_poi_keys_key"
+            android:title="@string/config_poi_keys_title"
+            android:summary="@string/config_poi_keys_summary"
+            android:entries="@array/poi_keys_entries"
+            android:entryValues="@array/poi_keys_values"
+            android:defaultValue="@array/poi_keys_defaults" />
+        <androidx.preference.Preference
+            android:icon="?attr/menu_config"
+            android:title="@string/config_advancedprefs"
+            android:key="@string/config_advancedprefs_key" />
+    </PreferenceCategory>
+</PreferenceScreen>

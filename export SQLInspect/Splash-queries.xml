@@ -1,0 +1,1209 @@
+<?xml version="1.0" ?>
+<Queries>
+  <Query id="1">
+    <Value>SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.filter</ExecPackage>
+    <ExecClass>TagFilterActivity</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</ExecFile>
+    <ExecLine>111</ExecLine>
+    <ExecString>db.rawQuery(QUERY + filter + "'",null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.filter.TagFilterActivity.onCreate(android.os.Bundle)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" methodLine="91" callLine="111"></Call>
+    </CallStack>
+  </Query>
+  <Query id="2">
+    <Value>SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.filter</ExecPackage>
+    <ExecClass>TagFilterActivity</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</ExecFile>
+    <ExecLine>148</ExecLine>
+    <ExecString>db.rawQuery(QUERY + filter + "'",null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.filter.TagFilterActivity.onResume()" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" methodLine="144" callLine="148"></Call>
+    </CallStack>
+  </Query>
+  <Query id="3">
+    <Value>SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.filter</ExecPackage>
+    <ExecClass>TagFilterAdapter</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</ExecFile>
+    <ExecLine>325</ExecLine>
+    <ExecString>db.rawQuery(QUERY + filter + "'",null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.filter.TagFilterActivity.TagFilterAdapter.bindView(android.view.View,android.content.Context,android.database.Cursor)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" methodLine="319" callLine="325"></Call>
+    </CallStack>
+  </Query>
+  <Query id="4">
+    <Value>SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.filter</ExecPackage>
+    <ExecClass>TagFilterAdapter</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</ExecFile>
+    <ExecLine>411</ExecLine>
+    <ExecString>db.rawQuery(QUERY + filter + "'",null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.filter.TagFilterActivity.TagFilterAdapter.newCursor()" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java" methodLine="407" callLine="411"></Call>
+    </CallStack>
+  </Query>
+  <Query id="5">
+    <Value>CREATE TABLE filters (name TEXT)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.filter</ExecPackage>
+    <ExecClass>TagFilterDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java</ExecFile>
+    <ExecLine>26</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE filters (name TEXT)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.filter.TagFilterDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java" methodLine="23" callLine="26"></Call>
+    </CallStack>
+  </Query>
+  <Query id="6">
+    <Value>INSERT INTO filters VALUES ('Default')</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.filter</ExecPackage>
+    <ExecClass>TagFilterDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java</ExecFile>
+    <ExecLine>27</ExecLine>
+    <ExecString>db.execSQL("INSERT INTO filters VALUES ('Default')")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.filter.TagFilterDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java" methodLine="23" callLine="27"></Call>
+    </CallStack>
+  </Query>
+  <Query id="7">
+    <Value>CREATE TABLE filterentries (filter TEXT, include INTEGER DEFAULT 0, type TEXT DEFAULT '*', key TEXT DEFAULT '*', value TEXT DEFAULT '*', active INTEGER DEFAULT 0, FOREIGN KEY(filter) REFERENCES filters(name))</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.filter</ExecPackage>
+    <ExecClass>TagFilterDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java</ExecFile>
+    <ExecLine>28</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE filterentries (filter TEXT, include INTEGER DEFAULT 0, type TEXT DEFAULT '*', key TEXT DEFAULT '*', value TEXT DEFAULT '*', active INTEGER DEFAULT 0, FOREIGN KEY(filter) REFERENCES filters(name))")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.filter.TagFilterDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java" methodLine="23" callLine="29"></Call>
+    </CallStack>
+  </Query>
+  <Query id="8">
+    <Value>CREATE TABLE offsets (imagery_id TEXT NOT NULL, lon NUMBER NOT NULL, lat NUMBER NOT NULL,  min_zoom INTEGER NOT NULL, max_zoom INTEGER NOT NULL, imagery_lon NUMBER NOT NULL, imagery_lat NUMBER NOT NULL)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.imageryoffset</ExecPackage>
+    <ExecClass>ImageryOffsetDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/imageryoffset/ImageryOffsetDatabase.java</ExecFile>
+    <ExecLine>44</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE offsets (imagery_id TEXT NOT NULL, lon NUMBER NOT NULL, lat NUMBER NOT NULL, " + " min_zoom INTEGER NOT NULL, max_zoom INTEGER NOT NULL, imagery_lon NUMBER NOT NULL, imagery_lat NUMBER NOT NULL)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.imageryoffset.ImageryOffsetDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/imageryoffset/ImageryOffsetDatabase.java" methodLine="41" callLine="44"></Call>
+    </CallStack>
+  </Query>
+  <Query id="9">
+    <Value>CREATE INDEX imagery_idx ON offsets(imagery_id)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.imageryoffset</ExecPackage>
+    <ExecClass>ImageryOffsetDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/imageryoffset/ImageryOffsetDatabase.java</ExecFile>
+    <ExecLine>46</ExecLine>
+    <ExecString>db.execSQL("CREATE INDEX imagery_idx ON offsets(imagery_id)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.imageryoffset.ImageryOffsetDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/imageryoffset/ImageryOffsetDatabase.java" methodLine="41" callLine="46"></Call>
+    </CallStack>
+  </Query>
+  <Query id="10">
+    <Value>CREATE TABLE IF NOT EXISTS photos (lat int, lon int, direction int DEFAULT NULL, dir VARCHAR, name VARCHAR, source VARCHAR DEFAULT NULL);</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>88</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE IF NOT EXISTS " + PHOTOS_TABLE + " (lat int, lon int, direction int DEFAULT NULL, dir VARCHAR, name VARCHAR, source VARCHAR DEFAULT NULL);")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="88"></Call>
+    </CallStack>
+  </Query>
+  <Query id="11">
+    <Value>CREATE INDEX latidx ON photos (lat)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>90</ExecLine>
+    <ExecString>db.execSQL("CREATE INDEX latidx ON " + PHOTOS_TABLE + " (lat)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="90"></Call>
+    </CallStack>
+  </Query>
+  <Query id="12">
+    <Value>CREATE INDEX lonidx ON photos (lon)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>91</ExecLine>
+    <ExecString>db.execSQL("CREATE INDEX lonidx ON " + PHOTOS_TABLE + " (lon)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="91"></Call>
+    </CallStack>
+  </Query>
+  <Query id="13">
+    <Value>CREATE TABLE IF NOT EXISTS directories (dir VARCHAR, last_scan int8, tag VARCHAR DEFAULT NULL);</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>92</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE IF NOT EXISTS " + SOURCES_TABLE + " (dir VARCHAR, last_scan int8, tag VARCHAR DEFAULT NULL);")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="92"></Call>
+    </CallStack>
+  </Query>
+  <Query id="14">
+    <Value>INSERT INTO directories VALUES ('MediaStore', 0, {{na}});</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>107</ExecLine>
+    <ExecString>db.execSQL(INSERT_INTO + SOURCES_TABLE + " VALUES ('"+ source+ "', 0, "+ (tag == null ? "NULL" : "''")+ ");")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.initSource(android.database.sqlite.SQLiteDatabase,java.lang.String,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="99" callLine="107"></Call>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="96"></Call>
+    </CallStack>
+  </Query>
+  <Query id="15">
+    <Value>INSERT INTO directories VALUES ('DCIM', 0, {{na}});</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>107</ExecLine>
+    <ExecString>db.execSQL(INSERT_INTO + SOURCES_TABLE + " VALUES ('"+ source+ "', 0, "+ (tag == null ? "NULL" : "''")+ ");")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.initSource(android.database.sqlite.SQLiteDatabase,java.lang.String,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="99" callLine="107"></Call>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="93"></Call>
+    </CallStack>
+  </Query>
+  <Query id="16">
+    <Value>INSERT INTO directories VALUES ('Vespucci', 0, {{na}});</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>107</ExecLine>
+    <ExecString>db.execSQL(INSERT_INTO + SOURCES_TABLE + " VALUES ('"+ source+ "', 0, "+ (tag == null ? "NULL" : "''")+ ");")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.initSource(android.database.sqlite.SQLiteDatabase,java.lang.String,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="99" callLine="107"></Call>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="94"></Call>
+    </CallStack>
+  </Query>
+  <Query id="17">
+    <Value>INSERT INTO directories VALUES ('osmtracker', 0, {{na}});</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>107</ExecLine>
+    <ExecString>db.execSQL(INSERT_INTO + SOURCES_TABLE + " VALUES ('"+ source+ "', 0, "+ (tag == null ? "NULL" : "''")+ ");")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.initSource(android.database.sqlite.SQLiteDatabase,java.lang.String,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="99" callLine="107"></Call>
+      <Call method="de.blau.android.photos.PhotoIndex.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="85" callLine="95"></Call>
+    </CallStack>
+  </Query>
+  <Query id="18">
+    <Value>ALTER TABLE photos ADD direction int DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>114</ExecLine>
+    <ExecString>db.execSQL(ALTER_TABLE + PHOTOS_TABLE + " ADD direction int DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="110" callLine="114"></Call>
+    </CallStack>
+  </Query>
+  <Query id="19">
+    <Value>DELETE FROM photos</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>117</ExecLine>
+    <ExecString>db.execSQL("DELETE FROM " + PHOTOS_TABLE)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="110" callLine="117"></Call>
+    </CallStack>
+  </Query>
+  <Query id="20">
+    <Value>ALTER TABLE photos ADD source VARCHAR DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>120</ExecLine>
+    <ExecString>db.execSQL(ALTER_TABLE + PHOTOS_TABLE + " ADD source VARCHAR DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="110" callLine="120"></Call>
+    </CallStack>
+  </Query>
+  <Query id="21">
+    <Value>ALTER TABLE directories ADD tag VARCHAR DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>121</ExecLine>
+    <ExecString>db.execSQL(ALTER_TABLE + SOURCES_TABLE + " ADD tag VARCHAR DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="110" callLine="121"></Call>
+    </CallStack>
+  </Query>
+  <Query id="22">
+    <Value>DELETE FROM photos</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>123</ExecLine>
+    <ExecString>db.execSQL("DELETE FROM " + PHOTOS_TABLE)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="110" callLine="123"></Call>
+    </CallStack>
+  </Query>
+  <Query id="23">
+    <Value>DROP TABLE photos</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>130</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE " + PHOTOS_TABLE)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onDowngrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="127" callLine="130"></Call>
+    </CallStack>
+  </Query>
+  <Query id="24">
+    <Value>DROP TABLE directories</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.photos</ExecPackage>
+    <ExecClass>PhotoIndex</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</ExecFile>
+    <ExecLine>131</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE " + SOURCES_TABLE)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.photos.PhotoIndex.onDowngrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java" methodLine="127" callLine="131"></Call>
+    </CallStack>
+  </Query>
+  <Query id="25">
+    <Value>CREATE TABLE apis (id TEXT, name TEXT, url TEXT, readonlyurl TEXT, notesurl TEXT, user TEXT, pass TEXT, preset TEXT, showicon INTEGER DEFAULT 1, oauth INTEGER DEFAULT 0, accesstoken TEXT, accesstokensecret TEXT)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>128</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE apis (id TEXT, name TEXT, url TEXT, readonlyurl TEXT, notesurl TEXT, user TEXT, pass TEXT, preset TEXT, showicon INTEGER DEFAULT 1, oauth INTEGER DEFAULT 0, accesstoken TEXT, accesstokensecret TEXT)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="126" callLine="129"></Call>
+    </CallStack>
+  </Query>
+  <Query id="26">
+    <Value>CREATE TABLE presets (id TEXT, name TEXT, url TEXT, version TEXT DEFAULT NULL, shortdescription TEXT DEFAULT NULL, description TEXT DEFAULT NULL, lastupdate TEXT, data TEXT, position INTEGER DEFAULT 0, active INTEGER DEFAULT 0, usetranslations INTEGER DEFAULT 1)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>130</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE presets (id TEXT, name TEXT, url TEXT, version TEXT DEFAULT NULL, shortdescription TEXT DEFAULT NULL, description TEXT DEFAULT NULL, lastupdate TEXT, data TEXT, position INTEGER DEFAULT 0, active INTEGER DEFAULT 0, usetranslations INTEGER DEFAULT 1)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="126" callLine="131"></Call>
+    </CallStack>
+  </Query>
+  <Query id="27">
+    <Value>CREATE TABLE geocoders (id TEXT, type TEXT, version INTEGER DEFAULT 0, name TEXT, url TEXT, active INTEGER DEFAULT 0)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>132</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE geocoders (id TEXT, type TEXT, version INTEGER DEFAULT 0, name TEXT, url TEXT, active INTEGER DEFAULT 0)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="126" callLine="132"></Call>
+    </CallStack>
+  </Query>
+  <Query id="28">
+    <Value>CREATE TABLE layers (type TEXT, position INTEGER DEFAULT -1, visible INTEGER DEFAULT 1, content_id TEXT)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>135</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE layers (type TEXT, position INTEGER DEFAULT -1, visible INTEGER DEFAULT 1, content_id TEXT)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="126" callLine="135"></Call>
+    </CallStack>
+  </Query>
+  <Query id="29">
+    <Value>ALTER TABLE apis ADD COLUMN showicon INTEGER DEFAULT 0</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>146</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE apis ADD COLUMN showicon INTEGER DEFAULT 0")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="146"></Call>
+    </CallStack>
+  </Query>
+  <Query id="30">
+    <Value>ALTER TABLE apis ADD COLUMN oauth INTEGER DEFAULT 0</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>149</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE apis ADD COLUMN oauth INTEGER DEFAULT 0")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="149"></Call>
+    </CallStack>
+  </Query>
+  <Query id="31">
+    <Value>ALTER TABLE apis ADD COLUMN accesstoken TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>150</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE apis ADD COLUMN accesstoken TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="150"></Call>
+    </CallStack>
+  </Query>
+  <Query id="32">
+    <Value>ALTER TABLE apis ADD COLUMN accesstokensecret TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>151</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE apis ADD COLUMN accesstokensecret TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="151"></Call>
+    </CallStack>
+  </Query>
+  <Query id="33">
+    <Value>UPDATE apis SET url='https://api.openstreetmap.org/api/0.6/' WHERE id='default'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>152</ExecLine>
+    <ExecString>db.execSQL("UPDATE apis SET url='" + Urls.DEFAULT_API + "' WHERE id='"+ ID_DEFAULT+ "'")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="152"></Call>
+    </CallStack>
+  </Query>
+  <Query id="34">
+    <Value>ALTER TABLE presets ADD COLUMN active INTEGER DEFAULT 0</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>155</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE presets ADD COLUMN active INTEGER DEFAULT 0")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="155"></Call>
+    </CallStack>
+  </Query>
+  <Query id="35">
+    <Value>UPDATE presets SET active=1 WHERE id='default'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>156</ExecLine>
+    <ExecString>db.execSQL("UPDATE presets SET active=1 WHERE id='default'")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="156"></Call>
+    </CallStack>
+  </Query>
+  <Query id="36">
+    <Value>UPDATE apis SET url='https://api.openstreetmap.org/api/0.6/' WHERE id='default'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>159</ExecLine>
+    <ExecString>db.execSQL("UPDATE apis SET url='" + Urls.DEFAULT_API + "' WHERE id='"+ ID_DEFAULT+ "'")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="159"></Call>
+    </CallStack>
+  </Query>
+  <Query id="37">
+    <Value>ALTER TABLE apis ADD COLUMN readonlyurl TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>162</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE apis ADD COLUMN readonlyurl TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="162"></Call>
+    </CallStack>
+  </Query>
+  <Query id="38">
+    <Value>ALTER TABLE apis ADD COLUMN notesurl TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>163</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE apis ADD COLUMN notesurl TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="163"></Call>
+    </CallStack>
+  </Query>
+  <Query id="39">
+    <Value>CREATE TABLE geocoders (id TEXT, type TEXT, version INTEGER DEFAULT 0, name TEXT, url TEXT, active INTEGER DEFAULT 0)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>169</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE geocoders (id TEXT, type TEXT, version INTEGER DEFAULT 0, name TEXT, url TEXT, active INTEGER DEFAULT 0)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="169"></Call>
+    </CallStack>
+  </Query>
+  <Query id="40">
+    <Value>ALTER TABLE presets ADD COLUMN position INTEGER DEFAULT 0</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>177</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE presets ADD COLUMN position INTEGER DEFAULT 0")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="177"></Call>
+    </CallStack>
+  </Query>
+  <Query id="41">
+    <Value>ALTER TABLE presets ADD COLUMN usetranslations INTEGER DEFAULT 1</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>181</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE presets ADD COLUMN usetranslations INTEGER DEFAULT 1")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="181"></Call>
+    </CallStack>
+  </Query>
+  <Query id="42">
+    <Value>CREATE TABLE layers (type TEXT, position INTEGER DEFAULT -1, visible INTEGER DEFAULT 1, content_id TEXT)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>192</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE layers (type TEXT, position INTEGER DEFAULT -1, visible INTEGER DEFAULT 1, content_id TEXT)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="192"></Call>
+    </CallStack>
+  </Query>
+  <Query id="43">
+    <Value>UPDATE geocoders SET url='https://photon.komoot.io/' WHERE url='https://photon.komoot.de/'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>214</ExecLine>
+    <ExecString>db.execSQL("UPDATE geocoders SET url='" + Urls.DEFAULT_PHOTON_SERVER + "' WHERE url='https://photon.komoot.de/'")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="214"></Call>
+    </CallStack>
+  </Query>
+  <Query id="44">
+    <Value>ALTER TABLE presets ADD COLUMN version TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>226</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE presets ADD COLUMN version TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="226"></Call>
+    </CallStack>
+  </Query>
+  <Query id="45">
+    <Value>ALTER TABLE presets ADD COLUMN shortdescription TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>227</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE presets ADD COLUMN shortdescription TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="227"></Call>
+    </CallStack>
+  </Query>
+  <Query id="46">
+    <Value>ALTER TABLE presets ADD COLUMN description TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>228</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE presets ADD COLUMN description TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="142" callLine="228"></Call>
+    </CallStack>
+  </Query>
+  <Query id="47">
+    <Value>DROP TABLE apis</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>241</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE apis")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onDowngrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="238" callLine="241"></Call>
+    </CallStack>
+  </Query>
+  <Query id="48">
+    <Value>DROP TABLE presets</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>242</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE presets")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onDowngrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="238" callLine="242"></Call>
+    </CallStack>
+  </Query>
+  <Query id="49">
+    <Value>DROP TABLE geocoders</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>243</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE geocoders")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onDowngrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="238" callLine="243"></Call>
+    </CallStack>
+  </Query>
+  <Query id="50">
+    <Value>DROP TABLE layers</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.prefs</ExecPackage>
+    <ExecClass>AdvancedPrefDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java</ExecFile>
+    <ExecLine>244</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE layers")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.prefs.AdvancedPrefDatabase.onDowngrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java" methodLine="238" callLine="244"></Call>
+    </CallStack>
+  </Query>
+  <Query id="51">
+    <Value>CREATE TABLE keys (name TEXT, type TEXT, key TEXT DEFAULT NULL, add1 TEXT DEFAULT NULL, add2 TEXT DEFAULT NULL, custom INTEGER DEFAULT 0)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>KeyDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java</ExecFile>
+    <ExecLine>67</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE keys (name TEXT, type TEXT, key TEXT DEFAULT NULL, add1 TEXT DEFAULT NULL, add2 TEXT DEFAULT NULL, custom INTEGER DEFAULT 0)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.KeyDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java" methodLine="63" callLine="68"></Call>
+    </CallStack>
+  </Query>
+  <Query id="52">
+    <Value>CREATE UNIQUE INDEX idx_keys ON keys (name, type)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>KeyDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java</ExecFile>
+    <ExecLine>69</ExecLine>
+    <ExecString>db.execSQL("CREATE UNIQUE INDEX idx_keys ON keys (name, type)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.KeyDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java" methodLine="63" callLine="69"></Call>
+    </CallStack>
+  </Query>
+  <Query id="53">
+    <Value>DROP TABLE keys</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>KeyDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java</ExecFile>
+    <ExecLine>79</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE " + KEYS_TABLE)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.KeyDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java" methodLine="75" callLine="79"></Call>
+    </CallStack>
+  </Query>
+  <Query id="54">
+    <Value>DROP INDEX idx_keys</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>KeyDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java</ExecFile>
+    <ExecLine>83</ExecLine>
+    <ExecString>db.execSQL("DROP INDEX idx_keys")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.KeyDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java" methodLine="75" callLine="83"></Call>
+    </CallStack>
+  </Query>
+  <Query id="55">
+    <Value>CREATE UNIQUE INDEX idx_keys ON keys (name, type)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>KeyDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java</ExecFile>
+    <ExecLine>84</ExecLine>
+    <ExecString>db.execSQL("CREATE UNIQUE INDEX idx_keys ON keys (name, type)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.KeyDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/KeyDatabaseHelper.java" methodLine="75" callLine="84"></Call>
+    </CallStack>
+  </Query>
+  <Query id="56">
+    <Value>CREATE TABLE sources (name TEXT NOT NULL PRIMARY KEY, updated INTEGER)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>99</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE sources (name TEXT NOT NULL PRIMARY KEY, updated INTEGER)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="96" callLine="99"></Call>
+    </CallStack>
+  </Query>
+  <Query id="57">
+    <Value>CREATE TABLE layers (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, server_type TEXT NOT NULL, category TEXT DEFAULT NULL, tile_type TEXT DEFAULT NULL, source TEXT NOT NULL, url TEXT NOT NULL, tou_url TEXT, attribution TEXT, overlay INTEGER NOT NULL DEFAULT 0, default_layer INTEGER NOT NULL DEFAULT 0, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18, over_zoom_max INTEGER NOT NULL DEFAULT 4, tile_width INTEGER NOT NULL DEFAULT 256, tile_height INTEGER NOT NULL DEFAULT 256, proj TEXT DEFAULT NULL, preference INTEGER NOT NULL DEFAULT 0, start_date INTEGER DEFAULT NULL, end_date INTEGER DEFAULT NULL, no_tile_header TEXT DEFAULT NULL, no_tile_value TEXT DEFAULT NULL, no_tile_tile BLOB DEFAULT NULL, logo_url TEXT DEFAULT NULL, logo BLOB DEFAULT NULL, description TEXT DEFAULT NULL, privacy_policy_url TEXT DEFAULT NULL, attribution_url TEXT DEFAULT NULL, FOREIGN KEY(source) REFERENCES sources(name) ON DELETE CASCADE)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>104</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE layers (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, server_type TEXT NOT NULL, category TEXT DEFAULT NULL, tile_type TEXT DEFAULT NULL," + " source TEXT NOT NULL, url TEXT NOT NULL," + " tou_url TEXT, attribution TEXT, overlay INTEGER NOT NULL DEFAULT 0,"+ " default_layer INTEGER NOT NULL DEFAULT 0, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18,"+ " over_zoom_max INTEGER NOT NULL DEFAULT 4, tile_width INTEGER NOT NULL DEFAULT 256, tile_height INTEGER NOT NULL DEFAULT 256,"+ " proj TEXT DEFAULT NULL, preference INTEGER NOT NULL DEFAULT 0, start_date INTEGER DEFAULT NULL, end_date INTEGER DEFAULT NULL,"+ " no_tile_header TEXT DEFAULT NULL, no_tile_value TEXT DEFAULT NULL, no_tile_tile BLOB DEFAULT NULL, logo_url TEXT DEFAULT NULL, logo BLOB DEFAULT NULL,"+ " description TEXT DEFAULT NULL, privacy_policy_url TEXT DEFAULT NULL, attribution_url TEXT DEFAULT NULL, FOREIGN KEY(source) REFERENCES sources(name) ON DELETE CASCADE)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="96" callLine="105"></Call>
+    </CallStack>
+  </Query>
+  <Query id="58">
+    <Value>CREATE INDEX layers_overlay_idx ON layers(overlay)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>112</ExecLine>
+    <ExecString>db.execSQL("CREATE INDEX layers_overlay_idx ON layers(overlay)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="96" callLine="112"></Call>
+    </CallStack>
+  </Query>
+  <Query id="59">
+    <Value>CREATE INDEX layers_source_idx ON layers(source)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>113</ExecLine>
+    <ExecString>db.execSQL("CREATE INDEX layers_source_idx ON layers(source)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="96" callLine="113"></Call>
+    </CallStack>
+  </Query>
+  <Query id="60">
+    <Value>CREATE TABLE coverages (id TEXT NOT NULL, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18, left INTEGER DEFAULT NULL, bottom INTEGER DEFAULT NULL, right INTEGER DEFAULT NULL, top INTEGER DEFAULT NULL, FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>114</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE coverages (id TEXT NOT NULL, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18," + " left INTEGER DEFAULT NULL, bottom INTEGER DEFAULT NULL, right INTEGER DEFAULT NULL, top INTEGER DEFAULT NULL," + " FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="96" callLine="114"></Call>
+    </CallStack>
+  </Query>
+  <Query id="61">
+    <Value>CREATE INDEX coverages_idx ON coverages(id)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>117</ExecLine>
+    <ExecString>db.execSQL("CREATE INDEX coverages_idx ON coverages(id)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="96" callLine="117"></Call>
+    </CallStack>
+  </Query>
+  <Query id="62">
+    <Value>ALTER TABLE layers ADD COLUMN no_tile_header TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>131</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN no_tile_header TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="131"></Call>
+    </CallStack>
+  </Query>
+  <Query id="63">
+    <Value>ALTER TABLE layers ADD COLUMN no_tile_value TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>132</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN no_tile_value TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="132"></Call>
+    </CallStack>
+  </Query>
+  <Query id="64">
+    <Value>ALTER TABLE layers ADD COLUMN description TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>135</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN description TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="135"></Call>
+    </CallStack>
+  </Query>
+  <Query id="65">
+    <Value>ALTER TABLE layers ADD COLUMN privacy_policy_url TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>136</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN privacy_policy_url TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="136"></Call>
+    </CallStack>
+  </Query>
+  <Query id="66">
+    <Value>ALTER TABLE layers ADD COLUMN category TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>139</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN category TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="139"></Call>
+    </CallStack>
+  </Query>
+  <Query id="67">
+    <Value>ALTER TABLE layers ADD COLUMN attribution_url TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>142</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN attribution_url TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="142"></Call>
+    </CallStack>
+  </Query>
+  <Query id="68">
+    <Value>ALTER TABLE layers ADD COLUMN no_tile_tile BLOB DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>145</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN no_tile_tile BLOB DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="145"></Call>
+    </CallStack>
+  </Query>
+  <Query id="69">
+    <Value>ALTER TABLE layers ADD COLUMN tile_type TEXT DEFAULT NULL</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>148</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE layers ADD COLUMN tile_type TEXT DEFAULT NULL")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="124" callLine="148"></Call>
+    </CallStack>
+  </Query>
+  <Query id="70">
+    <Value>CREATE TABLE headers (id TEXT NOT NULL, name TEXT NOT NULL, value TEXT NOT NULL, FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>161</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE headers (id TEXT NOT NULL, name TEXT NOT NULL, value TEXT NOT NULL," + " FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.createHeadersTable(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="155" callLine="161"></Call>
+    </CallStack>
+  </Query>
+  <Query id="71">
+    <Value>CREATE INDEX headers_idx ON headers(id)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>163</ExecLine>
+    <ExecString>db.execSQL("CREATE INDEX headers_idx ON headers(id)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.createHeadersTable(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="155" callLine="163"></Call>
+    </CallStack>
+  </Query>
+  <Query id="72">
+    <Value>PRAGMA foreign_keys=ON;</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>171</ExecLine>
+    <ExecString>db.execSQL("PRAGMA foreign_keys=ON;")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.onOpen(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="166" callLine="171"></Call>
+    </CallStack>
+  </Query>
+  <Query id="73">
+    <Value>SELECT coverages.id as id,left,bottom,right,top,coverages.zoom_min as zoom_min,coverages.zoom_max as zoom_max FROM layers,coverages WHERE layers.rowid={{question}} AND layers.id=coverages.id</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>459</ExecLine>
+    <ExecString>db.rawQuery("SELECT coverages.id as id,left,bottom,right,top,coverages.zoom_min as zoom_min,coverages.zoom_max as zoom_max FROM layers,coverages WHERE layers.rowid=? AND layers.id=coverages.id",new String[]{Long.toString(rowId)})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.getLayerWithRowId(android.content.Context,android.database.sqlite.SQLiteDatabase,long)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="449" callLine="460"></Call>
+    </CallStack>
+  </Query>
+  <Query id="74">
+    <Value>SELECT * FROM layers WHERE rowid={{question}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>463</ExecLine>
+    <ExecString>db.rawQuery(QUERY_LAYER_BY_ROWID,new String[]{Long.toString(rowId)})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.getLayerWithRowId(android.content.Context,android.database.sqlite.SQLiteDatabase,long)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="449" callLine="463"></Call>
+    </CallStack>
+  </Query>
+  <Query id="75">
+    <Value>SELECT layers.rowid as _id, name FROM layers</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>633</ExecLine>
+    <ExecString>db.rawQuery("SELECT layers.rowid as _id, name FROM layers",null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.getAllLayers(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="626" callLine="633"></Call>
+    </CallStack>
+  </Query>
+  <Query id="76">
+    <Value>SELECT layers.rowid as _id, name FROM layers WHERE source={{question}} OR source={{question}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>643</ExecLine>
+    <ExecString>db.rawQuery("SELECT layers.rowid as _id, name FROM layers WHERE source=? OR source=?",new String[]{SOURCE_CUSTOM,SOURCE_MANUAL})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.getAllCustomLayers(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="636" callLine="643"></Call>
+    </CallStack>
+  </Query>
+  <Query id="77">
+    <Value>SELECT layers.rowid as _id, name FROM layers WHERE server_type='wms_endpoint' ORDER BY name</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>653</ExecLine>
+    <ExecString>db.rawQuery("SELECT layers.rowid as _id, name FROM layers WHERE server_type='" + TileLayerSource.TYPE_WMS_ENDPOINT + "' ORDER BY name",null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.getAllWmsEndPoints(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="646" callLine="653"></Call>
+    </CallStack>
+  </Query>
+  <Query id="78">
+    <Value>SELECT headers.id as id,headers.name as name,value FROM layers,headers WHERE headers.id=layers.id AND overlay={{question}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>716</ExecLine>
+    <ExecString>db.rawQuery("SELECT headers.id as id,headers.name as name,value FROM layers,headers WHERE headers.id=layers.id AND overlay=?",new String[]{boolean2intString(overlay)})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.getHeadersById(android.database.sqlite.SQLiteDatabase,boolean)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="706" callLine="717"></Call>
+    </CallStack>
+  </Query>
+  <Query id="79">
+    <Value>SELECT coverages.id as id,left,bottom,right,top,coverages.zoom_min as zoom_min,coverages.zoom_max as zoom_max FROM layers,coverages WHERE coverages.id=layers.id AND overlay={{question}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.resources</ExecPackage>
+    <ExecClass>TileLayerDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</ExecFile>
+    <ExecLine>746</ExecLine>
+    <ExecString>db.rawQuery("SELECT coverages.id as id,left,bottom,right,top,coverages.zoom_min as zoom_min,coverages.zoom_max as zoom_max FROM layers,coverages WHERE coverages.id=layers.id AND overlay=?",new String[]{boolean2intString(overlay)})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.resources.TileLayerDatabase.getCoveragesById(android.database.sqlite.SQLiteDatabase,boolean)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java" methodLine="737" callLine="747"></Call>
+    </CallStack>
+  </Query>
+  <Query id="80">
+    <Value>{{na}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>MapTileProviderDataBase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>242</ExecLine>
+    <ExecString>get.simpleQueryForBlobFileDescriptor()</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.getTile(de.blau.android.services.util.MapTile)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="220" callLine="242"></Call>
+    </CallStack>
+  </Query>
+  <Query id="81">
+    <Value>SELECT rendererID,zoom_level,tile_column,tile_row,filesize FROM tiles WHERE filesize &gt; 0 ORDER BY timestamp ASC</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>MapTileProviderDataBase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>281</ExecLine>
+    <ExecString>mDatabase.rawQuery(T_FSCACHE_SELECT_OLDEST,null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.deleteOldest(int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="269" callLine="281"></Call>
+    </CallStack>
+  </Query>
+  <Query id="82">
+    <Value>DELETE FROM tiles</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>MapTileProviderDataBase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>343</ExecLine>
+    <ExecString>mDatabase.execSQL("DELETE FROM " + T_FSCACHE)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.flushCache(java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="332" callLine="343"></Call>
+    </CallStack>
+  </Query>
+  <Query id="83">
+    <Value>SELECT zoom_level,tile_column,tile_row,filesize FROM tiles WHERE rendererID='{{na}}' ORDER BY timestamp ASC</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>MapTileProviderDataBase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>346</ExecLine>
+    <ExecString>mDatabase.rawQuery("SELECT " + T_FSCACHE_ZOOM_LEVEL + ","+ T_FSCACHE_TILE_X+ ","+ T_FSCACHE_TILE_Y+ ","+ T_FSCACHE_FILESIZE+ " FROM "+ T_FSCACHE+ " WHERE "+ T_FSCACHE_RENDERER_ID+ "='"+ rendererID+ "' ORDER BY "+ T_FSCACHE_TIMESTAMP+ " ASC",null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.flushCache(java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="332" callLine="348"></Call>
+      <Call method="de.blau.android.services.util.MapTileFilesystemProvider.flushCache(java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileFilesystemProvider.java" methodLine="147" callLine="154"></Call>
+      <Call method="de.blau.android.views.util.MapTileProvider.flushCache(java.lang.String,boolean)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/views/util/MapTileProvider.java" methodLine="234" callLine="243"></Call>
+    </CallStack>
+  </Query>
+  <Query id="84">
+    <Value>SELECT SUM(filesize) AS tmp FROM tiles</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>MapTileProviderDataBase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>399</ExecLine>
+    <ExecString>mDatabase.rawQuery("SELECT SUM(" + T_FSCACHE_FILESIZE + ") AS "+ TMP_COLUMN+ " FROM "+ T_FSCACHE,null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.getCurrentFSCacheByteSize()" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="391" callLine="399"></Call>
+    </CallStack>
+  </Query>
+  <Query id="85">
+    <Value>CREATE TABLE IF NOT EXISTS t_renderer (id VARCHAR(255) PRIMARY KEY,name VARCHAR(255),base_url VARCHAR(255),zoom_min INTEGER NOT NULL,zoom_max INTEGER NOT NULL,tile_size_log INTEGER NOT NULL);</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>DatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>428</ExecLine>
+    <ExecString>db.execSQL(T_RENDERER_CREATE_COMMAND)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="425" callLine="428"></Call>
+    </CallStack>
+  </Query>
+  <Query id="86">
+    <Value>CREATE TABLE IF NOT EXISTS tiles (rendererID VARCHAR(255) NOT NULL,zoom_level INTEGER NOT NULL,tile_column INTEGER NOT NULL,tile_row INTEGER NOT NULL,timestamp INTEGER NOT NULL,countused INTEGER NOT NULL DEFAULT 1,filesize INTEGER NOT NULL,tile_data BLOB, PRIMARY KEY(rendererID,zoom_level,tile_column,tile_row));</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>DatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>429</ExecLine>
+    <ExecString>db.execSQL(T_FSCACHE_CREATE_COMMAND)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.DatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="425" callLine="429"></Call>
+    </CallStack>
+  </Query>
+  <Query id="87">
+    <Value>DROP TABLE IF EXISTS tiles</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>DatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java</ExecFile>
+    <ExecLine>441</ExecLine>
+    <ExecString>db.execSQL("DROP TABLE IF EXISTS " + T_FSCACHE)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MapTileProviderDataBase.DatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java" methodLine="435" callLine="441"></Call>
+    </CallStack>
+  </Query>
+  <Query id="88">
+    <Value>{{na}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>MBTileProviderDataBase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MBTileProviderDataBase.java</ExecFile>
+    <ExecLine>157</ExecLine>
+    <ExecString>get.simpleQueryForBlobFileDescriptor()</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MBTileProviderDataBase.getTileStream(de.blau.android.services.util.MapTile)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MBTileProviderDataBase.java" methodLine="136" callLine="157"></Call>
+    </CallStack>
+  </Query>
+  <Query id="89">
+    <Value>SELECT DISTINCT zoom_level FROM tiles ORDER BY zoom_level</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.services.util</ExecPackage>
+    <ExecClass>MBTileProviderDataBase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MBTileProviderDataBase.java</ExecFile>
+    <ExecLine>242</ExecLine>
+    <ExecString>mDatabase.rawQuery(T_MBTILES_GET_ZOOMS,null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.services.util.MBTileProviderDataBase.getMinMaxZoom()" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services/util/MBTileProviderDataBase.java" methodLine="218" callLine="242"></Call>
+    </CallStack>
+  </Query>
+  <Query id="90">
+    <Value>SELECT key, value, is_regexp, days FROM resurveytags WHERE rowid={{question}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesUI</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesUI.java</ExecFile>
+    <ExecLine>169</ExecLine>
+    <ExecString>db.rawQuery(ValidatorRulesDatabase.QUERY_RESURVEY_BY_ROWID,new String[]{Integer.toString(id)})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesUI.showResurveyDialog(android.content.Context,android.database.sqlite.SQLiteDatabase,boolean,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesUI.java" methodLine="151" callLine="169"></Call>
+    </CallStack>
+  </Query>
+  <Query id="91">
+    <Value>SELECT key, optional FROM checktags WHERE rowid={{question}}</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesUI</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesUI.java</ExecFile>
+    <ExecLine>295</ExecLine>
+    <ExecString>db.rawQuery(ValidatorRulesDatabase.QUERY_CHECK_BY_ROWID,new String[]{Integer.toString(id)})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesUI.showCheckDialog(android.content.Context,android.database.sqlite.SQLiteDatabase,boolean,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesUI.java" methodLine="278" callLine="295"></Call>
+    </CallStack>
+  </Query>
+  <Query id="92">
+    <Value>CREATE TABLE rulesets (id INTEGER, name TEXT)</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java</ExecFile>
+    <ExecLine>30</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE rulesets (id INTEGER, name TEXT)")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" methodLine="27" callLine="30"></Call>
+    </CallStack>
+  </Query>
+  <Query id="93">
+    <Value>CREATE TABLE resurveytags (ruleset INTEGER, key TEXT, value TEXT DEFAULT NULL, is_regexp INTEGER DEFAULT 0, days INTEGER DEFAULT 365, FOREIGN KEY(ruleset) REFERENCES rulesets(id))</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java</ExecFile>
+    <ExecLine>33</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE resurveytags (ruleset INTEGER, key TEXT, value TEXT DEFAULT NULL, is_regexp INTEGER DEFAULT 0, days INTEGER DEFAULT 365, FOREIGN KEY(ruleset) REFERENCES rulesets(id))")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" methodLine="27" callLine="34"></Call>
+    </CallStack>
+  </Query>
+  <Query id="94">
+    <Value>CREATE TABLE checktags (ruleset INTEGER, key TEXT, optional INTEGER DEFAULT 0, FOREIGN KEY(ruleset) REFERENCES rulesets(id))</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java</ExecFile>
+    <ExecLine>47</ExecLine>
+    <ExecString>db.execSQL("CREATE TABLE checktags (ruleset INTEGER, key TEXT, optional INTEGER DEFAULT 0, FOREIGN KEY(ruleset) REFERENCES rulesets(id))")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabaseHelper.onCreate(android.database.sqlite.SQLiteDatabase)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" methodLine="27" callLine="47"></Call>
+    </CallStack>
+  </Query>
+  <Query id="95">
+    <Value>ALTER TABLE resurveytags ADD COLUMN is_regexp INTEGER DEFAULT 0</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java</ExecFile>
+    <ExecLine>60</ExecLine>
+    <ExecString>db.execSQL("ALTER TABLE resurveytags ADD COLUMN is_regexp INTEGER DEFAULT 0")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" methodLine="56" callLine="60"></Call>
+    </CallStack>
+  </Query>
+  <Query id="96">
+    <Value>UPDATE checktags SET key='name|ref' WHERE key='name'</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabaseHelper</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java</ExecFile>
+    <ExecLine>63</ExecLine>
+    <ExecString>db.execSQL("UPDATE checktags SET key='name|ref' WHERE key='name'")</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabaseHelper.onUpgrade(android.database.sqlite.SQLiteDatabase,int,int)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabaseHelper.java" methodLine="56" callLine="63"></Call>
+    </CallStack>
+  </Query>
+  <Query id="97">
+    <Value>SELECT resurveytags.rowid as _id, key, value, is_regexp, days FROM resurveytags WHERE ruleset = 0 ORDER BY key, value</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java</ExecFile>
+    <ExecLine>108</ExecLine>
+    <ExecString>database.rawQuery(ValidatorRulesDatabase.QUERY_RESURVEY_DEFAULT,null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabase.queryResurveyByName(android.database.sqlite.SQLiteDatabase,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" methodLine="99" callLine="108"></Call>
+    </CallStack>
+  </Query>
+  <Query id="98">
+    <Value>SELECT resurveytags.rowid as _id, key, value, is_regexp, days FROM resurveytags, rulesets WHERE ruleset = rulesets.id and rulesets.name = {{question}} ORDER BY key, value</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java</ExecFile>
+    <ExecLine>110</ExecLine>
+    <ExecString>database.rawQuery(ValidatorRulesDatabase.QUERY_RESURVEY_BY_NAME,new String[]{name})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabase.queryResurveyByName(android.database.sqlite.SQLiteDatabase,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" methodLine="99" callLine="110"></Call>
+    </CallStack>
+  </Query>
+  <Query id="99">
+    <Value>SELECT checktags.rowid as _id, key, optional FROM checktags WHERE ruleset = 0 ORDER BY key</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java</ExecFile>
+    <ExecLine>196</ExecLine>
+    <ExecString>database.rawQuery(ValidatorRulesDatabase.QUERY_CHECK_DEFAULT,null)</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabase.queryCheckByName(android.database.sqlite.SQLiteDatabase,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" methodLine="187" callLine="196"></Call>
+    </CallStack>
+  </Query>
+  <Query id="100">
+    <Value>SELECT checktags.rowid as _id, key, optional FROM checktags, rulesets WHERE ruleset = rulesets.id and rulesets.name = {{question}} ORDER BY key</Value>
+    <HotspotFinder>AndroidHotspotFinder</HotspotFinder>
+    <ExecPackage>de.blau.android.validation</ExecPackage>
+    <ExecClass>ValidatorRulesDatabase</ExecClass>
+    <ExecFile>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java</ExecFile>
+    <ExecLine>198</ExecLine>
+    <ExecString>database.rawQuery(ValidatorRulesDatabase.QUERY_CHECK_BY_NAME,new String[]{name})</ExecString>
+    <CallStack>
+      <Call method="de.blau.android.validation.ValidatorRulesDatabase.queryCheckByName(android.database.sqlite.SQLiteDatabase,java.lang.String)" file="C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java" methodLine="187" callLine="198"></Call>
+    </CallStack>
+  </Query>
+</Queries>

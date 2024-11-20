@@ -1,0 +1,422 @@
+{
+"amenity/arts_centre":[
+"Arts Centre"
+],
+"amenity/bbq":[
+"bbq",
+"Barbeque/Grill",
+"barbecue",
+"grill"
+],
+"amenity/cafe":[
+"tea",
+"cafe",
+"coffee",
+"bistro",
+"Café"
+],
+"amenity/cafe/bubble_tea":[
+"boba",
+"tapioca",
+"cafe",
+"taiwanese tea drink",
+"pearl tea",
+"bubble milk tea",
+"Bubble Tea Café",
+"pearl milk tea",
+"boba drink"
+],
+"amenity/community_centre":[
+"Community Centre"
+],
+"amenity/community_centre/lgbtq":[
+"LGBTQ+ Community Centre"
+],
+"amenity/conference_centre":[
+"Convention Centre"
+],
+"amenity/dive_centre":[
+"Dive Centre"
+],
+"amenity/drinking_water":[
+"Drinking Fountain"
+],
+"amenity/exhibition_centre":[
+"Exhibition Centre"
+],
+"amenity/fuel":[
+"service station",
+"gas station",
+"Petrol Station"
+],
+"amenity/internet_cafe":[
+"cybercafe",
+"Internet Café",
+"cafe",
+"coffee",
+"taxiphone",
+"teleboutique",
+"lanhouse",
+"net",
+"internet cafe"
+],
+"amenity/parking":[
+"car lot",
+"car parking",
+"parking lot",
+"rv parking",
+"vehicle parking",
+"automobile parking",
+"truck parking",
+"Car Park"
+],
+"amenity/parking/multi-storey":[
+"parkade",
+"car",
+"indoor parking",
+"parking garage",
+"parking ramp",
+"parking structure",
+"multistorey car park",
+"multilevel parking garage",
+"parking building",
+"parking deck",
+"Multistorey Car Park"
+],
+"amenity/parking/park_ride":[
+"Park & Ride Car Park"
+],
+"amenity/parking_entrance":[
+"parking garage entrace",
+"Carpark Building Entrance / Exit",
+"parking garage exit",
+"car park entrance",
+"parking garage entrace/exit",
+"carpark entrance"
+],
+"amenity/payment_centre":[
+"Payment Centre"
+],
+"amenity/pharmacy":[
+"Pharmacy"
+],
+"amenity/post_box":[
+"Post Box"
+],
+"amenity/recycling_centre":[
+"Recycling Centre"
+],
+"amenity/restaurant/barbecue":[
+"lunch",
+"dining",
+"dinner",
+"bbq",
+"bar",
+"dine",
+"Barbeque Restaurant",
+"canteen",
+"eat",
+"barbecue restaurant",
+"drive-in",
+"grill",
+"table"
+],
+"amenity/sanitary_dump_station":[
+"Caravan Toilet Disposal"
+],
+"amenity/social_centre":[
+"Payment Centre"
+],
+"amenity/social_facility/group_home":[
+"senior",
+"care home",
+"Retirement Home",
+"living",
+"retire",
+"old",
+"elderly",
+"aged",
+"assisted living",
+"retirement",
+"aged care"
+],
+"amenity/theatre":[
+"Theatre"
+],
+"amenity/toilets":[
+"Toilets"
+],
+"amenity/toilets/disposal/pitlatrine":[
+"Long-drop Toilet"
+],
+"amenity/trolley_bay":[
+"Shopping Trolley Bay"
+],
+"amenity/water_point":[
+"water spigot",
+"water source",
+"rv drinking water",
+"campervan drinking water",
+"water faucet",
+"water point",
+"water tap"
+],
+"amenity/watering_place":[
+"trough"
+],
+"amenity/weighbridge":[
+"truck scale",
+"Weighbridge",
+"weigh station"
+],
+"barrier/kerb":[
+"Kerb",
+"curb"
+],
+"barrier/kerb/flush":[
+"level curb",
+"tactile curb",
+"even kerb",
+"level kerb",
+"tactile kerb",
+"even curb",
+"Flush Kerb",
+"flush curb"
+],
+"barrier/kerb/lowered":[
+"lowered curb",
+"kerb ramp",
+"curb ramp",
+"Lowered Kerb",
+"kerb cut",
+"dropped kerb",
+"curb cut",
+"pram ramp"
+],
+"barrier/kerb/raised":[
+"raised curb",
+"Raised Kerb"
+],
+"barrier/kerb/rolled":[
+"Rolled Kerb",
+"rolled curb"
+],
+"building/pavilion":[
+"sports",
+"Sports Pavilion",
+"pavilion"
+],
+"emergency/fire_hose":[
+"fhr",
+"dry riser",
+"stand pipe",
+"fire hose reel",
+"standpipe",
+"riser"
+],
+"emergency/fire_service_inlet":[
+"Building Inlet"
+],
+"healthcare/birthing_center":[
+"Birthing Centre"
+],
+"healthcare/blood_donation":[
+"Blood Donation Centre"
+],
+"highway/cycleway/bicycle_foot":[
+"bicycle and foot path",
+"bike and pedestrian path",
+"mixed-use trail",
+"multi-use trail",
+"segregated trail",
+"shared use path",
+"Shared Path",
+"greenway",
+"shared path",
+"green way",
+"rail trail",
+"cycle & foot path"
+],
+"highway/cycleway/crossing/bicycle_foot":[
+"bike and pedestrian crossing",
+"cyclist",
+"Shared Path Crossing",
+"cycle & foot crossing",
+"bicycle and foot crosswalk",
+"cycling",
+"cycleway"
+],
+"highway/footway":[
+"path",
+"trail",
+"foot path",
+"promenade",
+"hiking",
+"hike",
+"track",
+"trackway",
+"walk",
+"Walkway",
+"footpath"
+],
+"highway/footway/access_aisle":[
+"wheelchair aisle",
+"disabled parking access zone",
+"accessible van loading zone",
+"access aisle",
+"parking lot aisle",
+"parking access zone",
+"tow-away zone",
+"striped zone",
+"tow zone",
+"towaway zone",
+"Accessible Carpark Aisle"
+],
+"highway/footway/conveying":[
+"Travelator"
+],
+"highway/footway/sidewalk":[
+"pavement",
+"sidewalk",
+"sidepath",
+"foot path",
+"footpath"
+],
+"highway/give_way":[
+"Give Way Sign",
+"yield",
+"sign"
+],
+"highway/street_lamp":[
+"Street Light"
+],
+"highway/traffic_signals":[
+"light",
+"Traffic Lights",
+"traffic signals",
+"stoplight",
+"traffic light"
+],
+"landuse/construction":[
+"Construction Site"
+],
+"leisure/adult_gaming_centre":[
+"Adult Gaming Centre"
+],
+"leisure/bandstand":[
+"bandstand",
+"Band Rotunda"
+],
+"leisure/fitness_centre":[
+"Gym / Fitness Centre"
+],
+"leisure/indoor_play":[
+"Indoor Play Centre"
+],
+"leisure/slipway":[
+"Boat Ramp"
+],
+"leisure/slipway_drivable":[
+"Boat Ramp (Drivable)"
+],
+"leisure/sports_centre":[
+"Sports Centre / Complex"
+],
+"leisure/sports_hall":[
+"Sports Hall"
+],
+"man_made":[
+"Human-Made Feature"
+],
+"man_made/groyne":[
+"groin",
+"Groyne"
+],
+"man_made/survey_point":[
+"Survey Marker"
+],
+"man_made/yes":[
+"Human-Made Feature (Unspecified Type)"
+],
+"natural/cape":[
+"point"
+],
+"natural/wetland/mangrove":[
+"Mangroves",
+"mangrove"
+],
+"office/employment_agency":[
+"vocation",
+"careers",
+"career",
+"vocational",
+"occupation",
+"job"
+],
+"office/it":[
+"tech",
+"computer",
+"software",
+"information technology",
+"information",
+"technology",
+"it",
+"ict",
+"IT/Software Company"
+],
+"office/lawyer":[
+"Lawyer"
+],
+"place/suburb":[
+"Suburb"
+],
+"playground/zipwire":[
+"Playground Flying Fox"
+],
+"power/line":[
+"High Voltage Power Line"
+],
+"railway/rail":[
+"railway"
+],
+"shop/caravan":[
+"Caravan Shop"
+],
+"shop/chemist":[
+"Chemist"
+],
+"shop/coffee":[
+"Coffee Ingredients Store"
+],
+"shop/convenience":[
+"superette",
+"convenience shop",
+"corner shop",
+"Convenience Store / Dairy",
+"dairy",
+"corner store",
+"convenience store"
+],
+"shop/dairy":[
+"Milk Product Shop"
+],
+"shop/garden_centre":[
+"Garden Centre"
+],
+"shop/tyres":[
+"Tyre Store"
+],
+"telecom/data_center":[
+"Data Centre"
+],
+"tourism/caravan_site":[
+"Caravan Site"
+],
+"tourism/chalet":[
+"crib",
+"bach"
+],
+"tourism/information/office":[
+"Visitor Centre"
+]
+}

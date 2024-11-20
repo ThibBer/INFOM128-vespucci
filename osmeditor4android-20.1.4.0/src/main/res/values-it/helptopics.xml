@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="help_app_label">Aiuto</string>
+    <string name="help_app_description">Guida di Vespucci</string>
+    <string name="help_title">Aiuto: %1$s</string>
+    <string name="help_introduction">Introduzione</string>
+    <string name="help_main">Visualizza mappa principale</string>
+    <string name="help_simple_actions">Azioni semplici</string>
+    <string name="help_addrelationmember">Relazione selezionata</string>
+    <string name="help_multiselect">Selezione multipla</string>
+    <string name="help_longclick">Creazione nuovi oggetti</string>
+    <string name="help_nodeselection">Nodo selezionato</string>
+    <string name="help_pathcreation">Aggiunta nodi ai percorsi</string>
+    <string name="help_relationselection">Relazione selezionata</string>
+    <string name='help_add_route_segmement'>Aggiungi segmento di ‘route’</string>
+    <string name="help_wayselection">Percorso selezionato</string>
+    <string name="help_aligningbackgroundiamgery">Allinea immagini di sfondo</string>
+    <string name="help_propertyeditor">Editor delle proprietà</string>
+    <string name="help_preferences">Preferenze</string>
+    <string name="help_advanced_preferences">Preferenze avanzate</string>
+    <string name="help_custom_imagery">Livello immagini personalizzato</string>
+    <string name="help_presets">Predefiniti</string>
+    <string name="help_conflictresolution">Risoluzione dei conflitti</string>
+    <string name="help_gpssources">Dispositivi GPS</string>
+    <string name="help_keyboard">Tastiera</string>
+    <string name="help_tagfilter">Filtro etichette</string>
+    <string name="help_presetfilter">Filtro predefiniti</string>
+    <string name="help_opening_hours">Orari di apertura</string>
+    <string name="help_newnoteselection">Seleziona nuova nota</string>
+    <string name="help_voice_commands">Comandi vocali</string>
+    <string name="help_add_route_segment">Aggiungi segmento di ‘route’</string>
+    <string name="help_upgrade_200">Note di rilascio 20.0</string>
+    <string name="help_upgrade_193">Note di rilascio 19.3</string>
+    <string name="help_upgrade_192">Note di rilascio 19.2</string>
+    <string name="help_upgrade_191">Note di rilascio 19.1</string>
+    <string name="help_upgrade_190">Note di rilascio 19.0</string>
+    <string name="help_upgrade_181">Note di rilascio 18.1</string>
+    <string name="help_upgrade_180">Note di rilascio 18.0</string>
+    <string name="help_upgrade_171">Note di rilascio 17.1</string>
+    <string name="help_upgrade_170">Note di rilascio 17.0</string>
+    <string name="help_upgrade_161">Note di rilascio 16.1</string>
+    <string name="help_upgrade_160">Note di rilascio 16.0</string>
+    <string name="help_upgrade_152">Note di rilascio 15.2</string>
+    <string name="help_upgrade_151">Note di rilascio 15.1</string>
+    <string name="help_upgrade_150">Note di rilascio 15.0</string>
+    <string name="help_upgrade_141">Note di rilascio 14.1</string>
+    <string name="help_upgrade_140">Note di rilascio 14.0</string>
+    <string name="help_upgrade_131">Note di rilascio 13.1</string>
+    <string name="help_upgrade_130">Note di rilascio 13.0</string>
+    <string name="help_upgrade_121">Note di rilascio 12.1</string>
+    <string name="help_upgrade_120">Note di rilascio 12.0</string>
+    <string name="help_upgrade_112">Note di rilascio 11.2</string>
+    <string name="help_upgrade_111">Note di rilascio 11.1</string>
+    <string name="help_upgrade_110">Note di rilascio 11.0</string>
+    <string name="help_upgrade_102">Note di rilascio 10.2</string>
+    <string name="help_upgrade_101">Note di rilascio 10.1</string>
+    <string name="help_upgrade_100">Note di rilascio 10.0</string>
+    <string name="help_upgrade_099">Note di rilascio 0.9.9</string>
+    <string name="help_upgrade_098">Note di rilascio 0.9.8</string>
+    <string name="help_upgrade_097">Note di rilascio 0.9.7</string>
+    <string name="help_upgrade_096">Note di rilascio 0.9.6</string>
+    <string name="help_privacy">Privacy</string>
+    <array translatable="false" name="help_tableofcontents">
+        <item>@string/help_introduction</item>
+        <item>@string/help_main</item>
+        <item>@string/help_simple_actions</item>
+        <item>@string/help_propertyeditor</item>
+        <item>@string/help_nodeselection</item>
+    	<item>@string/help_wayselection</item>
+    	<item>@string/help_relationselection</item>
+    	<item>@string/help_multiselect</item>
+    	<item>@string/help_longclick</item>
+        <item>@string/help_pathcreation</item>
+        <item>@string/help_preferences</item>
+        <item>@string/help_advanced_preferences</item>
+        <item>@string/help_custom_imagery</item>
+    	<item>@string/help_presets</item>	
+        <item>@string/help_rotate</item>
+    	<item>@string/help_aligningbackgroundiamgery</item>
+    	<item>@string/help_conflictresolution</item>
+    	<item>@string/help_gpssources</item>
+    	<item>@string/help_keyboard</item>
+    	<item>@string/help_tagfilter</item>
+    	<item>@string/help_presetfilter</item>
+    	<item>@string/help_opening_hours</item>
+        <item>@string/help_newnoteselection</item>
+        <item>@string/help_voice_commands</item>
+        <item>@string/help_add_route_segment</item>
+    	<item>@string/help_upgrade</item>
+        <item>@string/help_upgrade_200</item>
+        <item>@string/help_upgrade_193</item>
+        <item>@string/help_upgrade_192</item>
+        <item>@string/help_upgrade_191</item>
+        <item>@string/help_upgrade_190</item>
+        <item>@string/help_upgrade_181</item>
+        <item>@string/help_upgrade_180</item>
+        <item>@string/help_upgrade_171</item>
+        <item>@string/help_upgrade_170</item>
+        <item>@string/help_upgrade_161</item>
+        <item>@string/help_upgrade_160</item>
+        <item>@string/help_upgrade_152</item>
+        <item>@string/help_upgrade_151</item>
+        <item>@string/help_upgrade_150</item>
+        <item>@string/help_upgrade_141</item>
+        <item>@string/help_upgrade_140</item>
+        <item>@string/help_upgrade_131</item>
+        <item>@string/help_upgrade_130</item>
+        <item>@string/help_upgrade_121</item>
+        <item>@string/help_upgrade_120</item>
+        <item>@string/help_upgrade_112</item>
+        <item>@string/help_upgrade_111</item>
+        <item>@string/help_upgrade_110</item>
+        <item>@string/help_upgrade_102</item>
+        <item>@string/help_upgrade_101</item>
+    	<item>@string/help_upgrade_100</item>
+    	<item>@string/help_upgrade_099</item>
+    	<item>@string/help_upgrade_098</item>
+    	<item>@string/help_upgrade_097</item>
+    	<item>@string/help_upgrade_096</item>
+        <item>@string/help_privacy</item>
+    </array>
+<!--    The following array needs to mirror the positions in the above one -->
+    <array translatable="false" name="help_files">
+        <item>Introduction</item>
+        <item>Main map display</item>
+        <item>Simple actions</item>
+        <item>Property editor</item>
+        <item>Node selected</item>
+    	<item>Way selected</item>
+    	<item>Relation selected</item>
+    	<item>Multiselect</item>
+    	<item>Creating new objects</item>
+        <item>Adding way nodes</item>
+        <item>Preferences</item>
+        <item>Advanced preferences</item>
+        <item>Custom imagery</item>
+    	<item>Presets</item>	
+        <item>Rotating elements</item>
+    	<item>Aligning background imagery</item>
+    	<item>Conflict resolution</item>
+    	<item>GPS sources</item>
+    	<item>Keyboard</item>
+    	<item>Tag filter</item>
+    	<item>Preset filter</item>
+    	<item>Opening hours</item>
+        <item>New Note selected</item>
+        <item>Voice commands</item>
+        <item>Add route segment</item>
+        <item>20.1.0 Release notes</item>
+        <item>20.0.0 Release notes</item>
+        <item>19.3.0 Release notes</item>
+        <item>19.2.0 Release notes</item>
+        <item>19.1.0 Release notes</item>
+        <item>19.0.0 Release notes</item>
+        <item>18.1.0 Release notes</item>
+        <item>18.0.0 Release notes</item>
+        <item>17.1.0 Release notes</item>
+        <item>17.0.0 Release notes</item>
+        <item>16.1.0 Release notes</item>
+        <item>16.0.0 Release notes</item>
+        <item>15.2.0 Release notes</item>
+        <item>15.1.0 Release notes</item>
+        <item>15.0.0 Release notes</item>
+        <item>14.1.0 Release notes</item>
+        <item>14.0.0 Release notes</item>
+        <item>13.1.0 Release notes</item>
+        <item>13.0.0 Release notes</item>
+        <item>12.1.0 Release notes</item>
+        <item>12.0.0 Release notes</item>
+        <item>11.2.0 Release notes</item>
+        <item>11.1.0 Release notes</item>
+        <item>11.0.0 Release notes</item>
+        <item>10.2.0 Release notes</item>
+    	<item>10.1.0 Release notes</item>
+    	<item>10.0.0 Release notes</item>
+    	<item>0.9.9 Release notes</item>
+    	<item>0.9.8 Release notes</item>
+    	<item>0.9.7 Release notes</item>
+    	<item>0.9.6 Release notes</item>
+        <item>Privacy</item>
+    </array>
+</resources>

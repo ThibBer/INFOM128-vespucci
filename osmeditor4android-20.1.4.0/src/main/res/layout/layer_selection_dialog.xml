@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="?attr/dialogPreferredPadding"
+    android:paddingRight="?attr/dialogPreferredPadding"
+    android:orientation="vertical">
+    <RadioGroup
+        style="?attr/RadioGroup"
+        android:id="@+id/categoryGroup"
+        android:saveEnabled="false"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/categoryAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/layer_category_all" />
+        <RadioButton
+            android:id="@+id/categoryPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/layer_category_photo" />
+        <RadioButton
+            android:id="@+id/categoryElevation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/layer_category_elevation" />
+        <RadioButton
+            android:id="@+id/categoryQA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/layer_category_qa" />
+    </RadioGroup>
+    <View
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorAccent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/imageryList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:scrollbars="vertical" />
+</LinearLayout>

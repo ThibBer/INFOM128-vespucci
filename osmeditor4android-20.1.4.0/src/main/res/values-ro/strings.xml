@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!--Mode names-->
+  <string name="mode_indoor">Înăuntru</string>
+  <!--Dialogs-->
+  <string name="transfer_download_current_dialog_title">Atenţie!</string>
+  <string name="transfer_download_current_upload">Încarcă</string>
+  <string name="transfer_download_current_download">Renunţă şi descarcă</string>
+  <!---->
+  <string name="progress_title">Încarcă</string>
+  <string name="progress_message">Încarcă informaţia în memorie...</string>
+  <string name="progress_download_message">Descarcă informaţia de la server…</string>
+  <string name="progress_general_title">Vă rugăm așteptaţi</string>
+  <string name="progress_deleting_message">Se șterge….</string>
+  <string name="progress_searching_message">Caută…</string>
+  <string name="progress_saving_message">Salvează…</string>
+  <!--Confirm upload dialog-->
+  <string name="changes_deleted">\"%1$s\" sters</string>
+  <string name="changes_changed">\"%1$s\" modificat</string>
+  <string name="changes_created">\"%1$s\" creat</string>
+  <string name="upload_comment_label">Comentariu:</string>
+  <string name="upload_source_label">Sursa:</string>
+  <!---->
+  <string name="upload_gpx_description_label">Descripție</string>
+  <string name="upload_gpx_visibility_label">Vizibilitate</string>
+  <!--task fragment-->
+  <string name="openstreetbug_comment_label">Comentariu:</string>
+  <!--Unsaved data dialog-->
+  <string name="unsaved_data_title">Atenţie!</string>
+  <string name="unsaved_data_proceed">Renunţă și continuă</string>
+  <!--Imagery offset dialog-->
+  <string name="imagery_offset_description">Descriere</string>
+  <string name="imagery_offset_author">Autor</string>
+  <string name="imagery_offset_date">Creat</string>
+  <string name="imagery_offset_zoom">Zoom</string>
+  <string name="imagery_offset_distance">Distanţă</string>
+  <!--Search/Find dialog-->
+  <string name="search_results_title">Rezultatele căutării</string>
+  <!--Search objects dialog-->
+  <!---->
+  <string name="search">Caută</string>
+  <!--element information dialog-->
+  <string name="version">Versiune</string>
+  <!--GeoJSON feature display dialog-->
+  <!--API/Data layer info dialog-->
+  <!--Tile layer info dialog-->
+  <!---->
+  <!--hidden object warning dialog-->
+  <!--This concerns a shown message that should be shown every time-->
+  <!--This concerns a shown message that should only be shown once-->
+  <!--debug dialog-->
+  <!--JS console dialog-->
+  <!--Validator dialogs-->
+  <!--Empty relation dialog-->
+  <!--GPX waypoint dialog-->
+  <!--Custom imagery dialogs-->
+  <!--Layer style dialog-->
+  <!--Layer dialog-->
+  <!--Layer info dialog-->
+  <!--Photo viewer-->
+  <!--API info dialog-->
+  <!--Undo - Redo dialog-->
+  <!--Undo location not in view dialog-->
+  <!--Feedback activity-->
+  <!--BoxPicker-->
+  <!--Clear/Reset GPX Track-->
+  <!--Tips-->
+  <!--NumberPicker-->
+  <!--NotificationChannels-->
+  <!--Toaster-->
+  <string name="toast_no_changes">Nu aţi facut nici o modificare...</string>
+  <string name="toast_export_success">Exportat la %1$s</string>
+  <!---->
+  <string name="toast_nothing_found">Nu am găsit nimic</string>
+  <!--Error messages-->
+  <!--Some generic labels/buttons-->
+  <string name="yes">Da</string>
+  <string name="no">Nu</string>
+  <string name="cancel">Renunţă</string>
+  <string name="next">Următor</string>
+  <string name="apply">Aplică</string>
+  <string name="set">Setează</string>
+  <string name="replace">Inlocuiește</string>
+  <string name="save">Salveaza</string>
+  <string name="forward">Înainte</string>
+  <!--Read a file-->
+  <!--Dialog for back button-->
+  <string name="exit_text">Sunteţi sigur că doriţi să ieșiţi?</string>
+  <!--Strings in PorpertyEditor-->
+  <string name="key">cheie</string>
+  <string name="value">valoare</string>
+  <string name="link_mapfeatures">http://wiki.openstreetmap.org/index.php/Map_Features</string>
+  <string name="tag_details">Detalii</string>
+  <string name="menu_up">Sus</string>
+  <!--Custom preset creation-->
+  <!--Strings in Box/LocationPicker-->
+  <string name="location_choose_radius">Alegeţi raza:</string>
+  <string name="location_default_radius">300m</string>
+  <string name="location_last_text">Ultima locaţie cunoscută:</string>
+  <string name="location_current_text">Locaţia curentă:</string>
+  <string name="location_last_text_parameterized">Ultima locaţie cunoscută: %1$s</string>
+  <string name="location_current_text_parameterized">Locaţie curentă: %1$s</string>
+  <string name="location_coordinates_text">De la coordonatele:</string>
+  <string name="location_lat_label">Latitudine:</string>
+  <string name="location_lon_label">Longitudine:</string>
+  <string name="location_search_label">Caută:</string>
+  <string name="location_load_button">Încarcă</string>
+  <string name="location_load_dismiss">Mergeţi la hartă</string>
+  <!--Strings in DownloadActivity-->
+  <!--Strings in Go to coordinates-->
+  <!--Menu-->
+  <string name="menu_move">Mută</string>
+  <string name="menu_edit">Editează</string>
+  <string name="menu_add">Nou</string>
+  <string name="menu_config">Preferinţe</string>
+  <string name="menu_help">Ajutor</string>
+  <string name="menu_set_position">Poziţie</string>
+  <string name="menu_split">Separă</string>
+  <string name="menu_append">Lipește</string>
+  <string name="menu_camera">Cameră</string>
+  <string name="menu_gps_show">Arată locaţia</string>
+  <string name="menu_transfer">Transfer...</string>
+  <string name="menu_transfer_download_current">Descarcă conţinutul curent</string>
+  <string name="menu_join">Participă</string>
+  <string name="menu_cut">Taie</string>
+  <string name="menu_rotate">Rotește</string>
+  <string name="menu_circulize">Aranjează în cerc</string>
+  <string name="menu_tools_background_properties">Proprietăţile fundalului</string>
+  <!---->
+  <!--Background alignment-->
+  <string name="menu_tools_background_align_reset">Resetează</string>
+  <string name="menu_tools_background_align_zero">Zero</string>
+  <!--Menus in layers dialog-->
+  <!---->
+  <!--element action mode menu-->
+  <!--Text should be as short as possible-->
+  <string name="menu_history">Istoric</string>
+  <string name="menu_merge">Participă</string>
+  <string name="menu_reverse">Întoarce</string>
+  <!--EasyEdit context menus-->
+  <!--EasyEdit action mode titles-->
+  <!--EasyEdit action mode sub-titles-->
+  <!--Simple Action Mode-->
+  <!--Preferences-->
+  <string name="config_backgroundLayer_title">Hartă de fundal</string>
+  <string name="config_advancedprefs">Setări avansate</string>
+  <!--Validator preferences-->
+  <!--opening hours templates-->
+  <!--these are no longer on the prefs page, but are used as menu entries-->
+  <string name="config_category_info">Despre</string>
+  <!--Advanced preferences-->
+  <!--User Interface Settings-->
+  <string name="config_showTolerance_title">Arată toleranţa</string>
+  <!--Data and Editing Settings-->
+  <!--Auto-download settings-->
+  <!--Location Settings-->
+  <!--Server Settings-->
+  <string name="config_loginbutton_title">Cont utilizator</string>
+  <!--Layer download and storage-->
+  <!--Miscellaneous-->
+  <string name="config_showStats_title">Arată statistici</string>
+  <!--Experimental-->
+  <!---->
+  <!--preset downloader messages-->
+  <!--url handler activity-->
+  <!--API configuration-->
+  <!--common terms-->
+  <string name="add">Adaugă</string>
+  <string name="edit">Editează</string>
+  <string name="delete">Sterge</string>
+  <string name="name">Nume</string>
+  <string name="default_">Implicit</string>
+  <!---->
+  <!--"default" is a reserved Java keyword…-->
+  <string name="preset">Curent</string>
+  <!--element description-->
+  <!--undo actions - give a description of the action, in infinitive, to display in strings like "Undo: actionname" or "Redo: actionname"-->
+  <!--ACRA-->
+  <!--Exceptions messages-->
+  <!--Notifications-->
+  <!--Misc relation related stuff-->
+  <string name="role">Rol</string>
+  <string name="relation">Relație</string>
+  <string name="type">Scrie</string>
+  <string name="object">Obiect</string>
+  <!--time and distance-->
+  <!--Help system-->
+  <!--Arrays-->
+  <!--The entries need to match the order of the CheckStatus enum-->
+</resources>

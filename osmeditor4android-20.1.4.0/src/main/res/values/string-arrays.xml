@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Arrays - in a separate file as these need to be 100% translated for use -->
+    <string-array name="gpx_visibility">
+        <item>private</item>
+        <item>public</item>
+        <item>trackable</item>
+        <item>identifiable</item>
+    </string-array>
+    <string-array name="gps_source">
+        <item>Internal</item>
+        <item>Internal NMEA</item>
+        <item>NMEA from TCP client</item>
+        <item>NMEA from TCP server</item>
+    </string-array>
+    <string name="gps_source_internal" translatable="false">internal</string>
+    <string name="gps_source_nmea" translatable="false">nmea</string>
+    <string name="gps_source_tcpclient" translatable="false">tcpclient</string>
+    <string name="gps_source_tcpserver" translatable="false">tcpserver</string>
+    <string-array name="gps_source_keys" translatable="false">
+        <item>@string/gps_source_internal</item>
+        <item>@string/gps_source_nmea</item>
+        <item>@string/gps_source_tcpclient</item>
+        <item>@string/gps_source_tcpserver</item>
+    </string-array>
+    <string name="state_open" translatable="false">OPEN</string>
+    <string name="state_closed" translatable="false">CLOSED</string>
+    <string name="state_false_positive" translatable="false">FALSE_POSITIVE</string>
+    <string name="state_skipped" translatable="false">SKIPPED</string>
+    <string name="state_deleted" translatable="false">DELETED</string>
+    <string name="state_already_fixed" translatable="false">ALREADY_FIXED</string>
+    <string name="state_too_hard" translatable="false">TOO_HARD</string>
+    <string-array name="bug_state">
+        <item>Open</item>
+        <item>Closed</item>
+        <item>False positive</item>
+    </string-array>
+    <string-array name="bug_state_values" translatable="false">
+        <item>@string/state_open</item>
+        <item>@string/state_closed</item>
+        <item>@string/state_false_positive</item>
+    </string-array>
+    <string-array name="note_state">
+        <item>Open</item>
+        <item>Closed</item>
+    </string-array>
+    <string-array name="note_state_values" translatable="false">
+        <item>@string/state_open</item>
+        <item>@string/state_closed</item>
+    </string-array>
+    <string-array name="maproulette_state">
+        <item>Open</item>
+        <item>Closed</item>
+        <item>False positive</item>
+        <item>Skipped</item> 
+        <item>Deleted</item>
+        <item>Already fixed</item>
+        <item>Too hard</item>
+    </string-array>
+    <string-array name="maproulette_state_values" translatable="false">
+        <item>@string/state_open</item>
+        <item>@string/state_closed</item>
+        <item>@string/state_false_positive</item>
+        <item>@string/state_skipped</item> 
+        <item>@string/state_deleted</item>
+        <item>@string/state_already_fixed</item>
+        <item>@string/state_too_hard</item>
+    </string-array>
+    <string-array name="todo_state">
+        <item>Open</item>
+        <item>Closed</item>
+        <item>Skipped</item> 
+    </string-array>
+    <string-array name="todo_state_values" translatable="false">
+        <item>@string/state_open</item>
+        <item>@string/state_closed</item>
+        <item>@string/state_skipped</item>
+    </string-array>
+    <string-array name="followGPSbutton_entries">
+        <item>Left</item>
+        <item>Right</item>
+        <item>None</item>
+    </string-array>
+    <string name="follow_GPS_left" translatable="false">LEFT</string>
+    <string name="follow_GPS_right" translatable="false">RIGHT</string>
+    <string name="follow_GPS_none" translatable="false">NONE</string>
+    <string-array name="followGPSbutton_values" translatable="false">
+        <item>@string/follow_GPS_left</item>
+        <item>@string/follow_GPS_right</item>
+        <item>@string/follow_GPS_none</item>
+    </string-array>
+    <string-array name="full_screen_preference_entries">
+        <item>Auto</item>
+        <item>Never</item>
+        <item>Force</item>
+        <item>No statusbar</item>
+    </string-array>
+    <string name="full_screen_auto" translatable="false">AUTO</string>
+    <string name="full_screen_never" translatable="false">NEVER</string>
+    <string name="full_screen_force" translatable="false">FORCE</string>
+    <string name="full_screen_no_statusbar" translatable="false">NOSTATUSBAR</string>
+    <string-array translatable="false" name="full_screen_preference_values">
+        <item>@string/full_screen_auto</item>
+        <item>@string/full_screen_never</item>
+        <item>@string/full_screen_force</item>
+        <item>@string/full_screen_no_statusbar</item>
+    </string-array>
+    <string-array name="full_screen_preference_no_auto_entries">
+        <item>Never</item>
+        <item>Force</item>
+        <item>No statusbar</item>
+    </string-array>
+    <string-array translatable="false" name="full_screen_preference_no_auto_values">
+        <item>@string/full_screen_never</item>
+        <item>@string/full_screen_force</item>
+        <item>@string/full_screen_no_statusbar</item>
+    </string-array>
+    <string-array name="map_orientation_entries">
+        <item>Auto</item>
+        <item>Locked</item>
+        <item>Portrait</item>
+        <item>Landscape</item>
+    </string-array>
+    <string name="map_orientation_auto" translatable="false">AUTO</string>
+    <string name="map_orientation_locked" translatable="false">LOCKED</string>
+    <string name="map_orientation_portrait" translatable="false">PORTRAIT</string>
+    <string name="map_orientation_landscape" translatable="false">LANDSCAPE</string>
+    <string-array translatable="false" name="map_orientation_values">
+        <item>@string/map_orientation_auto</item>
+        <item>@string/map_orientation_locked</item>
+        <item>@string/map_orientation_portrait</item>
+        <item>@string/map_orientation_landscape</item>
+    </string-array>
+    <string-array translatable="false" name="tagfilter_mode_entries">
+        <item>&#8211;</item>
+        <item>+</item>
+    </string-array>
+    <string-array name="tagfilter_type_entries">
+        <item>All</item>
+        <item>Nodes</item>
+        <item>Ways</item>
+        <item>Ways+</item>
+        <item>Relations</item>
+        <item>Relations+</item>
+    </string-array>
+    <string-array translatable="false" name="tagfilter_type_values">
+        <item>*</item>
+        <item>node</item>
+        <item>way</item>
+        <item>way+</item>
+        <item>relation</item>
+        <item>relation+</item>
+    </string-array>
+    <string-array translatable="false" name="layer_category_entries">
+        <item>@string/layer_category_photo</item>
+        <item>@string/layer_category_historicphoto</item>
+        <item>@string/layer_category_map</item>
+        <item>@string/layer_category_historicmap</item>
+        <item>@string/layer_category_osmbasedmap</item>
+        <item>@string/layer_category_qa</item>
+        <item>@string/layer_category_other</item>
+    </string-array>
+    <string-array translatable="false" name="layer_category_values">
+        <item>photo</item>
+        <item>historicphoto</item>
+        <item>map</item>
+        <item>historicmap</item>
+        <item>osmbasedmap</item>
+        <item>qa</item>
+        <item>other</item>
+    </string-array>
+    <string-array translatable="false" name="barometer_calibration_entries">
+        <item>@string/barometer_calibration_current_height</item>
+        <item>@string/barometer_calibration_current_reference_pressure</item>
+        <item>@string/barometer_calibration_gps</item>
+    </string-array>
+    <string-array translatable="false" name="barometer_calibration_values">
+        <item>current_height</item>
+        <item>current_reference_pressure</item>
+        <item>gnss</item>
+    </string-array>
+    <!-- The entries need to match the order of the CheckStatus enum -->
+    <string-array name="checkstatus_entries">
+        <item>HTTP</item>
+        <item>HTTPS</item>
+        <item>Domain doesn\'t exist</item>
+        <item>Domain unreachable</item>
+        <item>Malformed URL</item>
+        <item>Invalid argument</item>
+    </string-array>
+    <!-- list of supported camera apps -->
+    <string-array translatable="false" name="camera_app_entries">
+        <item>@string/config_system_camera</item>
+        <item>@string/config_open_camera</item>
+        <item>@string/config_fv5_lite</item>
+        <item>@string/config_fv5_pro</item>
+        <item>Dummy camera</item>
+    </string-array>
+    <string-array translatable="false" name="camera_app_values">
+        <item></item>
+        <item>net.sourceforge.opencamera</item>
+        <item>com.flavionet.android.camera.lite</item>
+        <item>com.flavionet.android.camera.pro</item>
+        <item>ch.poole.android.dummycameraapp</item>
+    </string-array>
+        <!-- automatic name tag capitalization -->
+    <string-array translatable="true" name="name_cap_entries">
+        <item>No capitalization</item>
+        <item>Word capitalization</item>
+        <item>Sentence capitalization</item>
+    </string-array>
+    <string-array translatable="false" name="name_cap_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string name="theme_follow_entry">Follow system</string>
+    <string name="theme_light_entry">Light</string>
+    <string name="theme_dark_entry">Dark</string>
+    <string-array name="theme_entries" translatable="false">
+        <item>@string/theme_follow_entry</item>
+        <item>@string/theme_light_entry</item>
+        <item>@string/theme_dark_entry</item>
+    </string-array>
+    <string-array name="theme_entries_28" translatable="false">
+        <item>@string/theme_light_entry</item>
+        <item>@string/theme_dark_entry</item>
+    </string-array>
+    <string name="theme_follow" translatable="false">follow</string>
+    <string name="theme_light" translatable="false">light</string>
+    <string name="theme_dark" translatable="false">dark</string>
+    <string-array name="theme_values" translatable="false">
+        <item>@string/theme_follow</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+    </string-array>
+    <string-array name="theme_values_28" translatable="false">
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+    </string-array>
+    <string name="authentication_basic_entry">Login - Password</string>
+    <string name="authentication_oauth1a_entry">OAuth 1a</string>
+    <string name="authentication_oauth2_entry">OAuth 2</string>
+    <string-array name="authentication_entries" translatable="false">
+        <item>@string/authentication_basic_entry</item>
+        <item>@string/authentication_oauth1a_entry</item>
+        <item>@string/authentication_oauth2_entry</item>
+    </string-array>
+ </resources>

@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!--Mode names-->
+  <string name="mode_easy">Normal</string>
+  <string name="mode_tag_only">Apenas etiqueta</string>
+  <string name="mode_indoor">Interior</string>
+  <string name="mode_correct">Modo-C</string>
+  <!--Dialogs-->
+  <string name="transfer_download_current_dialog_title">Cuidado!</string>
+  <string name="transfer_download_current_upload">Upload</string>
+  <string name="transfer_download_current_download">Descartar e baixar</string>
+  <string name="upload_conflict_title">Conflito no upload</string>
+  <string name="use_local_version">Usar versão local</string>
+  <string name="use_server_version">Usar versão no servidor</string>
+  <!---->
+  <string name="read_upgrade">Leia sobre a nova versão</string>
+  <string name="progress_title">Carregando</string>
+  <string name="progress_message">Carregando dados na memória...</string>
+  <string name="progress_download_message">Baixando dados do servidor...</string>
+  <string name="progress_general_title">Por favor aguarde</string>
+  <string name="progress_deleting_message">Deletando...</string>
+  <string name="progress_searching_message">Buscando...</string>
+  <string name="progress_saving_message">Salvando...</string>
+  <!--Confirm upload dialog-->
+  <string name="upload_comment_label">Comentário:</string>
+  <string name="upload_source_label">Fonte:</string>
+  <!---->
+  <string name="upload_gpx_description_label">Descrição</string>
+  <string name="upload_gpx_tags_label">Tags</string>
+  <string name="upload_gpx_visibility_label">Visibilidade</string>
+  <!--task fragment-->
+  <string name="openstreetbug_comment_label">Comentário:</string>
+  <!--Unsaved data dialog-->
+  <string name="unsaved_data_title">Cuidado!</string>
+  <!--Imagery offset dialog-->
+  <string name="imagery_offset_description">Descrição</string>
+  <string name="imagery_offset_author">Autor</string>
+  <string name="imagery_offset_date">Criado</string>
+  <string name="imagery_offset_zoom">Zoom</string>
+  <string name="imagery_offset_distance">Distância</string>
+  <!--Search/Find dialog-->
+  <!--Search objects dialog-->
+  <!---->
+  <string name="search">Procurar</string>
+  <!--element information dialog-->
+  <string name="nodes">Nós</string>
+  <string name="problem">Problema</string>
+  <string name="members">Membros</string>
+  <string name="closed">Fechado</string>
+  <string name="version">Versão</string>
+  <string name="length_m">Comprimento (m)</string>
+  <!--GeoJSON feature display dialog-->
+  <!--API/Data layer info dialog-->
+  <!--Tile layer info dialog-->
+  <!---->
+  <!--hidden object warning dialog-->
+  <!--This concerns a shown message that should be shown every time-->
+  <!--This concerns a shown message that should only be shown once-->
+  <!--debug dialog-->
+  <!--JS console dialog-->
+  <!--Validator dialogs-->
+  <!--Empty relation dialog-->
+  <!--GPX waypoint dialog-->
+  <!--Custom imagery dialogs-->
+  <!--Layer style dialog-->
+  <!--Layer dialog-->
+  <!--Layer info dialog-->
+  <!--Photo viewer-->
+  <!--API info dialog-->
+  <!--Undo - Redo dialog-->
+  <!--Undo location not in view dialog-->
+  <!--Feedback activity-->
+  <!--BoxPicker-->
+  <!--Clear/Reset GPX Track-->
+  <!--Tips-->
+  <!--NumberPicker-->
+  <!--NotificationChannels-->
+  <!--Toaster-->
+  <string name="toast_unlock_to_edit">Desbloqueie para editar</string>
+  <string name="toast_export_success">Exportado para %1$s</string>
+  <!---->
+  <string name="toast_nothing_found">Nada encontrado</string>
+  <!--Error messages-->
+  <!--Some generic labels/buttons-->
+  <string name="yes">Sim</string>
+  <string name="no">Não</string>
+  <string name="cancel">Cancelar</string>
+  <string name="locked">Bloqueado</string>
+  <string name="next">Próximo</string>
+  <string name="apply">Aplicar</string>
+  <string name="set">Definir</string>
+  <string name="replace">Substituir</string>
+  <string name="save">Salvar</string>
+  <string name="back">Voltar</string>
+  <string name="forward">Igual à direção da linha</string>
+  <string name="keep">Manter</string>
+  <!--Read a file-->
+  <!--Dialog for back button-->
+  <string name="exit_text">Tem certeza que deseja sair?</string>
+  <!--Strings in PorpertyEditor-->
+  <string name="key">chave</string>
+  <string name="Key">Chave</string>
+  <string name="value">valor</string>
+  <string name="Value">Valor</string>
+  <string name="link_mapfeatures">http://wiki.openstreetmap.org/wiki/Pt-br:Map_Features</string>
+  <string name="tag_menu_address">Adicionar tags de endereço</string>
+  <string name="tag_menu_preset">Pré-definições</string>
+  <string name="tag_details">Detalhes</string>
+  <string name="menu_up">Para cima</string>
+  <string name="tag_restriction_header">Valor</string>
+  <!--Custom preset creation-->
+  <!--Strings in Box/LocationPicker-->
+  <string name="location_default_radius">300m</string>
+  <string name="location_lat_label">Lat:</string>
+  <string name="location_lon_label">Lon:</string>
+  <string name="location_search_label">Procurar:</string>
+  <string name="location_load_button">Carregar</string>
+  <string name="location_load_dismiss">Ir para o mapa</string>
+  <!--Strings in DownloadActivity-->
+  <!--Strings in Go to coordinates-->
+  <!--Menu-->
+  <string name="menu_move">Mover</string>
+  <string name="menu_edit">Editar</string>
+  <string name="menu_add">Novo</string>
+  <string name="menu_config">Preferências</string>
+  <string name="menu_find">Encontrar</string>
+  <string name="menu_help">Ajuda</string>
+  <string name="menu_erase">Apagar nó</string>
+  <string name="menu_set_position">Posição</string>
+  <string name="menu_split">Dividir</string>
+  <string name="menu_relation">Criar relação</string>
+  <string name="menu_add_relation_member">Adicionar membro</string>
+  <string name="menu_select_relation_members">Selecionar membros</string>
+  <string name="menu_tag">Editar tags</string>
+  <string name="menu_easyedit">EasyEdit</string>
+  <string name="menu_camera">Câmera</string>
+  <string name="menu_gps_show">Mostrar localização</string>
+  <string name="menu_transfer">Transferir...</string>
+  <string name="menu_transfer_download_current">Baixar vista atual</string>
+  <string name="menu_join">Unir</string>
+  <string name="menu_unjoin">Desunir</string>
+  <string name="menu_copy">Copiar</string>
+  <string name="menu_cut">Recortar</string>
+  <string name="menu_paste">Colar</string>
+  <string name="menu_paste_from_clipboard">Colar da área de transferência</string>
+  <string name="menu_rotate">Girar</string>
+  <string name="menu_circulize">Arrumar em círculo</string>
+  <string name="menu_information">Info</string>
+  <string name="menu_tools_background_properties">Propriedades das imagens de fundo</string>
+  <!---->
+  <!--Background alignment-->
+  <string name="menu_tools_background_align">Alinhar fundo de tela</string>
+  <string name="menu_tools_background_align_reset">Redefinir</string>
+  <string name="menu_tools_background_align_zero">Zero</string>
+  <!--Menus in layers dialog-->
+  <!---->
+  <string name="menu_tools_background_contrast">Contraste</string>
+  <!--element action mode menu-->
+  <string name="menu_tags">Propriedades</string>
+  <!--Text should be as short as possible-->
+  <string name="menu_history">Histórico</string>
+  <string name="menu_merge">Unir</string>
+  <string name="menu_reverse">Inverter</string>
+  <string name="deletenode">Apagar nó</string>
+  <!--EasyEdit context menus-->
+  <!--EasyEdit action mode titles-->
+  <string name="actionmode_wayselect">Via selecionada</string>
+  <string name="actionmode_nodeselect">Nó selecionado</string>
+  <string name="actionmode_relationselect">Relação selecionada</string>
+  <string name="actionmode_createpath">Criando caminho</string>
+  <string name="actionmode_multiselect">Multi seleção</string>
+  <!--EasyEdit action mode sub-titles-->
+  <!--Simple Action Mode-->
+  <!--Preferences-->
+  <string name="config_backgroundLayer_title">Mapa de fundo</string>
+  <string name="config_overlayLayer_title">Mapa sobreposto</string>
+  <string name="config_enableKeepScreenOn_title">Manter a tela ligada</string>
+  <string name="config_advancedprefs">Preferências avançadas</string>
+  <string name="config_presetbutton_title">Pré-definições</string>
+  <!--Validator preferences-->
+  <!--opening hours templates-->
+  <!--these are no longer on the prefs page, but are used as menu entries-->
+  <string name="config_debugbutton_title">Debug</string>
+  <string name="config_category_info">Sobre</string>
+  <!--Advanced preferences-->
+  <!--User Interface Settings-->
+  <string name="config_showTolerance_title">Mostrar tolerância</string>
+  <string name="config_maxStrokeWidth_title">Largura máxima da linha</string>
+  <!--Data and Editing Settings-->
+  <string name="config_generateAlerts_title">Gerar notificações</string>
+  <string name="config_generateAlerts_summary">Gerar notificações para dados com problemas ou notas</string>
+  <!--Auto-download settings-->
+  <!--Location Settings-->
+  <!--Server Settings-->
+  <string name="config_apibutton_title">URL da API OSM</string>
+  <!--Layer download and storage-->
+  <!--Miscellaneous-->
+  <string name="config_showStats_title">Mostrar estatísticas</string>
+  <!--Experimental-->
+  <!---->
+  <string name="config_api_url_title">URL da API</string>
+  <!--preset downloader messages-->
+  <!--url handler activity-->
+  <!--API configuration-->
+  <string name="api_url">URL da API</string>
+  <!--common terms-->
+  <string name="add">Adicionar</string>
+  <string name="edit">Editar</string>
+  <string name="delete">Apagar</string>
+  <string name="name">Nome</string>
+  <string name="url">URL</string>
+  <string name="default_">Padrão</string>
+  <!---->
+  <!--"default" is a reserved Java keyword…-->
+  <string name="api">API</string>
+  <string name="undo">Desfazer</string>
+  <string name="redo">Refazer</string>
+  <string name="undo_nothing">nada para desfazer</string>
+  <!--element description-->
+  <!--undo actions - give a description of the action, in infinitive, to display in strings like "Undo: actionname" or "Redo: actionname"-->
+  <!--ACRA-->
+  <!--Exceptions messages-->
+  <!--Notifications-->
+  <!--Misc relation related stuff-->
+  <string name="role">Papel</string>
+  <string name="membership_relation_heading">Membro da relação</string>
+  <string name="relation">Relação</string>
+  <string name="relations">Relações</string>
+  <string name="type">Tipo</string>
+  <string name="object">Objeto</string>
+  <string name="deleterelation">Apagar relação</string>
+</resources>

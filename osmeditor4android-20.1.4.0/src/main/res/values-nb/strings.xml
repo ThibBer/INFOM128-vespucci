@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!--Mode names-->
+  <string name="mode_easy">Normal</string>
+  <string name="mode_tag_only">Bare egenskaper</string>
+  <string name="mode_indoor">Innendørs</string>
+  <string name="mode_correct">C-Modus</string>
+  <!--Dialogs-->
+  <string name="transfer_download_current_dialog_title">Advarsel!</string>
+  <string name="transfer_download_current_dialog_message">Du har gjort endringer. Vil du laste opp i stedet for å forkaste dem?</string>
+  <string name="transfer_download_current_upload">Last opp</string>
+  <string name="transfer_download_current_download">Avbryt og last ned</string>
+  <string name="transfer_download_current_back">Tilbake (Ikke gjør noe)</string>
+  <string name="upload_problem_title">Kunne ikke laste opp</string>
+  <string name="upload_problem_message">Noen eller alle  the data ble ikke lastet opp. Prøv igjen senere.</string>
+  <string name="bad_request_message">APIen svarte med en feil, vennligst lagre dataene dine og rapporter problemet:\n\n</string>
+  <string name="upload_conflict_title">Last opp konflikt</string>
+  <string name="use_local_version">Bruk lokal versjon</string>
+  <string name="use_server_version">Bruk versjon på server</string>
+  <string name="no_login_data_title">Kunne ikke autentisere</string>
+  <string name="no_connection_title">Ingen tilkobling til server</string>
+  <string name="not_found_title">Element ikke funnet</string>
+  <string name="unknown_error_title">Ukjent feil</string>
+  <string name="no_data_title">Ingen data</string>
+  <string name="no_data_message">Den konfigurerte datakilden har ingen dekning her.</string>
+  <string name="required_feature_missing_title">Manglende eller deaktivert komponent</string>
+  <string name="required_feature_missing_message">Denne funksjonen avhenger av en manglende eller deaktivert systemkomponent.</string>
+  <string name="go_to_openstreetmap">Gå til openstreetmap.org</string>
+  <string name="data_conflict_title">Versjon konflikt</string>
+  <string name="bounding_box_too_large_title">Området du har valgt er for stort</string>
+  <string name="out_of_memory_title">Tomt for minne</string>
+  <string name="file_write_failed_title">Kunne ikke skrive til fil</string>
+  <!---->
+  <string name="welcome_title">Velkommen</string>
+  <string name="read_introduction">Les introduksjonen</string>
+  <string name="upgrade_title">Dette er ny Vespucci versjon</string>
+  <string name="read_upgrade">Les om den nye versjonen</string>
+  <string name="progress_title">Leser</string>
+  <string name="progress_message">Leser inn i minne…</string>
+  <string name="progress_download_message">Laster ned data fra teneren…</string>
+  <string name="progress_general_title">Vennligst vent</string>
+  <string name="progress_deleting_message">Sletter...</string>
+  <string name="progress_searching_message">Søker...</string>
+  <string name="progress_saving_message">Lagrer...</string>
+  <string name="progress_uploading_message">Laster opp...</string>
+  <string name="progress_preset_message">Laster ned mal...</string>
+  <string name="progress_running_message">Kjører...</string>
+  <!--Confirm upload dialog-->
+  <string name="changes_deleted">«%1$s» slettet</string>
+  <string name="changes_changed">«%1$s» endret</string>
+  <string name="changes_created">«%1$s» opprettet</string>
+  <string name="confirm_upload_edits_page">Endringer</string>
+  <string name="upload_comment_label">Kommentar:</string>
+  <string name="upload_source_label">Kilde:</string>
+  <string name="upload_close_changeset_label">Lukk endringssett:</string>
+  <!---->
+  <string name="upload_gpx_description_label">Beskrivelse</string>
+  <string name="upload_gpx_tags_label">Egenskaper</string>
+  <string name="upload_gpx_visibility_label">Synlighet</string>
+  <string name="upload_validation_error_empty_comment">Kommentar burde ikke være tom</string>
+  <string name="upload_validation_error_empty_source">Kilde burde ikke være tom</string>
+  <!--task fragment-->
+  <string name="openstreetbug_bug_title">Problem</string>
+  <string name="openstreetbug_comment_label">Kommentar:</string>
+  <string name="openstreetbug_not_supported">%1$s støttes ikke.</string>
+  <string name="generic_bug">Feil</string>
+  <!--Unsaved data dialog-->
+  <string name="unsaved_data_title">Advarsel!</string>
+  <string name="unsaved_data_proceed">Skrot og gå videre</string>
+  <!--Imagery offset dialog-->
+  <string name="imagery_offset_description">Beskrivelse</string>
+  <string name="imagery_offset_date">Laget</string>
+  <string name="imagery_offset_zoom">Zoom</string>
+  <string name="imagery_offset_distance">Distanse</string>
+  <string name="tag_editor_name_suggestion">Navneforslag</string>
+  <!--Search/Find dialog-->
+  <string name="tag_editor_name_suggestion_overwrite_message">Dette forslaget kan erstatte noen egenskaper med noen mer populære.</string>
+  <string name="search_results_title">Søkeresultater</string>
+  <string name="geocoder_prompt">med</string>
+  <!--Search objects dialog-->
+  <!---->
+  <string name="preset_search_hint">Søk etter mal</string>
+  <string name="search">Søk</string>
+  <string name="no_valid_preset">Ingen gyldig mal!</string>
+  <string name="delete_tags">Vil du virkelig slette alle egenskaper for \"%1$s\"-objektet?</string>
+  <!--element information dialog-->
+  <string name="nodes">Punkter</string>
+  <string name="relation_membership">Relasjon medlemskap </string>
+  <string name="problem">Problem</string>
+  <string name="members">Medlemmer</string>
+  <string name="version">Versjon</string>
+  <string name="length_m">Lengde (m)</string>
+  <string name="not_downloaded">Ikke lastet ned</string>
+  <string name="last_edited">Sist endret</string>
+  <!--GeoJSON feature display dialog-->
+  <!--API/Data layer info dialog-->
+  <!--Tile layer info dialog-->
+  <!---->
+  <string name="warning">Advarsel</string>
+  <!--hidden object warning dialog-->
+  <!--This concerns a shown message that should be shown every time-->
+  <!--This concerns a shown message that should only be shown once-->
+  <!--debug dialog-->
+  <!--JS console dialog-->
+  <string name="evaluate">Evaluer</string>
+  <!--Validator dialogs-->
+  <string name="age">Alder</string>
+  <!--Empty relation dialog-->
+  <string name="add_members">Legg til medlemmer</string>
+  <string name="leave_empty">La være tom</string>
+  <!--GPX waypoint dialog-->
+  <string name="description">Beskrivelse</string>
+  <string name="created">Laget</string>
+  <!--Custom imagery dialogs-->
+  <string name="custom_layer_title">Egendefinert orthofoto</string>
+  <string name="delete_layer">Slette lag?</string>
+  <!--Layer style dialog-->
+  <string name="layer_style_color">Farge</string>
+  <!--Layer dialog-->
+  <string name="layer_grid">Rutenett</string>
+  <string name="layer_gpx">GPX</string>
+  <string name="layer_photos">Bilder</string>
+  <!--Layer info dialog-->
+  <!--Photo viewer-->
+  <!--API info dialog-->
+  <!--Undo - Redo dialog-->
+  <!--Undo location not in view dialog-->
+  <!--Feedback activity-->
+  <!--BoxPicker-->
+  <string name="boxpicker_firsttimetitle">Last ned OpenStreetMap-data</string>
+  <!--Clear/Reset GPX Track-->
+  <!--Tips-->
+  <string name="tip_title">Visste du?</string>
+  <!--NumberPicker-->
+  <string name="plus_sign">+</string>
+  <string name="minus_sign">-</string>
+  <string name="digit_one">1</string>
+  <!--NotificationChannels-->
+  <!--Toaster-->
+  <string name="toast_no_changes">Du har ikke endret noe enda…</string>
+  <string name="toast_unlock_to_edit">Lås opp for å redigere</string>
+  <string name="toast_export_success">Eksporterte til %1$s</string>
+  <string name="toast_preset_overwrote_tags">Merk - mal overskrev egenskap(er)</string>
+  <string name="toast_merge_overwrote_tags">Merk - operasjonen overskrev egenskap(er)</string>
+  <string name="toast_oneway_reversed">Du reverserte en enveisgate eller en linje med egenskaper som er avhengig av retningen på linjen. Vennligst sjekk egenskapene og rett dem hvis det trengs.</string>
+  <string name="toast_photo_indexing_started">Skanner etter geo-refererte bilder</string>
+  <string name="toast_download_failed">Nedlasting mislyktes med feilkoden %1$d, melding; %2$s</string>
+  <!---->
+  <string name="toast_min_one_preset">Minst en mal må være valgt!</string>
+  <string name="toast_needs_resurvey">Objektet kan være utdatert.</string>
+  <string name="toast_openinghours_invalid">Ugylid verdi i form av åpningstider for %1$s</string>
+  <string name="toast_illegal_operation">Ulovlig operasjon: %1$s</string>
+  <string name="toast_flus_all_caches">Dette vil tømme alle mellomlagrede fliser!</string>
+  <string name="toast_unsupported_format">Ustøttet format: %1$s</string>
+  <!--Error messages-->
+  <!--Some generic labels/buttons-->
+  <string name="yes">Ja</string>
+  <string name="no">Nei</string>
+  <string name="cancel">Avbryt</string>
+  <!--Read a file-->
+  <string name="share_position">Del posisjon</string>
+  <!--Dialog for back button-->
+  <!--Strings in PorpertyEditor-->
+  <string name="key">nøkkel</string>
+  <string name="Key">Nøkkel</string>
+  <string name="value">verdi</string>
+  <string name="Value">Verdi</string>
+  <string name="link_mapfeatures">http://wiki.openstreetmap.org/index.php/Map_Features</string>
+  <string name="tag_menu_address">Legg til adresse-egenskaper</string>
+  <string name="tag_menu_sourcesurvey">Kartlagt</string>
+  <string name="tag_menu_preset">Maler</string>
+  <string name="tag_menu_revert">Gjør om</string>
+  <string name="tag_value_hint">Skriv en verdi</string>
+  <string name="tag_autocomplete_value_hint">Skriv eller trykk for verdier</string>
+  <string name="tag_multi_value_hint">Flere verdier</string>
+  <string name="tag_dialog_value_hint">Trykk for verdier</string>
+  <string name="tag_action_tag_title">Egenskap(er) valgt</string>
+  <string name="tag_menu_download">Last ned</string>
+  <string name="menu_preset_help">Mal hjelp</string>
+  <string name="tag_restriction_header">Verdi</string>
+  <string name="tag_form_unknown_element">Ukjent element (ingen mal funnet)</string>
+  <!--Custom preset creation-->
+  <!--Strings in Box/LocationPicker-->
+  <string name="location_choose_radius">Velg radius:</string>
+  <string name="location_default_radius">300m</string>
+  <string name="location_last_text">Siste kjente posisjon:</string>
+  <string name="location_current_text">Nåværende posisjon:</string>
+  <string name="location_last_text_parameterized">Siste kjente posisjon: %1$s</string>
+  <string name="location_current_text_parameterized">Nåværende posisjon: %1$s</string>
+  <string name="location_coordinates_text">Fra koordinater:</string>
+  <string name="location_lat_label">Lat:</string>
+  <string name="location_lon_label">Lon:</string>
+  <!--Strings in DownloadActivity-->
+  <!--Strings in Go to coordinates-->
+  <!--Menu-->
+  <string name="menu_move">Flytt</string>
+  <string name="menu_edit">Endre</string>
+  <string name="menu_add">Ny</string>
+  <string name="menu_config">Innstillinger</string>
+  <string name="menu_help">Hjelp</string>
+  <string name="menu_erase">Slett node</string>
+  <string name="menu_split">Kløyv</string>
+  <string name="menu_append">Fortsett</string>
+  <string name="menu_tag">Endre egenskaper</string>
+  <string name="menu_gps_show">Vis plassering</string>
+  <string name="menu_gps_follow">Følg posisjon</string>
+  <string name="menu_gps_upload">Last opp GPX-spor</string>
+  <string name="menu_gps_export">Eksporter GPX-spor</string>
+  <string name="menu_gps_import">Importer GPX-spor</string>
+  <string name="menu_transfer">Overfør…</string>
+  <string name="menu_transfer_download_current">Last ned nåværende utsnitt</string>
+  <string name="menu_transfer_upload">Last opp til OSM</string>
+  <string name="menu_transfer_export">Eksporter endringer til OSC-fil</string>
+  <string name="menu_transfer_bugs_upload">Last opp alle</string>
+  <string name="menu_join">Kombiner</string>
+  <string name="menu_copy">Kopier</string>
+  <string name="menu_cut">Klipp ut</string>
+  <string name="menu_paste">Lim inn</string>
+  <string name="menu_paste_from_clipboard">Lim inn fra utklippstavle</string>
+  <string name="menu_zoom_to_selection">Zoom til valg</string>
+  <string name="menu_rotate">Roter</string>
+  <string name="menu_circulize">Lag sirkel</string>
+  <string name="menu_tools_flush_all_tile_caches">Tøm alle mellomlagrede fliser</string>
+  <!---->
+  <string name="menu_privacy">Personvern</string>
+  <!--Background alignment-->
+  <string name="menu_tools_background_align_reset">Tilbakestill</string>
+  <!--Menus in layers dialog-->
+  <!---->
+  <string name="menu_tools_background_contrast">Kontrast</string>
+  <string name="menu_tools_oauth_reset">Tilbakestill OAuth</string>
+  <string name="menu_tools_oauth_authorisation">Autoriser OAuth</string>
+  <string name="menu_enable_tagfilter">Egenskapsfilter</string>
+  <string name="menu_enable_presetfilter">Mal-filter</string>
+  <!--element action mode menu-->
+  <!--Text should be as short as possible-->
+  <string name="menu_history">Historikk</string>
+  <string name="menu_merge">Kombiner</string>
+  <string name="menu_reverse">Snu</string>
+  <string name="deletenode">Slett punkt</string>
+  <!--EasyEdit context menus-->
+  <!--EasyEdit action mode titles-->
+  <string name="actionmode_wayselect">Veg valgt</string>
+  <string name="actionmode_nodeselect">Node valgt</string>
+  <string name="actionmode_createpath">Lager bane</string>
+  <!--EasyEdit action mode sub-titles-->
+  <string name="actionmode_rotateway">Roter linje</string>
+  <!--Simple Action Mode-->
+  <!--Preferences-->
+  <string name="config_backgroundLayer_title">Kartbakgrunn</string>
+  <string name="config_customlayers_title">Egendefinerte lag</string>
+  <string name="config_mapProfile_title">Data-stil</string>
+  <string name="config_enablePhotoLayer_summary">Vis georefererte bilder.</string>
+  <string name="config_enableKeepScreenOn_title">Hold skjermen våken</string>
+  <string name="config_largeDragArea_title">Stort \"håndtak\" på punkter</string>
+  <string name="config_advancedprefs">Avanserte innstillinger</string>
+  <string name="config_presetbutton_title">Knapper</string>
+  <string name="config_presetbutton_summary">Legg til og endre JOSM-kompatible maler</string>
+  <!--Validator preferences-->
+  <!--opening hours templates-->
+  <!--these are no longer on the prefs page, but are used as menu entries-->
+  <string name="config_debugbutton_title">Feilsøking</string>
+  <string name="config_category_info">Om</string>
+  <!--Advanced preferences-->
+  <!--User Interface Settings-->
+  <string name="config_iconbutton_title">Vis node-ikon</string>
+  <string name="config_iconbutton_summary">Vis ikonet for knapp som passer best på noder.</string>
+  <string name="config_showWayIcons_summary">Vis ikonet til den mest passende malen over bygninger.</string>
+  <string name="config_tagFormEnabled_title">Vis skjema for egenskaper</string>
+  <string name="config_fullscreenMode_summary">Oppførsel på enheter med \"skjermknapper\".</string>
+  <string name="config_showTolerance_title">Vis endringsområde</string>
+  <string name="config_maxInlineValues_current">%1$d Verdier</string>
+  <string name="config_enableAntiAliasing_summary">Gjør linjene penere.</string>
+  <string name="config_maxStrokeWidth_title">Maks linjebredde</string>
+  <string name="config_maxStrokeWidth_current">%1$d px</string>
+  <!--Data and Editing Settings-->
+  <string name="config_address_tags">Adresse-egenskaper</string>
+  <string name="config_notificationCacheSize_title">Maks antall viste varsler</string>
+  <string name="config_notificationCacheSize_current">%1$d Varsler</string>
+  <!--Auto-download settings-->
+  <string name="config_extTriggeredDownloadRadius_title">Nedlastings-radius</string>
+  <string name="config_downloadSpeed_current">%1$d km/t</string>
+  <!--Location Settings-->
+  <string name="config_gps_interval_current">%1$d ms</string>
+  <!--Server Settings-->
+  <string name="config_loginbutton_title">Brukerkonto</string>
+  <!--Layer download and storage-->
+  <string name="config_category_layers">Nedlasting og lagring av lag</string>
+  <string name="config_maxTileDownloadThreads_title">Maks antall nedlasting-tråder</string>
+  <string name="config_downLoadThreads_current">%1$d Tråder</string>
+  <string name="config_tileCacheSize_title">Flis-cache størrelse</string>
+  <string name="config_tileCache_current">%1$d MB</string>
+  <!--Miscellaneous-->
+  <string name="config_showStats_title">Vis statistikk</string>
+  <!--Experimental-->
+  <!---->
+  <string name="manage_presets">Administrere maler</string>
+  <!--preset downloader messages-->
+  <string name="preset_update">Oppdater knapper</string>
+  <string name="preset_download_parse_failed">Knappefila er ugyldig. Knappesettet kommer ikke til å virke.</string>
+  <!--url handler activity-->
+  <string name="urldialog_add_preset">Legg til mal</string>
+  <string name="urldialog_preset_exists">Denne malen eksisterer allerede</string>
+  <string name="urldialog_api_exists">En API med denne URLen finst allerede, men du kan legga til en til (f. eks. for å lett skifte konto).</string>
+  <string name="urldialog_add_api">Legg til API</string>
+  <string name="urldialog_nodata_text">Konfigurasjons-URLen har ikke gyldig data.</string>
+  <!--API configuration-->
+  <!--common terms-->
+  <string name="add">Legg til</string>
+  <string name="edit">Endre</string>
+  <string name="delete">Slett</string>
+  <string name="name">Navn</string>
+  <string name="url">URL</string>
+  <!---->
+  <!--"default" is a reserved Java keyword…-->
+  <string name="preset">Mal</string>
+  <string name="api">API</string>
+  <string name="undo">Gjør om</string>
+  <string name="redo">Gjenta</string>
+  <string name="undo_nothing">Intet å gjøre om</string>
+  <string name="gps_failure">Klarte ikke å slå på GPS</string>
+  <!--element description-->
+  <string name="address_housenumber">Adresse %1$s</string>
+  <string name="address_housenumber_street">Adresse %1$s %2$s</string>
+  <!--undo actions - give a description of the action, in infinitive, to display in strings like "Undo: actionname" or "Redo: actionname"-->
+  <!--ACRA-->
+  <!--Exceptions messages-->
+  <!--Notifications-->
+  <!--Misc relation related stuff-->
+  <string name="role">Rolle</string>
+  <string name="membership_relation_heading">Medlem av en relasjon</string>
+  <string name="relation">Relasjon</string>
+  <string name="relations">Relasjoner</string>
+  <string name="type">Type</string>
+  <string name="object">Objekt</string>
+  <string name="deleterelation">Slett relasjon</string>
+  <!--time and distance-->
+  <!--Help system-->
+  <!--Arrays-->
+  <string-array name="gpx_visibility">
+    <item>privat</item>
+    <item>offentlig</item>
+    <item>sporbar</item>
+    <item>identifiserbar</item>
+  </string-array>
+  <!--The entries need to match the order of the CheckStatus enum-->
+</resources>

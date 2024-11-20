@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:paddingLeft="?attr/dialogPreferredPadding"
+        android:paddingRight="?attr/dialogPreferredPadding"
+	>
+		<EditText
+			android:id="@+id/imagery_offset_description" 
+			android:hint="@string/imagery_offset_description"
+			android:maxLength="100"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			/>
+	
+		<RelativeLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+			>
+			
+			<TextView
+			    android:id="@+id/imagery_offset_author_title"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_centerVertical="true"
+			    android:text="@string/imagery_offset_author"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<EditText
+			    android:layout_toRightOf="@+id/imagery_offset_author_title"
+                android:layout_toEndOf="@+id/imagery_offset_author_title"
+			    android:id="@+id/imagery_offset_author"
+			    android:maxLength="100"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_centerVertical="true"
+			    android:hint="@string/imagery_offset_author"
+			    android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		</RelativeLayout>
+		<RelativeLayout 
+		    android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+		>
+			<LinearLayout
+			    android:id="@+id/linearLayout1"
+				android:orientation="vertical"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+				android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+    			android:layout_alignParentTop="true"
+				>
+				<TextView
+					android:text="@string/imagery_offset_offset" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+				/>
+				<TextView
+					android:text="@string/imagery_offset_date" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+				/>
+				<TextView
+					android:text="@string/imagery_offset_zoom" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+				/>	
+			</LinearLayout>								
+		
+			<LinearLayout
+			    android:layout_toRightOf="@+id/linearLayout1"
+                android:layout_toEndOf="@+id/linearLayout1"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+			>
+				<TextView
+				    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+					android:id="@+id/imagery_offset_offset" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+				/>
+				<TextView
+				    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+					android:id="@+id/imagery_offset_date" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+				/>
+				<TextView
+				    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+					android:id="@+id/imagery_offset_zoom" 
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+				/>	
+			</LinearLayout>
+	  </RelativeLayout>
+  </LinearLayout>
+</ScrollView>

@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+<body>
+<h1>Main Vespucci Screen</h1>
+<p>The main Vespucci map screen is your normal starting point for interacting with the application. It can be in two modes</p>
+<h4><img src="../images/locked.png" alt="Locked" /> locked</h4>
+<p>In this mode modifying the OpenStreetMap data is disabled, you can however use all the menus and other functions, for example down- or up-load data. The main reason to use this mode is to pan and zoom in high density areas, or to avoid accidental changes when pocketing your device.</p>
+<p>Tapping the lock icon will toggle the lock.</p>
+<h4><img src="../images/unlocked.png" alt="Unlocked" /> unlocked</h4>
+<p>In this mode you can add and change the geometry and tags of OpenStreetMap data. <em>You will still need to zoom until editing is enabled.</em></p>
+<p>If a small &quot;T&quot; is displayed on the lock icon you are in &quot;Tag editing only&quot; mode and will not be able to change geometries, a small &quot;I&quot; indicates indoor mapping mode. A long press on the icon will display a menu allowing you to switch between editing modes, for mode switching purposes it dosen't matter if the display is &quot;locked&quot; or &quot;unlocked&quot;.</p>
+<p>All the mode options are</p>
+<ul>
+<li><strong>Normal</strong> conventional editing mode.</li>
+<li><strong>Tag only</strong> selecting an object will immediately start the property editor.</li>
+<li><strong>Address</strong> slightly simplified dedicated mode for surveying addresses.</li>
+<li><strong>Indoor</strong> indoor editing with level selector.</li>
+<li><strong>C-Mode</strong> &quot;complete&quot; mode, only objects with validation warnings will be shown.</li>
+</ul>
+<p>The lock icon will always be located in the upper left corner of your devices screen. The placement of the following controls will depend on the size, orientation and age of your device, and may be in the top or bottom bar, or in a menu.</p>
+<h3>Map and Data display</h3>
+<p>Once you have downloaded some OSM data you will see it displayed over a background layer. The default background is the standard &quot;Mapnik&quot; style map provided by openstreetmap.org, however you can change the configuration by using the layer control. The styling of the OSM data displayed on top of the background layer can be fully customized, but the standard &quot;Color round nodes&quot; or for &quot;Pen round nodes&quot; should work for most situations, the later has smaller &quot;touch areas&quot; mainly for working with a pen.</p>
+<p>Note: the map images are cached on device and are only deleted if explicitly flushed. If you need to have background images available without network connectivity see <a href="http://vespucci.io/tutorials/custom_imagery_mbtiles/">custom imagery with MBtiles</a>.</p>
+<h3>Nearby point-of-interest display</h3>
+<p>A nearby point-of-interest display can be shown by pulling the handle in the middle and top of the bottom menu bar up.</p>
+<p>The view will include a filtered view of all &quot;POI&quot;s displayed on the current map view. If no explicit filter is set this is limited to objects that have a key with one of <em>shop</em>, <em>amenity</em>, <em>leisure</em>, <em>tourism</em>, <em>craft</em>, <em>office</em> or <em>emergency</em>. If an explicit filter is set, that is a tag filter or a preset filter, or a mode (<em>Indoor</em> and <em>C</em>-mode) is selected that sets a filter the display will display objects that are allowed by the filter. For example if <em>Indoor</em> mode is selected, the display will only show POIs on the currently selected level.</p>
+<p>Tapping an entry in the display will center the map on the object and select it, tapping it a second time (just as on the map display) will start the property editor, in <em>Tag only</em> mode the property editor will start directly as expected. The POI entries are highlighted with the same validation indication as map icons, see <a href="https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/assets/styles/Color-round.xml#L39">validation styling</a>.</p>
+<h3>Layer control</h3>
+<p>Vespucci currently supports multiple tiled background imagery layers, multiple tiled overlay layers (both raster and Mapbox vector tiles), a grid/scale layer, a task layer, a photo layer, multiple GeoJSON layers, multiple GPX/GPS layers and, naturally, an OSM data layer. Tapping the layer control (upper right corner) will display the layer dialog).</p>
+<p>The layer dialog supports the following actions on the layer entries:</p>
+<ul>
+<li>Hide/Show button turns drawing of the layer off/on. Hiding a layer doesn't free any resources associated with the layer.</li>
+<li>Zoom to extent. Zooms and pans the screen so that the whole extent of the layer is displayed, if the extent cannot be determined this will zoom out to the full web-mercator coverage. Note: on the data layer this may not be particularly useful if you have downloaded areas that are far apart.</li>
+<li>Drag layer to a new position in the layer stack by a long press and then dragging the layer.</li>
+<li>Menu button.
+<ul>
+<li>Tile based layers:
+<ul>
+<li><strong>Select imagery</strong> Show a imagery selection dialog, if multiple layers have been used, a most-recently-used list will be displayed above this menu entry, allowing quick layer switching.</li>
+<li><strong>Flush tile cache</strong> Flush the on device cache for this layer.</li>
+<li><strong>Background properties</strong> Set contrast of layer.</li>
+<li><strong>Info</strong> Display information on the currently selected imagery.</li>
+<li><strong>Align imagery...</strong> start the imagery alignment mode to adjust this layer. This can be done manually or by querying the &quot;Imagery Offset&quot; database.</li>
+<li><strong>Test...</strong> try to retrieve a tile from the current view and provide some diagnostics.</li>
+</ul>
+</li>
+<li>Custom imagery tile based layers (additionally to the above):
+<ul>
+<li><strong>Edit custom imagery configuration</strong> edit the configuration of the imagery, for example the URL.</li>
+</ul>
+</li>
+<li>Mapbox Vector Tile layers (additionally to <em>Tile based layers</em>):
+<ul>
+<li><strong>Change style</strong> Show the layer styling dialog (disabled if a style has been loaded).</li>
+<li><strong>Load style</strong> Load a mapbox-gl style.</li>
+<li><strong>Reset style</strong> Reset the style to the default.</li>
+</ul>
+</li>
+<li>Mapillary layer (additionally to <em>Mapbox Vector Tile layers</em>):
+<ul>
+<li><strong>Set date range ...</strong> Select start and end date to filter Mapillary data on. Note that this functionality depends on some specifics of the loaded Mapbox GL style.</li>
+</ul>
+</li>
+<li>GeoJSON layers:
+<ul>
+<li><strong>Change style</strong> Show the layer styling dialog.</li>
+<li><strong>Info</strong> Display some information on the contents.</li>
+<li><strong>Create Todos from GeoJSON objects ...</strong> create Todos from the GeoJSON objects in the layer. The default conversion adds the GeoJSON properties as text to the Todo, Custom conversion allows you to select a script for the conversion, for example a script can include references to OSM elements in the Todos. <a href="http://vespucci.io/tutorials/other/conversion_exacmple.js">Example script</a></li>
+</ul>
+</li>
+<li>GPX layers: Starting recording by the &quot;Start GPX track&quot; item in the GPS menu will add a layer for the recording. Layers for GPX files and downloaded tracks from the OSM API can be added via the <strong>+</strong> button, see below.
+<ul>
+<li><strong>Change style</strong> Show the layer styling dialog.</li>
+<li><strong>Reset style</strong> Reset the style to the default.</li>
+<li><strong>Info</strong> Display some information on the contents.</li>
+<li><strong>Go to start of GPX track</strong> Center the display on the start of the track. <em>(not available on the recording layer)</em></li>
+<li><strong>Go to first waypoint</strong> Center the display on the first waypoint. <em>(not available on the recording layer)</em></li>
+<li><strong>Upload GPX track</strong> Upload the track to the OSM API. Note: the OSM API only accepts tracks with valid time stamps for each track point, if they are missing a time stamp corresponding to the UNIX epoch date will be added.</li>
+<li><strong>Export GPX track</strong> Export the track to a local file.</li>
+<li><strong>Start playback</strong> Playback the current file, this behaves similar to recording tracks, the display will be centered on the current track point, then the following on and so on. <em>(not available on the recording layer)</em></li>
+<li><strong>Pause playback</strong> Temporarily pause the playback. <em>(not available on the recording layer)</em></li>
+<li><strong>Stop playback</strong> Stop the playback. <em>(not available on the recording layer)</em></li>
+</ul>
+</li>
+<li>Photo, Grid and Task layers:
+<ul>
+<li><strong>Configure...</strong> (for the Grid and Task layers)</li>
+<li><strong>Disable</strong> Turn this layer off. For the tasks and photo layers this will free resources if the app is exited and re-started.</li>
+</ul>
+</li>
+<li>Data layer:
+<ul>
+<li><strong>Configure...</strong> Select the API instance, configure the URLs including read-only sources and authentication method. Basic Authentication, OAuth 1.0a and OAuth 2 are supported, however the API instance on openstreetmap.org only supports OAuth 2 since June 2024.</li>
+</ul>
+</li>
+<li>Data and Tasks layers:
+<ul>
+<li><strong>Info</strong> Display some information on the contents.</li>
+<li><strong>Prune</strong> remove downloaded data from storage that is outside of the current screen and unmodified.</li>
+</ul>
+</li>
+<li>All layers:
+<ul>
+<li><strong>Discard</strong> Delete the layer including any saved state.</li>
+<li><strong>Up</strong> move the layer up, potentially obscuring data from lower layers.</li>
+<li><strong>Down</strong> move the layer down.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>+</strong> button:
+<ul>
+<li>for disabled layers that can only be displayed once it will show a corresponding &quot;Enable ...&quot; entry that will turn the layer on.</li>
+<li><strong>Add GeoJSON layer</strong> Loads a GeoJSON layer from a file in to a new GeoJSON layer.</li>
+<li><strong>Add background imagery layer</strong> Adds a tile based imagery layer from the internal configuration, which can be from ELI or JOSM, or a custom imagery layer.</li>
+<li><strong>Add overlay imagery layer</strong> As above but assumes that the layer is partially transparent.</li>
+<li><strong>Enable photo layer</strong> Enables the photo layer this will display clickable icons for photos that will start an internal or external viewer. Which photos can be displayed depends strongly on your Android version and settings <a href="Advanced%20preferences.md">Advanced preferences</a>.</li>
+<li><strong>Enable bookmark layer</strong> Enables a layer displaying saved bookmarks.</li>
+<li><strong>Enable Mapillary layer</strong> Enables the Mapillay layer.</li>
+<li><strong>Add layer from GPX file</strong> Adds a layer from a GPX file on device.</li>
+<li><strong>Download GPX track</strong> Download a GPX <a href="https://www.openstreetmap.org/traces/mine">track that you have previously uploaded to the OSM website</a>, and create a layer from it. Note that only GPX tracks with their starting point in the area currently displayed will be available for selection, this is a limitation of the current OSM API.</li>
+<li><strong>Add custom imagery</strong> Adds a custom imagery configuration, this can then be used just as any tile based imagery source, the entries can be managed in the <a href="Preferences.md">preferences</a>.</li>
+<li><strong>Add layer from MVT style</strong> Load a Mapbox-GL style file that has a &quot;sources&quot; section and create a layer.</li>
+<li><strong>Add imagery from OAM</strong> Add a layer from the OpenAerialMap catalogue. <em>(requires network connectivity)</em></li>
+<li><strong>Add imagery from WMS</strong> This allows you to add a specific layer from a WMS endpoint. <em>(requires network connectivity)</em></li>
+</ul>
+</li>
+</ul>
+<p>Custom tile layers, including on device MBTile containers can be added in the <a href="Preferences.md">preferences</a> or as decribed above..</p>
+<h3>Highlighting of data issues</h3>
+<p>The included map styles highlight certain data issues, these are</p>
+<ul>
+<li>objects with 'fixme' and 'todo' tags (case insensitive) <em>magenta</em></li>
+<li>ways with 'highway=road' <em>magenta</em></li>
+<li>ways with 'highway' set to one of: motorway, motorway_link, trunk, trunk_link, primary, primary_link, secondary, secondary_link, tertiary, residential, unclassified, living_street and no 'name' or 'ref' tag <em>magenta</em></li>
+<li>relations with no 'type' tag <em>magenta</em></li>
+<li>certain points of interest that haven't been edited or verified lately. Default time that must have past since the last edit is 1 year. <em>yellow</em></li>
+<li>untagged ways that are not a member of a relation <em>magenta</em></li>
+<li>unconnected highway end nodes, if the end nodes a near to a highway object that they could be connected to, the node is highlighted <em>magenta</em></li>
+</ul>
+<p>The colours can be changed in the <a href="http://vespucci.io/tutorials/data_styling/#validation-styling">data style</a>.</p>
+<h3>Indoor mode</h3>
+<p>In indoor mode the displayed level can be changed with the up/down buttons, tapping the level display button will show suitable objects that doesn’t have a level tag, tapping again will revert to the level selector.</p>
+<p>Elements that are not on the current level are drawn in a light grey, this works best on an uncluttered background map, for example the Thunderforest Landscape map. Newly created elements will automatically have the current level assigned in the property editor.</p>
+<h2>Available Actions</h2>
+<h3><img src="../images/undolist_undo.png" alt="Undo" /> Undo</h3>
+<p>Tapping the icon once will undo the last operation. A long press will display a list of the operations since the last save, if you have undone anything a corresponding &quot;redo&quot; checkpoint will be displayed. <em>Some operations consist of multiple simpler actions that will be listed as individual items.</em></p>
+<h3><img src="../images/camera.png" alt="Camera" /> Camera</h3>
+<p>Start a camera app, and add the resulting photograph to the photo layer if it is enabled. The photograph itself will be stored in the Vespucci/Pictures directory, however if this works depends on the specific camera app.  Photographs may also be &quot;shared&quot; from other apps into Vespucci, these can be viewed, just as images taken via the camera button in Vespuccis image viewer.</p>
+<p>Notes * Because of restrictions in recent versions of Android you will need to configure the target app in the preferences if you are not happy with the standard app on your device. See [16.1 release notes](16.1.0 Release notes.md). * OpenStreetMap currently does not provide an upload/storage facility for large numbers of images (you can store individual images of interest in the OSM wiki).</p>
+<h3><img src="../images/menu_gps.png" alt="Location" /> Location</h3>
+<p>The &quot;on-map&quot; GPS button duplicates the function of the &quot;Follow location&quot; menu entry. When this is activated the GPS arrow will be displayed as an outline. Note that the <em>Show location</em> function will enable location updates from the system, just as the recording and similar options. To reposition or remove the &quot;on-map&quot; GPS button use the &quot;Follow position button layout&quot; Preference.</p>
+<ul>
+<li><strong>Show location</strong> - show arrow symbol at current position</li>
+<li><strong>Follow location</strong> - pan and center screen to follow the current position, will enable <em>Show location</em> too.</li>
+<li><strong>Bookmarks...</strong> - show current viewbox bookmarks</li>
+<li><strong>Add bookmark...</strong> - set a bookmark for the current viewbox</li>
+<li><strong>Go to the nearest todo...</strong> - go to the nearest open todo. If you are following the GPS position or it is in the current view this is relative to that position, otherwise it is relative to the center of the current view. If there are more than one active todo list you will be prompted to select one.</li>
+<li><strong>Go to current location</strong> - go to and zoom in to the current position. If location updates are not turned on, this will try to get a location without enabling continuous updates. Latitude, longitude, and height over the ellipsoid are shown, and you can create a new node at the coordinates including the height over the ellipsoid. You can also choose to share the position.</li>
+<li><strong>Go to coordinates...</strong> - go to and zoom in to coordinates (latitude longitude) or an open location code Supported formats are the following, with dots or optionally a comma as the decimal marker, variations on the units also accepted e.g. °, d, º, g, o.
+<ul>
+<li><code>43.63871944444445</code></li>
+<li><code>N43°38'19.39&quot;</code></li>
+<li><code>43°38'19.39&quot;N</code></li>
+<li><code>43°38.3232'N</code></li>
+<li><code>43d 38m 19.39s N</code></li>
+<li><code>43 38 19.39</code></li>
+<li><code>433819N</code></li>
+</ul>
+</li>
+<li><strong>Go to last edit</strong> - Pan and zoom to the bounding box of the top most undo checkpoint.</li>
+<li><strong>Start GPX track</strong> - start recording a GPX track and display a corresponding layer.</li>
+<li><strong>Resume GPX track</strong> - continue recording a GPX track.</li>
+<li><strong>Pause GPX track</strong> - pause recording the current GPX track</li>
+<li><strong>Clear GPX track</strong> - clear the current GPX track</li>
+</ul>
+<h3><img src="../images/menu_transfer.png" alt="Transfer" /> Transfer</h3>
+<p>Select either the transfer icon <img src="../images/menu_transfer.png" alt="Transfer" /> or the &quot;Transfer&quot; menu item. This will display seven or eight options:</p>
+<ul>
+<li><strong>Upload data to OSM server...</strong> - review and upload changes to OpenStreetMap, the entry is disabled if you haven't changed anything yet, or there is no network available <em>(requires authentication)</em> <em>(requires network connectivity)</em></li>
+<li><strong>Review changes...</strong> - review current changes</li>
+<li><strong>Download current view</strong> - download the area visible on the screen and merge it with existing data <em>(requires network connectivity)</em></li>
+<li><strong>Clear and download current view</strong> - clear any data in memory and then download the area visible on the screen <em>(requires network connectivity)</em></li>
+<li><strong>Query Overpass...</strong> - run a query against a Overpass API server <em>(requires network connectivity)</em></li>
+<li><strong>Close current changeset</strong> - manually close the current changeset <em>(only available if a changeset is open)</em></li>
+<li><strong>Location based auto download</strong> - download an area around the current location automatically <em>(requires network connectivity)</em> <em>(requires GPS)</em></li>
+<li><strong>Pan and zoom auto download</strong> - download the area shown in the current screen automatically <em>(requires network connectivity)</em></li>
+<li><strong>Update data</strong> - re-download data for all areas and update what is in memory <em>(requires network connectivity)</em></li>
+<li><strong>Clear data</strong> - remove any OSM data in memory</li>
+<li><strong>File...</strong> - saving and loading OSM data to/from on device files.
+<ul>
+<li><strong>Export changes to OSC file</strong> - write a &quot;.osc&quot; format file containing the current edits</li>
+<li><strong>Apply changes from OSC file</strong> - read a &quot;.osc&quot; format file and apply its contents</li>
+<li><strong>Save to JOSM file...</strong> - save as a JOSM compatible XML format file</li>
+<li><strong>Read from JOSM file...</strong> - read a JOSM compatible XML format file, this supports JOSM, regular OSM and Overpass API (if metadata is included) format XML files. The files must be node-way-relation ordered.</li>
+<li><strong>Read from PBF file...</strong> - read OSM data from a PBF format file</li>
+<li><strong>Download data for offline use...</strong> - download and install a mapsplit format data extract <em>(requires network connectivity)</em></li>
+</ul>
+</li>
+<li><strong>Tasks...</strong> - down- and uploading tasks (Notes, OSMOSE bugs, Maproulette and custom tasks)
+<ul>
+<li><strong>Upload all</strong> - upload all new or modified tasks</li>
+<li><strong>Download tasks for current view</strong> - download Notes/Bugs for the area visible on the screen</li>
+<li><strong>Auto download</strong> - download tasks around the current geographic location automatically <em>(requires network connectivity)</em> <em>(requires GPS)</em></li>
+<li><strong>Clear</strong> - remove all tasks from storage</li>
+<li><strong>File...</strong> - save Notes/Bugs data to on device storage
+<ul>
+<li><strong>Save all notes...</strong> - write a &quot;.osn&quot; format file containing all downloaded notes (this is the format supported by JOSM)</li>
+<li><strong>Save new and changed notes...</strong> - write a &quot;.osn&quot; format file containing all new and changed notes</li>
+<li><strong>Load notes...</strong> - load a &quot;.osn&quot; format file containing Notes</li>
+<li><strong>Load todos...</strong> - read todos in a simple JSON format</li>
+<li><strong>Save todos...</strong> - save todos in a simple JSON format</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><img src="../images/menu_config.png" alt="Preferences" /> Preferences</h3>
+<p>Show the user preference screens. The settings are split into two sets: the first screen contains the more commonly used preferences, the &quot;Advanced preferences&quot; contains the less used ones.</p>
+<h3><img src="../images/menu_tools.png" alt="Tools" /> Tools…</h3>
+<ul>
+<li><strong>Apply stored offset to imagery</strong> - apply stored offset, if it exists, for the current background layer</li>
+<li><strong>More imagery tools</strong>
+<ul>
+<li><strong>Update configuration from JOSM</strong> - download a current version of the imagery layer configuration from the JOSM repository. Currently the default configuration is provided by the Editor Layer Index, not JOSM. <em>(requires network connectivity)</em></li>
+<li><strong>Update configuration from ELI</strong> - download a current version of the imagery layer configuration from the Editor Layer Index repository. <em>(requires network connectivity)</em></li>
+<li><strong>Flush all tile caches</strong> - empty all on device tile caches.</li>
+</ul>
+</li>
+<li><strong>Reset address prediction</strong> - reset the current address prediction data, will seeded from loaded data if possible.</li>
+<li><strong>Reset OAuth</strong> - reset the OAuth tokens, this will force re-authorisation the next time you upload.</li>
+<li><strong>Authorise OAuth</strong> - start authorisation process immediately. <em>(requires network connectivity)</em></li>
+<li><strong>Set MapRoulette API key</strong> - set the API key for modifying the status of MapRoulette tasks.</li>
+<li><strong>Clear clipboard</strong> - remove content from the internal OSM element clipboard.</li>
+<li><strong>Calibrate pressure sensor...</strong> - calibrate the conversion from barometric pressure to elevation.</li>
+<li><strong>Install EGM</strong> - install a gravitational model of the earth, required for getting height data from the devices GPS. Alternatively you can switch to NMEA input in the &quot;Advanced preferences&quot;.</li>
+<li><strong>Remove EGM</strong> - remove the EGM.</li>
+<li><strong>Import data style...</strong> - import an additional data style from an XML file or from a ZIP archive containing an XML file and icons. This overwrites existing style files with the same name.</li>
+<li><strong>Load keys from file...</strong> - load additional keys, for example API keys for background imagery, or other OAuth keys from a file.</li>
+<li><strong>JS Console</strong> - start the JavaScript console for scripting the application. Note that this needs to be anabled in the &quot;Advaced preferences&quot;:</li>
+</ul>
+<h3><img src="../images/ic_menu_search_holo_light.png" alt="Find" /> Find</h3>
+<p>Search for a location and pan to it with the OpenStreetMap Nominatim or Photon service <em>(requires network connectivity)</em></p>
+<h3>Search for objects</h3>
+<p>Search for OSM objects in the loaded data using JOSMs search/filter expressions. See <a href="http://vespucci.io/tutorials/object_search/">JOSM filter documentation</a> for more information. Besides searching in the loaded data alternatively you can create a Overpass API query and use that to download data.</p>
+<h3>Modes...</h3>
+<p>This menu allows mode selection as via the <em>lock button</em> and enabling/disabling of the <em>simple mode</em>.</p>
+<h3>Tag-Filter <em>(checkbox)</em></h3>
+<p>Enable the tag based filter, the filter can be configured by tapping the filter button on the map display.</p>
+<h3>Preset-Filter <em>(checkbox)</em></h3>
+<p>Enable the preset based filter, the filter can be configured by tapping the filter button on the map display.</p>
+<h3>Share position</h3>
+<p>Share the current position (center of the displayed map) with other apps on the device.</p>
+<h3><img src="../images/menu_help.png" alt="Help" /> Help</h3>
+<p>Start the on device help browser.</p>
+<h3>Authors and licenses</h3>
+<p>Some information on the licence of Vespucci itself, specific components and a list of all known contributors to the app.</p>
+<h3>Debug</h3>
+<p>Internal information on the app and a button to force submission of a crash dump.</p>
+
+</body>
+</html>

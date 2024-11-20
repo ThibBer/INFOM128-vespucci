@@ -1,0 +1,6 @@
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="Pictures" path="Download/Vespucci/Pictures/" />
+    <external-path name="Pictures Camera" path="DCIM/" />
+<!-- the following is an undocumented feature that may go away -->
+    <root-path name="root" path="." />
+</paths>

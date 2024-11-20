@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!--Mode names-->
+  <string name="mode_easy">Normal</string>
+  <string name="mode_indoor">Indendørs</string>
+  <!--Dialogs-->
+  <string name="transfer_download_current_dialog_title">Advarsel!</string>
+  <string name="transfer_download_current_upload">Upload</string>
+  <string name="transfer_download_current_download">Afbryd &amp; download</string>
+  <string name="upload_conflict_title">Upload konflikt</string>
+  <string name="use_local_version">Brug lokal version</string>
+  <string name="use_server_version">Brug version på server</string>
+  <string name="unknown_error_title">Ukendt fejl</string>
+  <string name="no_data_title">Ingen data</string>
+  <string name="go_to_openstreetmap">Gå til openstreetmap.org</string>
+  <!---->
+  <string name="read_upgrade">Læs om den nye version</string>
+  <string name="progress_title">Læser</string>
+  <string name="progress_message">Læser ind i memory…</string>
+  <string name="progress_download_message">Downloader data fra server…</string>
+  <string name="progress_general_title">Vent</string>
+  <!--Confirm upload dialog-->
+  <string name="changes_deleted">\"%1$s\" slettet</string>
+  <string name="changes_changed">\"%1$s\" ændret</string>
+  <string name="changes_created">\"%1$s\" oprettet</string>
+  <string name="upload_comment_label">Kommentar:</string>
+  <string name="upload_source_label">Kilde:</string>
+  <!---->
+  <string name="upload_gpx_description_label">Beskrivelse</string>
+  <string name="upload_gpx_tags_label">Tags</string>
+  <string name="upload_gpx_visibility_label">Synlighed</string>
+  <!--task fragment-->
+  <string name="openstreetbug_bug_title">Problem</string>
+  <string name="openstreetbug_comment_label">Kommentar:</string>
+  <!--Unsaved data dialog-->
+  <string name="unsaved_data_title">Bemærk!</string>
+  <string name="unsaved_data_proceed">Kassér &amp; fortsæt</string>
+  <!--Imagery offset dialog-->
+  <string name="imagery_offset_description">Beskrivelse</string>
+  <string name="imagery_offset_not_found">Ingen forskydninger fundet i 10 km radius!</string>
+  <string name="imagery_offset_author">Forfatter</string>
+  <string name="imagery_offset_offset">Forskydning</string>
+  <string name="imagery_offset_date">Oprettet</string>
+  <string name="imagery_offset_zoom">Zoom</string>
+  <string name="imagery_offset_distance">Afstand</string>
+  <string name="WGS84">WGS84</string>
+  <!--Search/Find dialog-->
+  <string name="search_results_title">Søgeresultater</string>
+  <string name="find_message">Indtast søgetekst</string>
+  <!--Search objects dialog-->
+  <!---->
+  <string name="search">Søg</string>
+  <!--element information dialog-->
+  <string name="problem">Problem</string>
+  <string name="members">Medlemmer</string>
+  <string name="closed">Lukket</string>
+  <string name="version">Version</string>
+  <string name="length_m">Længde (m)</string>
+  <string name="empty_role">Tom rolle</string>
+  <string name="last_edited">Senest rettet</string>
+  <!--GeoJSON feature display dialog-->
+  <!--API/Data layer info dialog-->
+  <!--Tile layer info dialog-->
+  <!---->
+  <!--hidden object warning dialog-->
+  <!--This concerns a shown message that should be shown every time-->
+  <!--This concerns a shown message that should only be shown once-->
+  <!--debug dialog-->
+  <!--JS console dialog-->
+  <!--Validator dialogs-->
+  <!--Empty relation dialog-->
+  <!--GPX waypoint dialog-->
+  <!--Custom imagery dialogs-->
+  <!--Layer style dialog-->
+  <!--Layer dialog-->
+  <string name="layer_geojson">GeoJSON</string>
+  <string name="layer_gpx">GPX</string>
+  <string name="layer_data">OSM data</string>
+  <!--Layer info dialog-->
+  <!--Photo viewer-->
+  <!--API info dialog-->
+  <!--Undo - Redo dialog-->
+  <!--Undo location not in view dialog-->
+  <!--Feedback activity-->
+  <!--BoxPicker-->
+  <!--Clear/Reset GPX Track-->
+  <!--Tips-->
+  <!--NumberPicker-->
+  <string name="plus_sign">+</string>
+  <string name="minus_sign">-</string>
+  <string name="digit_one">1</string>
+  <!--NotificationChannels-->
+  <!--Toaster-->
+  <string name="toast_no_changes">Du har ikke ændret noget endnu…</string>
+  <string name="toast_export_success">Eksporteret til %1$s</string>
+  <!---->
+  <string name="coordinates_out_of_range">Længdegrad skal være mellem -180°/+180°, breddegrad mellem -85°/85°</string>
+  <string name="toast_nothing_found">Intet fundet</string>
+  <string name="toast_file_not_found">%1$s ikke fundet.</string>
+  <!--Error messages-->
+  <!--Some generic labels/buttons-->
+  <string name="yes">Ja</string>
+  <string name="no">Nej</string>
+  <string name="okay">OK</string>
+  <string name="cancel">Annulér</string>
+  <string name="done">Færdig</string>
+  <string name="locked">Låst</string>
+  <string name="next">Næste</string>
+  <string name="replace">Erstat</string>
+  <string name="save">Gem</string>
+  <string name="back">Tilbage</string>
+  <string name="forward">Frem</string>
+  <string name="keep">Behold</string>
+  <string name="enable">Aktiver</string>
+  <string name="clear">Nulstil</string>
+  <string name="retry">Prøv igen</string>
+  <!--Read a file-->
+  <string name="read">Læs</string>
+  <string name="overwrite">Overskriv</string>
+  <string name="share">Del</string>
+  <string name="share_position">Del position</string>
+  <!--Dialog for back button-->
+  <!--Strings in PorpertyEditor-->
+  <string name="key">nøgle</string>
+  <string name="Key">Nøgle</string>
+  <string name="value">værdi</string>
+  <string name="Value">Værdi</string>
+  <string name="link_mapfeatures">http://wiki.openstreetmap.org/index.php/Map_Features</string>
+  <string name="tag_menu_address">Tilføj adresse tags</string>
+  <string name="tag_menu_revert">Tilbagefør</string>
+  <string name="tag_menu_addtorelation">Tilføj til relation</string>
+  <string name="tag_details">Detaljer</string>
+  <string name="tag_menu_move_up">Flyt op</string>
+  <string name="tag_menu_move_top">Flyt til top</string>
+  <string name="tag_menu_move_down">Flyt ned</string>
+  <string name="tag_menu_move_bottom">Flyt til bund</string>
+  <string name="tag_menu_sort">Sortere</string>
+  <string name="tag_menu_download">Download</string>
+  <string name="menu_up">Op</string>
+  <string name="menu_top">Top</string>
+  <string name="internationalized_hint">%1$s (%2$s)</string>
+  <string name="tag_restriction_header">Værdi</string>
+  <string name="tag_restriction_when">når</string>
+  <string name="tag_restriction_and">og</string>
+  <string name="tag_restriction_add_simple_condition">Tilføj simpel betingelse</string>
+  <string name="tag_restriction_add_expression">Tilføj udtryk</string>
+  <string name="tag_restriction_add_opening_hours">Tilføj åbningstider</string>
+  <!--Custom preset creation-->
+  <!--Strings in Box/LocationPicker-->
+  <string name="location_choose_radius">Vælg radius:</string>
+  <string name="location_default_radius">300m</string>
+  <string name="location_radius">%1$dm</string>
+  <string name="location_last_text">Sidst kendte position:</string>
+  <string name="location_current_text">Nuværende position:</string>
+  <string name="location_text_unknown">Ukendt</string>
+  <string name="location_last_text_parameterized">Sidste kendte position: %1$s</string>
+  <string name="location_current_text_parameterized">Nuværende position: %1$s</string>
+  <string name="location_coordinates_text">Fra koordinater:</string>
+  <string name="location_lat_label">Lat:</string>
+  <string name="location_lon_label">Lon:</string>
+  <string name="location_search_label">Søg:</string>
+  <string name="location_load_dismiss">Gå til kort</string>
+  <!--Strings in DownloadActivity-->
+  <!--Strings in Go to coordinates-->
+  <!--Menu-->
+  <string name="menu_move">Flyt</string>
+  <string name="menu_edit">Ret</string>
+  <string name="menu_add">Ny</string>
+  <string name="menu_config">Indstillinger</string>
+  <string name="menu_find">Find</string>
+  <string name="menu_help">Hjælp</string>
+  <string name="menu_erase">Slet knude</string>
+  <string name="menu_set_position">Position</string>
+  <string name="menu_split">Opdel</string>
+  <string name="menu_remove_node_from_way">Fjern node fra vej</string>
+  <string name="menu_append">Fortsæt</string>
+  <string name="menu_edit_relation">Ret relation</string>
+  <string name="menu_add_relation_member">Tilføj medlem</string>
+  <string name="menu_select_relation_members">Vælg medlemmer</string>
+  <string name="menu_tag">Ret tags</string>
+  <string name="menu_openstreetbug">Tilføj note</string>
+  <string name="menu_easyedit">EasyEdit</string>
+  <string name="menu_camera">Kamera</string>
+  <string name="menu_gps">GPS/GNSS…</string>
+  <string name="menu_gps_show">Vis lokalitet</string>
+  <string name="menu_transfer">Overfør…</string>
+  <string name="menu_transfer_download_current">Download nuværende udsnit</string>
+  <string name="menu_transfer_upload">Upload data til OSM server</string>
+  <string name="menu_transfer_export">Eksporter ændringer til OSC fil</string>
+  <string name="menu_transfer_bugs_upload">Upload alt</string>
+  <string name="menu_transfer_bugs_clear">Nulstil</string>
+  <string name="menu_join">Sammenlæg</string>
+  <string name="menu_unjoin">Adskil</string>
+  <string name="menu_rotate">Rotér</string>
+  <string name="menu_information">Info</string>
+  <!---->
+  <!--Background alignment-->
+  <string name="menu_tools_background_align_reset">Nulstil</string>
+  <string name="min_max_zoom">%1$d - %2$d</string>
+  <string name="distance_meter">%1$.2f meter</string>
+  <string name="distance_km">%1$.3f km</string>
+  <!--Menus in layers dialog-->
+  <!---->
+  <!--element action mode menu-->
+  <!--Text should be as short as possible-->
+  <string name="menu_history">Historie</string>
+  <string name="menu_merge">Sammenlæg</string>
+  <string name="menu_reverse">Vend om</string>
+  <!--EasyEdit context menus-->
+  <!--EasyEdit action mode titles-->
+  <string name="actionmode_wayselect">Vej valgt</string>
+  <string name="actionmode_nodeselect">Knude valgt</string>
+  <string name="actionmode_relationselect">Relation valgt</string>
+  <string name="actionmode_createpath">Opretter sti</string>
+  <!--EasyEdit action mode sub-titles-->
+  <plurals name="actionmode_object_count">
+    <item quantity="one">1 objekt</item>
+    <item quantity="other">%1$d objekter</item>
+  </plurals>
+  <!--Simple Action Mode-->
+  <!--Preferences-->
+  <string name="config_backgroundLayer_title">Kortbaggrund</string>
+  <string name="config_advancedprefs">Avancerede indstillinger</string>
+  <!--Validator preferences-->
+  <!--opening hours templates-->
+  <!--these are no longer on the prefs page, but are used as menu entries-->
+  <string name="config_category_info">Om</string>
+  <!--Advanced preferences-->
+  <!--User Interface Settings-->
+  <string name="config_iconbutton_title">Vis knude-ikoner</string>
+  <string name="config_showTolerance_title">Vis tolerance</string>
+  <string name="config_maxInlineValues_current">%1$d Værdier</string>
+  <string name="config_autoLockDelay_current">%1$d s</string>
+  <string name="config_maxStrokeWidth_title">Max linjebredde</string>
+  <string name="config_maxStrokeWidth_current">%1$d px</string>
+  <!--Data and Editing Settings-->
+  <string name="config_maxAlertDistance_current">%1$d meter</string>
+  <string name="config_orthogonalizeThreshold_current">%1$d°</string>
+  <!--Auto-download settings-->
+  <string name="config_extTriggeredDownloadRadius_title">Download radius</string>
+  <string name="config_downloadRadius_current">%1$d meter</string>
+  <string name="config_downloadSpeed_current">%1$d km/t</string>
+  <string name="config_autoPruneNodeLimit_current">%1$d Noder</string>
+  <string name="config_panAndZoomLimit_current">%1$d</string>
+  <!--Location Settings-->
+  <string name="config_gps_source_tcp_title">NMEA netværks kilde</string>
+  <string name="config_gps_interval_current">%1$d ms</string>
+  <string name="config_gps_distance_current">%1$d meter</string>
+  <string name="config_gnssTimeToStale_current">%1$d s</string>
+  <!--Server Settings-->
+  <string name="config_apibutton_title">OSM API URL</string>
+  <string name="config_loginbutton_title">Brugerkonto</string>
+  <!--Layer download and storage-->
+  <string name="config_tileCacheSize_title">Tern cache størrelse</string>
+  <!--Miscellaneous-->
+  <string name="config_showStats_title">Vis statistik</string>
+  <!--Experimental-->
+  <!---->
+  <string name="config_api_url_title">API URL</string>
+  <!--preset downloader messages-->
+  <!--url handler activity-->
+  <string name="urldialog_api_exists">En API med denne URL eksisterer allerede. Du kan tilføje en anden (f.eks. til nemt at skifte mellem konti)</string>
+  <string name="urldialog_add_api">Tilføj API</string>
+  <string name="urldialog_nodata_text">Konfigurations-URL\'en indeholder ikke gyldige data</string>
+  <!--API configuration-->
+  <string name="api_name">API navn</string>
+  <string name="api_url">API URL</string>
+  <!--common terms-->
+  <string name="add">Tilføj</string>
+  <string name="edit">Rediger</string>
+  <string name="delete">Slet</string>
+  <string name="name">Navn</string>
+  <string name="url">URL</string>
+  <string name="default_">Standard</string>
+  <!---->
+  <!--"default" is a reserved Java keyword…-->
+  <string name="api">API</string>
+  <string name="undo">Fortryd</string>
+  <string name="redo">Gentag</string>
+  <string name="undo_nothing">intet at fortryde</string>
+  <string name="gps_failure">Kunne ikke starte GPS</string>
+  <!--element description-->
+  <string name="address_housenumber">Adresse %1$s</string>
+  <string name="address_housenumber_street">Adresse %1$s %2$s</string>
+  <!--undo actions - give a description of the action, in infinitive, to display in strings like "Undo: actionname" or "Redo: actionname"-->
+  <string name="undo_action_join">Sammenlæg</string>
+  <string name="undo_action_cut">Klip</string>
+  <string name="undo_action_paste">Indsæt</string>
+  <!--ACRA-->
+  <!--Exceptions messages-->
+  <!--Notifications-->
+  <string name="alert_distance_direction">i %1$d m %2$s</string>
+  <string name="bearing_ne">NØ ↗</string>
+  <string name="bearing_e">Ø →</string>
+  <string name="bearing_se">SØ ↘</string>
+  <string name="bearing_s">S ↓</string>
+  <string name="bearing_sw">SV ↙</string>
+  <string name="bearing_w">V ←</string>
+  <string name="bearing_nw">NV ↖</string>
+  <string name="bearing_n">N ↑</string>
+  <!--Misc relation related stuff-->
+  <string name="role">Rolle</string>
+  <string name="role_lc">Rolle</string>
+  <string name="membership_relation_heading">Medlem af relation</string>
+  <string name="relation">Relation</string>
+  <string name="relations">Relationer</string>
+  <string name="position">Position</string>
+  <string name="type">Type</string>
+  <string name="object">Objekt</string>
+  <string name="deleterelation">Slet relation</string>
+  <!--time and distance-->
+  <plurals name="days">
+    <item quantity="one">1 dag</item>
+    <item quantity="other">%1$d dage</item>
+  </plurals>
+  <plurals name="hours">
+    <item quantity="one">1 time</item>
+    <item quantity="other">%1$d timer</item>
+  </plurals>
+  <plurals name="minutes">
+    <item quantity="one">1 minut</item>
+    <item quantity="other">%1$d minutter</item>
+  </plurals>
+  <plurals name="seconds">
+    <item quantity="one">1 sekund</item>
+    <item quantity="other">%1$d sekunder</item>
+  </plurals>
+  <plurals name="km">
+    <item quantity="one">1 km</item>
+    <item quantity="other">%1$d km</item>
+  </plurals>
+  <plurals name="meters">
+    <item quantity="one">1 meter</item>
+    <item quantity="other">%1$d meter</item>
+  </plurals>
+  <!--Help system-->
+  <string name="toast_nohelp">Ingen hjælp her.</string>
+  <!--Arrays-->
+  <!--The entries need to match the order of the CheckStatus enum-->
+</resources>

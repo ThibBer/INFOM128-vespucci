@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<Smells>
+  <Smell>
+    <Kind>FEAR_OF_THE_UNKNOWN</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</File>
+    <Line>111</Line>
+    <Certainty>LOW_CERTAINTY</Certainty>
+    <Message>'filterentries.filter' is nullable and used in an expression without NULL check.</Message>
+  </Smell>
+  <Smell>
+    <Kind>FEAR_OF_THE_UNKNOWN</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</File>
+    <Line>148</Line>
+    <Certainty>LOW_CERTAINTY</Certainty>
+    <Message>'filterentries.filter' is nullable and used in an expression without NULL check.</Message>
+  </Smell>
+  <Smell>
+    <Kind>FEAR_OF_THE_UNKNOWN</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</File>
+    <Line>325</Line>
+    <Certainty>LOW_CERTAINTY</Certainty>
+    <Message>'filterentries.filter' is nullable and used in an expression without NULL check.</Message>
+  </Smell>
+  <Smell>
+    <Kind>FEAR_OF_THE_UNKNOWN</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterActivity.java</File>
+    <Line>411</Line>
+    <Certainty>LOW_CERTAINTY</Certainty>
+    <Message>'filterentries.filter' is nullable and used in an expression without NULL check.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java</File>
+    <Line>27</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos/PhotoIndex.java</File>
+    <Line>107</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources/TileLayerDatabase.java</File>
+    <Line>463</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>FEAR_OF_THE_UNKNOWN</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java</File>
+    <Line>108</Line>
+    <Certainty>LOW_CERTAINTY</Certainty>
+    <Message>'resurveytags.ruleset' is nullable and used in an expression without NULL check.</Message>
+  </Smell>
+  <Smell>
+    <Kind>FEAR_OF_THE_UNKNOWN</Kind>
+    <File>C:/Users/Thibaut/Desktop/osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation/ValidatorRulesDatabase.java</File>
+    <Line>196</Line>
+    <Certainty>LOW_CERTAINTY</Certainty>
+    <Message>'checktags.ruleset' is nullable and used in an expression without NULL check.</Message>
+  </Smell>
+</Smells>

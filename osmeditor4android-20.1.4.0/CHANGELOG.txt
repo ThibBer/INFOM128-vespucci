@@ -1,0 +1,2070 @@
+﻿See https://github.com/MarcusWolschon/osmeditor4android/ for documentation on this version and all changes.
+
+20.1.4:
+
+- Fix check non-preset matched fields for changes too
+- Fix protect against providers being null
+- Fix protect against null bounding boxes
+- Fix don't rely on fragment being attached to determine state
+- Fix NumberPicker behaviour on Android 8 and earlier
+- Update translations
+- Update imagery from ELI
+- Update default preset
+
+20.1.3:
+
+- Fix protect against null createdWay (Path creation mode)
+- Fix support conflict resolution for partial uploads
+- Fix remove content URI to file URI conversion (saving scripts from consoles)
+- Fix when formatting bounding box coords round down (WMS)
+- Fix ignore queryable attribute when creating layers (WMS)
+- Fix protect against integer value preset being null
+- Update ElementHistoryDialog dependency
+- Update imagery from ELI
+- Update default preset
+- Update NSI
+
+20.1.2:
+
+- Fix remove navigation and sign up tag from osm.org login page
+
+20.1.1:
+
+- Fix protect against data style not being initialized
+- Fix determine direction as last action when creating photo object
+- Fix protect against path being null when creating photo object
+- Fix reset cached validation results when preset changes
+- Fix call through to super in onDismiss in value widget
+- Fix regression that caused the direction widget not to be displayed
+- Fix protect against dialog already being detached.
+- Update JosmFilterParser dependency
+- Update default preset
+- Update imagery from ELI
+. Update translations
+
+20.1.0:
+
+- Fix rearrange order of natural
+- Fix replace jcenter with scijava for android-issue-reporter indirect dep
+- Fix update tag form if revert is chosen exiting via pressing back
+- Fix disable back navigation previews
+- Fix clear caches when data style is changed
+- Fix don't show the direction widget for mini-roundabouts
+- Fix improve handling of negative values for integer widger
+- Fix unlock TextRow in onDismiss
+- Fix tag display in element info for the special case of all tags deleted
+- Fix reset validation when we reset presets
+- Fix suppress symbol spinner in grid layer styling
+- Fix use API URL for web history
+- Add use OnBackPressedCallback instead of onBackPressed
+- Add fancy tree row rendering
+- Add styling for natural=wetland
+- Update default preset
+- Update imagery from ELI
+- Update translations
+
+20.1.0-6:
+
+- Fix add foreground service permissions
+- Fix Proguard/R8 from removing Turf
+- Fix set EXPORT_RECEIVER when registering broadcast receivers, Android 14 requirement.
+
+20.1.0-4:
+
+- Fix reduce memory usage for icons generated from SVG
+- Fix protect against NPEs caused by missing values and preset
+- Fix catch OOM when (re-)creating the current presets object
+- Add parse 409 with changeset locked message
+- Add handle 413 code and bounding box too large error on upload
+- Add explicit handling of 429 code on download and pause auto download
+- Add bump API target to 34
+- Update imagery from ELI
+- Update translations
+
+20.1.0-3:
+
+- Fix stop notes upload from looping
+- Fix deleted relation members being re-highlighted
+
+20.1.0-2:
+
+- Fix correctly check if we need to re-authorize
+- Fix force migrate the default API entries
+- Fix pre-load NSI (improves PropertyEditor start up time)
+
+20.1.0-1:
+
+- Fix add workaround of misbehaviour of certain launchers
+- Fix check that any relation changes are actually real
+- Fix if no name for the Todo list is set, use the default
+- Fix position in state spinner adapter not being determined correctly for Tasks
+- Fix Protect against null Feature caused by trailing commas
+- Fix if no roles can be found allow adding all elements
+- Fix relation matching
+- Fix add workarounds for the letsencrypt issue for WebViews
+- Fix the ISRG X1 certificate to the trust store used by OkHttp
+- Fix warning toasts not being displayed
+- Fix support matching deleted state when using object search
+- Fix protect against relation members for which no centroid can be determined
+- Fix make error text in tile source modal selectable
+- Fix protect against IllegalArgumentExscetion from CountryBoundaries lib
+- Fix respect multi-fetch limit when fetching elements for conflict resolution
+- Fix protect against degenerate/empty way being selected on app restart
+- Fix save the state and restart action modes in the propertyeditor
+- Fix remove suppression of non match values for taginfo project files
+- Add support multi-line preference titles
+- Add support drag and drop moving of relation members
+- Add a facility to create Todos from the objects in a GeoJSON layer
+- Add improved Todo support
+- Add allow layers in layer modal to be moved by dragging
+- Add support labels for all GeoJSON geometries
+- Add support per preset item behaviour selection for pre-filling tags
+- Add highlight problem ways with error style
+- Add make default set of keys used for the nearby POI display configurable
+- Add filter roles by region
+- Add value picker for integers
+- Add dialog to add/set compass direction for appropriate tags
+- Add display a direction indicator for nodes with an appropriate tag
+- Add indicate in the taginfo project file if an entry is "not recommended"
+- Add support for rotating nodes with a direction tag and multiple elements and relations 
+- Remove pre-Android 5 API 21 specific code and dependencies
+- Update imagery configuration from ELI
+- Update translations
+- Update NSI
+
+20.0.0:
+
+- Fix only use EGM for calibration if it has been loaded
+- Fix support a further way an ActionMode might be wrapped
+- Fix disable follow way mode if undo invalidates the prerequisites
+- Fix don't overwrite WMS tile size from modal, just show a tip
+- Fix suppress duplicate and after header space fields
+- Fix preset filter tests
+- Fix set tokens for all entries with the same url and authorization method
+- Add support starting the app via the upload reminder notification
+- Update imagery configuration from ELI
+- Update translations
+- Update default preset and taginfo project file
+- Update synonyms
+- Update NSI
+
+20.0.0-1:
+
+- Fix apply workaround for Android "truncate" bug
+- Fix show the correct error modal for data problems reading OSM files
+- Fix get old and new configuration more robustly, improves following system theme
+- Fix issue with JOSM filter language child and parent expressions
+- Fix behaviour regression when editing values in the details tab
+- Fix always re-populate in memory imagery lists after a change
+- Fix use android:inputType="textNoSuggestions" for url fields
+- Fix de-compress tile server error messages if necessary
+- Fix notification bounding box regression
+- Fix regexps for precondition failures
+- Fix outdated marker rendering
+- Fix protect against null proj when adding wkid, validate custom url better
+- Fix regression wrt node selection after adding an intersection
+- Fix regression handling preset uris
+- Fix when manually clearing out a value in the details tab, always set it
+- Fix typo in undo short cut (c instead of u)
+- Fix remove links with "matomo" instead "piwik"
+- Fix assure that UndoStorage is emptied correctly after an upload
+- Fix import MSF files on Android 10+ and correctness fixes
+- Fix never include untagged nodes in the nearby POI display
+- Fix Check for Layer.NONE before retrieving tiles
+- Fix validate tag objects post running JS in preset
+- Fix improve app language switching logic and workaround google locale issue
+- Add support for opening some OpenStreetMap website links
+- Add support for space and item_separator elements in presets
+- Add better error handling when auto-downloading
+- Add some new type expressions for use in filters to mapbox-gl support
+- Add mobile and contact:mobile to phone keys
+- Add sort Relation lists by distance to an OsmElement or list of them
+- Add suggest migration to OAuth 2 when a new version is installed
+- Add support CRS projections in URLs and in configuration
+- Add support CRS:84 for wms endpoints, inherit CRS/SRS values
+- Add improve new user onboarding
+- Add handle hidden notes
+- Add mode switching to the main menu and some other minor rearrangement
+- Add align how the way rotation mode work more with the similar modes
+- Add improve conflict handling
+- Add re-factor element info dialog and associated changes
+- Add validate connections to multi-polygons with appropriate tags
+- Add improve how we handle closed ways with indication that they are areas
+- Add more support for regionalized preset values (per value regions)
+- Add support restrictions for safe splitting too
+- Add some more keyboard shortcuts and update documentation
+- Add support following a way in PathCreationActionMode
+- Add support for OAuth 2
+- Add a create circle function and add nodes in align in circle function
+- Add use number of current download bounding boxes as further prune condition
+- Add natural=earth_bank to non-reversible tags
+- Add bounding box count display to task info modal
+- Add bounding box count to data layer info modal
+- Add support translations of tile layer names and descriptions
+- Add support for multiple file selection for creating stylable layers
+- Add make using the volume keys for zooming dependent on a preference
+- Add image information modal to image viewer
+- Add explicit handling for 509 error on download and 429 in upload
+- Update use "new" url for Bing meta data retrieval
+- Update default preset
+- Update imagery from ELI
+- Update translations
+
+19.3.1:
+
+- Fix don't implement ParceableSpan, fixes crash in disambiguation menu
+
+19.3.0:
+
+- Fix use a monospace font for arrows
+- Fix set commas correctly
+- Fix report errors in fixupApiStorage when reading files
+- Fix return correct paths for Uris that use the Vespucci file provider
+- Add explicit handling for 509 error on download and 429 in upload
+- Update translations
+- Update imagery from ELI
+- Update preset
+
+19.3.0-1:
+
+- Fix keep org.eclipse.egit.github.core.** fixes crash creating issues due to changes R8/Proguard behaviour
+- Fix make the touch area rect symmetric around the splitter
+- Fix improve TagEditorFragment behaviour for multiselect (element count update)
+- Fix apply JOSM fixup to osmose item 2120 too
+- Fix replace some snackbars with toasts when blocking behaviour is not desirable
+- Fix support restarting imagery alignment mode
+- Fix regression disambiguation menu on long click on locked screen
+- Fix don't add layers with unsupported image format or projection
+- Fix generate legacy APK with android:launchMode="singleTop"
+- Add improve diagnostics when GetCapabilties fails
+- Add support for PMTiles locally and as remote source
+- Add generate different colours per MVT sub-layer for automatic styling
+- Add automatically choose a new color for additional layers of the same type
+- Add remember last GeoJSON layer style preferences
+- Add remember last GPX layer style preferences
+- Add more digits to offset display and show approximation in meters
+- Add include relations with appropriate level tags in indoor mode
+- Add support long text modal in additional items
+- Add support for uploading GPX waypoints
+- Add allow filtering Mapillary data by date
+- Add if a custom icon is specified include preset icons in search
+- Add support queuing for toasts
+- Add arrows as rough indicators to where elements are
+- Add options to safe mode
+- Update preset
+- Update translations
+- Update imagery from ELI
+
+19.2.0:
+
+- Fix if all member rows are de-selected terminate action mode
+- Fix missing path separator in image path that stopped imaged being displayed in the large image combo
+- Add pre-Android 8 flush memory cache of layers that are not visible
+- Add support the text attribute in optional segments as labels
+- Update translations
+- Update imagery from ELI
+
+19.2.0-1:
+
+- Fix improved parsing of reference pressure values
+- Fix protect against invalid min - max zoom values
+- Fix protect against (undocumented) NPE in Class.forName
+- Fix missing pending upload badge on Android 5 and 6
+- Fix avoid EGM file being deleted by the DownloadManager after a while
+- Fix update ElementHistory dependency, fixes crash on restore
+- Fix issue when building multi-polygons from a selection that could cause the last member not to be added
+- Fix reset member element styling when a relation edit is undone
+- Fix correctness fix preset search results
+- Update migrate to Android 13s per app locale support
+- Update to AGP 8.1 and appcompat 1.6.1
+- Update to Java 17 for building
+- Update to target API 33
+- Update imagery from ELI
+- Update preset
+- Update translations
+
+19.1.0:
+
+- Fix completely remove MAXAR imagery
+- Fix protect against trying to save an element that was null on restore in the element info modal
+- Fix check data style entries before sorting them
+- Fix change configuration for network location fallback time to stale location data pref
+- Fix dismissing disambiguation menu by clicking outside on older Android versions
+- Add support for wkid placeholder in imagery configs 
+- Update imagery from ELI
+- Update NSI
+- Update preset
+- Update synonyms
+- Update translations
+
+19.1.0-1:
+
+- Fix use a separate tag for the task downloading progress dialog
+- Fix avoid crash by synchronizing undo and nearest POI sorting with the StorageDelegator
+- Fix position of TextView CompoundDrawable for RTL
+- Fix de-support path patterns for Android pre-9.0
+- Fix protect against no file selector installed on Android 10 and lower
+- Fix protect against and log null preset path
+- Fix protect against logic being null if we are running solo
+- Fix stop measure dialog appearing when the row gets focus
+- Fix improve handling of conditional maxspeed
+- Fix avoid allocating new buffers and ByteArrayOutputStream for each MBT-tile
+- Fix protect against new sqlite behaviour when tile not found
+- Fix avoid parsing an empty URL value
+- Fix avoid crash caused by concurrent "beeps"
+- Fix protect against NPE when getCurrentFocus returns null
+- Fix avoid ClassCastException joining ways if multiselect contains a Node or Relation 
+- Fix focus on resp. EditText after clearing comment/source field
+- Fix re-validate changes after editing in upload and review modals
+- Fix limit list of photo urls to 100, sort by distance from clicked photo
+- Fix changing the role of an element via the relations tab
+- Fix protect against NPE if mapillary sequence doesn't have image at position
+- Fix clamp dimensions in degrees when setting zoom
+- Fix use any way connection for sorting routes
+- Add improve area order when rendering by sorting closed ways according to bounding box size
+- Add support custom headers from imagery configuration
+- Add improved property editor behaviour in split screen mode
+- Add improved diagnostics for the tile downloader and testing facility in layer modal
+- Add description (tooltip on long press) for snap toggle in PathCreation mode
+- Add data style without path patterns
+- Add a "safe" shortcut
+- Add allow name of bookmark to be changed
+- Add layer with bookmark display
+- Add new disambiguation menu that is horizontally scrollable and adds icons as a more concise indication of the object type.
+- Add support for JOSM style name templates in element selection and when rendering nodes and closed ways
+- Add functionality to follow system theme setting
+- Add support displaying a modal for editing longer text fields
+- Add support for sharing an Mapillary image including its id
+- Update privacy statement with info on "Provide feedback"
+- Update translations
+- Update preset
+- Update imagery from ELI
+
+19.0.0:
+
+- Fix protect against maxStringLength < 0 in sanitizeText
+- Fix protect against the view box changing during onDraw
+- Fix wrong references to 19.1 in this document
+- Fix regression that hid point symbol selection for Mapbox Vector Tiles layers
+- Add support for receiving GPX and GeoJSON via ACTION_SEND
+- Update translations and documentation
+- Update preset
+- Update imagery from ELI
+
+19.0.0-3:
+
+- Fix regression that disabled uploading Notes on Android 10 and higher
+
+19.0.0-2:
+
+- Fix protect against invalid icons in the POI display (preset dependent crash)
+- Fix update OpeningHoursFragment (fixes infrequent ClassCastException)
+- Fix improve wording for items in the console menu
+- Fix regression that caused non-downloaded areas to always be dimmed
+- Add bridge casing for some minor ways
+- Add signature for barrier=guard_rail
+- Add migrate bookmarks storage format to geojson
+- Update JosmFilterParser (adds some translations)
+- Update release notes
+- Update documentation and improve wording
+- Update Maxar imagery API key
+- Update translations
+- Update imagery from ELI
+
+19.0.0-1:
+
+- Fix use new github token for builds
+- Fix check clipboard consistency after undo
+- Fix regression that caused beep & tip on long click not to work
+- Fix too aggressive relation filtering
+- Fix highlight elements from member relations of selected relations
+- Fix preset role copy constructor
+- Fix add validation.xml to transifex
+- Fix integer overflow when translating between locations > 200° apart
+- Fix only attempt to save state if webView isn't null
+- Fix update ElementHistoryDialog to avoid crash
+- Fix for broken task icon caching
+- Fix don't allow dragging the splitter outside of the views area
+- Fix relation sorting issues and improve performance
+- Fix NPE when manually re-ordering ring members
+- Fix saving layer style after reset and some minor inconsistencies
+- Fix improve navigation with back key in WebViews
+- Fix reset data style to default if previously selected style doesn't exist
+- Fix don't ask to move tags to multi-polygon if none are present
+- Fix if text_context is not set for combo use values_context if set
+- Fix copy constructor didn't copy translation context fields
+- Fix determine current tile cache size in thread (not on main thread)
+- Fix don't synchronize getMin/MaxZoom
+- Fix protect against no elements being provided for centroid calculation
+- Fix don't delete GPX recording layer automatically on setup
+- Fix invalidate menu after clearing data
+- Fix make a deep copy instead of cloning imagery offset array
+- Fix disable / enable simple mode button in imagery alignment mode
+- Fix correctly handle expanding/shrinking the offset array
+- Fix post displaying dropdowns
+- Fix run loading GeoJson files in an ExecutorTask (crash when loading file from Nextcloud)
+- Fix support selection of segment for the new way when splitting in all modes
+- Fix making an EditText text selectable makes it uneditable in Android 7.1 and breaks editing Notes
+- Fix limit mapbox-gl style files to 10MB
+- Fix key only tags weren't copied in the tag editor
+- Fix use Logic.rollback() instead of just removing the checkpoint when undoing a way append
+- Fix disable ACRA below Android 5.0
+- Fix set "follow" GPS when starting GPX playback
+- Fix remove empty image if camera app is cancelled and image is empty
+- Remove Maxar Standard imagery configuration
+- Add the current on disk tile cache size to debug page
+- Add render natural=glacier
+- Add make more action modes restartable
+- Add move imagery alignment to layer dialog
+- Add support creating Overpass queries from JOSM filter/search language
+- Add support querying the Overpass api
+- Add function to go to start/end of selected way
+- Add an autosave mechanism for GPX tracks
+- Add exit layer modal directly for GPX play back operations
+- Add support adding relations in the EditRelationMembers action mode
+- Add validate unconnected end nodes of waterways
+- Add make search result dialog horizontally scrollable
+- Add support for displaying preset label fields in the tag form
+- Add support calling external measurement apps for appropriate preset fields
+- Add support for an adjustable "nearby" POI display
+- Add default rendering for linear barriers, specific for retaining_wall
+- Add some more path patterns for data rendering
+- Add info modal for GPX layers
+- Add support to presets for list_entry sequences in chunks
+- Add support selection of segment for the new way when splitting in all modes
+- Add removing the text from an not uploaded note will now remove the comment
+- Update translations
+- Update imagery from ELI
+- Update preset
+- Update synonyms
+- Update NSI
+
+18.1.0:
+
+- Fix catch if we can't read GPX when delivered via intent
+- Fix synchronize access to the task storage for queries
+- Fix update 1st default preset link in docs
+- Fix ensure display of multiple memberships in the same relation
+- Fix don't make table cell selectable if Linkify created a link in info dialogs
+- Fix pass tag of parent dialog as parameter to the ElementInfo dialog so that we can dismiss it on go to element
+- Add allow increments larger than 2 when predicting addresses
+- Update translations
+- Update imagery from ELI
+
+18.1.0-2:
+
+- Fix disable resource optimization (google play issue)
+- Fix assure that imagery list is read before displaying selection modal
+- Update imagery from ELI
+- Update translations
+
+18.1.0-1:
+
+- Fix debounce the upload button in the review/upload dialog
+- Fix don't allow file paths that escape the base directory when unzipping
+- Fix rename the built-in style
+- Fix if a stylable layer already exists toast and don't reset styling
+- Fix display specific message when imagery layer meta data is missing
+- Fix actually load imagery list while displaying splash screen
+- Fix superfluous fetches of Bing metadata if layer is visible on start
+- Fix use exif orientation when displaying photos
+- Fix delay indexing until WRITE_EXTERNAL_STORAGE has been granted
+- Fix wrong description element name when parsing GPX files
+- Fix "import", aka make a copy, of MBT files on API 29 and higher
+- Fix switch text to "Resume GPX track" if a track has already been started
+- Fix remove GPX and GeoJSON layers with null content id (keeps layer list consistent)
+- Fix add an "Import data style" function (Android 12 issue)
+- Fix fine tune tick spacing for metric scale on grid layer
+- Fix always unlock before starting the property editor
+- Fix only call focusOnEmpty the 1st time we are building the form
+- Fix display file name in toast after writing files
+- Fix documentation improvements
+- Fix remove search results when search term is too short
+- Fix beep and tip on long press of undo in path creation mode
+- Fix better titles when splitting ways
+- Fix better subtitles in the path creation mode
+- Fix indicate that the layer or layer meta data isn't available
+- Fix invalidate menu after closing all tasks
+- Fix only auto apply preset if one element is selected
+- Fix improve handling of duplicate keys in the tag editor
+- Fix avoid CME downloading MapRoulette challenges
+- Add if more than one app supports ACTION_OPEN_DOCUMENT/_CREATE_DOCUMENT show chooser and don't rely on Android
+- Add if latin script is being use sentence caps for comment and source field
+- Add support for selecting which part is used for new way when splittin
+- Add enable resetting style for all styleable layers
+- Add support for SVG icons in presets
+- Add "Clear OSM data" function
+- Add cut down version of upload dialog for edit review only
+- Add *=construction tags as default tags to re-survey
+- Add support for zipped (with icons) custom data styles
+- Update imagery from ELI
+- Update translations
+- Update NSI
+- Update presets
+- Update synonyms
+- Update ElementHistoryDialog
+
+18.0.1:
+
+- Fix invalidate menu after closing all tasks
+- Fix improve handling of duplicate keys in the tag editor
+- Fix avoid CME downloading MapRoulette challenges
+- Update translations
+- Update imagery from ELI
+
+18.0.0:
+
+- Fix workaround limited width of imagery selection modal in landscape mode (accessibility issue) 
+- Fix modernize URL for OSM standard tiles
+- Fix multiselect dialog row height
+- Fix wrong menu title
+- Fix imagery layer MRU list not being restored
+- Fix remove the onFocusChangedListener on the role AutoCompleteTextView, avoids restore crash
+- Fix only try to set focus on initial fragment creation, avoids restore crash
+- Fix make it more difficult to create relation loops manually
+- Fix make the ExecutorTask for the preset search cancelable
+- Add zap existing values if value is emptied in multi-select mode
+- Add differentiate between exact matches with and without accents in preset search
+- Update translations
+- Update imagery from ELI
+- Update preset
+- Update NSI
+- Update synonyms
+
+18.0.0-1:
+
+- Fix use previous node index to determine segment (pan handle issue)
+- Fix When preset is applied don't switch away from the details tab
+- Fix explicitly de-select way (degenerate way avoidance)
+- Fix verify that position in relation is unchanged
+- Fix protect against missing thumb_2048_url field in Mapillary response
+- Fix when matching relations prioritize items that have a type tag
+- Fix handle <error></error> and abort if unknown elements are present when parsing OSM XML
+- Fix use SHA-256 hash to generate unique and length bounded state file names
+- Fix avoid reading tile source list into memory during layer configuration
+- Fix avoid lazy loading presets by explicitly reading them
+- Fix don't redo whole layer config after retrieving (Bing) meta data
+- Fix avoid allocating BoundingBox objects during queries
+- Fix speed up checking if node is in download
+- Fix crash processing manually added keys without values
+- Fix hardwire addr:housenumber and addr:housename as important tags
+- Fix require that a Bing tile layer source entry has an api key placeholder
+- Fix improve detection drag detection when objects are very close
+- Fix use element type specific matching in relation editing mode
+- Fix handle one node ways when calculating the centroid
+- Fix protect against element not being found on restore
+- Add support split window mode for the PropertyEditor
+- Add bridge casing to *_link
+- Add facility for auto-saving editing state
+- Add refactor selection handling (selection stack)
+- Add turn the property editor in to a Fragment
+- Add move updating data from Main to PropertyEditor
+- Add use the floating button to exit rotation mode
+- Add support renaming key values in multi-select
+- Add addr:parenstreet to address tags
+- Add support geometry improvement handles on ways in multi-select
+- Add allow direct dragging of way nodes of a selected way
+- Add support a handle for changing the size of the panes
+- Add migrate to API 31 SplashScreen handling
+- Add bump target and compile SDK versions
+- Add bump min SDK to 16
+- Add Maproulette improvements
+- Add refactor CustomBugs to Todo facility
+- Add migrate to OSMOSE API 0.3 and related clean up
+- Update OpeningHoursFragment
+- Update translations
+- Update geocontext
+- Update imagery from ELI
+- Update preset
+
+17.1.1:
+
+- Fix handle more upload conflicts
+- Update disable Maxar imagery for now as no updated keys available
+
+17.1.0:
+
+- Fix auto-preset application business logic
+- Fix update standard tiles licence
+- Fix base64 encoded logo image instead of link
+- Fix default key entry for API sandbox
+- Fix protect against NFEX in parseVerbatimCoordinates
+- Fix don't show symbol spinner for grid/scale layer
+- Fix protect against degenerate ways in getIsoCodes
+- Fix catch all exceptions in getDisplaynameColumn
+- Fix actually check if ring is closed when using an offset in way rendering
+- Fix regression that caused checked values not to display in CheckGroupDialogRow
+- Fix regression wrt matching text fields as objects, improve tests
+- Add facility to delete key via config file
+- Add never automatically enable full screen mode on Android 11 and later
+- Add a toast and tip when no GPX file for download can be found
+- Add show a tip on the 1st touch of the lock button.
+- Add convert man_made=bridge to use a way offset
+- Add improved preset matching for specific element types (improves relation validation)
+- Update and restructure the FAQ
+- Update privacy policy and add instructions how to remove Bing
+- Update OpeningHoursParser dependency
+- Update translations
+- Update release notes to include privacy policy change
+- Update preset
+- Update preset documentation
+- Update synonyms
+- Update imagery from ELI
+
+17.1.0-1:
+
+- Fix protect against IOBE in photo viewer
+- Fix against crash when suspending re-authentication
+- Fix correct numerous incorrect uses of color values/resources
+- Fix suppress boundary relation rendering
+- Fix improve merging of structured tags
+- Fix custom preset handling
+- Fix ordering of MRU preset items over multiple presets
+- Fix keep "show GPS" setting in sync
+- Fix improve url check messaging when we get an error code
+- Fix don't try to fit screen bounding box to an empty/degenerate bounding box
+- Fix infinite loop in getRow in ComboDialogRow
+- Fix preset filter preset auto-apply regression
+- Fix a race condition with pan and zoom auto-downloading that potentially could cause too large bounding boxes to be used
+- Fix enforce that fixed keys need to match for a preset match
+- Fix finish new note selection mode when notes are de-selected
+- Fix Note upload business logic when note was previously closed
+- Fix ignore URls containing "piwik" when authorizing
+- Fix route/relation connection calculation
+- Fix IOBE when sorting relation members
+- Add more test coverage
+- Add leisure=park styling
+- Add support offset for way rendering and use it instead of patterns for area rendering. 
+- Add support more EPSG:3857 synonyms from WMS servers
+- Add functionality that will remind you regularly to upload if you have unpublished changes
+- Add zoom to current location on initial use, instead of using the box picker
+- Add optionally scan the MediaStore for photos for the photo layer
+- Add automatically display deprecated labels for preset items and preset fields
+- Add support for V4 presets
+- Add support for automatic capitalization of names on input
+- Add automatic alternative preset display above the MRU presets
+- Add support for multiple preset items with the same name
+- Add support for a per fixed-tag "object" attribute
+- Add if the source of an imagery layer is changed, make the contents visible if previously hidden
+- Add support for selectable label source and label min zoom for GPX waypoints
+- Add show current layer configuration in debug information
+- Add capture JOSM preset list page and rewrite URLs for direct download and install
+- Add expand the "screenshot" page on vespucci.io to include videos
+- Add alternative selection dialog for combo fields that supports large images
+- Add support for version, short description and description in presets
+- Add use josm scheme instead of localhost for alert intents (workaround google change for Android 12)
+- Add allow editing of new comments that have been saved but not uploaded
+- Add display a toast when a note is automatically reopened
+- Add preferences to individually enable/disable validations
+- Add validation for non-standard element type
+- Add re-factor GPX layer, adds support for multiple layers, track playback, track download and better styling
+- Add multi-threaded GPX draw for large/long GPX tracks
+- Add switch to acrarium for storing crash dumps
+- Add handle error conditions due to the relation member limit being reached
+- Add support for new capabilities value
+- Add function to select way nodes
+- Remove Bing API key for 3rd party builds. 
+- Update preset
+- Update translations
+- Update imagery from ELI
+
+17.0.1:
+
+- Fix bogus untagged node warnings on upload
+- Update preset
+- Update translations
+
+17.0.0:
+
+- Add toast if tile database can't be created
+- Add toast if Mapillary API key is missing
+- Add language mapping for ca_ES
+- Update translations
+- Update preset
+- Update imagery from ELI
+- Update README
+
+17.0.0-3:
+
+- Fix issue that stopped imagery configuration from being read completely
+- Fix issue with applying presets with embedded JS
+- Fix issue with voice creation of notes not exiting the action mode
+- Fix resync selection after undo/redo in multi-select mode
+- Update translations
+- Update preset
+- Update imagery from ELI
+
+17.0.0-2:
+
+- Fix wrong database version that cause key database upgrade to be skipped and consequently a crash
+
+17.0.0-1:
+
+- Fix correctly detect empty values in the property editor with multi-select
+- Fix don't add the same imagery url twice, add layers at a better position
+- Fix use correct message when paste overwrites tags
+- Fix determine best preset on restore from saved state (regression)
+- Fix consume down event in attribution area
+- Fix don't use a async version of task download when already running async
+- Fix replaced AsyncTask with ExecutorTask
+- Fix disable dragging in modes that do not support it properly
+- Fix use neutral WP link
+- Fix increase width of value dropdown to value view width
+- Fix only add full MRU for longer lists
+- Add refactor GPX and OSC exports to use a normal file selector
+- Add facility to load a key file
+- Add improved key handling
+- Add sort elements with issues at top of change list in upload dialog
+- Add additional validation run pre-upload
+- Add support for task autoprune
+- Add voice mode instead of voice commands
+- Add way intersection function
+- Add toggle to enable/disable snapping when creating a way
+- Add allow editing custom imagery configuration from layer entry
+- Add support adding a custom layer from the layer dialog
+- Add use ShareCompat.IntentBuilder to compose share intent.
+- Add simplified and improved orthogonalization
+- Add use a RecyclerView for displaying relation members
+- Add fixed headers in property editor fragment layouts
+- Add try to download missing members before way splitting
+- Add maintain results from multiple split operations
+- Add improved reporting when splitting incomplete routes
+- Add use location to validate elements for missing keys
+- Add compute pseudo accuracy from NMEA
+- Add ElementHistoryDialog from 2021 GSOC project
+- Add support for rulers in combo and multiselect dialog
+- Add support for deprecated on fields, roles and list_entry values
+- Update translations
+- Update imagery from ELI
+- Update preset
+- Update NSI
+- Update synonyms
+
+16.1.0:
+
+- Fix inconsistent default values application when multiple elements are selected
+- Fix start ElementSelectionMode if no elements are selected
+- Fix don't store child references for newly created elements in undo storage
+- Fix ensure that checkboxes in checkgroup modal have correct initial state
+- Improve handling of version conflicts
+- Update opening hours dependencies, use new `strictTimes`parameter
+- Update object search dependency
+- Update preset
+- Update NSI
+- Update translations
+- Update imagery from ELI
+- Many test improvements
+
+16.1.0-2:
+
+- Update translations
+- Update JosmFilterParser
+
+16.1.0-1:
+
+- Fix multiple undo issues in path create mode
+- Fix: only display 1 row for empty multitext fields
+- Fix http vs https for imagery offset server
+- Fix ANRs when testing on Android 11
+- Fix: produce a proper error message if downloading offsets fail
+- Allow disabling translations
+- Support device wildcard, blacklist all Xiaomi devices
+- Run unit tests that require logging with roboelectric
+- Overwrite validation highlighting if selected as relation member
+- Display a tip the first time a tristate checkbox is touched
+- Replace IndeterminateCheckBox implementation with fork
+- Persist error toasts as notification per default
+- Add unit test version of apply OSC test
+- Use different naming scheme for synonym files
+- Migrate from spoon to marathon
+- Avoid NPEs on null tile sources
+- Android 11 related test changes and improvements
+- Support selecting camera app independent of system default
+- Target SDK/API 30
+- Update translations
+- Update synonyms
+- Update presets
+- Update imagery from ELI
+
+16.0.0:
+
+- Add more icons on buildings rendering in the data styles
+- Update translations
+- Fix crash in upload dialog when navigating away from it (regression)
+
+16.0.0-3:
+
+- Add support for configuring tile source from mapbox GL style
+- Add support for name suggestion index (NSI) V6
+- Add support for tile size in custom imagery configuration
+- Update OH fragment
+- Update imagery from ELI
+- Update presets
+- Update synonyms
+- Fix protect against all exceptions when retrieving Bing metadata
+- Fix numerous saving and restoring state issues in dialogs
+- Fix counting of inline values in the property editor
+- Improve business logic for states when editing notes
+
+16.0.0-2:
+
+- Improve test behaviour on Android 10 and later
+- Update translations
+
+16.0.0-1:
+
+- Change public directory to Download/Vespucci and migrate existing files there
+- Refactor tile caching/downloading
+- Add recursively search for the preset file
+- Add Mapillary V4 API
+- Add support for tile_type parameter in ELI config files
+- Add GPX layer: squash short adjacent lines
+- Add preference for tile storage location
+- Add keep compressed tiles compressed
+- Add styling for icons on amenity, shop and tourist tags on closed ways
+- Add imagery layer info button
+- Add support for labeling ways at a configurable zoom level
+- Add support for mapbox-gl style definitions
+- Add multi-layer MVT style support
+- Add clickable MVT layer support
+- Add filter background layer by terrain
+- Add bookmarks feature
+- Fix try to always close down the TrackerService properly in onDestroy
+- Fix logic bug for non downloaded Relation members
+- Fix don't try to turn GPS on if we don't actually have permission
+- Fix update stroke width for validation style too
+- Fix pref keys for tips need to be unique
+- Fix missing empty line in MultiTextLine
+- Fix increase width of border pattern
+- Fix improve layer list sorting
+- Update OH parser and fragment version
+- Update translations tasks to include Arabic as RTL script
+- Update translations
+- Update imagery from ELI
+- Update presets
+
+15.2.0:
+
+- Update release notes for release
+- Update imagery
+- Update translations
+- Update dependencies for OH parser and fragment
+- Avoid CME with lots of layers
+
+15.2.0-2:
+
+- Add direct support for extracting step segments from footways and similar
+- Render tunnel=* on waterways, remove direction arrows from weirs
+- Make distance up to which we auto-apply offsets a preference
+- Don't show address prediction button for unclosed ways
+- Update imagery from ELI, preset and geo-context configurations
+- Update translations
+- Update taginfo project file
+- Avoid CME by allocating shallow copy of list when uploading a selection of elements
+- Fix crash on pre-API 24 devices due to unsupported SimpleDateFormat 'X'
+- Replace Cursor.getColumnIndex with Cursor.getColumnIndexOrThrow
+
+15.2.0-1:
+
+- Support merging closed ways/polygons
+- Improve task dialogs behaviour (Notes, OSMOSE etc)
+- Keep way selected after rotation
+- Add empty relation check to validator
+- Check for empty relations in more places
+- Suppress display of pre-element-creation state in info dialog
+- Support mode specific launcher shortcuts
+- Address prediction and handling improvements
+    - Add dedicated mode for adding addresses
+    - Add option to directly predict address or add an address interpolation
+    - Support default address keys from geo-context
+    - Support addr:conscriptionnumber and addr:block_number
+    - Add functionality to create address interpolations directly
+    - Support addr:block
+    - Add values for addr:country and addr:state if used and empty
+    - Improve address prediction initialization when no data is available
+- Show a disambiguation menu when multiple ways could be appended to
+- Add preference UI for taginfo server URL
+- Re-factor data styling to support (node) icons and flexible labeling
+- Support multiple parse error messages from opening hours parser
+- Add support for ELI meta field and tests
+- Add proper multi-polygon support for ELI
+- Add support for selecting MultiLineString and GeometryCollection features in the GeoJSON layer
+- Add support for creating OSM objects from GeoJson Features
+- Track existing nodes better in PathCreationMode
+- Support testing with roboelectric
+- Increase displayed precision in GnssPositionInfo dialog
+- Support regular expressions in object search (JOSM filter expressions) 
+- Support import of JOSM .osn and osmand .ocs files with Notes
+- Allow way dragging in path creation mode
+- Fix spurious relation backlinks
+- Fix offering to edit tags on deleted elements in info dialog
+- Fix long standing issue with unjoining a closed way
+- Fix crash when showing info dialog on copy and pasted way
+- Fix issue when editing an existing relations members that caused them to get multipolygon roles
+- Fix issue with icon caching in the data layer
+- Fix issue selecting imagery when category was changed
+- Fix regression (since 15.0) that stopped GeoJSON layer style from being restored
+- Fix multiple regressions in PathCreation mode by tracking existing nodes better
+- Fix regression when Bing imagery is selected and app is started without network connectivity
+- Fix regression in opening hours row layout in the property editor
+- Protect against number format exceptions when parsing coordinates in more places
+- Protect against trying to fit screen to very small bounding boxes 
+- Show restart required message when "Follow" button is moved
+- More protection against corrupted data
+- Update preset
+- Update imagery from ELI
+- Update translations
+
+15.1.2:
+- Don't allow dragging ways in PathCreation mode as undo will not work as expected
+
+15.1.1:
+- Fix regression that wouldn't allow appending at start of way
+
+15.1.0:
+- Update release notes for release
+- Update translations
+- Update preset
+- Update imagery from ELI
+- Protect against photo/mapillary photo display terminating PropertyEditor
+- Protect against null Boundingboyes when downloading
+- Regenerate taginfo project file
+
+15.1.0-3:
+- Update translations
+- Add feature request template
+- Add section on OSMF services
+- Update privacy policy to include a section on location usage
+- Update default photon url
+- Fix typo in introduction documentation
+- Catch out of range imagery position
+
+15.1.0-2:
+- Update preset
+- Update imagery from ELI
+- Improve error handling when present data is corrupted
+- Don't throw an exception, simply force cache size to at least 1
+- Make check FAB work when appending to existing way
+- Add a warning that the removed node is a member of a relation
+- Correctly update way state and add to api storage in remove node from way
+- Call takePersitableUriPermission with the correct arguments
+- Try to persist file permissions over reboots and catch SecurtiyExceptions
+- Add google required warnings when recording GPX track
+- Fix some RTL layout issues
+- Style fix
+- Don't cancel NMEA input clients just because we stop tracking
+- Add text on the dimming of not downloaded areas to the introduction
+- Add leisure=garden rendering
+- Try to guarantee that the dialog buttons are shown in the task dialog
+- Fix crash after pausing in the TagConflictDialog
+- Reformat major parts of the change log
+
+15.1.0-1: 
+- Show a toast if we create inconsistent MP role values
+- Add indication of top of undo/redo stack
+- Fix regression with UndoDialog not being dismissed on click
+- Add specific MP support when adding element to existing relations
+- Add specific support for creating multi-polygons
+- Improve handling and messaging around preset parsing failures
+- Provide a short cut for the help view in place of an launcher icon
+- Re-factor PathCreationActionModeCallback
+- Support splitting ways with length dependent tags
+- Handle length dependent way tags on merging
+- Fix preset matching regression for tags with MatchType.KEY
+- Improve relation creation and member editing
+- Add action mode with fab to complete action
+- Initial implementation route creation and extension
+- Indicate which imagery layer has errors
+- Adjust GPX coordinate precision
+- Handle preset configuration changes while a preset filter is active
+- Set time in NMEA derived locations
+- Update OH parser version
+- Allow deleting PresetItems from the custom preset
+- Add back task to update imagery from ELI
+- Merge and reverse operations issue reporting re-factoring
+- Generalize error / warning reporting mechanism
+- Support displaying OSMOSE API 0.3 detail and fix information
+- Increase threads for pan and zoom download to two
+- Handle cascaded path patterns correctly
+- Partial re-factoring of feedback functionality
+- Add specific rendering for man_made=bridge
+- Make scale / grid styleable
+- Fix attribution display for new layer management
+- Improve feedback on error tile sources and better WMS error handling
+- Show a tip when starting GPX recording and no geoid model is installed
+- Support display of links to alternative presets
+- Use ui for online preset search and preset creation
+- Avoid crash on excessive beeping and make volume configurable
+- Fix issues retaining existing values when changing the value count in multi-text fields
+- Fix issue with key! match value in presets
+- Avoid socket in use errors in the NEMA receiver server
+
+15.0.3: 
+- Fix crash when checkboxes in checkgroups are selected in certain combinations
+- Fix nonsense label display in tag form for some checkgroups
+- Update preset.
+
+15.0.2: 
+- Fix issue with GPX recording on Android 10
+- Fix issue with visible state being overwritten on styleable layers
+- Select Note properly if in an element selection mode
+- Maintain preset order when matching
+- Update translations
+- Update OH fragment
+- Update imagery.
+
+15.0.1: 
+- Explicitly use our OkHttp client with TLS 1.2 support
+
+15.0.0: 
+- Update imagery and translations
+- Update privacy policy
+- Fix issue with imagery selection on older devices
+- Fix beeping due to under screen fingerprint sensor generating key presses
+- Fix another race condition in the property editor.
+
+15.0.0-6: 
+- Update translation and preset
+- Workaround androidx issue with calling onFocusChanged listeners after View has been destroyed. 
+
+15.0.0-5: 
+- Revert upgrade to signpost 2.0.0 as this is incompatible with pre Android 26 and will crash on signing
+- Use Threads instead of AsyncTask for Mapillary performance improvement.
+
+15.0.0-4: 
+- Make relation pruning more robust against race conditions.
+
+15.0.0-3: 
+- Force create imagery lists in layer dialog as they might not exist yet.
+
+15.0.0-2: 
+- Update translations, imagery, presets, and synonyms
+- Fix long click in locked mode
+- Data style name translations
+- Prune relations when pruning
+- Update opening hours parser and fragment
+- Add gpx and geojson intent filter based on mime type
+- Allow setting 0 for GPS interval and distance
+- Fix styling of HelpViewer in dark mode
+- Various other bug fixes.
+
+15.0.0-1: 
+- Update translations, imagery, presets, and geocontext
+- Reset way node validation on way undo
+- Rate limit action mode invalidation
+- Show help icon/menu in sub-actionmodes again
+- Improve RTL display in search dialog
+- Fix issue in NMEA output where only every 2nd entry would be read
+- Update OpeningHoursParser dependency to fix issue with Perso-Arabic digits, 
+- Migrate to androidx
+- Support barometer
+- Support using height corrections from EGM96
+- Don't reset clipboard when loading new data
+- Improved keyboard support
+- Support translating built-in data style name
+- Add support for WMS endpoints
+- Switch to using JOSM as imagery configuration support
+- Support array semantics for multi-selects, Mapillary support
+- Re-factor layer support to allow order changing and multiple imagery and geojson layers.
+
+14.1.1: 
+- Fix regression when comparing old versions caused by removing parent relations field in undo element.
+
+14.1.0: 
+- Update translations
+- Update release notes for release.
+
+14.1.0-4: 
+- Update translations, presets and imagery
+- Re-factor OSC and Undo code
+- Add warning when area affected by undo is not in view
+- Invalidate all way bounding boxes if a node has been restored
+- Scale preset "button" view with accessibility setting fontScale
+- Handle "raw" Uris and general robustness improvements
+- Run the HelpViewer in a separate task
+- Display a drag ring around selected Nodes instead of just highlighting
+- Use and indicate wgs84 ellipsoid height consistently
+- Show a different header for untagged objects
+
+14.1.0-3: 
+- Fix preset based object search
+- Don't use Integer.min (doesn't exist on Android <= 6)
+- Minor fixes.
+
+14.1.0-2: 
+- Change location indication styling when location is stale
+- Set default resurvey time for new entries to 365 days
+- Re-factor apikey support
+- Always make added fields in custom presets non-optional
+- Improvements layer configuration update
+- Add support for filtering roles based on member_expression
+- On relation change force recalc of matching preset
+- Add support for member_expression and other role field attributes
+- Add initial support for JOSM style object searching
+
+14.1.0-1: 
+- Improvements custom imagery
+- OAM support and imagery layer info
+- Add mechanism to filter out bad OAM entries
+- Display a toast if the user needs to restart the app after a pref change
+- Add facility to check domains/URL in website fields
+- Support presets with configurable minimum fixed tag matching
+- Add support for additional matching criteria "closed"
+- Add preference to control phone number formatting
+- Support adding empty value values to MRU when use_last_as_default is set
+- Add some element counts to data layer info display
+- Improve external NMEA source connection/disconnection messages
+- Support external external NMEA source for Android N and later
+- Add facility to determine if there is device specific brokeness, 
+- Support autoapply preset attribute 
+- Use Note specific icons
+- Add support for tunnel and bridge specific rendering for some roads
+- Support filtering layers on the category property
+- Use geocontext configuration to determine languages in use in the area
+
+14.0.7: 
+- Fix filtering regression in which relations were overriding way filter status
+- Update presets, imagery and translations. 
+
+14.0.6: 
+- Protect against number format exception when parsing OSMOSE downloads
+- Don't prune elements that are members of relations
+- Use new preset links
+- Update presets, translations and imagery. 
+
+14.0.5: 
+- Fix crash in advanced prefs on android 4.X
+- Tweak search scoring
+- Protect against relation members being pruned
+- Catch content resolver exceptions
+- Update translations.
+
+14.0.4: 
+- Don't auto-apply the address preset.
+
+14.0.3: 
+- Fix int overflow when calculating longitude
+- Special handling for destination_sign relations
+- Fix phone number input
+- Update imagery and preset.
+
+14.0.2: 
+- Zap args to ElementInfo to avoid transaction too large exceptions
+- Use built-in serialisation for edit state
+- Update translations and imagery.
+
+14.0.1: 
+- Add back missing data style pref that got lost.
+
+14.0.0: 
+- Update preset, synonyms and translations
+- Fix regression when trying to hide the "follow GPS" button
+- Adapt regexp for 412 errors to cgi-map implementation
+- Fix de-selecting relation in multi-select
+- De-duplicate search results that only differ in weight
+- Numerous stability fixes.
+
+14.0.0-2: 
+- Update synonyms and imagery
+- Increase number of logcat lines to 500 for ACRA
+- Add relation loop protection in multiple places
+- When adding MRU tags to the value adapter use the original Preset values
+- Protect against OOM when reading too large geojson files
+- Reallocate offset array if max zoom has increased
+
+14.0.0-1: 
+- Update translations, imagery and presets
+- Fix interworking of C&P with undo/redo
+- Fix way rotation creating invalid objects
+- Improved handling of multiple memberships in the same relation
+- Save draft comment and source tags on dismiss too
+- Stop searching twice in search when using soft keyboard
+- Don't support FeedbackActivity for Jelly Bean or ICS
+- Don't set FAB tint list before 4.4
+- Add missing AlignParentRight for old Android versions
+- Support for incremental preset search
+- Support for on-the-fly custom presets
+- Download on pan and zoom
+- Rearranged download menus
+- Automatically apply preset in PropertEditor
+- Add internal photo viewer
+- Add multi-text value widget
+- Add unjoin way
+- Improved squaring and straightening
+- Add multi-select C&P
+- Show context menu when potentially merging multiple nodes.
+
+13.1.3: 
+- Update synonyms, translations, preset, imagery
+- Update OpeningHoursFragment (fix for crash in preferences)
+- Catch weird node and relation state when merging
+- Don't add non-HTTPS API configuration anymore
+- Protect against null preset in yet another place
+- Don't destroy URLListEditActivity derived activities on configuration change
+- Don't destroy TagFilterActivity on configuration change
+- Save search term over configuration changes
+- Don't add superfluous quotes
+- Remove ignoring bing zoom level
+- Add indication of downstream side to weirs.
+
+13.1.2: 
+- Use translation context when adding translated terms to search index
+- Don't replace merged nodes in potentially deleted ways.
+
+13.1.1: 
+- Add onDowngrade support for the PhotoIndex
+- Always invalidate way bounding box when two ways are merged
+- Fix missing delete Relations in JOSM style output
+- Generate correct BCP 47 locale values for changeset tag
+- Move checkbox to new line in "Find" dialog
+- Remove degenerated ways created by merging all way nodes
+- Update synonyms, translations, presets and imagery.
+
+13.1.0: 
+- Use NSI as an additional source for preset searches
+- Support clipping to viewbox for GeoJSON layers
+- Fix crash on empty input in "go to coordiantes"
+- Update translations and imagery.
+
+13.1.0-3: 
+- Fix various issues with configuration changes in the PropertyEditor
+- Unconnected end nodes validation improvements
+- Fix Osmose description issue
+- Support reading data produced by overpass
+- Updated imagery and translations. 
+
+13.1.0-2: 
+- Protect against non-integer zoom levels in intents
+- Protect against cancelled download manager downloads
+- Protect against potential race condition when adding nodes to way
+- Update nsi
+- Update translations and preset
+- Add mapping for zh_HK.
+
+13.1.0-1: 
+- Fix crash in dark mode when trying to set certain preferences
+- Don't allow multiple pastes when object has been cut
+- Fixes MapRoulette API key handling, fix some Android lint warnings
+- Fix regression for pre-Android 16 devices in API prefs
+- Avoid NPE when reading invalid .osm file
+- Fix regression displaying MBTiles
+- Add data style without MP rendering
+- Allocate more stack when saving
+- Protect better against race conditions in StorageDelegator
+- Update imagery, translations, and nsi
+- Updated opening hours editor
+- Use SAF file picker for Android KitKat and later
+- Download offline data directly with automatic configuration
+- Support for multi-line comments and source in the upload dialog
+- Add multi-line text fields in the form tag editing UI
+- Improvements JS support, GPX and GeoJson files can be loaded via Intent
+- Update synonyms
+- Go to coordinates function and OLC support
+- Support for configuring imagery via JOSM style remote control.
+
+13.0.2: 
+- Fix regression when undoing relations
+- Fix relation handling when splitting a closed way
+- Set icons on initial layout
+- Update preset, imagery and translations.
+
+13.0.1: 
+- Add some topological analysis during unconnected way node validation
+- Update imagery and translations.
+
+13.0.0: 
+- Improve restoring individual checkpoints
+- Disable maproulette tasks by default
+- Downgrade OkHttp version as 3.13 breaks backwards compatibility, update imagery and translations, bug fixes.
+
+13.0.0-3: 
+- Make connected node validation configurable
+- Improve "one way" arrows support
+- Support sending feedback to preset repo
+- Keep (ProGuard) classes referenced in JS
+- Add support for "Go to element" in ElementInfo dialog
+- Lots of minor improvements.
+
+13.0.0-2: 
+- Fix crash getting Relation bounding box
+
+13.0.0-1: 
+- Support reading PBF format OSM data files
+- Add support for MapSplit tiled OSM data as a read-only source
+- Support applying osmChange format files
+- Add tree row rendering
+- Re-factor styling configuration
+- Add support for multi-polygon rendering
+- Render turn restrictions
+- Add preference for map screen orientation
+- Support filtering name suggestions by country/region
+- Improve pinch/spread zoom behaviour
+- Support draft comment and source tags and add review_requested
+- Add confirmation modal before deleting stored GPX data
+- Avoid floating point binary representation issues on input and output
+- Validate untagged ways and relations
+- Validate unconnected end nodes of highways
+- Numerous bug fixes.
+
+12.1.4: 
+- Small performance improvements
+- Updated translations.
+
+12.1.3: 
+- Updated preset, imagery, synonyms and translations
+- Fix issue with way splitting/merging and duplicate relation members
+
+12.1.2: 
+- Revert automatic application of last tag values
+- Don't sort MRU preset view
+. Update imagery and translations.
+
+12.1.1: 
+- Numerous stability improvements
+- Improvements preset search
+- Updated translations and preset.
+
+12.1.0: 
+- Use most recently used tags when applying preset
+- Support "wiki" attribute in presets
+- Support splitting via ways in turn-restrictions
+- Add marker to share on OSM
+- Fix downloaded preset refresh
+- Add non-combo keys to auto-suggest list
+- Invert zoom in/out behaviour for mouse scroll wheels
+- Fix regression causing task loading to fail when layer restoring had issues
+- Update translations.
+
+12.0.1: 
+- Update OpeningHoursFragment
+- Increase number of lines in feedback form description to 4
+- Update translations.
+
+12.0.0: 
+- Fix rendering issue on restored Ways
+- Documentation updates
+- Protect against multiple tile services starting
+- Small fixes
+- Preset, imagery and translation updates. 
+
+12.0.0-4: 
+- Use FST for serialising state
+- Fix ELI date parsing regression
+- Fix crash when applying auto-preset
+- Lots of small fixes.
+
+12.0.0-3: 
+- Fix preset sorting crash
+- Fix name suggestion issue
+- Update name-suggestion-index
+- Various text changes
+- Improved ElementInfo dialog
+- Updated DE translation.
+
+12.0.0-2: 
+- Store changes for relation members undo by deep copy.
+
+12.0.0-1: 
+- Support for a simple UI for adding objects
+- Support for MapRoulette tasks
+- Objects merge UI and error behaviour improvements
+- Group alert behaviour is configurable
+- Configuration support for task and grid layers in layer control
+- Support limiting searches to a bounding box
+- Sort preset items alphabetically
+- Function to send reports to github directly
+- Share position with openstreetmap.org
+- Most recently used key, values and roles support
+- Enable proguard
+- Bug fixes. 
+
+11.2.1: 
+- Re-enable google logins
+- Update translations.
+
+11.2.0: 
+- Fix issue with geo URLS when data hadn't been downloaded
+- Group notifications when possible
+- Fix rare element selection misbehavior when a filter is active
+- Remove i18n key variants after they have been assigned to a preset
+- Add adaptive launcher icon for Oreo and later
+- Updated presets and imagery.
+
+11.2.0-1: 
+- Support two build flavors
+- Reduce memory footprint on devices with smallish heaps
+- Fix popup menus in layer dialog bein clipped
+- Update translations and imagery
+- Improve i18n support for notes and bugs
+- Show note and bug status in disambiguation menu.
+
+11.1.3: 
+- Fix regression on pre android 13 devices.
+
+11.1.2: 
+- Fix regression when reverting to original relation members in the PropertyEditor.
+
+11.1.1: 
+- Updated translations, presets and imagery
+- Geo url and sharing position improvements
+- Fixes for TransactionTooLargeException in PropertyEditor
+- A few other bug fixes.
+
+11.1.0: 
+- Upload dialog improvements
+- Various stability improvements
+- Fix imagery date sorting regression
+- Documentation and translation improvements.
+
+11.1.0-5: 
+- Updated translations and imagery.
+
+11.1.0-4: 
+- Fix GeoJSON properties dialog width in landscape mode
+- Use default max zoom 22 for WMS sources
+- Add text keys with no values to auto suggest
+- Merge tasks (Notes) on download and complain about conflicts
+- Add configuration support for HTTP headers indicating invalid tiles.
+
+11.1.0-3: 
+- Fix crash sorting background layers on some devices.
+
+11.1.0-2: 
+- Catch exception reading old format tag clipboard file
+- Improvements auto-presets.
+
+11.1.0-1: 
+- Re-factored internal preset field representation
+- Support for tri-state check fields and checkgroups
+- Improved keyboard support
+- Improved tag copy and paste
+- Improved free form window support
+- Samsung DeX support
+- Lots of bug fixes.
+
+11.0.2: 
+- Update imagery and translations
+- Add maxspeeds to geocontext for PT and CZ
+- Update OH Fragment, protect against crash when layouting empty preset views
+- Fix regression restoring state in PropertyEditor
+- Try to avoid crash with null Context in PresetSearch
+- Add conveying and priority to direction dependent keys.
+
+11.0.1: 
+- Update imagery and translations
+- Always add all Relations to context menu
+- Fix crash when adding speed values in the "Details" tab
+- Use https for ACRA
+- Improve imagery sources sorting
+- Check nodes tags when deleting way.
+
+11.0.0: 
+- Update imagery, translations, synonyms and default preset
+- Workaround crash when displaying preset search results and switching applications.
+
+11.0.0-10 
+- Update OH fragment
+- Update translations.
+
+11.0.0-9: 
+- Fix regression in preset search
+- Make PresetFilter work with object keys defined in preset
+- Add link to element on osm.org in info dialog and other improvements
+- Fix highlighting of selected PresetElement when preset filter is active
+- Make Task upload async, nicer icons for auto-presets
+- Fix crash in Advanced Prefs on 2.6 devices
+- Use https URLs as default
+- Updated presets, imagery and translations.
+
+11.0.0.8: 
+- Fix another preset display issue related to google issue 37003658
+- Debounce preset search
+- Upload single tasks in background
+- Update preset and translations.
+
+11.0.0-7: 
+- Fix theme related crash in debug screen and licence viewer
+- Another fix when showing immersive dialogs
+- More RTL improvements
+- Add privacy statement.
+
+11.0.0-6: 
+- Fix undo regression
+- Support RTL layout (not released)
+
+11.0.0-5: 
+- Fix crash when trying to upload on pre-Android 6.0 devices
+- Fix crash when setting a maxspeed if no country entry available
+- Fix various other small issues
+- Compare relation membership in element information dialog.
+
+11.0.0-4: 
+- Improved geo-location of edits and some support for country specific tag values
+- Improved preset matching
+- Support use of on device text/spelling suggestions when possible
+- Numerous bug fixes.
+
+11.0.0-3: 
+- Fix crashes in PropertyEditor (preset search and icons in combos/multiselects)
+- Documentation updates
+- Update OH Fragment and support mixed value tags.
+
+11.0.0-2: 
+- Show progress spinner during preset search
+- Shorten taginfo timeouts
+- Fix regression in onResume
+- Make boxpicker title setable
+- Update presets and translations. 
+
+11.0.0-1: 
+- Add layer control
+- Support for GeoJSON layers
+- Re-arranged Preferences with support for help pages
+- Review changes before upload
+- Undo/redo of individual checkpoints
+- Support for icons in preset combos and multi-selects
+- Support for generating presets from taginfo
+- Numerous stability improvements and bug fixes. 
+
+10.2.1: 
+- Improve behaviour in full screen mode
+- Shorten timeouts when retrieving tiles
+- Some stability improvements
+- Update translations.
+
+10.2.0: 
+- Further small bug fixes
+- Update preset and translations.
+
+10.2.0-4: 
+- Update OH fragment
+- Wrap tags in upload dialog in a ScrollView
+- Widen conditional restrictions editor.
+
+10.2.0-3: 
+- Improve messaging when tile DB is not usable.
+
+10.2.0-2: 
+- Protect against NPE when no track is available.
+
+10.2.0-1: 
+- Re-factor networking code to use OkHttp
+- Support network location providers
+- Support EPSG:4326 WMS servers
+- Update OH fragment
+- Fix wrong status after uploading multiple OSMOSE bugs
+- Split upload dialog in to two pages
+- Update preset, imagery and translations.
+
+10.1.0: 
+- Support redirects to https when downloading presets
+- Update translations and imagery
+- Update release notes. 
+
+10.1.0-10: 
+- Support MBTiles 1.3 minzoom and maxzoom values
+- Update translations.
+
+10.1.0-9: 
+- Fix regression when adding manually entered layers.
+
+10.1.0-8: 
+- Update imagery
+- Minimal protection again broken URLS in custom imagery.
+
+10.1.0-7: 
+- Fix dialog layouts
+- Add way to delete a custom imagery layer. 
+
+10.1.0-6: 
+- Some fixes for pre-Honeycomb devices
+- Allow deleting of waypoints
+- Updated translations.
+
+10.1.0-5: 
+- Workaround sub-menu Android bug on tablets running Android 7.0 and later
+- Fix issue with layer ordering on date
+- Add goto 1st waypoint method.
+
+10.1.0-4: 
+- Add button to save imagery and use it
+- Fix layer list refresh after adding OAM layer
+- Update translations, imagery and presets.
+
+10.1.0-3: 
+- Fix SQL error that was causing far too many coverage records to be returned.
+
+10.1.0-2: 
+- Numerous bug fixes
+- Support OAM layers
+- Update translations
+- Update ACRA.
+
+10.1.0-1: 
+- Support MBTiles as layers
+- Support better local storage of imagery offsets
+- If there is already a value for name don't use name suggestions
+- Store tile server conf. in database and improvements tile rendering
+- Switch to using geojosn version of imagery index
+- Support logos in attribution for normal imagery index entries
+- Support for WMS servers with EPSG:3857 / EPSG:900913 support
+- Add support for geographical context
+- Add support for GPX way points
+- Reduce the number of node halos at lower zoom levels
+- Add a dialog to handle empty relations                 
+
+10.0.5; 
+- Downgrade support library version to fix https://issuetracker.google.com/issues/63151548
+- Update presets.
+
+10.0.4: 
+- Fix overzoom for missing tiles not working
+- Improve behaviour when no network connectivity is present.
+
+10.0.3: 
+- Protect against crashes due to bad preset entries
+- Improvements software keys detection
+- Upgrade ACRA and support libraries
+- Upgrade OH fragment
+- Protect against null messages when logging.
+
+10.0.2: 
+- Improve behaviour of controls when oauth fails
+- Update translations
+- Use the correct GPS icon when in full screen mode
+- Fix regression wrt deprecated items being added to search index via synonyms
+- Use simplified icon for notifications
+- Fix numerous full screen issues.
+
+10.0.1: 
+- Fix regression when splitting closed ways
+- Updated translations.
+
+10.0.0: 
+- Change numbering scheme
+- Fix issue with wrong pref keys for osmose and offset servers
+- Follow GPS button improvements.
+
+1328: Support for using patterns for way rendering, added styling for natural=cliff, natural=coastline and man_made=embankment, styling for cycleways and living streets.
+
+1326: Fix crash when sorting Relations with duplicate entries, added support for opening_hours in conditional restrictions, some menu wording changes.
+
+1325: Fix crash on empty re-survey and check lists, added support for value_type and object_keys attributes in presets, updated OH fragment.
+
+1324: Update NumberPickerPreference
+
+1322: Fix background for the dark theme in the relation membership display, refactor numeric preferences, add support for custom tasks. 
+
+1320: Avoid potential runtime crash on older Android versions.
+
+1318: Update imagery, fix inconsistencies in default preferences, improve tile loading behaviour when zooming.
+
+1316: Add support for using synonyms for preset searching, make search icon clickable in preset search, update OH UI. 
+
+1315: Add support for regexps in resurvey entries, layout improvements, update preset and translations.
+
+1314: Add support for i18n attribute in presets, update documentation, presets and translations.
+
+1313: Provide a dropdown for mode selection instead of cycling on long press.
+
+1312: Protect against looping on diff upload issues, updated translations.
+
+1310: Fix a handful of issues with PresetFilters, apply Preset automatically to new objects.
+
+1309: Improved label rendering, removed special highway name check.
+
+1308: Prepare for first beta of 0.9.10, refactored validation, C-Mode, update preset.
+
+1307: Update preset and translations, improve preset matching by support match="keyvalue" and the rest of the possible values for fixed keys.
+
+1306: Update preset, update translations, fix issue which caused node icons to vanish when copy/pasting tags between nodes and areas.
+
+1305: Update preset.
+
+1304: Update preset, fix UI glitch when applying presets.
+
+1303: Update OpeningHoursFragment, presets, imagery and translations.
+
+1302: Don't dismiss SearchForm except if a result has been chosen. update OpeningHoursFragment, show an error toast when preset creation fails, fix issue with Node creation when a filter is applied, any xmas:feature to important tags :-), fix regression when matching addr: tags, update preset, update translations.
+
+1301: Fix issue with previous tile caches that are not writable, fix logic for permission requests, various stability issue fixes, inherit level status from relations properly in indoor mode, change spinner message when downloading, updated translations. 
+
+1300: Update OpeningHoursFragment (fixes numerous smaller issues), update presets and translations, avoid a serialisation crash, improve note conflict handling.
+
+1299: Update OpeningHoursFragment, don't produce crash dump when deleting tiles when tile database is already closed.
+
+1298: Update OpeningHoursFragment, more fixes to OAuth UI code.
+
+1297: Explicitly add utility preset items to MRU (regression), update presets and imagery.
+
+1296: Updated preset, update imagery, bump version number.
+
+1295: Updated imagery, OpeningHoursFragment, bump build number and change to release.
+
+1294: Fix relation version number corruption, inconsistent backlinks after conflict resolution, updated presets and name suggestion index. Bump android version number.
+
+1293: Fix various photo display related issues, update documentation and translations.
+
+1292: Fix issue with chunks in optional preset sections, update presets, translations and opening hours fragment.
+
+1289: Update presets (with lane preset typo fix), documentation improvements.
+
+1288: Enforce maximum length of tags, fix missing backlink for relations, always use dialogs for opening_hours and conditional access, various minor bug fixes and updated presets and translations.
+
+1286: Bump version numbers to make the play store happy.
+
+1282: Improve way reversing code and fix an issue with it, fix problems with lane presets, and a section on areas to documentation.
+
+1281: Increase android version number, updated imagery and translations, avoid loop when applying presets.
+
+1278: Add help for the opening hours editor, update translations.
+
+1277: Update documentation and translations, add presets to most recently used list when added manually. add translated help topics to help browser.
+
+1276: Add collection_times to tags with opening_hours semantics, sort and reverse order of relation members.
+
+1275: Update OH Fragment, add reset address prediction to tools menu.
+
+1274: Fix NPE in address prediction, sort address tags in form.
+
+1273: Updated OF fragment, address prediction improvements.
+
+1272: Updated OH fragment, add warning when trying to add nodes with GPS derived location at Null Island.
+
+1271: Various small action mode improvements, updated OH fragment, make casing width dynamic when rendering ways. 
+
+1270: Initial opening hours editing integration.
+
+1269: Updated preset, support for OSM object timestamps, generate warnings objects potentially out of date and initial support for "check_date" tag
+
+1268: Updated preset and translations, bump build number.
+
+1266: Updated imagery. Disable double clicking when locked.
+
+1264: Update imagery, presets and translations, lots of robustness fixes, support start/end date in the imagery config. Fix performance regression in PresetFilter mode. 
+
+1261: Fix regression when adding tags to a new element.
+
+1259: Fix crash in the PropertyEditor in pane mode, some correctness fixes based on SonarQube.
+
+1257: Add sharing of current map position or selected object, and reading and savign of scripts, fix regressions wrt taking photographs and menu updates.
+
+1256: Download tasks not just data when we get a geo: uri, some small performance improvements.
+
+1255: Add preset based filtering;
+
+1254: Improve layout of Task/Note dialog, fix issue in form editor where linked presets without fixed tags were not being handled correctly.
+
+1253: Make original tags available to scripts in presets, updated presets and translations, correctness fixes, bump android version number.
+
+1250: Performance improvements, workaround bing reporting wrong max zooms.
+
+1249: Moved most messages to snackbars, persist last chosen directory in the file selectors, improve visibility of crosshairs, lots of refactoring.
+
+1247: Support for 'deprecated' and 'javascript' properties in presets, basic scripting support, fix another regression in multi-select value splitting, improve element description. 
+
+1245: Fix regression in handling multi-select values, testing improvements.
+
+1244: EasyEdit consistency improvements, bug fixes and more test coverage.
+
+1243: Improved JOSM style remote control, added some documentation on supported Intents.
+
+1239: Update default preset, imagery and translations, fix regression wrt discarding useless tags, fix various smaller issues.
+
+1237: Improved functionality for tag filter, fixed issues with tag filter UI.
+
+1236: Fix regression disabling tag only mode, add some initial filter tests-  
+
+1235: Build against Android N, API 24, fix OAuth with API instances on systems using SNI, improve test coverage, better messaging in case of API errors, fix various issues with the tag filter UI and add some documentation, robustness fixes. 
+
+1231: Add button on the debug screen to force send a crash dump.
+
+1230: Fix various issues with selecting the preset button in way creation mode.
+
+1229: Updated imagery, auto-split changesets that are too large, minor bug fixes.
+
+1227: Updated presets, translations and imagery, minor bug fixes.
+
+1225: Lots of internal clean up, partially validate API URLs, documentation updates, change header color in the property editor light theme.
+
+1224: Fix life cycle issues in PropertyEditor, potential fix for issue when data is not loaded.
+
+1223: Fix regression with long press when screen is locked, another attempt at trying to make the element info dialog look right.
+
+1222: Fix issue with new installs, moved code to standard android layout. 
+
+1221: Add support for multiple geocoders, currently supported APIs: Nominatim and Photon, code cleanup.
+
+1220: Increase version to 0.9.9, updated translations and release notes, remove sv-SE (just use sv), add filter facility, and indoor mode, add tag based filtering, fix numerous small issues, change way geometry improvement handles work.  
+
+1216: Fix issue with determining the tile storage location on some devices without removable storage.
+
+1214: Update default preset, imagery and translations, fix various smaller bugs.
+
+1211: Update default preset and translations, try to improve debugging for tile cache problems and numerous robustness fixes.
+
+1208: Update default preset and translations.
+
+1206: improve entering of website tags, some UI cleanup, catch weird error when opening tile database on some devices, numerous small bug fixes, updated translations
+
+1205: deselect elements when finishing multi-select mode (regression), protect against SQLiteCantOpenDatabaseException not being caught. Changes for F-Droid.
+
+1204: fix broken default preset, protect against crash if linked preset is missing.
+
+1203: fix more crashes, calculate rough centroid of relations if possible.
+
+1202: update default preset, increase number of lines for very long (German) key descriptions, fix some crashes.
+
+1201: update ids correctly after reading an .osm file. Fix Samsung 4.3 specific issue https://groups.google.com/forum/#!topic/android-developers/U3N9eL5BcJk
+ 
+1200: fix post-release issues with documentation, UI and NPE in tag form, version and build number bump.
+
+1199: small bug fixes and documentation updates, change version to reflect release.
+
+1198: fix regression wrt deleting, copying and cutting tags in the form UI
+
+1197: use back key a bit more consistently, re-fix element info layout, fix regression wrt displaying object history, disable property editor layout changes when restarting, correctly use values_context and don't sort check values
+
+1196: order tags in form as they are in the preset and group i18n name tags.
+
+1194: correctly add newly created elements to API storage when reading a JOSM style file.
+
+1193: refactoring, save follow GPS state over pause - resume cycles, documentation updates.
+
+1192: add support for editing conditional restrictions in the form tag editor and presets.
+
+1191: bump android version, updated translations, fix pre-Honeycomb use of system clipboard, use normal dialog for progress display, automatically add no https API entry and catch SSL errors better, handle Android 23 permissions better, remove duplicate nodes when merging.
+
+1190: bump android version
+
+1188: fix ordering issues with diffs, fix crash when adding relation to a relation, allow selection of one level of parent relations of relations in UI.
+
+1186: switch to uploading OsmChange diffs, various small bug fixes and improved conflict handling, updated translations.
+
+1185: explicitly set created_by when updating changeset.
+
+1184: fix double relation creation if no further members are added. 
+
+1182: updated default preset and translations.
+
+1180: workaround for issue with onFocusChange listeners being called when fragment views are destroyed, numerous build improvements.
+ 
+1178: changes for building with buildship, export of Notes in OSN format, better file picker for saving and reading files, search button added to "Find" dialog
+
+1176: fix regression caused by 1174, preserve history better when merging nodes and ways.
+
+1174: add support for read-only API (experimental) and bug fixes.
+
+1172: add splash screen on startup and make dimming non-downloaded areas a pref.
+
+1170: add literal substring matching to preset search 
+
+1168: various small internal changes, handle match=”none” the same as “key for building the form display.
+
+1166: updated preset.
+
+1164: force show keyboard and dropdown when adding with name suggestions.
+
+1162: protect against broken NMEA sentences, update presets.
+
+1160: better support for language specific name tags.
+ 
+1158: sort combo and multi-select values correctly.
+
+1156: properly quote delimiter character in multi-selects, updated preset and translations.
+
+1154: fix regression when displaying multiple values in a multi-select in the form UI, try to make hiding the navbar more reliable, updated preset.
+
+1152: add a label to nodes without an icon, if icons are turned off, all nodes will get a label, Delete, copy, cut and paste of tags in form UI. Fix issue with box picker when nothing was downloaded.
+
+1150: fix issue with preset search that stopped all results being shown, updated presets and translations.
+
+1148: made name suggestions work better with the form UI
+
+1146: bumped Android version number
+
+1142: minor bug fixes and improvements.
+
+1142: fix error in way bounding box calculation and add zoom to selection function.
+
+1140: fix crash in NotificationCache, disable geometry improvement handles when a relation is selected, fix clipboard related crash on pre-Honeycomb devices.
+
+1138: display house numbers on building centroids, adjustable auto-lock feature (default 60s), limit number of alerts/notifications per class (default 5), make upload dialog comment and source fields full width, bug fixes.
+
+1132: make preset applied  to otherwise empty set of tags or unknown ones the one used for autocomplete values.
+
+1130: fix undo button behavior on long presses,
+
+1128: improved turn-restriction adding that doesn’t require ways to be pre-split. Make high-lighting more visible when only a subset of the elements can be selected. Fixes for relation handling, specifically uno issues for newly created relations.
+
+1126: use dialogs for large combos and multiselects in the TagFormEditor, make tags not associated with a preset editable, some UI fine tuning. More preset fixes. Tiles now stored in database and no longer in a directory hierarchy, try to located that outside of internal phone memory. Preferences available in most action modes.
+
+1124: replace ActionBarSherlock with google AppCompat, related UI rework and restyling. Use on-screen button for “follow GPS” function. In “locked” mode the indication of downloaded areas is removed.
+
+1118: various fixes and improvements imagery alignment mode, Swedish translation.
+
+1117: fix issue with MRU preset display not updating in form fragment.
+
+1116: fixed an issue that could cause a crash when editing street names, updated presets and translations.
+
+1113: dismiss dropdown when hiding keyboard
+
+1112: small improvements address prediction, retain the 10 last changeset comment and source strings, fix issue with post PropertyEditor call selection of objects.
+
+1110: protect against NPE when checking for role conflicts when merging.
+
+1108: fix last edit in text field not being saved in the property editor on older Android versions.
+
+1107: fix crash on restarting if GPS tracking was still running.
+
+1106: bug fixes: API selection dialog not working, issue with new elements and hashmap.
+
+1105: Refactored tag reversing code, support reversing tags of way nodes, various small bug fixes.
+
+1103: Fix for ordering problems of preset values.
+
+1102: Update preset and fix issue with preset multiselects that have descriptions.
+
+1101: Updated preset and translations, add newline to GPX export, various small bug fixes. Display small multiselect presets with checkboxes.
+
+1098: Preset and translation updates, relation element downloads, display of rings in relation member display.
+
+1095: Preset fixes, improvements in relation editing, bug fixes, numerous performance improvements.
+
+1090: Focus on first empty value in form if possible, some further preset handling improvements.
+
+1089: Commit UI blasphemy and make radio button de-selectable by touch on selected button, fix issue with value sync Editor->Form.
+
+1088: New preset-driven form based tag editing and better preset matching. Updated preset.
+
+1086: Updated default preset, enable C&P in some dialogs.
+
+1084: Fix hardwiring of German language for OSMOSE bugs.
+
+1082: Prioritize icons over house number display, show POI icons on buildings.
+
+1080: Flatten menus for pre-Android 11.
+
+1078: Fix issue with photo index/layer.
+
+1077: Don’t enable follow GPS in “goto GPS position”.
+
+1076: Bug fixes (0.9.7 change log), use R-Tree for selecting photos for photo layer, support for semicolon separated lists in tag editor.
+
+1075: Fix serialisation problem in preset code.
+
+1074: Protect against race condition when appending node to way.
+
+1073: Fixed a small number of minor issues and a crash in the PropertyEditor.
+
+1070: Fixed crash if language set to Turkish, wrapping hint in PropertyEditor for pre-3.0 devices, spurious display of BoxPicker on restart.
+
+1069: more preset improvements, updated version numbers for release.
+
+1068: fixed an UI regression in tag editing on pre android 11 devices, improved presets for car and motorcycle dealers.
+
+1067: Documentation and help file improvements, preset translations, improved tag editing mode behaviour.
+
+1066: Documentation and help file improvements, updated name suggestions.
+
+1065: Various bug fixes and stability improvements, update default preset and updated imagery index.
+
+1063: exit locked mode properly when selecting an element from the OSMOSE bug display, fix for issue with no button being shown for preset items with no “icon” attribute.
+
+1062: code refactoring, some work on documentation.
+
+1060: don’t show geometry improvement handles when they can’t be used.
+
+1059: improved preset translation handling and updated preset.
+
+1058: improved preset handling and object descriptions.
+
+1057: bug fixes, translation updates, improvements experimental voice support.
+
+1056: bug fixes, allow deletion of newly created, but not uploaded, Notes.
+
+1055: bug fixes, some map style refinements, removed likely unused styles.
+
+1054: updated translations, improved preset search for presets with translations, added OAuth related functions to tools menu.
+
+1053: moved debugging information to its own page, some improvements address prediction.
+
+1052: bug fixes, provide autocomplete for fixed tags in the tag editor and change relevant preset if fixed tags are changed.
+
+1050: bug fixes, properly display tag-only mode icon after resume, fallback to backup copy of state file if reading the current one fails.
+
+1048: handle route forward/backward roles when reversing ways, improvements NMEA processing and re-enable auto download when using NMEA input.
+
+1046: show add address tags button for entrance nodes without a house number.
+
+1045: don't display icons and house numbers for lower zoom levels, add missing invalidate after moving to coordinates found from nominatim.
+
+1044: bug fixes, reworked preset code to include descriptions and similar.
+
+1043: updated default preset and translations, the “Apply Prest” button in the “TagEditor” now applies optional tags too.
+
+1042: updated default preset, bug fixes.
+
+1041: fix crash in Android 2.x, bug fixes, updated and additional translations.
+
+1040: only ask to enable GPS once per activity life cycle and allow user to turn that off in the advanced preferences.
+
+1039: Refactoring of address prediction code (at least a bit), added preference to turn on/off voice commands.
+
+1038: updated translations, some bug fixes.
+
+1036: disable menu entries that are dependent on network connectivity when no network available.
+
+1035: usability improvements Bug/Notes form, defaults changed. 
+
+1034: some clean up of preset and name search code, re-enabled voice commands.
+
+1033: commented out the main menu voice item for now.
+
+1032: rearranged menus a bit, better support for non-GPS devices, fixed some issues with initial bounding box, translation updates.
+ 
+1031: fix for bug status not updating after edit.
+
+1030: Saving state is now done asynchronously which should address performance problems when starting the PropertyEditor.
+
+1029: Fix issue with not showing current position when returning from /paused/stopped state. Removed old editing modes completely at last.
+
+1028: Removed some code that provided backwards compatibility with Android 5! Save and restore actual viewbox in editing state.
+
+1027: bug fix from master (race condition protection)
+
+1025: handle missing/revoked permissions for storage better.
+
+1024: bug fix from master.
+
+1023: Added slightly makeshift imperial units scale/grid.
+
+1022: Grid/scale display.
+
+1021: Improved keyboard support.
+
+1020: Preset search, voice support in new mode.
+
+1018: more work on i8n.
+
+1017: Translated presets and bug fixes.
+
+1015: Filters for Bugs and other improvements.
+
+1012: bug fixes from master
+
+1010: improvements on notifications and Osmose bug display
+ 
+1007: apply fix from master for misbehaving HW acceleration.
+
+1005: 1st version of refactored “Bug” support. Fixes from master.
+
+1001: bugs fixes auto-download. Made max download speed configurable.
+
+1000: better support for JOSM style remote control (used in notifications).
+
+999: Lots of changes to improve memory footprint and efficiency when loading/saving state files. Moved auto-download to TrackerService and made generating Alerts/Notifications slightly more direction production ready.
+
+998: make list of address tags used for prediction and suggestions configurable.
+
+

@@ -1,0 +1,287 @@
+{
+"aerialway/zip_line":[
+"Flying Fox"
+],
+"aeroway/jet_bridge":[
+"Aerobridge"
+],
+"amenity/arts_centre":[
+"Arts Centre"
+],
+"amenity/bbq":[
+"Barbeque"
+],
+"amenity/bicycle_parking/building":[
+"Bicycle Parking Building"
+],
+"amenity/cafe/bubble_tea":[
+"Bubble Tea Shop"
+],
+"amenity/childcare":[
+"Childcare"
+],
+"amenity/community_centre":[
+"Community Centre"
+],
+"amenity/community_centre/lgbtq":[
+"LGBTQ+ Community Centre"
+],
+"amenity/community_centre/youth_centre":[
+"Youth Centre"
+],
+"amenity/conference_centre":[
+"Convention Centre"
+],
+"amenity/dive_centre":[
+"Dive Centre"
+],
+"amenity/fast_food/donut":[
+"Doughnut Fast Food"
+],
+"amenity/fuel":[
+"Service Station"
+],
+"amenity/parking":[
+"Car Park"
+],
+"amenity/parking/multi-storey":[
+"Multistorey Car Park"
+],
+"amenity/parking/park_ride":[
+"Park & Ride Car Park"
+],
+"amenity/parking_entrance":[
+"Car Park Building Entrance / Exit"
+],
+"amenity/payment_centre":[
+"Payment Centre"
+],
+"amenity/pharmacy":[
+"Pharmacy"
+],
+"amenity/recycling_centre":[
+"Recycling Centre"
+],
+"amenity/shelter/public_transport":[
+"Public Transport Shelter"
+],
+"amenity/social_centre":[
+"Social Centre"
+],
+"amenity/social_facility/group_home":[
+"Retirement Home"
+],
+"amenity/taxi":[
+"Taxi Rank"
+],
+"amenity/theatre":[
+"Theatre"
+],
+"amenity/toilets":[
+"Toilets"
+],
+"amenity/trolley_bay":[
+"Trolley Bay"
+],
+"amenity/vending_machine/public_transport_tickets":[
+"Public Transport Ticket Vending Machine"
+],
+"amenity/waste_basket":[
+"Rubbish Bin"
+],
+"amenity/waste_disposal":[
+"Skip Bin"
+],
+"amenity/weighbridge":[
+"Weighbridge"
+],
+"barrier/kerb":[
+"Kerb"
+],
+"barrier/kerb/flush":[
+"Flush Kerb"
+],
+"barrier/kerb/lowered":[
+"Lowered Kerb"
+],
+"barrier/kerb/raised":[
+"Raised Kerb"
+],
+"barrier/kerb/rolled":[
+"Rolled Kerb"
+],
+"building/terrace":[
+"Terraced Houses"
+],
+"healthcare/birthing_center":[
+"Birthing Centre"
+],
+"healthcare/blood_donation":[
+"Blood Donor Centre"
+],
+"healthcare/counselling":[
+"Counselling Centre"
+],
+"highway/cycleway/bicycle_foot":[
+"Shared Path"
+],
+"highway/cycleway/crossing/bicycle_foot":[
+"Shared Path Crossing"
+],
+"highway/elevator":[
+"elevator",
+"Lift"
+],
+"highway/elevator_line":[
+"inclined elevator",
+"cable railway",
+"Inclined Lift"
+],
+"highway/footway":[
+"Walkway"
+],
+"highway/footway/informal":[
+"Informal Walkway"
+],
+"highway/footway/sidewalk":[
+"Footpath (alongside a road)"
+],
+"highway/give_way":[
+"Give Way Sign"
+],
+"highway/living_street":[
+"Shared Zone Road"
+],
+"highway/street_lamp":[
+"streetlamp",
+"street lamp",
+"light",
+"lamp",
+"gaslight",
+"Street Light"
+],
+"highway/track":[
+"Track / Land-Access Road",
+"fire trail"
+],
+"highway/traffic_signals":[
+"Traffic Lights"
+],
+"indoor/elevator":[
+"Indoor Lift Shaft"
+],
+"landuse/harbour":[
+"Harbour"
+],
+"leisure/adult_gaming_centre":[
+"Adult Gaming Centre"
+],
+"leisure/fitness_centre":[
+"Gym / Fitness Centre"
+],
+"leisure/fitness_station":[
+"Outdoor Exercise Equipment"
+],
+"leisure/horse_riding":[
+"Horseback Riding Centre"
+],
+"leisure/indoor_play":[
+"Indoor Play Centre"
+],
+"leisure/sports_centre":[
+"Sports Centre / Complex"
+],
+"place/neighbourhood":[
+"Neighbourhood"
+],
+"place/suburb":[
+"Suburb"
+],
+"playground/slide":[
+"Slide"
+],
+"playground/zipwire":[
+"Playground Flying Fox"
+],
+"public_transport/platform":[
+"Public Transport Platform"
+],
+"public_transport/platform/subway":[
+"Metro Train Platform"
+],
+"public_transport/platform/subway_point":[
+"Metro Train Stop / Platform"
+],
+"public_transport/platform_point":[
+"Public Transport Stop / Platform"
+],
+"public_transport/station":[
+"Public Transport Station"
+],
+"public_transport/station_subway":[
+"Metro Train Station"
+],
+"public_transport/stop_area":[
+"Public Transport Stop Area"
+],
+"public_transport/stop_position":[
+"Public Transport Stopping Location"
+],
+"public_transport/stop_position_subway":[
+"Metro Train Stopping Location"
+],
+"railway/subway":[
+"Metro Train Track"
+],
+"railway/subway_entrance":[
+"Metro Train Entrance"
+],
+"shop/caravan":[
+"Caravan Dealership"
+],
+"shop/cheese":[
+"Cheese Shop",
+"cheesemonger"
+],
+"shop/chemist":[
+"Pharmacy",
+"chemist"
+],
+"shop/chocolate":[
+"Chocolate Shop",
+"chocolatier"
+],
+"shop/garden_centre":[
+"Garden Centre"
+],
+"shop/jewelry":[
+"Jewellery Store"
+],
+"shop/mall":[
+"Shopping Centre"
+],
+"shop/newsagent":[
+"Newsagency"
+],
+"shop/tyres":[
+"Tyre Shop"
+],
+"telecom/data_center":[
+"Data Centre"
+],
+"tourism/apartment":[
+"Holiday Apartment"
+],
+"tourism/caravan_site":[
+"Caravan Site"
+],
+"tourism/viewpoint":[
+"Lookout"
+],
+"type/public_transport/stop_area_group":[
+"Public Transport Stop Area Group"
+],
+"type/route/subway":[
+"Metro Train Route"
+]
+}

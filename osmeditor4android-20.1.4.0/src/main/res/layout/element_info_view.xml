@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="?attr/dialogPreferredPadding"
+    tools:background="@android:color/holo_green_dark"
+    tools:layout_width="match_parent">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="1dp"
+        android:fillViewport="true">
+        <LinearLayout
+            android:id="@+id/element_info_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TableLayout
+                android:id="@+id/element_info_vertical_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:background="@android:color/holo_orange_light">
+            </TableLayout>
+            <TableLayout
+                android:id="@+id/element_info_vertical_layout_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:background="@android:color/holo_orange_light">
+            </TableLayout>
+            <TableLayout
+                android:id="@+id/element_info_vertical_layout_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:background="@android:color/holo_orange_light">
+            </TableLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+</ScrollView>

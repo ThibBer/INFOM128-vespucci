@@ -1,0 +1,816 @@
+// Top-level build file where you can add
+// configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+        mavenLocal()
+    }
+    dependencies {
+        classpath('com.google.guava:guava'){ // fixes dependency issue with marathon
+            version {
+                strictly '28.1-jre'
+            }
+        }
+        
+        classpath 'com.android.tools.build:gradle:8.1.1'
+        classpath 'ch.poole.gradle:markdown-gradle-plugin:0.2.5'
+        classpath 'org.jacoco:org.jacoco.core:0.8.9'
+        classpath "ch.poole:preset-utils:0.26.0"
+        classpath 'com.github.ksoichiro:gradle-eclipse-aar-plugin:0.3.1'
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:3.0.1'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.9.1'
+        classpath 'com.malinskiy.marathon:marathon-gradle-plugin:0.9.0'
+        classpath 'org.apache.groovy:groovy-yaml:5.0.0-alpha-3'
+    }
+}
+
+plugins {
+    id "de.undercouch.download" version "4.1.2"
+    id "org.sonarqube" version "3.3"
+    id "com.github.ben-manes.versions" version "0.39.0"
+}
+import de.undercouch.gradle.tasks.download.Download
+import groovy.json.*
+import groovy.yaml.*
+
+// Project level build file starts here
+apply plugin: 'eclipse'
+apply plugin: 'com.android.application'
+apply plugin: 'ch.poole.gradle.markdown'
+apply plugin: 'jacoco'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'com.malinskiy.marathon'
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.scijava.org/content/repositories/public/" }
+        mavenLocal()
+    }
+}
+
+ext {
+    private_assets = "$projectDir/../private_assets"
+    imagery_assets_dir = projectDir.getPath() + '/src/main/assets/imagery/'
+    help_assets_dir = projectDir.getPath() + '/src/main/assets/help'
+}
+
+markdownToHtml {
+    sourceDir =  new File(projectDir.getPath() + '/documentation/docs/help')
+    inputEncoding ="utf8"
+    outputDir = new File(help_assets_dir)
+    outputEncoding = "utf8"
+    configuration.template = projectDir.getPath() + "/documentation/html_template.tpl"
+}
+
+task markdownToHtmlRtl(type: ch.poole.gradle.markdown.MarkdownToHtmlTask) {
+    sourceDir =  new File(projectDir.getPath() + '/documentation/docs/help-rtl')
+    inputEncoding ="utf8"
+    outputDir = new File(help_assets_dir)
+    outputEncoding = "utf8"
+    configuration.template = projectDir.getPath() + "/documentation/html_template_rtl.tpl"
+}
+markdownToHtml.dependsOn markdownToHtmlRtl
+
+task downloadPresetIconsZipFile(type: Download) {
+    doFirst {
+        delete projectDir.getPath() + '/src/main/assets/images/icons/png'
+    }
+    acceptAnyCertificate true
+    src 'https://github.com/simonpoole/beautified-JOSM-preset/releases/latest/download/vespucci_icons.zip'
+    dest new File(projectDir.getPath() + '/src/main/assets/images/icons/png', 'vespucci_icons.zip')
+}
+
+task downloadPresetFile(type: Download) {
+    acceptAnyCertificate true
+    src 'https://github.com/simonpoole/beautified-JOSM-preset/releases/latest/download/vespucci_preset_build.xml'
+    dest new File(projectDir.getPath() + '/src/main/assets/preset.xml')
+}
+
+task updatePreset(dependsOn: ["downloadPresetFile", "downloadPresetIconsZipFile"], type: Copy) {
+    from zipTree(downloadPresetIconsZipFile.dest)
+    into projectDir.getPath() + '/src/main/assets/images/icons/png'
+    doLast { delete downloadPresetIconsZipFile.dest }
+}
+updatePreset.group = 'vespucci'
+updatePreset.description = 'Update the default preset from http://simonpoole.github.io/beautified-JOSM-preset/'
+
+task generateImageryTranslations () {
+    description "Convert yaml translation file to json"
+    mkdir(imagery_assets_dir)
+    doLast {     
+        fileTree(dir: 'build/tmp/imagery/').each { yml ->
+            def data = new YamlSlurper().parse(yml)
+            def json = new JsonGenerator.Options().disableUnicodeEscaping().build().toJson(data);
+            def output = new File(imagery_assets_dir + yml.getName().replace('.yml','.json'))
+            output.write(json.toString());
+        }
+    }
+}
+
+task updateImageryFromJosm(type: Download) {
+    acceptAnyCertificate true
+    src 'https://josm.openstreetmap.de/maps?format=geojson'
+    dest new File(projectDir.getPath() + '/src/main/assets/imagery.geojson')
+}
+updateImageryFromJosm.group = 'vespucci'
+updateImageryFromJosm.description = 'Update the background layer configuration from https://josm.openstreetmap.de/wiki/Maps'
+
+task updateImageryFromELI(type: Download) {
+    acceptAnyCertificate true
+    src 'https://osmlab.github.io/editor-layer-index/imagery.geojson'
+    dest new File(projectDir.getPath() + '/src/main/assets/imagery.geojson')
+}
+updateImageryFromELI.group = 'vespucci'
+updateImageryFromELI.description = 'Update the background layer configuration from https://osmlab.github.io/editor-layer-index/imagery.geojson'
+
+task updateGeocontext(type: Download) {
+    acceptAnyCertificate true
+    src 'https://raw.githubusercontent.com/simonpoole/geocontext/master/geocontext.json'
+    dest new File(projectDir.getPath() + '/src/main/assets/geocontext.json')
+}
+updateGeocontext.group = 'vespucci'
+updateGeocontext.description = 'Update the geocontext configuration'
+
+task updateNameSuggestionIndex(type: Download) {
+    acceptAnyCertificate true
+    src 'https://raw.githubusercontent.com/osmlab/name-suggestion-index/main/dist/nsi.min.json'
+    dest new File(projectDir.getPath() + '/src/main/assets/name-suggestions.min.json')
+}
+updateNameSuggestionIndex.group = 'vespucci'
+updateNameSuggestionIndex.description = 'Update the name-suggestion-index'
+
+task update3rdPartyDocs() {
+}
+update3rdPartyDocs.group = 'vespucci'
+update3rdPartyDocs.description = 'Update markdown help files for 3rd party libraries'
+
+['de', 'en', 'es', 'fi', 'fr', 'gl', 'hu', 'it', 'nb', 'nl', 'pl', 'pt', 'zh-Hans', 'zh-rTW'].each { lang ->
+    def name="updateOpeningHoursDoc${lang.capitalize()}"
+    task (name,type: Download) {
+        acceptAnyCertificate true
+        src "https://raw.githubusercontent.com/simonpoole/OpeningHoursFragment/master/lib/documentation/docs/help/${lang}/Opening%20hours.md"
+        dest new File(projectDir.getPath() + "/documentation/docs/help/${lang}/Opening hours.md")
+    }
+    update3rdPartyDocs.dependsOn name
+}
+
+['fa','iw'].each { lang ->
+    def name="updateOpeningHoursDoc${lang.capitalize()}"
+    task (name,type: Download) {
+        acceptAnyCertificate true
+        src "https://raw.githubusercontent.com/simonpoole/OpeningHoursFragment/master/lib/documentation/docs/help/${lang}/Opening%20hours.md"
+        dest new File(projectDir.getPath() + "/documentation/docs/help-rtl/${lang}/Opening hours.md")
+    }
+    update3rdPartyDocs.dependsOn name
+}
+
+task updateTranslations(type: Exec) {
+    finalizedBy generateImageryTranslations
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'cmd', '/c', 'tx.exe', 'pull', '-a'
+    } else {
+        commandLine 'tx', 'pull', '-a'
+    }
+    doLast {
+        ant.move(file: projectDir.getPath() + "/documentation/docs/help/ar", tofile: projectDir.getPath() + "/documentation/docs/help-rtl/ar")
+        ant.move(file: projectDir.getPath() + "/documentation/docs/help/fa", tofile: projectDir.getPath() + "/documentation/docs/help-rtl/fa")
+        ant.move(file: projectDir.getPath() + "/documentation/docs/help/iw", tofile: projectDir.getPath() + "/documentation/docs/help-rtl/iw")
+    }
+}
+updateTranslations.group = 'vespucci'
+updateTranslations.description = 'Update translations by executing the transifex tx utility'
+
+task updateSynonyms() {
+    doLast {
+        def dir = 'https://api.github.com/repos/openstreetmap/id-tagging-schema/contents/dist/translations?ref=main'
+        // download directory listing via GitHub API
+        def contentsFile = new File(buildDir, "directory_contents.json")
+        download {
+            src dir
+            dest contentsFile
+        }
+        // parse directory listing
+        def contents = new groovy.json.JsonSlurper().parseFile(contentsFile, "utf-8")
+        def langs = contents.collect { it.name.replaceAll('(.json$)|(.min.json$)', '') }
+        langs.unique().each { lang ->
+            if ('index'.equals(lang)) {
+                return
+            }
+            def name="updateSynonyms${lang.capitalize()}"
+            def output = "src/main/assets/synonyms/$lang" + '.json'
+            javaexec {
+                main = "ch.poole.osm.presetutils.Synonyms"
+                classpath = buildscript.configurations.classpath
+                args('-u', 'https://raw.githubusercontent.com/openstreetmap/id-tagging-schema/main/dist/translations/',
+                     '-l', "$lang",
+                     '-x', "military",
+                     '-o', output,
+                     '-r')
+            }
+        }
+        // delete downloaded directory listing
+        contentsFile.delete() 
+    }
+}
+updateSynonyms.group = 'vespucci'
+updateSynonyms.description = 'Update synonym files from iD editor repo'
+
+    
+apply from: 'https://raw.githubusercontent.com/simonpoole/gradle-tasks/master/eclipse-android-3.6-flavors'
+// apply from: '../gradle-tasks/eclipse-android-3.6-flavors'
+
+sonarqube {
+    properties {
+        property "sonar.java.source","1.8"
+        property "sonar.sourceEncoding","UTF-8"
+        property "sonar.java.binaries", "build/intermediates/compile_app_classes_jar/currentDebug/classes.jar"
+        property "sonar.coverage.jacoco.xmlReportPaths","build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+    }
+}
+    
+android {
+    namespace "de.blau.android"
+ 
+    defaultConfig {
+        applicationId "de.blau.android"
+        versionCode project.getVersionCode()
+        versionName "${project.getVersionName()}"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-shrink-only.txt','proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-shrink-only.txt','proguard-test.txt','proguard-rules.pro'
+            // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true       
+            // proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
+        }
+        fakeRelease {
+            minifyEnabled true      
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    // this, unluckily, cannot be set per flavour
+    compileSdkVersion 34
+
+    // Specifies one flavor dimension.
+    flavorDimensions "api"
+    productFlavors {
+        current {
+            dimension "api"
+            multiDexEnabled true
+            minSdkVersion 21
+            targetSdkVersion 34
+            applicationIdSuffix ""
+            versionNameSuffix ""
+            resValue "string", "content_provider", "de.blau.android.provider"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.all {
+            jacoco { 
+                includeNoLocationClasses = true 
+            }
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
+                showExceptions true
+                exceptionFormat "full"
+                showCauses true
+                showStackTraces true
+            }
+            systemProperty 'robolectric.logging', 'stdout'
+            maxHeapSize = "6120m"
+            maxParallelForks = 2
+            systemProperty 'test.manual', System.getProperty('test.manual')
+        }
+        unitTests.includeAndroidResources = true
+    }
+
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g"
+    }
+    
+    lintOptions {
+        abortOnError true
+        baseline file("lint-baseline.xml")
+        checkReleaseBuilds false
+    }
+    
+    sourceSets {
+        String commonTestJava = 'src/testCommon/java'
+        String commonTestResources = 'src/testCommon/resources'
+        main.assets.srcDirs += files("$private_assets".toString())
+        test {
+            java.srcDirs += commonTestJava
+            resources.srcDirs += commonTestResources
+        }
+        androidTest {
+            java.srcDirs += commonTestJava
+            resources.srcDirs += commonTestResources
+        }
+    }
+    
+    androidResources {
+        generateLocaleConfig true
+    }
+}
+
+ext {
+    googleProtobufVersion = "3.12.2"
+}
+
+protobuf {
+  protoc {
+    // pre-packaged protoc
+    artifact = "com.google.protobuf:protoc:$googleProtobufVersion"
+  }
+  generateProtoTasks {
+    all().each {
+        task -> task.builtins {
+            java { }
+        }
+    }
+  }
+}
+
+ext {
+    adb = android.getAdbExe().toString()
+}
+
+import com.android.ddmlib.AndroidDebugBridge
+import com.android.ddmlib.CollectingOutputReceiver
+import com.android.ddmlib.EmulatorConsole
+import com.android.ddmlib.IDevice
+
+task enableFreeform() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            CollectingOutputReceiver receiver = new CollectingOutputReceiver()
+            it.executeShellCommand("settings put global enable_freeform_support 1", receiver)
+        }
+    }
+}
+enableFreeform.group = 'emulators'
+enableFreeform.description = 'turn on free form window support'
+
+task installDummyCameraApp() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            it.installPackage(projectDir.getPath() + '/src/androidTest/resources/DummyCameraApp.apk', true)
+        }
+    }
+}
+
+task deinstallDummyCameraApp() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            it.uninstallPackage('ch.poole.android.dummycameraapp')
+        }
+    }
+}
+
+task installDummyFilePickerApp() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            it.installPackage(projectDir.getPath() + '/src/androidTest/resources/DummyFilePickerApp.apk', true)
+        }
+    }
+}
+
+task deinstallDummyFilePickerApp() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            it.uninstallPackage('ch.poole.android.dummyfilepickerapp')
+        }
+    }
+}
+
+// note this will only install on emulators to avoid overwriting the real thing
+task installDummyMeasureApp() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            if (it.isEmulator()) {
+                it.installPackage(projectDir.getPath() + '/src/androidTest/resources/DummyMeasureApp.apk', true)
+            }
+        }
+    }
+}
+
+// note this will only install on emulators to avoid deinstalling the real thing
+task deinstallDummyMeasureApp() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            if (it.isEmulator()) {
+                it.uninstallPackage('de.westnordost.streetmeasure')
+            }
+        }
+    }
+}
+
+task setLongClickTimeout() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            CollectingOutputReceiver receiver = new CollectingOutputReceiver()
+            String api = it.getProperty(IDevice.PROP_BUILD_API_LEVEL)
+            // 400 short, 1000 medium, 1500 long
+            // NOTE this may need tuning on test machines with high load
+            int timeout = api.equals("28") ? 1500 : 1000
+            it.executeShellCommand("settings put secure long_press_timeout $timeout", receiver)
+        }
+    }
+}
+
+task removeVespucciDirectory() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            if (it.isEmulator()) {
+                project.logger.lifecycle('Removing directory on ' + it.getSerialNumber())
+                CollectingOutputReceiver receiver = new CollectingOutputReceiver()
+                it.executeShellCommand("rm -r /sdcard/Download/Vespucci", receiver)
+            }
+        }
+    }
+}
+removeVespucciDirectory.group = 'verification'
+removeVespucciDirectory.description = 'remove /sdcard/Download/Vespucci'
+
+// if a target device for testing has chrome installed we need to disable it or else we would have
+// to accept googles ToS to enable certain tests to work. We currently only do this on emulators.
+task disableChrome() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            if (it.isEmulator()) {
+                project.logger.lifecycle('Disable chrome on ' + it.getSerialNumber())
+                CollectingOutputReceiver receiver = new CollectingOutputReceiver()
+                it.executeShellCommand("pm disable-user --user 0 com.android.chrome", receiver)
+            }
+        }
+    }
+}
+disableChrome.group = 'verification'
+disableChrome.description = 'disable Chrome'
+
+task killEmulators() {
+    doLast {
+        AndroidDebugBridge.initIfNeeded(false)
+        def bridge = AndroidDebugBridge.createBridge(android.adbExecutable.path, false)
+        bridge.devices.each {
+            if (it.isEmulator()) {
+                project.logger.lifecycle('Stopping ' + it.getSerialNumber())
+                def console = EmulatorConsole.getConsole(it)
+                if (console != null) {
+                    console.kill()
+                } else {
+                    project.logger.lifecycle(' ... failed')
+                }
+            }
+        }
+    }
+}
+killEmulators.group = 'emulators'
+killEmulators.description = 'kill all emulators'
+
+afterEvaluate{
+    android.applicationVariants.all { variant ->
+        task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
+            description "Generates Javadoc for $variant.name."
+            group "Documentation"
+            source = variant.javaCompile.source
+            classpath = files(variant.javaCompile.classpath.files) + files(android.bootClasspath) + files(variant.javaCompile.destinationDir)
+            options.links("http://docs.oracle.com/javase/7/docs/api/");
+            options.links("http://d.android.com/reference/");
+            exclude '**/BuildConfig.java'
+            exclude '**/R.java'
+        }
+        
+        marathonCurrentDebugAndroidTest.dependsOn installDummyCameraApp
+        marathonCurrentDebugAndroidTest.dependsOn installDummyFilePickerApp
+        marathonCurrentDebugAndroidTest.dependsOn installDummyMeasureApp
+        marathonCurrentDebugAndroidTest.dependsOn setLongClickTimeout
+        marathonCurrentDebugAndroidTest.dependsOn removeVespucciDirectory
+        uninstallAll.dependsOn deinstallDummyCameraApp
+        uninstallAll.dependsOn deinstallDummyFilePickerApp
+        uninstallAll.dependsOn deinstallDummyMeasureApp
+    }
+
+    tasks.named('marathonCurrentDebugAndroidTestGenerateMarathonfile') { 
+        doNotTrackState('Gradle 8 compatability hack') 
+    }
+
+    // these tasks needs to be created after the uninstall tasks
+
+    // hardwired single test, this is only needed during initial developement, once the whole test suite has been run
+    // any new test will be included automatically
+    // it would probably be better to somehow get the test name interactively from the user
+    android.productFlavors.all { flavor ->
+        task ("runSingleConnected${flavor.name.capitalize()}Test",
+        dependsOn: ["install${flavor.name.capitalize()}Debug", "install${flavor.name.capitalize()}DebugAndroidTest"],
+        type: Exec) {
+            group = 'vespucci'
+            description = "Run a single test method on device (configuration needs to be edited) for the ${flavor.name} flavor"
+            def toRun = "de.blau.android.services.MapTileProviderServiceTest"
+            // commandLine adb, 'shell', 'pm', 'list', 'instrumentation'
+            commandLine adb, 'shell', 'am', 'instrument', '-w', '-e', 'class',  toRun, "de.blau.android${flavor.applicationIdSuffix}.test/androidx.test.runner.AndroidJUnitRunner"
+            finalizedBy "uninstall${flavor.name.capitalize()}DebugAndroidTest","uninstall${flavor.name.capitalize()}Debug"
+        }
+    }
+
+    // this task will generate tasks for each test that was run in the last on device test
+    // it doesn't depend on it directly as that would require waiting for all the tests to execute first
+    // so the best strategy seems to simply refresh the build after the on device tests have been ran
+    // tests are split up over two categories depending if they failed or not
+    task generateTestTasks {
+        android.productFlavors.all { flavor ->
+            def flavorName = flavor.name.toUpperCase()
+            def fileRegex = "TEST.*-${flavorName}\\.xml"
+            def fileList = new File(projectDir.getPath() +"/build/outputs/androidTest-results/connected/flavors/${flavorName}/").listFiles().findAll { it.name ==~ /${fileRegex}/ }
+            if (!fileList.empty) {
+                def tests = (new XmlParser()).parse(fileList.get(0)) // assume all tests outputs are equivalent
+                tests.'testcase'.each { testcase ->
+                    def toRun = testcase.@classname + "#" + testcase.@name
+                    task ("run${flavor.name.capitalize()}${toRun.capitalize()}",
+                    dependsOn: ["install${flavor.name.capitalize()}Debug", "install${flavor.name.capitalize()}DebugAndroidTest"],
+                    type: Exec) {
+                        if (testcase.failure.size() == 0) {
+                            group = 'sucessful tests'
+                        } else {
+                            group = "failed tests"
+                        }
+                        description = "Run test " + toRun
+                        // commandLine adb, 'shell', 'pm', 'list', 'instrumentation'
+                        commandLine adb, 'shell', 'am', 'instrument', '-w', '-e', 'class',  toRun, "de.blau.android${flavor.applicationIdSuffix}.test/androidx.test.runner.AndroidJUnitRunner"
+                        finalizedBy "uninstall${flavor.name.capitalize()}DebugAndroidTest","uninstall${flavor.name.capitalize()}Debug"
+                    }
+                }
+            }
+        }
+    }
+}
+
+ext {
+    okHttpVersion = "3.12.13" // don't change to higher than 3.12 as later versions break android 5 and earlier builds
+    signpostVersion = "2.1.1"
+    acraVersion = "5.7.0"
+    mapboxVersion = "5.8.0"
+    work_version = "2.9.0"
+}
+
+dependencies {
+
+    // acra crash dump lib
+    implementation "ch.acra:acra-http:$acraVersion"
+    implementation "ch.acra:acra-dialog:$acraVersion"
+    
+    // android support 
+    implementation "androidx.activity:activity:1.8.2"
+    implementation "androidx.fragment:fragment:1.3.6"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.appcompat:appcompat-resources:1.6.1"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.preference:preference:1.1.0"
+    implementation "com.google.android.material:material:1.8.0"
+    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.core:core:1.12.0"
+    implementation "androidx.exifinterface:exifinterface:1.3.6"
+    implementation "androidx.legacy:legacy-preference-v14:1.0.0"
+    implementation "androidx.work:work-runtime:$work_version"
+    implementation "androidx.window:window:1.2.0"
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation "androidx.multidex:multidex:2.0.1"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.viewpager:viewpager:1.1.0-alpha01"
+    
+    //non-Android google 
+    implementation 'com.google.protobuf:protobuf-java:3.12.2'
+    implementation "com.google.code.gson:gson:2.10.1"
+    implementation "com.google.protobuf:protobuf-java:$googleProtobufVersion"
+    implementation 'com.google.openlocationcode:openlocationcode:1.0.4'
+   
+    // okhttp 
+    implementation 'se.akerfeldt:okhttp-signpost:1.1.0'
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    implementation "com.squareup.okhttp3:okhttp-tls:$okHttpVersion"
+    
+    // other 3rd party dependencies
+    implementation 'com.heinrichreimersoftware:android-issue-reporter:1.4'
+    implementation "oauth.signpost:signpost-core:$signpostVersion"
+    implementation ('com.faendir.rhino:rhino-android:1.6.0') { exclude group: 'org.mozilla' }
+    implementation "org.mozilla:rhino:1.7.13"
+    implementation "com.mapbox.mapboxsdk:mapbox-sdk-geojson:$mapboxVersion"
+    implementation "com.mapbox.mapboxsdk:mapbox-sdk-turf:$mapboxVersion"
+    implementation 'com.github.Kunzisoft:AndroidClearChroma:2.4'
+    implementation 'de.westnordost:countryboundaries:2.1'
+    implementation 'de.ruedigermoeller:fst:2.57'
+    implementation 'org.openstreetmap.osmosis:osmosis-osm-binary:0.48.3'
+    implementation 'com.zaxxer:SparseBitSet:1.2'
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+    implementation 'io.michaelrocks:libphonenumber-android:8.12.39'
+    implementation 'io.noties.markwon:core:4.6.2'
+    implementation 'com.github.zedlabs:ElementHistoryDialog:1.0.9'
+    implementation 'com.caverock:androidsvg-aar:1.4'
+    implementation 'com.github.kix2902:CompassView:master-SNAPSHOT'
+    
+    implementation "ch.poole:PoParser:0.8.0"
+    implementation "ch.poole:OpeningHoursParser:0.28.2"
+    implementation "ch.poole:ConditionalRestrictionParser:0.3.3"
+    implementation "ch.poole:OpeningHoursFragment:0.13.5"
+    implementation 'ch.poole.android:numberpicker:1.0.10'
+    implementation 'ch.poole.android:numberpickerpreference:2.0.1'
+    implementation "ch.poole.osm:JosmFilterParser:0.11.1"
+    implementation "ch.poole.osm:JosmTemplateParser:0.2.0"
+    implementation 'ch.poole.android:sprites:0.0.4'
+    implementation 'ch.poole.android:indeterminate-checkbox:1.1.0@aar'
+    implementation 'ch.poole.misc:bentley-ottmann:0.1.1'
+    implementation 'ch.poole.geo.pmtiles-reader:Reader:0.3.6'
+    
+    // for temp stuff during dev
+    // implementation(name:'alibrary', ext:'jar')
+
+    // Unit tests
+    testImplementation "junit:junit:4.13.2"
+    testImplementation 'xmlpull:xmlpull:1.1.3.1'
+    testImplementation 'net.sf.kxml:kxml2:2.3.0'
+    testImplementation 'org.robolectric:robolectric:4.10.3'
+    testImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation 'androidx.test:rules:1.5.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
+    testImplementation "pl.droidsonroids.yaml:snakeyaml:1.18-android"
+    testImplementation ("com.orhanobut:mockwebserverplus:1.0.0") {
+        exclude group: 'org.yaml', module: 'snakeyaml'
+    }
+    testImplementation "androidx.work:work-testing:$work_version"
+
+    // Instrumentation tests
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+    androidTestImplementation "org.hamcrest:hamcrest-library:2.2"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
+    androidTestImplementation "pl.droidsonroids.yaml:snakeyaml:1.18-android"
+    androidTestImplementation ("com.orhanobut:mockwebserverplus:1.0.0") {
+        exclude group: 'org.yaml', module: 'snakeyaml'
+    }
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation "androidx.work:work-testing:$work_version"
+}
+
+int getVersionCode() {
+    def xml = getXmlFromFile("${android.sourceSets.main.manifest.srcFile}")
+    return xml.@'android:versionCode'.toInteger()
+}
+
+String getVersionName() {
+    def xml = getXmlFromFile("${android.sourceSets.main.res.srcDirs[0]}/values/appname.xml")
+    def versionName = xml.string.find { it.@name == 'app_version' }.toString()
+    if (versionName == null || versionName.length() == 0) {
+        throw new NullPointerException("Failure extracting version name.")
+    }
+    return versionName
+}
+
+def getXmlFromFile(String xmlFilePath) {
+    def xml = new XmlSlurper().parse(new File(xmlFilePath))
+    if (xml == null) {
+        throw new NullPointerException("Failure reading from " + xmlFilePath)
+    }
+    return xml;
+}
+
+def coverageSourceDirs = ['src/main/java']
+
+// see https://github.com/gradle/gradle/issues/5184
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*', '*']
+    // java 17 reflection workarounds for FST
+    jvmArgs = ["--add-opens","java.base/java.lang=ALL-UNNAMED", 
+               "--add-opens", "java.base/java.math=ALL-UNNAMED", 
+               "--add-opens", "java.base/java.util=ALL-UNNAMED", 
+               "--add-opens", "java.base/java.util.concurrent=ALL-UNNAMED",
+               "--add-opens", "java.base/java.net=ALL-UNNAMED",
+               "--add-opens", "java.base/java.text=ALL-UNNAMED",
+               "--add-opens", "java.base/java.io=ALL-UNNAMED"]
+}
+
+task jacocoTestReport(type:JacocoReport, dependsOn: "testCurrentDebugUnitTest") {
+    group = "Verification"
+
+    description = "Generate Jacoco coverage reports"
+
+    classDirectories.from = fileTree(
+            dir: 'build/intermediates/javac/currentDebug/classes/',
+            excludes: ['**/R.class', '**/R$*.class', '**/*$ViewInjector*.*', '**/BuildConfig.*', '**/Manifest*.*', '**/vector_tile/**'])
+
+    additionalSourceDirs.from = files(coverageSourceDirs)
+    sourceDirectories.from = files(coverageSourceDirs)
+    executionData.from     = fileTree(
+            dir     : "$buildDir",
+            include : ['outputs/unit_test_code_coverage/currentDebugUnitTest/testCurrentDebugUnitTest.exec', 'outputs/code-coverage/connected/flavors/CURRENT/*coverage.ec', 'reports/marathon/currentDebugAndroidTest/device-files/*/coverage/*.ec'])
+    reports {
+        xml.required = true
+        html.required = true
+    }
+
+    sourceDirectories.from = files(coverageSourceDirs)
+}
+
+// see https://marathonlabs.github.io/marathon/doc/configuration.html
+marathon {
+    uncompletedTestRetryQuota = 6
+    testOutputTimeoutMillis = 720000
+    poolingStrategy {
+        operatingSystem = true
+    }
+    // uncommenting this makes things slower, but potentially less flaky
+    // this will however lead to tests failing on Android 11 and later
+    // because access to app generated files will be lost.
+//    applicationPmClear = true
+    codeCoverageEnabled = true
+//    autoGrantPermission = true
+    debug = true
+    retryStrategy {
+        fixedQuota {
+            retryPerTestQuota = 6
+            totalAllowedRetryQuota = 100
+        }
+    }
+    // uncomment for running specific tests
+//    filteringConfiguration {
+//        allowlist {
+//            fullyQualifiedTestnameFilter =
+//               [            
+//                    'de.blau.android.osm.UploadConflictTest#referencesMissing'
+//               ] 
+//        }
+//    }
+    // analytics and sorting configuration requires a DB to be installed
+//    analytics {
+//       influx {
+//           url = "http://127.0.0.1:8086"
+//           dbName = "Marathon"
+//       }
+//    }
+//    sortingStrategy {
+    // one of successRate or executionTime
+//       successRate {
+//          limit = Instant.now().minus(Duration.parse("PT48H"))
+//       }
+//       executionTime {
+//          percentile = 80.0
+//          timeLimit = Instant.now().minus(Duration.parse("PT48H"))
+//       }
+//    }
+    // this currently doesn't seem to have any benefical effects
+//    flakinessStrategy {
+//       probabilityBased {
+//          minSuccessRate = 0.7
+//          maxCount = 1
+//          timeLimit = Instant.now().minus(Duration.parse("PT12H"))
+//       }
+//    }
+}
+
