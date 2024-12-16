@@ -1,3 +1,2 @@
 DELETE FROM photos
-DELETE FROM photos
 DELETE FROM tiles

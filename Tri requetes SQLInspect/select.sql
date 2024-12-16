@@ -1,7 +1,4 @@
 SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'
-SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'
-SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'
-SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '{{na}}'
 SELECT coverages.id as id,left,bottom,right,top,coverages.zoom_min as zoom_min,coverages.zoom_max as zoom_max FROM layers,coverages WHERE layers.rowid={{question}} AND layers.id=coverages.id
 SELECT * FROM layers WHERE rowid={{question}}
 SELECT layers.rowid as _id, name FROM layers

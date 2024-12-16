@@ -1,0 +1,5 @@
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources\TileLayerDatabase.java|633|db.rawQuery("SELECT layers.rowid as _id, name FROM layers", null)
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources\TileLayerDatabase.java|643|db.rawQuery("SELECT layers.rowid as _id, name FROM layers WHERE source=? OR source=?", new String[] { SOURCE_CUSTOM, SOURCE_MANUAL })
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources\TileLayerDatabase.java|653|db.rawQuery("SELECT layers.rowid as _id, name FROM layers WHERE server_type='" + TileLayerSource.TYPE_WMS_ENDPOINT + "' ORDER BY name", null)
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services\util\MapTileProviderDataBase.java|281|mDatabase.rawQuery(T_FSCACHE_SELECT_OLDEST, null)
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services\util\MapTileProviderDataBase.java|399|mDatabase.rawQuery("SELECT SUM(" + T_FSCACHE_FILESIZE + ") AS " + TMP_COLUMN + " FROM " + T_FSCACHE, null)

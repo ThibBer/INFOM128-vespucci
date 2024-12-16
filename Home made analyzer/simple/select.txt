@@ -1,0 +1,5 @@
+db.rawQuery("SELECT layers.rowid as _id, name FROM layers", null)
+db.rawQuery("SELECT layers.rowid as _id, name FROM layers WHERE source=? OR source=?", new String[] { SOURCE_CUSTOM, SOURCE_MANUAL })
+db.rawQuery("SELECT layers.rowid as _id, name FROM layers WHERE server_type='" + TileLayerSource.TYPE_WMS_ENDPOINT + "' ORDER BY name", null)
+mDatabase.rawQuery(T_FSCACHE_SELECT_OLDEST, null)
+mDatabase.rawQuery("SELECT SUM(" + T_FSCACHE_FILESIZE + ") AS " + TMP_COLUMN + " FROM " + T_FSCACHE, null)

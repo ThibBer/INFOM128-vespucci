@@ -1,0 +1,12 @@
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter\TagFilterActivity.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/filter\TagFilterDatabaseHelper.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/imageryoffset\ImageryOffsetDatabase.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/photos\PhotoIndex.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/prefs\AdvancedPrefDatabase.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources\KeyDatabaseHelper.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/resources\TileLayerDatabase.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services\util\MapTileProviderDataBase.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/services\util\MBTileProviderDataBase.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation\ValidatorRulesDatabase.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation\ValidatorRulesDatabaseHelper.java
+osmeditor4android-20.1.4.0/src/main/java/de/blau/android/validation\ValidatorRulesUI.java
