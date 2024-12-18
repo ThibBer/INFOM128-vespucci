@@ -101,9 +101,9 @@ def find_unused_tables(
 
 
 def generate_html_report(
-    create_table_statements: Dict[str, Path],
+    create_table_statements: Dict[str, Tuple[Path, int]],
     table_references: Dict[str, List[Tuple[Path, int, str]]],
-    unused_tables: List[Tuple[str, Path]],
+    unused_tables: List[Tuple[str, Tuple[Path, int]]],
     output_path: Path,
     repo_url: str,
     clone_path: Path,
@@ -112,9 +112,9 @@ def generate_html_report(
     """
     Generate an HTML report summarizing the database table usage.
 
-    :param create_table_statements: Mapping of table names to the files that define them.
+    :param create_table_statements: Mapping of table names to the files and lines that define them.
     :param table_references: Mapping of table names to a list of references.
-    :param unused_tables: List of unused tables and their definition files.
+    :param unused_tables: List of unused tables with their definition file and line number.
     :param output_path: The path where the HTML report will be written.
     :param repo_url: The original repository URL.
     :param clone_path: The path where the repository was cloned.
@@ -130,10 +130,11 @@ def generate_html_report(
         f.write(f"<p>Unused tables: {len(unused_tables)}</p>")
         if unused_tables:
             f.write("<ul>")
-            for table, creation_file in unused_tables:
+            for table, (creation_file, creation_line) in unused_tables:
                 relative_path = creation_file.relative_to(clone_path).as_posix()
                 f.write(
-                    f"<li><a href='#{table}'>{table}</a> (Defined in: {relative_path})</li>"
+                    f"<li><a href='{repo_url}/blob/{branch}/{quote(relative_path)}#L{creation_line}'>{table}</a> "
+                    f"(Defined in: {relative_path}, Line: {creation_line})</li>"
                 )
             f.write("</ul>")
 
@@ -141,11 +142,13 @@ def generate_html_report(
         f.write("<h2>Detailed Table Usage</h2>")
         for table, references in table_references.items():
             f.write(f"<h3 id='{table}'>{table}</h3>")
-            creation_file = create_table_statements.get(table)
-            if creation_file:
+            creation_data = create_table_statements.get(table)
+            if creation_data:
+                creation_file, creation_line = creation_data
                 relative_path = creation_file.relative_to(clone_path).as_posix()
                 f.write(
-                    f"<p>Defined in: <a href='{repo_url}/blob/{branch}/{quote(relative_path)}'>{relative_path}</a></p>"
+                    f"<p>Defined in: <a href='{repo_url}/blob/{branch}/{quote(relative_path)}#L{creation_line}'>"
+                    f"{relative_path}, Line: {creation_line}</a></p>"
                 )
             else:
                 f.write("<p>Definition file unknown.</p>")
@@ -155,8 +158,8 @@ def generate_html_report(
                 for file_path, position, snippet in references:
                     relative_path = file_path.relative_to(clone_path).as_posix()
                     f.write(
-                        f"<li>File: <a href='{repo_url}/blob/{branch}/{quote(relative_path)}#L{position}'>{relative_path}</a>, "
-                        f"Line: {position}, Snippet: {snippet[:50]}</li>"
+                        f"<li>File: <a href='{repo_url}/blob/{branch}/{quote(relative_path)}#L{position}'>"
+                        f"{relative_path}, Line: {position}</a>, Snippet: {snippet[:50]}</li>"
                     )
                 f.write("</ul>")
             else:
