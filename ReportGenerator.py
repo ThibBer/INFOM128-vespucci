@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import quote
 from typing import Dict, List, Tuple
 from SQLTableExtractor import find_create_table_statements
+from typing import Optional
 
 
 def clone_repository(repo_url: str, clone_path: Path) -> None:
@@ -120,6 +121,34 @@ def generate_html_report(
     :param clone_path: The path where the repository was cloned.
     :param branch: The branch name of the repository (defaults to "master").
     """
+
+    def get_line_creation_date(
+        repo_path: Path, file_path: Path, line_number: int
+    ) -> Optional[str]:
+        try:
+            relative_path = file_path.relative_to(repo_path).as_posix()
+            result = subprocess.run(
+                [
+                    "git",
+                    "blame",
+                    "--date=iso",
+                    "-L",
+                    f"{line_number},{line_number}",
+                    relative_path,
+                ],
+                cwd=repo_path,
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            output = result.stdout.strip()
+            match = re.search(r"(\d{4}-\d{2}-\d{2})", output)
+            if match:
+                return match.group(1)
+        except subprocess.CalledProcessError:
+            pass
+        return None
+
     with output_path.open("w", encoding="utf-8") as f:
         f.write("<html><head><title>Database Table Usage Report</title></head><body>")
         f.write("<h1>Database Table Usage Report</h1>")
@@ -132,9 +161,15 @@ def generate_html_report(
             f.write("<ul>")
             for table, (creation_file, creation_line) in unused_tables:
                 relative_path = creation_file.relative_to(clone_path).as_posix()
+                creation_date = get_line_creation_date(
+                    clone_path, creation_file, creation_line
+                )
+                creation_date_text = (
+                    f" (Created on: {creation_date})" if creation_date else ""
+                )
                 f.write(
                     f"<li><a href='{repo_url}/blob/{branch}/{quote(relative_path)}#L{creation_line}'>{table}</a> "
-                    f"(Defined in: {relative_path}, Line: {creation_line})</li>"
+                    f"(Defined in: {relative_path}, Line: {creation_line}{creation_date_text})</li>"
                 )
             f.write("</ul>")
 
@@ -146,9 +181,15 @@ def generate_html_report(
             if creation_data:
                 creation_file, creation_line = creation_data
                 relative_path = creation_file.relative_to(clone_path).as_posix()
+                creation_date = get_line_creation_date(
+                    clone_path, creation_file, creation_line
+                )
+                creation_date_text = (
+                    f" (Created on: {creation_date})" if creation_date else ""
+                )
                 f.write(
                     f"<p>Defined in: <a href='{repo_url}/blob/{branch}/{quote(relative_path)}#L{creation_line}'>"
-                    f"{relative_path}, Line: {creation_line}</a></p>"
+                    f"{relative_path}, Line: {creation_line}</a>{creation_date_text}</p>"
                 )
             else:
                 f.write("<p>Definition file unknown.</p>")
@@ -166,6 +207,43 @@ def generate_html_report(
                 f.write("<p>No references found.</p>")
 
         f.write("</body></html>")
+
+
+def get_line_creation_date(
+    repo_path: Path, file_path: Path, line_number: int
+) -> Optional[str]:
+    """
+    Get the creation date of a specific line in a file using Git.
+
+    :param repo_path: Path to the Git repository.
+    :param file_path: Path to the file (relative to the repo root).
+    :param line_number: Line number to fetch the creation date for (1-based index).
+    :return: Creation date in ISO format (YYYY-MM-DD) or None if not found.
+    """
+    try:
+        relative_path = file_path.relative_to(repo_path).as_posix()
+        result = subprocess.run(
+            [
+                "git",
+                "blame",
+                "--date=iso",
+                "-L",
+                f"{line_number},{line_number}",
+                relative_path,
+            ],
+            cwd=repo_path,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        output = result.stdout.strip()
+        # Extract the date from the Git blame output
+        match = re.search(r"(\d{4}-\d{2}-\d{2})", output)
+        if match:
+            return match.group(1)
+    except subprocess.CalledProcessError:
+        pass  # Handle files not tracked in Git or other errors gracefully
+    return None
 
 
 def main():
