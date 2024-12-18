@@ -4,7 +4,12 @@ from collections import defaultdict
 from pathlib import Path
 from urllib.parse import quote
 from typing import Dict, List, Tuple
-from SQLTableExtractor import find_create_table_statements
+from SQLTableExtractor import (
+    extract_constants,
+    find_create_table_statements,
+    find_java_files,
+    lex_file,
+)
 from typing import Optional
 
 
@@ -20,14 +25,14 @@ def clone_repository(repo_url: str, clone_path: Path) -> None:
 
 
 def find_table_references(
-    project_dir: Path, tables: List[str]
+    project_dir: Path, tables: List[str], constants_map: Dict[str, str]
 ) -> Dict[str, List[Tuple[Path, int, str]]]:
     """
     Scan Java files in the given project directory for references to the specified tables.
 
     References are:
       - Lines calling known database operations.
-      - Containing a table name.
+      - Containing a table name or its constant identifier.
 
     Ignored:
       - Lines with CREATE TABLE statements (considered definitions, not usage).
@@ -35,6 +40,7 @@ def find_table_references(
 
     :param project_dir: The directory containing the project files.
     :param tables: A list of table names to search for.
+    :param constants_map: A dictionary mapping constants to their literal values.
     :return: A dictionary mapping each table name to a list of tuples:
              (file_path, line_number, line_snippet).
     """
@@ -47,9 +53,15 @@ def find_table_references(
         "delete",
         "replace",
         "compileStatement",
+        "execute",
+        "prepareStatement",
+        "executeQuery",
     ]
     create_pattern = re.compile(r"CREATE\s+TABLE", re.IGNORECASE)
     table_references = defaultdict(list)
+
+    # Create a reverse lookup map of literal values to constants for table names
+    literal_to_table = {v: k for k, v in constants_map.items() if v in tables}
 
     for file_path in project_dir.rglob("*.java"):
         try:
@@ -70,10 +82,15 @@ def find_table_references(
                 if create_pattern.search(stripped_line):
                     continue
 
-                # Check if line calls a known DB method and contains any of the tables
+                # Check if line calls a known DB method
                 if any(method in stripped_line for method in java_methods):
                     for table in tables:
-                        if table in stripped_line:
+                        # Match directly or via constants
+                        if table in stripped_line or any(
+                            const in stripped_line
+                            for const, literal in constants_map.items()
+                            if literal == table
+                        ):
                             table_references[table].append(
                                 (file_path, i + 1, stripped_line)
                             )
@@ -259,9 +276,17 @@ def main():
     create_table_statements = find_create_table_statements(clone_path)
     print(f"Found {len(create_table_statements)} tables.")
 
+    print("Extracting constants...")
+    java_files = find_java_files(clone_path)
+    constants_map = {}
+    for jf in java_files:
+        tokens = lex_file(jf)
+        constants_map.update(extract_constants(tokens))
+    print(f"Extracted {len(constants_map)} constants.")
+
     print("Finding table references...")
     table_references = find_table_references(
-        clone_path, list(create_table_statements.keys())
+        clone_path, list(create_table_statements.keys()), constants_map
     )
 
     print("Identifying unused tables...")
