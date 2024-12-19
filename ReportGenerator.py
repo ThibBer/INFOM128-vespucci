@@ -144,10 +144,8 @@ def extract_constants(tokens):
     Extract constants of forms like:
     static final String IDENT = "VALUE";
 
-    Also handle concatenation of strings and constants:
-    static final String SOME_CONST = "A" + OTHER_CONST + "B";
+    Also handle concatenation of strings and constants.
     """
-
     constants_map = {}
     length = len(tokens)
     i = 0
@@ -282,15 +280,7 @@ class Parser:
         )
 
     def extract_tables(self, sql, line):
-        # Look for CREATE TABLE (IF NOT EXISTS)
-        upper_sql = sql.upper()
-        idx = upper_sql.find("CREATE TABLE")
-        if idx == -1:
-            return
-
-        # Extract table name and columns
-        # A naive parsing approach:
-        # CREATE TABLE [IF NOT EXISTS] table_name ( col_definitions )
+        # Look for CREATE TABLE statements and extract table name and columns
         pattern = re.compile(
             r"CREATE\s+TABLE\s+(IF\s+NOT\s+EXISTS\s+)?([A-Za-z0-9_]+)\s*\((.*?)\)",
             re.IGNORECASE | re.DOTALL,
@@ -299,23 +289,15 @@ class Parser:
         if match:
             table_name = match.group(2)
             cols_str = match.group(3)
-            # Parse columns
             columns = self.parse_columns(cols_str)
             self.tables_with_lines.append((table_name, line))
             self.tables_columns[table_name] = columns
 
     def parse_columns(self, cols_str: str) -> List[str]:
-        # Split by commas not inside parentheses (simple approach)
-        # Then trim each column definition and extract the first token as column name
-        columns = []
-        # Remove trailing ) or ; if any and extra spaces
+        # Simple column parsing
         cols_str = cols_str.strip().rstrip(");")
-
-        # Split by commas
         col_defs = [c.strip() for c in cols_str.split(",")]
 
-        # We'll consider a line a column definition if it starts with an identifier
-        # and not a known constraint keyword like PRIMARY, FOREIGN, UNIQUE
         constraint_keywords = {
             "PRIMARY",
             "FOREIGN",
@@ -324,12 +306,12 @@ class Parser:
             "CONSTRAINT",
             "KEY",
         }
+        columns = []
         for cdef in col_defs:
             parts = cdef.split()
             if len(parts) > 0:
                 first = parts[0].strip('"`[]')
                 if first.upper() not in constraint_keywords:
-                    # Consider this a column
                     columns.append(first)
         return columns
 
@@ -373,6 +355,78 @@ def clone_repository(repo_url: str, clone_path: Path) -> None:
         subprocess.run(["git", "clone", repo_url, str(clone_path)], check=True)
 
 
+def classify_query_type(line: str, method: str) -> str:
+    """
+    Classify query type based on SQL keywords and method name.
+    Heuristics:
+    - If line mentions SELECT, consider it SELECT.
+    - If INSERT INTO appears, consider INSERT.
+    - If UPDATE appears, consider UPDATE.
+    - If DELETE FROM appears, consider DELETE.
+    - If CREATE TABLE appears, consider CREATE.
+    - Else fallback to method name heuristics:
+      - query/rawQuery/executeQuery -> SELECT
+      - insert -> INSERT
+      - update -> UPDATE
+      - delete -> DELETE
+      - replace -> INSERT (REPLACE)
+      - execSQL, compileStatement -> try to guess from SQL if present
+    """
+    upper_line = line.upper()
+    if "SELECT" in upper_line:
+        return "SELECT"
+    if "INSERT INTO" in upper_line:
+        return "INSERT"
+    if "UPDATE " in upper_line:
+        return "UPDATE"
+    if "DELETE FROM" in upper_line:
+        return "DELETE"
+    if "CREATE TABLE" in upper_line:
+        return "CREATE"
+
+    # Fallback to method name
+    if method in ["query", "rawQuery", "executeQuery"]:
+        return "SELECT"
+    if method == "insert" or method == "replace":
+        return "INSERT"
+    if method == "update":
+        return "UPDATE"
+    if method == "delete":
+        return "DELETE"
+    if method in ["execSQL", "compileStatement", "execute", "prepareStatement"]:
+        # Hard to guess if not found keywords
+        return "UNKNOWN"
+    return "UNKNOWN"
+
+
+def compute_query_complexity(line: str) -> int:
+    """
+    A naive complexity measure:
+    Count occurrences of common SQL keywords (JOIN, WHERE, GROUP BY, ORDER BY, UNION, etc.)
+
+    The more keywords appear, the more 'complex' we consider the query.
+    This is a simple heuristic.
+    """
+    keywords = [
+        "JOIN",
+        "WHERE",
+        "GROUP BY",
+        "ORDER BY",
+        "HAVING",
+        "UNION",
+        "EXCEPT",
+        "INTERSECT",
+    ]
+    upper_line = line.upper()
+    complexity = 0
+    for kw in keywords:
+        complexity += upper_line.count(kw)
+    # Also consider length as a factor: longer SQL might be more complex
+    # Add 1 complexity point per 100 characters as a rough heuristic
+    complexity += len(line) // 100
+    return complexity
+
+
 def find_table_references(
     project_dir: Path,
     tables: List[str],
@@ -381,17 +435,20 @@ def find_table_references(
 ) -> Tuple[
     Dict[str, List[Tuple[Path, int, str]]],
     Dict[str, Dict[str, List[Tuple[Path, int, str]]]],
+    List[Dict],
 ]:
     """
-    Find references to tables and columns.
-    We look for lines that:
-      - Call known database operations.
-      - Contain a table name or constant referencing that table.
-      - If we find the table, we also check for column usage by searching for column names or their constants.
+    Find references to tables and columns, and also gather query statistics.
+
+    Added features:
+    - We now identify query type and compute complexity.
+    - We store all queries in a list with their type, file, line and complexity.
 
     Returns:
       table_references: {table_name: [(file_path, line_num, snippet), ...]}
       column_references: {table_name: {column_name: [(file_path, line_num, snippet), ...]}}
+      queries: A list of dictionaries with info about each query:
+               {'type': str, 'file': Path, 'line': int, 'snippet': str, 'complexity': int}
     """
     java_methods = [
         "execSQL",
@@ -410,28 +467,11 @@ def find_table_references(
     table_references = defaultdict(list)
     column_references = {t: defaultdict(list) for t in tables}
 
-    # Maps literal table values to constants, for quick lookup
-    literal_to_table = {v: k for k, v in constants_map.items() if v in tables}
+    # Precompute column map
+    # column_map is not needed now because we do direct checks per table
+    # We'll rely on scanning line for column references after table is found.
 
-    # Build a column lookup as well: map from literal column name to table/column
-    # Note: multiple tables can have same column name, we must consider all possibilities.
-    # We'll handle columns table-by-table after confirming the table usage.
-    column_map = defaultdict(list)  # column_name -> [(table_name, column_name)]
-    for tbl, cols in table_columns.items():
-        for c in cols:
-            column_map[c].append((tbl, c))
-
-    # Also consider constants for columns
-    # Reverse mapping for constants that map to strings that are columns in some table
-    for const, val in constants_map.items():
-        if val in tables:
-            # It's a table constant
-            pass
-        # Check if val is a column in any table
-        if val in column_map:
-            # Add constant to column_map with the same references
-            # We will handle substitution logic at runtime of line scanning.
-            column_map[const].extend(column_map[val])
+    queries = []
 
     for file_path in project_dir.rglob("*.java"):
         try:
@@ -452,7 +492,25 @@ def find_table_references(
                 if create_pattern.search(stripped_line):
                     continue
 
-                if any(method in stripped_line for method in java_methods):
+                # Check if line calls a known DB method
+                called_methods = [m for m in java_methods if m in stripped_line]
+                if called_methods:
+                    # Consider the first matched method as indicative of query type
+                    # (Heuristic: usually only one DB method call per line)
+                    method = called_methods[0]
+                    # Classify query
+                    qtype = classify_query_type(stripped_line, method)
+                    complexity = compute_query_complexity(stripped_line)
+                    queries.append(
+                        {
+                            "type": qtype,
+                            "file": file_path,
+                            "line": i + 1,
+                            "snippet": stripped_line,
+                            "complexity": complexity,
+                        }
+                    )
+
                     # Check table usage
                     for table in tables:
                         # Check table name or any constant referencing it
@@ -464,38 +522,31 @@ def find_table_references(
                                 if literal == table
                             )
                         ):
-                            # Line references this table
                             table_references[table].append(
                                 (file_path, i + 1, stripped_line)
                             )
                             table_used = True
 
                         if table_used:
-                            # Now check columns of this table
-                            # For each column in that table, check if it appears
-                            # directly or via constants that resolve to it.
+                            # Check columns usage
                             for col in table_columns.get(table, []):
-                                # The column can appear as itself or any constant that maps to it
-                                # First check direct appearance
-                                col_used = False
+                                # Direct column usage or via constants?
                                 if col in stripped_line:
                                     column_references[table][col].append(
                                         (file_path, i + 1, stripped_line)
                                     )
-                                    col_used = True
                                 else:
-                                    # Check if any constant represents this column
+                                    # Check constants for columns
                                     for const, literal in constants_map.items():
                                         if literal == col and const in stripped_line:
                                             column_references[table][col].append(
                                                 (file_path, i + 1, stripped_line)
                                             )
-                                            col_used = True
                                             break
         except UnicodeDecodeError:
             pass  # skip files that cannot be decoded
 
-    return table_references, column_references
+    return table_references, column_references, queries
 
 
 def find_unused_tables(
@@ -552,6 +603,92 @@ def get_line_creation_date(
     return None
 
 
+def generate_query_statistics_section(
+    f, queries: List[Dict], clone_path: Path, repo_url: str, branch: str
+):
+    """
+    Generate an HTML section with detailed, commented statistics about the database queries:
+    - Their type (SELECT, DELETE, INSERT, UPDATE, CREATE, etc.)
+    - Their complexity (based on a simple heuristic)
+    - Their distribution over the code base (which files contain the most queries)
+    """
+
+    # Compute queries by type
+    queries_by_type = defaultdict(list)
+    for q in queries:
+        queries_by_type[q["type"]].append(q)
+
+    # Compute complexity statistics
+    # For each type, what is the average complexity?
+    complexity_stats = {}
+    for qtype, qlist in queries_by_type.items():
+        complexities = [q["complexity"] for q in qlist]
+        avg_complexity = sum(complexities) / len(complexities) if complexities else 0
+        complexity_stats[qtype] = (len(qlist), avg_complexity)
+
+    # Distribution by file: count queries per file
+    queries_by_file = defaultdict(int)
+    for q in queries:
+        relative_path = q["file"].relative_to(clone_path).as_posix()
+        queries_by_file[relative_path] += 1
+
+    # Sort files by number of queries descending
+    files_sorted = sorted(queries_by_file.items(), key=lambda x: x[1], reverse=True)
+
+    f.write("<h2>Query Statistics</h2>")
+    f.write("<p>Below are detailed statistics about the queries found in the code:</p>")
+
+    # Queries by type
+    f.write("<h3>Queries by Type</h3>")
+    f.write("<ul>")
+    for qtype, qlist in queries_by_type.items():
+        count = len(qlist)
+        f.write(f"<li>{qtype}: {count} queries</li>")
+    f.write("</ul>")
+
+    # Complexity statistics
+    f.write("<h3>Complexity Statistics</h3>")
+    f.write("<p>Complexity is a naive heuristic counting SQL keywords and length.</p>")
+    f.write(
+        "<table border='1'><tr><th>Query Type</th><th>Count</th><th>Average Complexity</th></tr>"
+    )
+    for qtype, (count, avg_complexity) in complexity_stats.items():
+        f.write(
+            f"<tr><td>{qtype}</td><td>{count}</td><td>{avg_complexity:.2f}</td></tr>"
+        )
+    f.write("</table>")
+
+    # Distribution by file
+    f.write("<h3>Distribution Over Code Base</h3>")
+    if files_sorted:
+        f.write("<p>Files with the most queries:</p>")
+        f.write("<ol>")
+        for filepath, qcount in files_sorted:
+            f.write(f"<li>{filepath}: {qcount} queries</li>")
+        f.write("</ol>")
+    else:
+        f.write("<p>No queries found.</p>")
+
+    # Also, we can show a few example queries for each type
+    f.write("<h3>Example Queries</h3>")
+    for qtype, qlist in queries_by_type.items():
+        f.write(f"<h4>{qtype}</h4>")
+        # Show first 5 queries of this type
+        examples = qlist[:5]
+        if examples:
+            f.write("<ul>")
+            for ex in examples:
+                relative_path = ex["file"].relative_to(clone_path).as_posix()
+                f.write(
+                    f"<li><a href='{repo_url}/blob/{branch}/{quote(relative_path)}#L{ex['line']}'>"
+                    f"{relative_path}, line {ex['line']}</a>: {ex['snippet'][:100]}... "
+                    f"(complexity: {ex['complexity']})</li>"
+                )
+            f.write("</ul>")
+        else:
+            f.write("<p>No examples.</p>")
+
+
 def generate_html_report(
     create_table_statements: Dict[str, Tuple[Path, int]],
     table_references: Dict[str, List[Tuple[Path, int, str]]],
@@ -559,6 +696,7 @@ def generate_html_report(
     table_columns: Dict[str, List[str]],
     column_references: Dict[str, Dict[str, List[Tuple[Path, int, str]]]],
     unused_columns: Dict[str, List[str]],
+    queries: List[Dict],
     output_path: Path,
     repo_url: str,
     clone_path: Path,
@@ -667,6 +805,9 @@ def generate_html_report(
                 else:
                     f.write("<p>No references found for this column.</p>")
 
+        # Add Query Statistics Section
+        generate_query_statistics_section(f, queries, clone_path, repo_url, branch)
+
         f.write("</body></html>")
 
 
@@ -691,8 +832,8 @@ def main():
         constants_map.update(extract_constants(tokens))
     print(f"Extracted {len(constants_map)} constants.")
 
-    print("Finding table and column references...")
-    table_references, column_references = find_table_references(
+    print("Finding table and column references and collecting query stats...")
+    table_references, column_references, queries = find_table_references(
         clone_path, list(create_table_statements.keys()), constants_map, table_columns
     )
 
@@ -724,6 +865,7 @@ def main():
         table_columns,
         column_references,
         unused_columns,
+        queries,
         output_path,
         repo_url,
         clone_path,
