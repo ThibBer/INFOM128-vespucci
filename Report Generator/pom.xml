@@ -28,6 +28,12 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.36</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+            <version>6.6.0.202305301015-r</version>
+        </dependency>
     </dependencies>
 
     <build>

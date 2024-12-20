@@ -15,6 +15,12 @@ import com.github.javaparser.resolution.declarations.ResolvedFieldDeclaration;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.*;
 
+import org.eclipse.jgit.api.CloneCommand;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.Repository;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -24,6 +30,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * DatabaseUsageAnalyzer analyzes Java codebases to identify database table and column usage,
+ * and generates an HTML report with detailed information and hyperlinks to the source code.
+ */
 public class DatabaseUsageAnalyzer {
 
     // Patterns to identify CREATE TABLE statements inside SQL strings.
@@ -61,7 +71,7 @@ public class DatabaseUsageAnalyzer {
 
     // Where tables are referenced: table_name -> list of references
     private Map<String, List<CodeReference>> tableReferences = new HashMap<>();
-    // column references: table_name -> column_name -> references
+    // Column references: table_name -> column_name -> references
     private Map<String, Map<String, List<CodeReference>>> columnReferences = new HashMap<>();
 
     // Store queries for complexity analysis
@@ -69,14 +79,87 @@ public class DatabaseUsageAnalyzer {
 
     public static void main(String[] args) throws IOException {
         // Example usage:
-        // Assume repoDir is the path to the local cloned repository
-        // and repoUrl is the URL of the repository for linking in the report
-        Path repoDir = Paths.get("repo_clone"); // Replace with your actual path
-        String repoUrl = "https://github.com/username/repo"; // Replace with your actual repo URL
+        // Define the repository URL and clone directory
+        String repoUrl = "https://github.com/MarcusWolschon/osmeditor4android.git"; // Replace with your actual repo URL
+        Path cloneDir = Paths.get("repo_clone"); // Define clone directory
+
+        // Clone the repository if it's not already cloned
+        String repoWebUrl = null;
+        String defaultBranch = null;
+        if (!Files.exists(cloneDir)) {
+            try {
+                System.out.println("Cloning repository from " + repoUrl + " to " + cloneDir);
+                CloneCommand cloneCommand = Git.cloneRepository()
+                        .setURI(repoUrl)
+                        .setDirectory(cloneDir.toFile())
+                        .setCloneAllBranches(true);
+                try (Git git = cloneCommand.call()) {
+                    System.out.println("Cloning completed.");
+                    Repository repository = git.getRepository();
+                    //Ref head = repository.getBranch();
+                    defaultBranch = repository.getBranch();
+                    System.out.println("Default branch detected: " + defaultBranch);
+                }
+            } catch (GitAPIException e) {
+                System.err.println("Failed to clone repository: " + e.getMessage());
+                e.printStackTrace();
+                return;
+            }
+            repoWebUrl = deriveWebUrl(repoUrl);
+        } else {
+            System.out.println("Repository already cloned at " + cloneDir);
+            try (Git git = Git.open(cloneDir.toFile())) {
+                Repository repository = git.getRepository();
+                defaultBranch = repository.getBranch();
+                System.out.println("Default branch detected: " + defaultBranch);
+            } catch (IOException e) {
+                System.err.println("Failed to open existing repository: " + e.getMessage());
+                e.printStackTrace();
+                return;
+            }
+            repoWebUrl = deriveWebUrl(repoUrl);
+        }
+
+        if (repoWebUrl == null) {
+            System.err.println("Unsupported repository URL format: " + repoUrl);
+            return;
+        }
 
         DatabaseUsageAnalyzer analyzer = new DatabaseUsageAnalyzer();
-        analyzer.configureSymbolSolver(repoDir);
-        analyzer.runAnalysis(repoDir, repoUrl);
+        analyzer.configureSymbolSolver(cloneDir);
+        analyzer.runAnalysis(cloneDir, repoWebUrl, defaultBranch);
+    }
+
+    /**
+     * Derives the web URL from the repository clone URL.
+     * Handles HTTPS and SSH URLs for GitHub.
+     *
+     * @param repoUrl The clone URL of the repository.
+     * @return The base web URL for accessing files, or null if the format is unsupported.
+     */
+    private static String deriveWebUrl(String repoUrl) {
+        // Handle HTTPS URLs
+        if (repoUrl.startsWith("https://github.com/")) {
+            // Example: https://github.com/user/repo.git -> https://github.com/user/repo
+            if (repoUrl.endsWith(".git")) {
+                return repoUrl.substring(0, repoUrl.length() - 4);
+            } else {
+                return repoUrl;
+            }
+        }
+        // Handle SSH URLs
+        else if (repoUrl.startsWith("git@github.com:")) {
+            // Example: git@github.com:user/repo.git -> https://github.com/user/repo
+            String webUrl = repoUrl.replace("git@github.com:", "https://github.com/");
+            if (webUrl.endsWith(".git")) {
+                webUrl = webUrl.substring(0, webUrl.length() - 4);
+            }
+            return webUrl;
+        }
+        // Unsupported URL format
+        else {
+            return null;
+        }
     }
 
     /**
@@ -101,11 +184,12 @@ public class DatabaseUsageAnalyzer {
      * Runs the analysis by processing Java files, identifying table and column usages,
      * and generating an HTML report.
      *
-     * @param repoDir The directory containing the cloned repository.
-     * @param repoUrl The URL of the repository (for linking in the report).
+     * @param repoDir     The directory containing the cloned repository.
+     * @param repoWebUrl  The web URL of the repository (for linking in the report).
+     * @param defaultBranch The default branch of the repository.
      * @throws IOException If an I/O error occurs.
      */
-    public void runAnalysis(Path repoDir, String repoUrl) throws IOException {
+    public void runAnalysis(Path repoDir, String repoWebUrl, String defaultBranch) throws IOException {
         // 1. Find all Java files in repoDir
         List<Path> javaFiles = findJavaFiles(repoDir);
 
@@ -127,7 +211,7 @@ public class DatabaseUsageAnalyzer {
 
         // Generate HTML Report
         Path outputReport = repoDir.resolve("database_usage_report.html");
-        generateHtmlReport(outputReport, repoUrl, repoDir, unusedTables, unusedCols);
+        generateHtmlReport(outputReport, repoWebUrl, repoDir, unusedTables, unusedCols, defaultBranch);
 
         System.out.println("Report generated at: " + outputReport.toAbsolutePath());
     }
@@ -519,16 +603,18 @@ public class DatabaseUsageAnalyzer {
     /**
      * Generates an HTML report summarizing the analysis.
      *
-     * @param outputPath  The path to the output HTML file.
-     * @param repoUrl     The repository URL (for linking in the report).
-     * @param repoDir     The directory of the cloned repository.
+     * @param outputPath   The path to the output HTML file.
+     * @param repoWebUrl   The web URL of the repository (for linking in the report).
+     * @param repoDir      The directory of the cloned repository.
      * @param unusedTables A list of unused tables.
-     * @param unusedCols  A map of unused columns per table.
+     * @param unusedCols   A map of unused columns per table.
+     * @param branch       The default branch of the repository.
      * @throws IOException If an I/O error occurs.
      */
-    private void generateHtmlReport(Path outputPath, String repoUrl, Path repoDir,
+    private void generateHtmlReport(Path outputPath, String repoWebUrl, Path repoDir,
                                     List<TableDefinition> unusedTables,
-                                    Map<String, List<String>> unusedCols) throws IOException {
+                                    Map<String, List<String>> unusedCols,
+                                    String branch) throws IOException {
         try (BufferedWriter w = Files.newBufferedWriter(outputPath, StandardCharsets.UTF_8)) {
             w.write("<html><head><title>Database Table Usage Report</title></head><body>");
             w.write("<h1>Database Table Usage Report</h1>");
@@ -540,7 +626,9 @@ public class DatabaseUsageAnalyzer {
             if (!unusedTables.isEmpty()) {
                 w.write("<ul>");
                 for (TableDefinition td : unusedTables) {
-                    w.write("<li>" + td.tableName + " (Defined in: " + repoDir.relativize(td.file) + ")</li>");
+                    String link = buildFileLink(repoWebUrl, repoDir, td.file, td.lineNumber, branch);
+                    w.write("<li>" + td.tableName + " (Defined in: <a href=\"" + link + "\">" +
+                            repoDir.relativize(td.file) + ": line " + td.lineNumber + "</a>)</li>");
                 }
                 w.write("</ul>");
             }
@@ -560,7 +648,9 @@ public class DatabaseUsageAnalyzer {
             for (String table : createTableStatements.keySet()) {
                 w.write("<h3 id='" + table + "'>" + table + "</h3>");
                 TableDefinition def = createTableStatements.get(table);
-                w.write("<p>Defined in: " + repoDir.relativize(def.file) + ", line " + def.lineNumber + "</p>");
+                String defLink = buildFileLink(repoWebUrl, repoDir, def.file, def.lineNumber, branch);
+                w.write("<p>Defined in: <a href=\"" + defLink + "\">" +
+                        repoDir.relativize(def.file) + ": line " + def.lineNumber + "</a></p>");
 
                 // Columns
                 w.write("<h4>Columns</h4><ul>");
@@ -582,7 +672,10 @@ public class DatabaseUsageAnalyzer {
                 if (refs != null && !refs.isEmpty()) {
                     w.write("<h4>References</h4><ul>");
                     for (CodeReference cr : refs) {
-                        w.write("<li>" + repoDir.relativize(cr.file) + ": line " + cr.lineNumber + " - " + escapeHtml(cr.snippet) + "</li>");
+                        String refLink = buildFileLink(repoWebUrl, repoDir, cr.file, cr.lineNumber, branch);
+                        w.write("<li><a href=\"" + refLink + "\">" +
+                                repoDir.relativize(cr.file) + ": line " + cr.lineNumber + "</a> - " +
+                                escapeHtml(cr.snippet) + "</li>");
                     }
                     w.write("</ul>");
                 } else {
@@ -599,7 +692,10 @@ public class DatabaseUsageAnalyzer {
                         if (!colRefs.isEmpty()) {
                             w.write("<ul>");
                             for (CodeReference ccr : colRefs) {
-                                w.write("<li>" + repoDir.relativize(ccr.file) + ": line " + ccr.lineNumber + " - " + escapeHtml(ccr.snippet) + "</li>");
+                                String colRefLink = buildFileLink(repoWebUrl, repoDir, ccr.file, ccr.lineNumber, branch);
+                                w.write("<li><a href=\"" + colRefLink + "\">" +
+                                        repoDir.relativize(ccr.file) + ": line " + ccr.lineNumber + "</a> - " +
+                                        escapeHtml(ccr.snippet) + "</li>");
                             }
                             w.write("</ul>");
                         } else {
@@ -610,20 +706,38 @@ public class DatabaseUsageAnalyzer {
             }
 
             // Query Statistics
-            generateQueryStatisticsSection(w, repoDir);
+            generateQueryStatisticsSection(w, repoWebUrl, repoDir, branch);
 
             w.write("</body></html>");
         }
     }
 
     /**
+     * Builds a hyperlink to a specific line in a file within the repository.
+     *
+     * @param repoWebUrl The base web URL of the repository.
+     * @param repoDir    The local clone directory of the repository.
+     * @param file       The file path within the repository.
+     * @param line       The line number to link to.
+     * @param branch     The branch name.
+     * @return A string representing the full URL to the specified line in the file.
+     */
+    private String buildFileLink(String repoWebUrl, Path repoDir, Path file, int line, String branch) {
+        Path relativePath = repoDir.relativize(file);
+        String urlPath = relativePath.toString().replace(File.separatorChar, '/');
+        return repoWebUrl + "/blob/" + branch + "/" + urlPath + "#L" + line;
+    }
+
+    /**
      * Generates the Query Statistics section of the HTML report.
      *
-     * @param w       The BufferedWriter to write to.
-     * @param repoDir The directory of the cloned repository.
+     * @param w          The BufferedWriter to write to.
+     * @param repoWebUrl The web URL of the repository (for linking in the report).
+     * @param repoDir    The directory of the cloned repository.
+     * @param branch     The branch name.
      * @throws IOException If an I/O error occurs.
      */
-    private void generateQueryStatisticsSection(BufferedWriter w, Path repoDir) throws IOException {
+    private void generateQueryStatisticsSection(BufferedWriter w, String repoWebUrl, Path repoDir, String branch) throws IOException {
         w.write("<h2>Query Statistics</h2>");
 
         // Queries by type
@@ -659,7 +773,8 @@ public class DatabaseUsageAnalyzer {
         if (!sortedByCount.isEmpty()) {
             w.write("<ol>");
             for (Map.Entry<Path, Integer> e : sortedByCount) {
-                w.write("<li>" + repoDir.relativize(e.getKey()) + ": " + e.getValue() + " queries</li>");
+                String fileLink = buildFileLink(repoWebUrl, repoDir, e.getKey(), 1, branch); // Link to file start
+                w.write("<li><a href=\"" + fileLink + "\">" + repoDir.relativize(e.getKey()) + "</a>: " + e.getValue() + " queries</li>");
             }
             w.write("</ol>");
         } else {
@@ -674,8 +789,10 @@ public class DatabaseUsageAnalyzer {
             if (!examples.isEmpty()) {
                 w.write("<ul>");
                 for (QueryInfo ex : examples) {
-                    w.write("<li>" + repoDir.relativize(ex.file) + ": line " + ex.lineNumber +
-                            " - " + escapeHtml(ex.snippet) +
+                    String exampleLink = buildFileLink(repoWebUrl, repoDir, ex.file, ex.lineNumber, branch);
+                    w.write("<li><a href=\"" + exampleLink + "\">" +
+                            repoDir.relativize(ex.file) + ": line " + ex.lineNumber + "</a> - " +
+                            escapeHtml(ex.snippet) +
                             " (complexity: " + ex.complexity + ")</li>");
                 }
                 w.write("</ul>");
@@ -692,7 +809,7 @@ public class DatabaseUsageAnalyzer {
      * @return The escaped string.
      */
     private String escapeHtml(String snippet) {
-        return snippet.replace("<", "&lt;").replace(">", "&gt;");
+        return snippet.replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
     }
 
     // ----- Helper Classes -----
