@@ -279,7 +279,7 @@ public class DatabaseUsageAnalyzer {
         } catch (Exception e) {
             // Parsing errors - skip
             System.err.println("Failed to parse file for definitions: " + javaFile);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -336,7 +336,7 @@ public class DatabaseUsageAnalyzer {
         } catch (Exception e) {
             // Parsing errors - skip
             System.err.println("Failed to parse file for references: " + javaFile);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -471,7 +471,7 @@ public class DatabaseUsageAnalyzer {
                 // Symbol resolution failed, fallback
                 // You might want to log this
                 System.err.println("Failed to resolve symbol for: " + ne.getNameAsString());
-                e.printStackTrace();
+                //e.printStackTrace();
             }
             return constantsMap.getOrDefault(ne.getNameAsString(), null);
         } else if (expr.isBinaryExpr()) {
