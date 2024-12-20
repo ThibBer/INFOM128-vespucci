@@ -220,7 +220,7 @@ public class DatabaseUsageAnalyzer {
         Map<String, List<String>> unusedCols = findUnusedColumns();
 
         // Generate HTML Report
-        Path outputReport = repoDir.resolve("database_usage_report.html");
+        Path outputReport = Paths.get("database_usage_report.html"); // Write to the folder where the script is run
         generateHtmlReport(outputReport, repoWebUrl, repoDir, unusedTables, unusedCols, defaultBranch);
 
         System.out.println("Report generated at: " + outputReport.toAbsolutePath());
