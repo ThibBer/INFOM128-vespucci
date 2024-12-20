@@ -15,15 +15,20 @@ import com.github.javaparser.resolution.declarations.ResolvedFieldDeclaration;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.*;
 
+import org.eclipse.jgit.api.BlameCommand;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.api.errors.*;
+import org.eclipse.jgit.blame.BlameResult;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.lib.PersonIdent;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -86,6 +91,7 @@ public class DatabaseUsageAnalyzer {
         // Clone the repository if it's not already cloned
         String repoWebUrl = null;
         String defaultBranch = null;
+        DatabaseUsageAnalyzer analyzer = new DatabaseUsageAnalyzer();
         if (!Files.exists(cloneDir)) {
             try {
                 System.out.println("Cloning repository from " + repoUrl + " to " + cloneDir);
@@ -96,38 +102,35 @@ public class DatabaseUsageAnalyzer {
                 try (Git git = cloneCommand.call()) {
                     System.out.println("Cloning completed.");
                     Repository repository = git.getRepository();
-                    //Ref head = repository.getBranch();
                     defaultBranch = repository.getBranch();
                     System.out.println("Default branch detected: " + defaultBranch);
+                    repoWebUrl = deriveWebUrl(repoUrl);
+                    analyzer.runAnalysis(cloneDir, repoWebUrl, defaultBranch, repository);
                 }
             } catch (GitAPIException e) {
                 System.err.println("Failed to clone repository: " + e.getMessage());
                 e.printStackTrace();
                 return;
             }
-            repoWebUrl = deriveWebUrl(repoUrl);
         } else {
             System.out.println("Repository already cloned at " + cloneDir);
             try (Git git = Git.open(cloneDir.toFile())) {
                 Repository repository = git.getRepository();
                 defaultBranch = repository.getBranch();
                 System.out.println("Default branch detected: " + defaultBranch);
+                repoWebUrl = deriveWebUrl(repoUrl);
+                analyzer.runAnalysis(cloneDir, repoWebUrl, defaultBranch, repository);
             } catch (IOException e) {
                 System.err.println("Failed to open existing repository: " + e.getMessage());
                 e.printStackTrace();
                 return;
             }
-            repoWebUrl = deriveWebUrl(repoUrl);
         }
 
         if (repoWebUrl == null) {
             System.err.println("Unsupported repository URL format: " + repoUrl);
             return;
         }
-
-        DatabaseUsageAnalyzer analyzer = new DatabaseUsageAnalyzer();
-        analyzer.configureSymbolSolver(cloneDir);
-        analyzer.runAnalysis(cloneDir, repoWebUrl, defaultBranch);
     }
 
     /**
@@ -184,21 +187,28 @@ public class DatabaseUsageAnalyzer {
      * Runs the analysis by processing Java files, identifying table and column usages,
      * and generating an HTML report.
      *
-     * @param repoDir     The directory containing the cloned repository.
-     * @param repoWebUrl  The web URL of the repository (for linking in the report).
+     * @param repoDir      The directory containing the cloned repository.
+     * @param repoWebUrl   The web URL of the repository (for linking in the report).
      * @param defaultBranch The default branch of the repository.
+     * @param repository   The Git repository object.
      * @throws IOException If an I/O error occurs.
      */
-    public void runAnalysis(Path repoDir, String repoWebUrl, String defaultBranch) throws IOException {
+    public void runAnalysis(Path repoDir, String repoWebUrl, String defaultBranch, Repository repository) throws IOException {
         // 1. Find all Java files in repoDir
         List<Path> javaFiles = findJavaFiles(repoDir);
 
-        // 2. First pass: extract constants and find CREATE TABLE statements
+        // 2. Configure symbol solver
+        configureSymbolSolver(repoDir);
+
+        // 3. First pass: extract constants and find CREATE TABLE statements
         for (Path javaFile : javaFiles) {
             processFileForDefinitions(javaFile);
         }
 
-        // 3. Second pass: find references (tables, columns, queries)
+        // 4. Perform Git blame to get creation dates for table definitions
+        assignCreationDates(repoDir, repository);
+
+        // 5. Second pass: find references (tables, columns, queries)
         for (Path javaFile : javaFiles) {
             processFileForReferences(javaFile);
         }
@@ -214,6 +224,56 @@ public class DatabaseUsageAnalyzer {
         generateHtmlReport(outputReport, repoWebUrl, repoDir, unusedTables, unusedCols, defaultBranch);
 
         System.out.println("Report generated at: " + outputReport.toAbsolutePath());
+    }
+
+    /**
+     * Assigns creation dates to table definitions using Git blame.
+     *
+     * @param repoDir    The root directory of the repository.
+     * @param repository The Git repository object.
+     */
+    private void assignCreationDates(Path repoDir, Repository repository) {
+        // Group table definitions by file
+        Map<Path, List<TableDefinition>> tablesByFile = createTableStatements.values().stream()
+                .collect(Collectors.groupingBy(td -> td.file));
+
+        for (Map.Entry<Path, List<TableDefinition>> entry : tablesByFile.entrySet()) {
+            Path file = entry.getKey();
+            List<TableDefinition> tables = entry.getValue();
+            String relativePath = repoDir.relativize(file).toString().replace(File.separatorChar, '/');
+
+            try {
+                BlameCommand blamer = new BlameCommand(repository);
+                blamer.setFilePath(relativePath);
+                BlameResult blame = blamer.call();
+
+                if (blame == null) {
+                    System.err.println("Blame result is null for file: " + relativePath);
+                    continue;
+                }
+
+                for (TableDefinition td : tables) {
+                    int line = td.lineNumber;
+                    if (line < 1 || line > blame.getResultContents().size()) {
+                        System.err.println("Invalid line number " + line + " for file: " + relativePath);
+                        continue;
+                    }
+                    RevCommit commit = blame.getSourceCommit(line);
+                    if (commit != null) {
+                        PersonIdent author = commit.getCommitterIdent();
+                        Instant commitInstant = author.getWhen().toInstant();
+                        ZoneId zone = author.getTimeZone().toZoneId();
+                        LocalDateTime commitDate = LocalDateTime.ofInstant(commitInstant, zone);
+                        td.creationDate = commitDate;
+                    } else {
+                        System.err.println("No commit found for file: " + relativePath + " at line: " + line);
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("Failed to perform blame on file: " + relativePath);
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -603,12 +663,12 @@ public class DatabaseUsageAnalyzer {
     /**
      * Generates an HTML report summarizing the analysis.
      *
-     * @param outputPath   The path to the output HTML file.
-     * @param repoWebUrl   The web URL of the repository (for linking in the report).
-     * @param repoDir      The directory of the cloned repository.
-     * @param unusedTables A list of unused tables.
-     * @param unusedCols   A map of unused columns per table.
-     * @param branch       The default branch of the repository.
+     * @param outputPath    The path to the output HTML file.
+     * @param repoWebUrl    The web URL of the repository (for linking in the report).
+     * @param repoDir       The directory of the cloned repository.
+     * @param unusedTables  A list of unused tables.
+     * @param unusedCols    A map of unused columns per table.
+     * @param branch        The default branch of the repository.
      * @throws IOException If an I/O error occurs.
      */
     private void generateHtmlReport(Path outputPath, String repoWebUrl, Path repoDir,
@@ -627,8 +687,10 @@ public class DatabaseUsageAnalyzer {
                 w.write("<ul>");
                 for (TableDefinition td : unusedTables) {
                     String link = buildFileLink(repoWebUrl, repoDir, td.file, td.lineNumber, branch);
+                    String dateStr = (td.creationDate != null) ? td.creationDate.format(DateTimeFormatter.ISO_LOCAL_DATE) : "Unknown";
                     w.write("<li>" + td.tableName + " (Defined in: <a href=\"" + link + "\">" +
-                            repoDir.relativize(td.file) + ": line " + td.lineNumber + "</a>)</li>");
+                            repoDir.relativize(td.file) + ": line " + td.lineNumber + "</a>" +
+                            ", Created on: " + dateStr + ")</li>");
                 }
                 w.write("</ul>");
             }
@@ -649,8 +711,10 @@ public class DatabaseUsageAnalyzer {
                 w.write("<h3 id='" + table + "'>" + table + "</h3>");
                 TableDefinition def = createTableStatements.get(table);
                 String defLink = buildFileLink(repoWebUrl, repoDir, def.file, def.lineNumber, branch);
+                String dateStr = (def.creationDate != null) ? def.creationDate.format(DateTimeFormatter.ISO_LOCAL_DATE) : "Unknown";
                 w.write("<p>Defined in: <a href=\"" + defLink + "\">" +
-                        repoDir.relativize(def.file) + ": line " + def.lineNumber + "</a></p>");
+                        repoDir.relativize(def.file) + ": line " + def.lineNumber + "</a>" +
+                        ", Created on: " + dateStr + "</p>");
 
                 // Columns
                 w.write("<h4>Columns</h4><ul>");
@@ -710,8 +774,7 @@ public class DatabaseUsageAnalyzer {
 
             w.write("</body></html>");
         }
-    }
-
+                                    }
     /**
      * Builds a hyperlink to a specific line in a file within the repository.
      *
@@ -820,6 +883,7 @@ public class DatabaseUsageAnalyzer {
         String tableName;
         Path file;
         int lineNumber;
+        LocalDateTime creationDate; // New field for creation date
 
         TableDefinition(String tableName, Path file, int lineNumber) {
             this.tableName = tableName;
