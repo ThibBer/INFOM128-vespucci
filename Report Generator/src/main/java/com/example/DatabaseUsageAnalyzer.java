@@ -357,34 +357,47 @@ public class DatabaseUsageAnalyzer {
                     super.visit(mce, arg);
                     String methodName = mce.getNameAsString();
                     if (DB_METHODS.contains(methodName)) {
+                        // We'll parse the actual SQL from recognized DB methods
                         String sql = extractPotentialSQL(mce);
                         String qtype = classifyQueryType(sql, methodName);
                         int complexity = computeQueryComplexity(sql);
                         int lineNo = mce.getRange().map(r -> r.begin.line).orElse(1);
                         String lineSnippet = mce.toString();
-                        queries.add(new QueryInfo(qtype, javaFile, lineNo, lineSnippet, complexity));
 
-                        // If method takes a table name as first arg, resolve it
+                        // Store the query info
+                        // (only if we actually got a non-empty sql string;
+                        // you can decide if that's necessary)
+                        if (!sql.isEmpty()) {
+                            queries.add(new QueryInfo(qtype, javaFile, lineNo, lineSnippet, complexity));
+                        }
+
+                        // CASE 1: "insert", "update", "delete", "replace" pass table name as the first argument
                         if (TABLE_NAME_METHODS.getOrDefault(methodName, false) && !mce.getArguments().isEmpty()) {
                             String tableArgValue = resolveStringValue(mce.getArgument(0));
                             if (tableArgValue != null && createTableStatements.containsKey(tableArgValue)) {
                                 addReference(tableReferences, tableArgValue, javaFile, lineNo, lineSnippet);
-                                List<String> cols = tableColumns.getOrDefault(tableArgValue, Collections.emptyList());
-                                for (String col : cols) {
+                                // For columns in these calls, we still do a quick check if any known columns appear in the SQL
+                                List<String> knownCols = tableColumns.getOrDefault(tableArgValue, Collections.emptyList());
+                                for (String col : knownCols) {
                                     if (lineSnippet.contains(col) || lineSnippetContainsConstantForValue(lineSnippet, col)) {
                                         addColumnReference(tableArgValue, col, javaFile, lineNo, lineSnippet);
                                     }
                                 }
                             }
-                        } else {
-                            // For raw SQL methods, check if tables appear in snippet
-                            for (String table : createTableStatements.keySet()) {
-                                if (lineSnippetContainsTableOrConstant(lineSnippet, table)) {
-                                    addReference(tableReferences, table, javaFile, lineNo, lineSnippet);
-                                    List<String> cols = tableColumns.getOrDefault(table, Collections.emptyList());
-                                    for (String col : cols) {
-                                        if (lineSnippet.contains(col) || lineSnippetContainsConstantForValue(lineSnippet, col)) {
-                                            addColumnReference(table, col, javaFile, lineNo, lineSnippet);
+                        }
+                        // CASE 2: For raw SQL methods like rawQuery, query, execSQL, etc., we parse the extracted SQL string
+                        else {
+                            if (!sql.isEmpty()) {
+                                for (String table : createTableStatements.keySet()) {
+                                    // Only record if the table is found in actual SQL usage
+                                    if (lineSnippetContainsTableOrConstant(lineSnippet, table)) {
+                                        addReference(tableReferences, table, javaFile, lineNo, lineSnippet);
+                                        // Then check if we have any known columns from that table
+                                        List<String> knownCols = tableColumns.getOrDefault(table, Collections.emptyList());
+                                        for (String col : knownCols) {
+                                            if (lineSnippet.contains(col) || lineSnippetContainsConstantForValue(lineSnippet, col)) {
+                                                addColumnReference(table, col, javaFile, lineNo, lineSnippet);
+                                            }
                                         }
                                     }
                                 }
@@ -809,59 +822,76 @@ public class DatabaseUsageAnalyzer {
             queriesByType.computeIfAbsent(qi.type, t -> new ArrayList<>()).add(qi);
         }
 
+        // Overall summary
+        int totalQueryCount = queries.size();
+        w.write("<p>Total queries found: " + totalQueryCount + "</p>");
+
+        // Summarize queries by type
         w.write("<h3>Queries by Type</h3><ul>");
         for (Map.Entry<String, List<QueryInfo>> e : queriesByType.entrySet()) {
-            w.write("<li>" + e.getKey() + ": " + e.getValue().size() + " queries</li>");
+            w.write("<li><strong>" + e.getKey() + "</strong>: " + e.getValue().size() + "</li>");
         }
         w.write("</ul>");
 
-        // Complexity stats
+        // Summarize complexity
         w.write("<h3>Complexity Statistics</h3>");
         w.write("<table border='1'><tr><th>Query Type</th><th>Count</th><th>Average Complexity</th></tr>");
         for (Map.Entry<String, List<QueryInfo>> e : queriesByType.entrySet()) {
             double avg = e.getValue().stream().mapToInt(q -> q.complexity).average().orElse(0.0);
-            w.write("<tr><td>" + e.getKey() + "</td><td>" + e.getValue().size() + "</td><td>" + String.format("%.2f", avg) + "</td></tr>");
+            w.write("<tr><td>" + e.getKey() + "</td><td>" + e.getValue().size() + "</td><td>"
+                    + String.format("%.2f", avg) + "</td></tr>");
         }
         w.write("</table>");
 
-        // Distribution by file
-        Map<Path, Integer> queriesByFile = new HashMap<>();
-        for (QueryInfo qi : queries) {
-            queriesByFile.put(qi.file, queriesByFile.getOrDefault(qi.file, 0) + 1);
-        }
-        List<Map.Entry<Path, Integer>> sortedByCount = new ArrayList<>(queriesByFile.entrySet());
-        sortedByCount.sort((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+        // *** Distribution by File ***
+        w.write("<h3>Distribution by File</h3>");
+        // Group queries by file, then count them
+        Map<Path, Long> countByFile = queries.stream()
+                .collect(Collectors.groupingBy(q -> q.file, Collectors.counting()));
 
-        w.write("<h3>Distribution Over Code Base</h3>");
-        if (!sortedByCount.isEmpty()) {
-            w.write("<ol>");
-            for (Map.Entry<Path, Integer> e : sortedByCount) {
-                String fileLink = buildFileLink(repoWebUrl, repoDir, e.getKey(), 1, branch); // Link to file start
-                w.write("<li><a href=\"" + fileLink + "\">" + repoDir.relativize(e.getKey()) + "</a>: " + e.getValue() + " queries</li>");
-            }
-            w.write("</ol>");
-        } else {
-            w.write("<p>No queries found.</p>");
-        }
+        // Sort descending by count
+        List<Map.Entry<Path, Long>> sortedByCount = countByFile.entrySet()
+                .stream()
+                .sorted((a, b) -> Long.compare(b.getValue(), a.getValue()))
+                .collect(Collectors.toList());
 
-        // Examples
-        w.write("<h3>Example Queries</h3>");
-        for (Map.Entry<String, List<QueryInfo>> e : queriesByType.entrySet()) {
-            w.write("<h4>" + e.getKey() + "</h4>");
-            List<QueryInfo> examples = e.getValue().stream().limit(5).collect(Collectors.toList());
-            if (!examples.isEmpty()) {
-                w.write("<ul>");
-                for (QueryInfo ex : examples) {
-                    String exampleLink = buildFileLink(repoWebUrl, repoDir, ex.file, ex.lineNumber, branch);
-                    w.write("<li><a href=\"" + exampleLink + "\">" +
-                            repoDir.relativize(ex.file) + ": line " + ex.lineNumber + "</a> - " +
-                            escapeHtml(ex.snippet) +
-                            " (complexity: " + ex.complexity + ")</li>");
-                }
-                w.write("</ul>");
-            } else {
-                w.write("<p>No examples.</p>");
+        w.write("<table border='1'>");
+        w.write("<tr><th>File</th><th>Query Count</th></tr>");
+        for (Map.Entry<Path, Long> entry : sortedByCount) {
+            Path file = entry.getKey();
+            long count = entry.getValue();
+            String fileLink = buildFileLink(repoWebUrl, repoDir, file, 1, branch);
+
+            w.write("<tr>");
+            w.write("<td><a href=\"" + fileLink + "\">" + repoDir.relativize(file) + "</a></td>");
+            w.write("<td>" + count + "</td>");
+            w.write("</tr>");
+        }
+        w.write("</table>");
+
+
+        // Detailed usage by type
+        w.write("<h3>Detailed Query Usage</h3>");
+        for (String qtype : queriesByType.keySet()) {
+            w.write("<h4 id='querytype_" + qtype + "'>" + qtype + " Queries</h4>");
+            List<QueryInfo> typedQueries = queriesByType.get(qtype);
+
+            if (typedQueries.isEmpty()) {
+                w.write("<p>No queries found for this type.</p>");
+                continue;
             }
+
+            w.write("<ul>");
+            for (QueryInfo qi : typedQueries) {
+                String fileLink = buildFileLink(repoWebUrl, repoDir, qi.file, qi.lineNumber, branch);
+                w.write("<li>");
+                w.write("<a href=\"" + fileLink + "\">" +
+                        repoDir.relativize(qi.file) + ": line " + qi.lineNumber + "</a>");
+                w.write(" - <strong>Complexity:</strong> " + qi.complexity);
+                w.write("<br/>" + escapeHtml(qi.snippet));
+                w.write("</li>");
+            }
+            w.write("</ul>");
         }
     }
 
