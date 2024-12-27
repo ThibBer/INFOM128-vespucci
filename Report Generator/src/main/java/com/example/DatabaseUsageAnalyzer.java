@@ -9,20 +9,20 @@ import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
-import com.github.javaparser.resolution.model.SymbolReference;
-import com.github.javaparser.resolution.declarations.ResolvedValueDeclaration;
 import com.github.javaparser.resolution.declarations.ResolvedFieldDeclaration;
+import com.github.javaparser.resolution.declarations.ResolvedValueDeclaration;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.*;
 
 import org.eclipse.jgit.api.BlameCommand;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.*;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.api.errors.TransportException;
 import org.eclipse.jgit.blame.BlameResult;
+import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.lib.PersonIdent;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -66,6 +66,11 @@ public class DatabaseUsageAnalyzer {
         TABLE_NAME_METHODS.put("delete", true);
         TABLE_NAME_METHODS.put("replace", true);
     }
+
+    // --- NEW PATTERN to detect INSERT statements without column-list
+    private static final Pattern INSERT_NO_COLS_PATTERN = Pattern.compile(
+            "(?i)INSERT\\s+INTO\\s+([A-Za-z0-9_]+)\\s+VALUES\\s*\\("
+    );
 
     // Maps from table name to file/line where it is defined
     private Map<String, TableDefinition> createTableStatements = new HashMap<>();
@@ -377,6 +382,9 @@ public class DatabaseUsageAnalyzer {
                             queries.add(new QueryInfo(qtype, javaFile, lineNo, lineSnippet, complexity));
                         }
 
+                        // ---- NEW CALL: check for "INSERT INTO table VALUES(...)" with no column-list
+                        checkInsertNoColsUsage(sql, javaFile, lineNo, lineSnippet);
+
                         // CASE 1: "insert", "update", "delete", "replace" pass table name as the first argument
                         if (TABLE_NAME_METHODS.getOrDefault(methodName, false) && !mce.getArguments().isEmpty()) {
                             String tableArgValue = resolveStringValue(mce.getArgument(0));
@@ -415,7 +423,29 @@ public class DatabaseUsageAnalyzer {
         } catch (Exception e) {
             // Parsing errors - skip
             System.err.println("Failed to parse file for references: " + javaFile);
-            //e.printStackTrace();
+        }
+    }
+
+    /**
+     * NEW HELPER METHOD:
+     * Checks if the SQL is an INSERT without column-list, e.g.:
+     *   INSERT INTO directories VALUES(...)
+     * If so, we can assume it references all columns for that table.
+     */
+    private void checkInsertNoColsUsage(String sql, Path file, int lineNo, String snippet) {
+        Matcher m = INSERT_NO_COLS_PATTERN.matcher(sql);
+        if (m.find()) {
+            String tableName = m.group(1);  // e.g. "directories"
+            if (createTableStatements.containsKey(tableName)) {
+                // Mark table itself as referenced
+                addReference(tableReferences, tableName, file, lineNo, snippet);
+
+                // Mark all columns as referenced
+                List<String> cols = tableColumns.getOrDefault(tableName, Collections.emptyList());
+                for (String col : cols) {
+                    addColumnReference(tableName, col, file, lineNo, snippet);
+                }
+            }
         }
     }
 
@@ -444,7 +474,9 @@ public class DatabaseUsageAnalyzer {
         // Check if line references a constant whose value equals 'value'
         for (Map.Entry<String, String> e : constantsMap.entrySet()) {
             if (e.getValue().equals(value)) {
-                if (line.contains(e.getKey())) return true;
+                if (line.contains(e.getKey())) {
+                    return true;
+                }
             }
         }
         return false;
@@ -503,9 +535,9 @@ public class DatabaseUsageAnalyzer {
         for (Map.Entry<String, List<String>> e : tableColumns.entrySet()) {
             String table = e.getKey();
             for (String col : e.getValue()) {
-                if (!columnReferences.containsKey(table) ||
-                    !columnReferences.get(table).containsKey(col) ||
-                    columnReferences.get(table).get(col).isEmpty()) {
+                if (!columnReferences.containsKey(table)
+                    || !columnReferences.get(table).containsKey(col)
+                    || columnReferences.get(table).get(col).isEmpty()) {
                     unused.computeIfAbsent(table, t -> new ArrayList<>()).add(col);
                 }
             }
@@ -608,7 +640,7 @@ public class DatabaseUsageAnalyzer {
         for (String cdef : colDefs) {
             cdef = cdef.trim();
             if (cdef.isEmpty()) continue;
-            String first = cdef.split("\\s+")[0].replaceAll("[\"`\\[]", "").replaceAll("[\\]\"]", "");
+            String first = cdef.split("\\s+")[0].replaceAll("[\"\\[]", "").replaceAll("[\\]\"]", "");
             if (!constraintKeywords.contains(first.toUpperCase())) {
                 cols.add(first);
             }
@@ -740,8 +772,8 @@ public class DatabaseUsageAnalyzer {
                 List<String> cols = tableColumns.getOrDefault(table, Collections.emptyList());
                 for (String col : cols) {
                     boolean used = columnReferences.containsKey(table) &&
-                            columnReferences.get(table).containsKey(col) &&
-                            !columnReferences.get(table).get(col).isEmpty();
+                                   columnReferences.get(table).containsKey(col) &&
+                                   !columnReferences.get(table).get(col).isEmpty();
                     if (used) {
                         w.write("<li>" + col + "</li>");
                     } else {
@@ -793,7 +825,8 @@ public class DatabaseUsageAnalyzer {
 
             w.write("</body></html>");
         }
-                                    }
+    }
+
     /**
      * Builds a hyperlink to a specific line in a file within the repository.
      *
