@@ -382,15 +382,17 @@ public class DatabaseUsageAnalyzer {
                             queries.add(new QueryInfo(qtype, javaFile, lineNo, lineSnippet, complexity));
                         }
 
-                        // ---- NEW CALL: check for "INSERT INTO table VALUES(...)" with no column-list
+                        // Check for "INSERT INTO table VALUES(...)" with no column-list
                         checkInsertNoColsUsage(sql, javaFile, lineNo, lineSnippet);
 
                         // CASE 1: "insert", "update", "delete", "replace" pass table name as the first argument
                         if (TABLE_NAME_METHODS.getOrDefault(methodName, false) && !mce.getArguments().isEmpty()) {
                             String tableArgValue = resolveStringValue(mce.getArgument(0));
                             if (tableArgValue != null && createTableStatements.containsKey(tableArgValue)) {
-                                addReference(tableReferences, tableArgValue, javaFile, lineNo, lineSnippet);
-                                // For columns in these calls, we still do a quick check if any known columns appear in the SQL
+                                TableDefinition tableDef = createTableStatements.get(tableArgValue);
+                                if (lineNo != tableDef.lineNumber) { // Exclude the creation line
+                                    addReference(tableReferences, tableArgValue, javaFile, lineNo, lineSnippet);
+                                    // For columns in these calls, we still do a quick check if any known columns appear in the SQL
                                 List<String> knownCols = tableColumns.getOrDefault(tableArgValue, Collections.emptyList());
                                 for (String col : knownCols) {
                                     if (lineSnippet.contains(col) || lineSnippetContainsConstantForValue(lineSnippet, col)) {
@@ -403,7 +405,7 @@ public class DatabaseUsageAnalyzer {
                         else {
                             if (!sql.isEmpty()) {
                                 for (String table : createTableStatements.keySet()) {
-                                    // Only record if the table is found in actual SQL usage
+                                    TableDefinition tableDef = createTableStatements.get(table);
                                     if (lineSnippetContainsTableOrConstant(lineSnippet, table)) {
                                         addReference(tableReferences, table, javaFile, lineNo, lineSnippet);
                                         // Then check if we have any known columns from that table
@@ -492,7 +494,10 @@ public class DatabaseUsageAnalyzer {
      * @param snippet The code snippet containing the reference.
      */
     private void addReference(Map<String, List<CodeReference>> map, String table, Path file, int line, String snippet) {
-        map.computeIfAbsent(table, k -> new ArrayList<>()).add(new CodeReference(file, line, snippet));
+        TableDefinition tableDef = createTableStatements.get(table);
+        if (tableDef != null && line != tableDef.lineNumber) { // Ensure it's not the creation line
+            map.computeIfAbsent(table, k -> new ArrayList<>()).add(new CodeReference(file, line, snippet));
+        }
     }
 
     /**
@@ -518,7 +523,8 @@ public class DatabaseUsageAnalyzer {
     private List<TableDefinition> findUnusedTables() {
         List<TableDefinition> unused = new ArrayList<>();
         for (String table : createTableStatements.keySet()) {
-            if (!tableReferences.containsKey(table) || tableReferences.get(table).isEmpty()) {
+            List<CodeReference> references = tableReferences.get(table);
+            if (references == null || references.isEmpty()) {
                 unused.add(createTableStatements.get(table));
             }
         }
