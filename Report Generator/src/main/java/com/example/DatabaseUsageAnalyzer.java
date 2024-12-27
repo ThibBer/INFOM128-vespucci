@@ -86,6 +86,7 @@ public class DatabaseUsageAnalyzer {
         // Example usage:
         // Define the repository URL and clone directory
         String repoUrl = "https://github.com/MarcusWolschon/osmeditor4android.git"; // Replace with your actual repo URL
+        String commitHash = "6286b3c1b060c882adddce29e32b28fd6f9704fa";
         Path cloneDir = Paths.get("repo_clone"); // Define clone directory
 
         // Clone the repository if it's not already cloned
@@ -101,6 +102,11 @@ public class DatabaseUsageAnalyzer {
                         .setCloneAllBranches(true);
                 try (Git git = cloneCommand.call()) {
                     System.out.println("Cloning completed.");
+                    // Checkout specific commit
+                    if (commitHash != null) {
+                        git.checkout().setName(commitHash).call();
+                        System.out.println("Checked out specific commit: " + commitHash);
+                    }
                     Repository repository = git.getRepository();
                     defaultBranch = repository.getBranch();
                     System.out.println("Default branch detected: " + defaultBranch);
