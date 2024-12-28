@@ -1,0 +1,71 @@
+\subsection{Scénario d'évolution n°5}
+\subsubsection{Scénario}
+Diviser la table photos en \mintinline{java}{photo_metadata} et en \mintinline{java}{photo_location}.
+
+\textbf{Raison éventuelle}: La table photos contient à la fois des métadonnées (\mintinline{java}{name}, \mintinline{java}{dir} et \mintinline{java}{source}) et des informations géospatiales (\mintinline{java}{lat}, \mintinline{java}{lon}, \mintinline{java}{direction}, \mintinline{java}{orientation}).
+
+\subsubsection{Modifications}
+Tous les schémas sont concernés par cette modification, il faut donc les éditer pour faire propager les modifications faites dans le code.
+
+Modifier la méthode onCreate du fichier \mintinline{java}{PhotoIndex.java}.
+
+\begin{enumerate}
+    \item \textbf{Modifier la méthode \mintinline{java}{onCreate}}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{PhotoIndex.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/photos/PhotoIndex.java#L102 }{Ligne 102}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @Override
+                        public synchronized void onCreate(SQLiteDatabase db) {
+                            Log.d(DEBUG_TAG, "Creating photo index DB");
+                            db.execSQL("CREATE TABLE IF NOT EXISTS " + PHOTOS_TABLE
+                                    + " (lat int, lon int, direction int DEFAULT NULL, dir VARCHAR, name VARCHAR, source VARCHAR DEFAULT NULL, orientation int DEFAULT 0);");
+                            db.execSQL("CREATE INDEX latidx ON " + PHOTOS_TABLE + " (lat)");
+                            db.execSQL("CREATE INDEX lonidx ON " + PHOTOS_TABLE + " (lon)");
+                            db.execSQL("CREATE TABLE IF NOT EXISTS " + SOURCES_TABLE + " (dir VARCHAR, last_scan int8, tag VARCHAR DEFAULT NULL);");
+                            initSource(db, DCIM, null);
+                            initSource(db, Paths.DIRECTORY_PATH_VESPUCCI, null);
+                            initSource(db, OSMTRACKER, null);
+                            initSource(db, MEDIA_STORE, "");
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @Override
+                        public synchronized void onCreate(SQLiteDatabase db) {
+                            Log.d(DEBUG_TAG, "Creating photo index DB");
+
+                            // Créer la table pour les métadonnées des photos
+                            db.execSQL("CREATE TABLE IF NOT EXISTS photo_metadata ("
+                                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                    + "name VARCHAR, "
+                                    + "dir VARCHAR, "
+                                    + "source VARCHAR DEFAULT NULL"
+                                    + ");");
+
+                            // Créer la table pour les données géospatiales des photos
+                            db.execSQL("CREATE TABLE IF NOT EXISTS photo_location ("
+                                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                    + "photo_id INTEGER NOT NULL, "
+                                    + "lat INTEGER, "
+                                    + "lon INTEGER, "
+                                    + "direction INTEGER DEFAULT NULL, "
+                                    + "orientation INTEGER DEFAULT 0, "
+                                    + "FOREIGN KEY(photo_id) REFERENCES photo_metadata(id) ON DELETE CASCADE"
+                                    + ");");
+                            db.execSQL("CREATE INDEX latidx ON photo_location (lat);");
+                            db.execSQL("CREATE INDEX lonidx ON photo_location (lon);");
+                            db.execSQL("CREATE TABLE IF NOT EXISTS " + SOURCES_TABLE
+                                    + " (dir VARCHAR, last_scan int8, tag VARCHAR DEFAULT NULL);");
+                                initSource(db, DCIM, null);
+                            initSource(db, Paths.DIRECTORY_PATH_VESPUCCI, null);
+                            initSource(db, OSMTRACKER, null);
+                            initSource(db, MEDIA_STORE, "");
+                        }
+                    \end{minted}
+          \end{itemize}
+\end{enumerate}
+
+% TODO : Explain modifications for other queries

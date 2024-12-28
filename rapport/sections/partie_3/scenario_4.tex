@@ -1,0 +1,92 @@
+\subsection{Scénario d'évolution n°4}
+\subsubsection{Scénario}
+Fusionner deux tables en une seule: fusionner les tables \mintinline{java}{filterentries} et \mintinline{java}{filters}.
+
+\textbf{Raison éventuelle}: Ces tables sont liées par une clé étrangère (\mintinline{java}{filter}) et décrivent toutes les deux les filtres et leurs entrées.
+
+Les tables seront fusionnées en une table commune : filters.
+\subsubsection{Modifications}
+Tous les schémas sont concernés par cette modification, il faut donc les éditer pour faire propager les modifications faites dans le code.
+
+\begin{enumerate}
+    \item \textbf{Modifier la méthode \mintinline{java}{onCreate} qui crée les deux tables}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterDatabaseHelper.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java#L28}{Ligne 28}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL("CREATE TABLE filters (name TEXT)");
+                                db.execSQL("INSERT INTO filters VALUES ('Default')");
+                                db.execSQL(
+                                        "CREATE TABLE filterentries (filter TEXT, include INTEGER DEFAULT 0, type TEXT DEFAULT '*', key TEXT DEFAULT '*', value TEXT DEFAULT '*', active INTEGER DEFAULT 0, FOREIGN KEY(filter) REFERENCES filters(name))");
+                            } catch (SQLException e) {
+                                Log.w(DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL(
+                                        "CREATE TABLE filters (" +
+                                        "id INTEGER PRIMARY KEY AUTOINCREMENT, " + // Identifiant unique pour chaque entrée
+                                        "name TEXT NOT NULL, " +                  // Nom du filtre
+                                        "include INTEGER DEFAULT 0, " +           // Inclusion
+                                        "type TEXT DEFAULT '*', " +               // Type
+                                        "key TEXT DEFAULT '*', " +                // Clé
+                                        "value TEXT DEFAULT '*', " +              // Valeur
+                                        "active INTEGER DEFAULT 0" +              // Indicateur actif
+                                        ")");
+                                // Insérer le filtre par défaut
+                                db.execSQL("INSERT INTO filters (name, include, type, key, value, active) VALUES ('Default', 0, '*', '*', '*', 0)");
+                            } catch (SQLException e) {
+                                Log.w(DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Adapter la query suivante}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterDatabaseHelper.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/filter/TagFilter.java#L145}{Ligne 145}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void init(Context context) {
+                            try (TagFilterDatabaseHelper tfDb = new TagFilterDatabaseHelper(context); SQLiteDatabase mDatabase = tfDb.getReadableDatabase()) {
+                                //
+                                filter.clear();
+                                Cursor dbresult = mDatabase.query("filterentries", new String[] { "include", "type", "key", "value", "active" }, "filter = ?",
+                                        new String[] { DEFAULT_FILTER }, null, null, null);
+                                dbresult.moveToFirst();
+                                for (int i = 0; i < dbresult.getCount(); i++) {
+                                    try {
+                                        filter.add(new FilterEntry(dbresult.getInt(0) == 1, dbresult.getString(1), dbresult.getString(2), dbresult.getString(3),
+                                                dbresult.getInt(4) == 1));
+                                    } catch (PatternSyntaxException psex) {
+                                        Log.e(DEBUG_TAG, "exception getting FilterEntry " + psex.getMessage());
+                                        if (context instanceof Activity) {
+                                            ScreenMessage.barError((Activity) context,
+                                                    context.getString(R.string.toast_invalid_filter_regexp, dbresult.getString(2), dbresult.getString(3)));
+                                        }
+                                    }
+                                    dbresult.moveToNext();
+                                }
+                                dbresult.close();
+                            }
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        Cursor dbresult = mDatabase.query("filters", new String[] { "include", "type", "key", "value", "active" }, "name = ?", new String[] { DEFAULT_FILTER }, null, null, null);
+                    \end{minted}
+          \end{itemize}
+\end{enumerate}
+% TODO : Explain modifications for other queries
