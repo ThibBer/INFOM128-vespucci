@@ -1,0 +1,72 @@
+\subsection{Scénario d'évolution n°6}
+\subsubsection{Scénario}
+Suppression de la table \mintinline{java}{t_renderer}.
+
+\subsubsection{Modifications}
+Tous les schémas sont concernés par cette modification, il faut donc les éditer pour faire propager les modifications faites dans le code.
+
+\begin{enumerate}
+    \item \textbf{supprimer l'exécution de la requête de création de la table \mintinline{java}{t_renderer}}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{MapTileProviderDataBase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java#L428}{Ligne 428}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL(T_RENDERER_CREATE_COMMAND);
+                                db.execSQL(T_FSCACHE_CREATE_COMMAND);
+                            } catch (SQLException e) {
+                                Log.w(MapTileFilesystemProvider.DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL(T_FSCACHE_CREATE_COMMAND);
+                            } catch (SQLException e) {
+                                Log.w(MapTileFilesystemProvider.DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Étant donné que la table n'est pas utilisée par le programme, il est donc intéressant de supprimer ses dernières références présentes dans le même fichier. On peut donc également supprimer les lignes de 58 à 64 ainsi que la déclaration de la variable \mintinline{java}{T_RENDERER_CREATE_COMMAND} (lignes 72 à 74).}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{MapTileProviderDataBase.java}
+              \item \textbf{Emplacements} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java#L58-L64}{Lignes 58-64} et \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/services/util/MapTileProviderDataBase.java#L72-L74}{Lignes 72-74}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                    private static final String T_RENDERER               = "t_renderer";
+                    private static final String T_RENDERER_ID            = "id";
+                    private static final String T_RENDERER_NAME          = "name";
+                    private static final String T_RENDERER_BASE_URL      = "base_url";
+                    private static final String T_RENDERER_ZOOM_MIN      = "zoom_min";
+                    private static final String T_RENDERER_ZOOM_MAX      = "zoom_max";
+                    private static final String T_RENDERER_TILE_SIZE_LOG = "tile_size_log";
+
+                    private static final String T_FSCACHE_CREATE_COMMAND = "CREATE TABLE IF NOT EXISTS " + T_FSCACHE + " (" + T_FSCACHE_RENDERER_ID + " VARCHAR(255) NOT NULL,"
+                            + T_FSCACHE_ZOOM_LEVEL + " INTEGER NOT NULL," + T_FSCACHE_TILE_X + " INTEGER NOT NULL," + T_FSCACHE_TILE_Y + " INTEGER NOT NULL,"
+                            + T_FSCACHE_TIMESTAMP + " INTEGER NOT NULL," + T_FSCACHE_USAGECOUNT + " INTEGER NOT NULL DEFAULT 1," + T_FSCACHE_FILESIZE + " INTEGER NOT NULL,"
+                            + T_FSCACHE_DATA + " BLOB," + " PRIMARY KEY(" + T_FSCACHE_RENDERER_ID + "," + T_FSCACHE_ZOOM_LEVEL + "," + T_FSCACHE_TILE_X + "," + T_FSCACHE_TILE_Y
+                            + ")" + ");";
+
+                    private static final String T_RENDERER_CREATE_COMMAND = "CREATE TABLE IF NOT EXISTS " + T_RENDERER + " (" + T_RENDERER_ID + " VARCHAR(255) PRIMARY KEY,"
+                            + T_RENDERER_NAME + " VARCHAR(255)," + T_RENDERER_BASE_URL + " VARCHAR(255)," + T_RENDERER_ZOOM_MIN + " INTEGER NOT NULL," + T_RENDERER_ZOOM_MAX
+                            + " INTEGER NOT NULL," + T_RENDERER_TILE_SIZE_LOG + " INTEGER NOT NULL" + ");";
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                    private static final String T_FSCACHE_CREATE_COMMAND = "CREATE TABLE IF NOT EXISTS " + T_FSCACHE + " (" + T_FSCACHE_RENDERER_ID + " VARCHAR(255) NOT NULL,"
+                            + T_FSCACHE_ZOOM_LEVEL + " INTEGER NOT NULL," + T_FSCACHE_TILE_X + " INTEGER NOT NULL," + T_FSCACHE_TILE_Y + " INTEGER NOT NULL,"
+                            + T_FSCACHE_TIMESTAMP + " INTEGER NOT NULL," + T_FSCACHE_USAGECOUNT + " INTEGER NOT NULL DEFAULT 1," + T_FSCACHE_FILESIZE + " INTEGER NOT NULL,"
+                            + T_FSCACHE_DATA + " BLOB," + " PRIMARY KEY(" + T_FSCACHE_RENDERER_ID + "," + T_FSCACHE_ZOOM_LEVEL + "," + T_FSCACHE_TILE_X + "," + T_FSCACHE_TILE_Y
+                            + ")" + ");";
+                    \end{minted}
+          \end{itemize}
+\end{enumerate}

@@ -1,0 +1,116 @@
+\subsection{Scénario d'évolution n°7}
+\subsubsection{Scénario}
+Ajout d'une colonne \mintinline{java}{rate_limit} à la table \mintinline{java}{apis}. Cette valeur permet de connaître le taux maximal de requête par seconde que l'API autorise.
+
+\subsubsection{Modifications}
+Tous les schémas sont concernés par cette modification, il faut donc les éditer pour faire propager les modifications faites dans le code.
+
+\begin{enumerate}
+    \item \textbf{La colonne doit être ajoutée à la requête de création de la table apis présente dans le fichier \mintinline{java}{AdvancedPrefDatabase.java}.}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{AdvancedPrefDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java#L129}{Ligne 129}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        db.execSQL(
+                        "CREATE TABLE apis (id TEXT, name TEXT, url TEXT, readonlyurl TEXT, notesurl TEXT, user TEXT, pass TEXT, preset TEXT, showicon INTEGER DEFAULT 1, oauth INTEGER DEFAULT 0, accesstoken TEXT, accesstokensecret TEXT)");
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        db.execSQL(
+                        "CREATE TABLE apis (id TEXT, name TEXT, url TEXT, readonlyurl TEXT, notesurl TEXT, user TEXT, pass TEXT, preset TEXT, showicon INTEGER DEFAULT 1, oauth INTEGER DEFAULT 0, accesstoken TEXT, accesstokensecret TEXT, rate_limit INTEGER DEFAULT NULL)");
+                    \end{minted}
+              \item Une valeur \mintinline{java}{NULL} par défaut permet d'enregistrer une API sans taux limite. Il est possible qu'une api ne dévoile pas son taux limite ou une API peut être utilisée pour une requête et donc ce taux limite ne sera jamais atteint.
+          \end{itemize}
+    \item \textbf{En plus de cette modification, la méthode \mintinline{java}{addAPI} du fichier \mintinline{java}{AdvancedPrefDatabase} doit également être adaptée afin de rajouter l'insertion de la donnée \mintinline{java}{rate_limit}. Une constante doit être définie au début du fichier pour le nom de la nouvelle colonne.}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{AdvancedPrefDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java#L450}{Ligne 450}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                    /**
+                     * Adds a new API with the given values to the supplied database
+                     *
+                     * @param db a writeable SQLiteDatabase
+                     * @param id the internal id for this entry
+                     * @param name the name of the entry
+                     * @param url the read / write url
+                     * @param readonlyurl a read only url or null
+                     * @param notesurl a note url or null
+                     * @param user OSM display name
+                     * @param pass OSM password
+                     * @param auth authentication method
+                     */
+                    private synchronized void addAPI(@NonNull SQLiteDatabase db, @NonNull String id, @NonNull String name, @NonNull String url, @Nullable String readonlyurl,
+                            @Nullable String notesurl, @Nullable String user, @Nullable String pass, @NonNull Auth auth) {
+                        ContentValues values = new ContentValues();
+                        values.put(ID_COL, id);
+                        values.put(NAME_COL, name);
+                        values.put(URL_COL, url);
+                        values.put(READONLYURL_COL, readonlyurl);
+                        values.put(NOTESURL_COL, notesurl);
+                        values.put(USER_COL, user);
+                        values.put(PASS_COL, pass);
+                        values.put(AUTH_COL, auth.ordinal());
+                        db.insert(APIS_TABLE, null, values);
+                    }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                    private synchronized void addAPI(@NonNull SQLiteDatabase db, @NonNull String id, @NonNull String name, @NonNull String url, @Nullable String readonlyurl, @Nullable String notesurl, @Nullable String user, @Nullable String pass, @NonNull Auth auth, @Nullable int rateLimit) {
+                        ContentValues values = new ContentValues();
+                        values.put(ID_COL, id);
+                        values.put(NAME_COL, name);
+                        values.put(URL_COL, url);
+                        values.put(READONLYURL_COL, readonlyurl);
+                        values.put(NOTESURL_COL, notesurl);
+                        values.put(USER_COL, user);
+                        values.put(PASS_COL, pass);
+                        values.put(AUTH_COL, auth.ordinal());
+                        values.put(RATE_LIMIT, rateLimit); // ajout ici
+                        db.insert(APIS_TABLE, null, values);
+                    }
+                    \end{minted}
+              \item Il faudra bien entendu modifier l'appel de cette méthode addAPI pour envoyer la valeur \mintinline{java}{rate_limit}. Une autre solution est de créer une méthode sans le paramètre rateLimit qui fera appel à la méthode ci-dessus avec null comme valeur pour l'argument rateLimit.
+
+                    Une méthode de modification de la valeur \mintinline{java}{rate_limit} pour une API donnée peut également être créée au besoin.
+          \end{itemize}
+    \item \textbf{La méthode qui permet de sélectionner les API doit également être adaptée.}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{AdvancedPrefDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java#L503}{Ligne 503}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                            @NonNull
+                            private synchronized API[] getAPIs(@NonNull SQLiteDatabase db, @Nullable String id) {
+                                Cursor dbresult = db.query(
+                                        APIS_TABLE, new String[] { ID_COL, NAME_COL, URL_COL, READONLYURL_COL, NOTESURL_COL, USER_COL, PASS_COL, "preset", "showicon", AUTH_COL,
+                                                ACCESSTOKEN_COL, ACCESSTOKENSECRET_COL },
+                                        id == null ? null : WHERE_ID, id == null ? null : new String[] { id }, null, null, null, null);
+                                API[] result = new API[dbresult.getCount()];
+                                dbresult.moveToFirst();
+                                for (int i = 0; i < result.length; i++) {
+                                    Auth auth = Auth.BASIC;
+                                    try {
+                                        auth = API.Auth.values()[dbresult.getInt(9)];
+                                    } catch (IndexOutOfBoundsException ex) {
+                                        Log.e(DEBUG_TAG, "No auth method for " + dbresult.getInt(9));
+                                    }
+                                    result[i] = new API(dbresult.getString(0), dbresult.getString(1), dbresult.getString(2), dbresult.getString(3), dbresult.getString(4),
+                                            dbresult.getString(5), dbresult.getString(6), auth, dbresult.getString(10), dbresult.getString(11));
+                                    dbresult.moveToNext();
+                                }
+                                dbresult.close();
+                                return result;
+                            }
+                          \end{minted}
+              \item Il faut ajouter \mintinline{java}{RATE_LIMIT} dans le tableau de String à la ligne 505, 506.
+
+              \item Il faut également ajouter la valeur récupérée par le \mintinline{java}{SELECT} dans le constructeur de l'objet \mintinline{java}{API} à la ligne 517, 528.
+
+              \item Une fois ces modifications terminées, il faut ajouter un attribut à la classe \mintinline{java}{API} pour lier l’information à l'objet.
+          \end{itemize}
+\end{enumerate}
