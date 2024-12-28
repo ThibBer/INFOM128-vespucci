@@ -1,0 +1,133 @@
+\subsection{Scénario d'évolution n°8}
+\subsubsection{Scénario}
+Ajouter une clef primaire composite sur la table \mintinline{java}{filterentries} pour les colonnes \mintinline{java}{filter}, \mintinline{java}{type} et \mintinline{java}{value}.
+
+\subsubsection{Modifications}
+\begin{enumerate}
+    \item \textbf{Ajout d'une clé primaire lors de la création de la table \mintinline{java}{filterentries} dans la méthode \mintinline{java}{onCreate} du fichier \mintinline{java}{TagFilterDatabaseHelper.java}}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterDatabaseHelper.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/filter/TagFilterDatabaseHelper.java#L32 }{Ligne 32}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL("CREATE TABLE filters (name TEXT)");
+                                db.execSQL("INSERT INTO filters VALUES ('Default')");
+                                db.execSQL(
+                                        "CREATE TABLE filterentries (filter TEXT, include INTEGER DEFAULT 0, type TEXT DEFAULT '*', key TEXT DEFAULT '*', value TEXT DEFAULT '*', active INTEGER DEFAULT 0, FOREIGN KEY(filter) REFERENCES filters(name))");
+                            } catch (SQLException e) {
+                                Log.w(DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL("CREATE TABLE filters (name TEXT)");
+                                db.execSQL("INSERT INTO filters VALUES ('Default')");
+                                db.execSQL(
+                                    "CREATE TABLE filterentries " +
+                                    "(filter TEXT, " +
+                                    "include INTEGER DEFAULT 0, " +
+                                    "type TEXT DEFAULT '*', " +
+                                    "key TEXT DEFAULT '*', " +
+                                    "value TEXT DEFAULT '*', " +
+                                    "active INTEGER DEFAULT 0, " +
+                                    "FOREIGN KEY(filter) REFERENCES filters(name), " +
+                                    "PRIMARY KEY(filter, type, value))"
+                                );
+                            } catch (SQLException e) {
+                                Log.w(DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Comme on utilise une clef primaire, la colonne implicite rowid n’est plus crée par sqlite donc on doit utiliser la clé primaire composite}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterDatabaseHelper.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/filter/TagFilterActivity.java#L62C5-L62C134}{Ligne 62}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        private static final String QUERY = "SELECT rowid as _id, active, include, type, key, value FROM filterentries WHERE filter = '";
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        private static final String QUERY = "SELECT filter, type, value, active, include, key FROM filterentries WHERE filter = '";
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Modification accès à la base de données pour les requêtes de mise à jour}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterActivity.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/filter/TagFilterActivity.java#L206}{Ligne 206}
+              \item \textbf{Ancien code}
+                    \begin{minted}{java}
+                        db.update(FILTERENTRIES_TABLE, values, "rowid=" + id, null);
+                    \end{minted}
+              \item \textbf{Nouveau code}
+                    \begin{minted}{java}
+                        db.update(FILTERENTRIES_TABLE, values, "filter=? AND type=? AND value=?", new String[] { filter, type, value });
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Modification accès à la base de données pour les requêtes de suppression}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterActivity.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/filter/TagFilterActivity.java#L370}{Ligne 370}
+              \item \textbf{Ancien code}
+                    \begin{minted}{java}
+                        db.delete(FILTERENTRIES_TABLE, "rowid=" + id, null);
+                    \end{minted}
+              \item \textbf{Nouveau code}
+                    \begin{minted}{java}
+                        db.delete(FILTERENTRIES_TABLE, "filter=? AND type=? AND value=?", new String[] { filter, type, value });
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Modification}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterActivity.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/filter/TagFilterActivity.java#L333}{Ligne 333}
+              \item \textbf{Ancien code}
+                    \begin{minted}{java}
+                        final int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                        vh.id = id;
+                    \end{minted}
+              \item \textbf{Nouveau code}
+                    \begin{minted}{java}
+                        final String filter = cursor.getString(cursor.getColumnIndexOrThrow(FILTER_COLUMN));
+                        final String type = cursor.getString(cursor.getColumnIndexOrThrow(TYPE_COLUMN));
+                        final String value = cursor.getString(cursor.getColumnIndexOrThrow(VALUE_COLUMN));
+                        vh.id = filter + ":" + type + ":" + value;
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Modification}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TagFilterActivity.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/filter/TagFilterActivity.java#L396}{Ligne 396}
+              \item \textbf{Ancien code}
+                    \begin{minted}{java}
+                        private void newCursor() {
+                            Cursor newCursor = db.rawQuery(QUERY + filter + "'", null);
+                            Cursor oldCursor = filterAdapter.swapCursor(newCursor);
+                            oldCursor.close();
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code}
+                    \begin{minted}{java}
+                        private void newCursor() {
+                            Cursor newCursor = db.rawQuery("SELECT filter, type, value, active, include, key FROM filterentries WHERE filter=?", new String[] { filter });
+                            Cursor oldCursor = filterAdapter.swapCursor(newCursor);
+                            oldCursor.close();
+                        }
+                    \end{minted}
+          \end{itemize}
+\end{enumerate}

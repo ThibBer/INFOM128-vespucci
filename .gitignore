@@ -13,3 +13,4 @@ __pycache__
 *.pdf_tex
 *.pygtex
 *.pygstyle
+svg-inkscape/

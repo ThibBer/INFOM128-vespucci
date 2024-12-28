@@ -1,0 +1,77 @@
+\subsection{Scénario d'évolution n°8}
+\subsubsection{Scénario}
+Suppression de la colonne description dans la table \mintinline{java}{presets}.
+
+\subsubsection{Modifications}
+Tous les schémas sont concernés par cette modification, il faut donc les éditer pour faire propager les modifications faites dans le code.
+
+Cette modification entrainera la perte de donnée pour les presets. L'affichage devra également être adapté dans l’application.
+
+Les modifications sont principalement centrées dans AdvancedPrefDatabase.
+
+Tout d'abord, il faut supprimer la constante \mintinline{java}{DESCRIPTION_COL} à la ligne 74. Cette dernière correspond au nom de la colonne qu'on souhaite supprimer.
+
+Grâce à cette constante, les IDE modernes aident grandement à trouver les endroits où la constante était utilisée. Dans le pire des cas, le compilateur prendra la relève et indiquera les endroits à modifier.
+
+Voici toutefois les endroits importants à modifier.
+
+\begin{enumerate}
+    \item \textbf{TDans la méthode getActivePresets, il faut supprimer la constante \mintinline{java}{DESCRIPTION_COL}}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{AdvancedPrefDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/prefs/AdvancedPrefDatabase.java#L662C25-L662C41}{Ligne 662}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @NonNull
+                        public PresetInfo[] getActivePresets() {
+                                SQLiteDatabase db = getReadableDatabase();
+                                Cursor dbresult = db.query(PRESETS_TABLE,
+                                new String[] { ID_COL, NAME_COL, VERSION_COL, SHORTDESCRIPTION_COL, DESCRIPTION_COL, URL_COL, LASTUPDATE_COL, ACTIVE_COL, USETRANSLATIONS_COL },
+                                "active=1", null, null, null, POSITION_COL);
+                                PresetInfo[] result = new PresetInfo[dbresult.getCount()];
+                                Log.d(DEBUG_TAG, "#prefs " + result.length);
+                                dbresult.moveToFirst();
+                                for (int i = 0; i < result.length; i++) {
+                                        Log.d(DEBUG_TAG, "Reading pref " + i + " " + dbresult.getString(1));
+                                        result[i] = new PresetInfo(dbresult.getString(0), dbresult.getString(1), dbresult.getString(2), dbresult.getString(3), dbresult.getString(4),
+                                        dbresult.getString(5), dbresult.getString(6), dbresult.getInt(7) == 1, dbresult.getInt(8) == 1);
+                                        dbresult.moveToNext();
+                                    }
+                                dbresult.close();
+                                db.close();
+                                return result;
+                            }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @NonNull
+                        public PresetInfo[] getActivePresets() {
+                                SQLiteDatabase db = getReadableDatabase();
+                                Cursor dbresult = db.query(PRESETS_TABLE,
+                                new String[] { ID_COL, NAME_COL, VERSION_COL, SHORTDESCRIPTION_COL, URL_COL, LASTUPDATE_COL, ACTIVE_COL, USETRANSLATIONS_COL },
+                                "active=1", null, null, null, POSITION_COL);
+                                PresetInfo[] result = new PresetInfo[dbresult.getCount()];
+                                Log.d(DEBUG_TAG, "#prefs " + result.length);
+                                dbresult.moveToFirst();
+                                for (int i = 0; i < result.length; i++) {
+                                        Log.d(DEBUG_TAG, "Reading pref " + i + " " + dbresult.getString(1));
+                                        result[i] = new PresetInfo(dbresult.getString(0), dbresult.getString(1), dbresult.getString(2), dbresult.getString(3), dbresult.getString(4),
+                                        dbresult.getString(5), dbresult.getString(6), dbresult.getInt(7) == 1, dbresult.getInt(8) == 1);
+                                        dbresult.moveToNext();
+                                    }
+                                dbresult.close();
+                                db.close();
+                                return result;
+                            }
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Il faut également supprimer dbresult.getString(5) dans l'appel au constructeur de PresetInfo. De plus, il faut également décaler les index des autres appels à getString(val) car la supprimer d'une colonne sélectionnée décale tout le reste.}
+    \item \textbf{La même modification que ci-dessus est à faire pour la méthode getPresets}
+
+    \item \textbf{La méthode setPresetAdditionalFields est à adapter car elle utilise également la description lors de la modification d'un preset. Pour ce faire, il faut supprimer les lignes 776 à 778. De ce fait, la colonne \mintinline{java}{description} ne sera plus utilisée par le programme pour interagir avec la base de données.}
+
+    \item \textbf{La dernière modification à effectuer est la suppression de l'attribut \mintinline{java}{description} de la classe PresetInfo.}
+
+    \item \textbf{Les modifications engendrées par la suppression de cet attribut ne sont pas expliquées ici mais le compilateur permet de repérer les endroits où l'attribut \mintinline{java}{description} était utilisé. Il est donc aisé d'effectuer les derniers changements.}
+\end{enumerate}
