@@ -19,9 +19,9 @@
     \caption{Nombre de requêtes trouvées par type.}
 \end{table}
 
-Pour les requêtes de la colonne « \# trouvées manuellement », un script \texttt{Python} a été utilisé pour effectuer une analyse statique des requêtes. Il permet de parcourir les différents fichiers Java et, grâce à une regex, les différents appels à SQLite tels que \texttt{db.update} ou encore \texttt{db.execSQL} sont filtrés et enregistrés dans des fichiers séparés.
+Pour les requêtes de la colonne « \# trouvées manuellement », un script \texttt{Python} a été utilisé pour effectuer une analyse statique des requêtes. Il permet de parcourir les différents fichiers Java et, grâce à une regex, les différents appels à SQLite tels que \mintinline{java}{db.update} ou encore \mintinline{java}{db.execSQL} sont filtrés et enregistrés dans des fichiers séparés.
 
-Pour la complexité de ces dernières, elles sont plutôt simples et courtes. On notera toutefois que les requêtes de création de table peuvent être plus longues, notamment pour la table \texttt{presets}, mais restent, malgré tout, simples à interpréter.
+Pour la complexité de ces dernières, elles sont plutôt simples et courtes. On notera toutefois que les requêtes de création de table peuvent être plus longues, notamment pour la table \mintinline{java}{presets}, mais restent, malgré tout, simples à interpréter.
 
 À propos de la répartition des requêtes dans le projet, elles sont regroupées dans 12 fichiers Java différents. Ces 12 fichiers sont répartis parmi 7 dossiers alors que le projet en compte 58.
 

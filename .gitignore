@@ -11,3 +11,5 @@ __pycache__
 *.toc
 *.minted
 *.pdf_tex
+*.pygtex
+*.pygstyle

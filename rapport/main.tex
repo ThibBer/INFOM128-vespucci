@@ -1,16 +1,12 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage{fontspec}
 \usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{titlesec}
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{svg}
-\usepackage{lmodern}
-\usepackage{newtxtext} % Times New Roman text
 \usepackage{newtxmath}
 \usepackage{float}
 \usepackage{minted}
@@ -18,14 +14,25 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \definecolor{bggray}{rgb}{0.90,0.90,0.90}
+\definecolor{bggraylight}{rgb}{0.95,0.95,0.95}
 % Customize the appearance of inline code
 \setmintedinline{
     bgcolor=bggray,
-    style=bw, % Black-and-white style for better contrast
     fontsize=\footnotesize,
     breaklines=true
+    }
+
+\setminted{
+    bgcolor=bggraylight,
+    breaklines=true,
+    frame=lines,
+    mathescape,
+    autogobble=true,
+    breakanywhere=true,
+    breakautoindent=true,
 }
 
+\setmainfont{Montserrat}
 \setmonofont{JetBrains Mono}
 
 % Marges
@@ -52,18 +59,16 @@
 % Page de garde
 \begin{titlepage}
     \begin{center}
-        \vspace*{3cm}
+        \vspace*{2cm}
         \Huge\textbf{Database reverse engineering and assessment for
             Android applications}\\
         \vspace{1cm}
         \Large INFOM218 - Année académique 2024-2025\\
-        \vspace{0cm}
-        \begin{figure}[h!]
+        \begin{figure}[!ht]
             \centering
             \includegraphics[scale=0.1]{vespucci.png}
             \label{fig:logo-vespucci}
         \end{figure}
-        \vspace{0cm}
         {\Large\textbf{Groupe 1}}\\
         \vspace{0.5cm}
         {\Large François Bechet\\
@@ -75,7 +80,7 @@
         \vspace{0.5cm}
         {\Large Prof. Anthony Cleve}\\
         \vfill
-        \begin{figure}[h!]
+        \begin{figure}[!ht]
             \centering
             \includesvg[width=0.2\textwidth]{logo_unamur}
             \label{fig:logo-unamur}

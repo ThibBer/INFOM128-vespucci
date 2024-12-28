@@ -1,0 +1,268 @@
+\subsection{Scénario d'évolution n°3}
+\subsubsection{Scénario}
+Modifier le type de la colonne \mintinline{java}{id} de la table \mintinline{java}{coverages} de \mintinline{java}{TEXT} à \mintinline{java}{INTEGER}.
+\subsubsection{Modifications}
+Les schémas physiques et logiques sont concernés par cette modification, il faut donc les éditer pour faire propager les modifications faites dans le code.
+
+\begin{enumerate}
+    \item \textbf{Création de la table dans la méthode \mintinline{java}{onCreate}}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L114 }{Ligne 114}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL("CREATE TABLE sources (name TEXT NOT NULL PRIMARY KEY, updated INTEGER)");
+                                addSource(db, SOURCE_JOSM_IMAGERY);
+                                addSource(db, SOURCE_CUSTOM);
+                                addSource(db, SOURCE_MANUAL);
+
+                                db.execSQL(
+                                    "CREATE TABLE layers (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, server_type TEXT NOT NULL, category TEXT DEFAULT NULL, tile_type TEXT DEFAULT NULL,"
+                                    + " source TEXT NOT NULL, url TEXT NOT NULL," + " tou_url TEXT, attribution TEXT, overlay INTEGER NOT NULL DEFAULT 0,"
+                                    + " default_layer INTEGER NOT NULL DEFAULT 0, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18,"
+                                    + " over_zoom_max INTEGER NOT NULL DEFAULT 4, tile_width INTEGER NOT NULL DEFAULT 256, tile_height INTEGER NOT NULL DEFAULT 256,"
+                                    + " proj TEXT DEFAULT NULL, preference INTEGER NOT NULL DEFAULT 0, start_date INTEGER DEFAULT NULL, end_date INTEGER DEFAULT NULL,"
+                                    + " no_tile_header TEXT DEFAULT NULL, no_tile_value TEXT DEFAULT NULL, no_tile_tile BLOB DEFAULT NULL, logo_url TEXT DEFAULT NULL, logo BLOB DEFAULT NULL,"
+                                    + " description TEXT DEFAULT NULL, privacy_policy_url TEXT DEFAULT NULL, attribution_url TEXT DEFAULT NULL, FOREIGN KEY(source) REFERENCES sources(name) ON DELETE CASCADE)");
+                                db.execSQL("CREATE INDEX layers_overlay_idx ON layers(overlay)");
+                                db.execSQL("CREATE INDEX layers_source_idx ON layers(source)");
+                                db.execSQL("CREATE TABLE coverages (id TEXT NOT NULL, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18,"
+                                        + " left INTEGER DEFAULT NULL, bottom INTEGER DEFAULT NULL, right INTEGER DEFAULT NULL, top INTEGER DEFAULT NULL,"
+                                        + " FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)");
+                                db.execSQL("CREATE INDEX coverages_idx ON coverages(id)");
+                                createHeadersTable(db);
+                            } catch (SQLException e) {
+                                Log.w(DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @Override
+                        public void onCreate(SQLiteDatabase db) {
+                            try {
+                                db.execSQL("CREATE TABLE sources (name TEXT NOT NULL PRIMARY KEY, updated INTEGER)");
+                                addSource(db, SOURCE_JOSM_IMAGERY);
+                                addSource(db, SOURCE_CUSTOM);
+                                addSource(db, SOURCE_MANUAL);
+
+                                db.execSQL(
+                                        "CREATE TABLE layers (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, server_type TEXT NOT NULL, category TEXT DEFAULT NULL, tile_type TEXT DEFAULT NULL,"
+                                        + " source TEXT NOT NULL, url TEXT NOT NULL," + " tou_url TEXT, attribution TEXT, overlay INTEGER NOT NULL DEFAULT 0,"
+                                        + " default_layer INTEGER NOT NULL DEFAULT 0, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18,"
+                                        + " over_zoom_max INTEGER NOT NULL DEFAULT 4, tile_width INTEGER NOT NULL DEFAULT 256, tile_height INTEGER NOT NULL DEFAULT 256,"
+                                        + " proj TEXT DEFAULT NULL, preference INTEGER NOT NULL DEFAULT 0, start_date INTEGER DEFAULT NULL, end_date INTEGER DEFAULT NULL,"
+                                        + " no_tile_header TEXT DEFAULT NULL, no_tile_value TEXT DEFAULT NULL, no_tile_tile BLOB DEFAULT NULL, logo_url TEXT DEFAULT NULL, logo BLOB DEFAULT NULL,"
+                                        + " description TEXT DEFAULT NULL, privacy_policy_url TEXT DEFAULT NULL, attribution_url TEXT DEFAULT NULL, FOREIGN KEY(source) REFERENCES sources(name) ON DELETE CASCADE)");
+                                db.execSQL("CREATE INDEX layers_overlay_idx ON layers(overlay)");
+                                db.execSQL("CREATE INDEX layers_source_idx ON layers(source)");
+                                db.execSQL("CREATE TABLE coverages (id TEXT NOT NULL, zoom_min INTEGER NOT NULL DEFAULT 0, zoom_max INTEGER NOT NULL DEFAULT 18,"
+                                        + " left INTEGER DEFAULT NULL, bottom INTEGER DEFAULT NULL, right INTEGER DEFAULT NULL, top INTEGER DEFAULT NULL,"
+                                        + " FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)");
+                                db.execSQL("CREATE INDEX coverages_idx ON coverages(id)");
+                                createHeadersTable(db);
+                            } catch (SQLException e) {
+                                Log.w(DEBUG_TAG, "Problem creating database", e);
+                            }
+                        }
+                    \end{minted}
+          \end{itemize}
+    \item \textbf{Modifier les queries de la méthode TileLayerSource}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerSource.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L370}{Ligne 370}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                    @Nullable
+                    public static TileLayerSource getLayer(@NonNull Context context, @NonNull SQLiteDatabase db, @NonNull String id) {
+                        TileLayerSource layer = null;
+                        try (Cursor providerCursor = db.query(COVERAGES_TABLE, null, ID_FIELD + "='" + id + "'", null, null, null, null)) {
+                            Provider provider = getProviderFromCursor(providerCursor);
+                            try (Cursor layerCursor = db.query(LAYERS_TABLE, null, ID_FIELD + "='" + id + "'", null, null, null, null)) {
+                                if (layerCursor.getCount() >= 1) {
+                                    boolean haveEntry = layerCursor.moveToFirst();
+                                    if (haveEntry) {
+                                        initLayerFieldIndices(layerCursor);
+                                        layer = getLayerFromCursor(context, provider, layerCursor);
+                                        setHeadersForLayer(db, layer);
+                                    }
+                                }
+                            }
+                        }
+                        return layer;
+                    }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @Nullable
+                        public static TileLayerSource getLayer(@NonNull Context context, @NonNull SQLiteDatabase db, @NonNull String id) {
+                            TileLayerSource layer = null;
+                            try (Cursor providerCursor = db.query(COVERAGES_TABLE, null, ID_FIELD + "=" + id, null, null, null, null)) {
+                                Provider provider = getProviderFromCursor(providerCursor);
+                                try (Cursor layerCursor = db.query(LAYERS_TABLE, null, ID_FIELD + "=" + id, null, null, null, null)) {
+                                    if (layerCursor.getCount() >= 1) {
+                                        boolean haveEntry = layerCursor.moveToFirst();
+                                        if (haveEntry) {
+                                            initLayerFieldIndices(layerCursor);
+                                            layer = getLayerFromCursor(context, provider, layerCursor);
+                                            setHeadersForLayer(db, layer);
+                                        }
+                                    }
+                                }
+                            }
+                            return layer;
+                        }
+
+                    \end{minted}
+          \end{itemize}
+
+    \item \textbf{Modifier la méthode \texttt{getLayerWithUrl}}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L419 }{Ligne 419}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        @Nullable
+                        public static TileLayerSource getLayerWithUrl(@NonNull Context context, @NonNull SQLiteDatabase db, @NonNull String url) {
+                            TileLayerSource layer = null;
+                            try (Cursor layerCursor = db.query(LAYERS_TABLE, null, TILE_URL_FIELD + "=?", new String[] { url }, null, null, null)) {
+                                if (layerCursor.getCount() >= 1) {
+                                    boolean haveEntry = layerCursor.moveToFirst();
+                                    if (haveEntry) {
+                                        initLayerFieldIndices(layerCursor);
+                                        String id = layerCursor.getString(idLayerFieldIndex);
+                                        try (Cursor providerCursor = db.query(COVERAGES_TABLE, null, ID_FIELD + "='" + id + "'", null, null, null, null)) {
+                                            Provider provider = getProviderFromCursor(providerCursor);
+                                            layer = getLayerFromCursor(context, provider, layerCursor);
+                                            setHeadersForLayer(db, layer);
+                                            }
+                                        }
+                                    }
+                                }
+                            return layer;
+                        }
+\end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        @Nullable
+                        public static TileLayerSource getLayerWithUrl(@NonNull Context context, @NonNull SQLiteDatabase db, @NonNull String url) {
+                            TileLayerSource layer = null;
+                            try (Cursor layerCursor = db.query(LAYERS_TABLE, null, TILE_URL_FIELD + "=?", new String[] { url }, null, null, null)) {
+                                if (layerCursor.getCount() >= 1) {
+                                    boolean haveEntry = layerCursor.moveToFirst();
+                                    if (haveEntry) {
+                                        initLayerFieldIndices(layerCursor);
+                                        String id = layerCursor.getString(idLayerFieldIndex);
+                                        try (Cursor providerCursor = db.query(COVERAGES_TABLE, null, ID_FIELD + "=" + id, null, null, null, null)) {
+                                            Provider provider = getProviderFromCursor(providerCursor);
+                                            layer = getLayerFromCursor(context, provider, layerCursor);
+                                            setHeadersForLayer(db, layer);
+                                        }
+                                    }
+                                }
+                            }
+                            return layer;
+                        }
+                    \end{minted}
+          \end{itemize}
+
+    \item \textbf{Mettre à jour la méthode \texttt{getCoveragesById} pour refléter le changement}
+          La colonne id de layers étant de type text, on doit convertir le type dans la requête en utilisant CAST
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L746}{Ligne 746}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        private static MultiHashMap<String, CoverageArea> getCoveragesById(SQLiteDatabase db, boolean overlay) {
+                            MultiHashMap<String, CoverageArea> coveragesById = new MultiHashMap<>();
+                            try (Cursor coverageCursor = db.rawQuery(
+                                    "SELECT coverages.id as id,left,bottom,right,top,coverages.zoom_min as zoom_min,coverages.zoom_max as zoom_max FROM layers,coverages WHERE coverages.id=layers.id AND overlay=?",
+                                    new String[] { boolean2intString(overlay) })) {
+                                if (coverageCursor.getCount() >= 1) {
+                                    initCoverageFieldIndices(coverageCursor);
+                                    boolean haveEntry = coverageCursor.moveToFirst();
+                                    while (haveEntry) {
+                                        String id = coverageCursor.getString(coverageIdFieldIndex);
+                                        CoverageArea ca = getCoverageFromCursor(coverageCursor);
+                                        coveragesById.add(id, ca);
+                                        haveEntry = coverageCursor.moveToNext();
+                                    }
+                                }
+                            }
+                            return coveragesById;
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        private static MultiHashMap<String, CoverageArea> getCoveragesById(SQLiteDatabase db, boolean overlay) {
+                            MultiHashMap<String, CoverageArea> coveragesById = new MultiHashMap<>();
+                            try(Cursor coverageCursor = db.rawQuery(
+
+                            "SELECT coverages.id as id, left, bottom, right, top, coverages.zoom_min as zoom_min, coverages.zoom_max as zoom_max " +
+
+                            "FROM layers, coverages " +
+
+                            "WHERE CAST(coverages.id AS TEXT) = layers.id AND overlay=?",
+
+                            new String[] { boolean2intString(overlay) })) {
+                                if (coverageCursor.getCount() >= 1) {
+                                    initCoverageFieldIndices(coverageCursor);
+                                    boolean haveEntry = coverageCursor.moveToFirst();
+                                    while (haveEntry) {
+                                        String id = coverageCursor.getString(coverageIdFieldIndex);
+                                        CoverageArea ca = getCoverageFromCursor(coverageCursor);
+                                        coveragesById.add(id, ca);
+                                        haveEntry = coverageCursor.moveToNext();
+                                    }
+                                }
+                            }
+                            return coveragesById;
+                        }
+                    \end{minted}
+          \end{itemize}
+
+    \item \textbf{Mettre à jour la méthode \texttt{deleteCoverage} pour refléter le changement}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L935 }{Ligne 935}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        public static void deleteCoverage(@NonNull SQLiteDatabase db, @NonNull String id) {
+                            db.delete(COVERAGES_TABLE, "id=?", new String[] { id });
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        public static void deleteCoverage(@NonNull SQLiteDatabase db, @NonNull String id) {
+                            db.delete(COVERAGES_TABLE, "id=?", new String[] { id });
+                        }
+                    \end{minted}
+          \end{itemize}
+
+    \item \textbf{Mettre à jour la methode \texttt{deleteHeader} pour refléter le changement}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} :
+                    \href{https://github.com/MarcusWolschon/osmeditor4android/blob/master/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L960 }{Ligne 960}
+              \item \textbf{Ancien code} :
+                    \begin{minted}{java}
+                        public static void deleteHeader(@NonNull SQLiteDatabase db, @NonNull String id) {
+                            db.delete(COVERAGES_TABLE, "id=?", new String[] { id });
+                        }
+                    \end{minted}
+              \item \textbf{Nouveau code} :
+                    \begin{minted}{java}
+                        public static void deleteHeader(@NonNull SQLiteDatabase db, @NonNull String id) {
+                            db.delete(COVERAGES_TABLE, "id=?", new String[] { id });
+                        }
+                \end{minted}
+          \end{itemize}
+\end{enumerate}
