@@ -1,0 +1,102 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{svg}
+\usepackage{lmodern}
+\usepackage{newtxtext} % Times New Roman text
+\usepackage{newtxmath}
+\usepackage{float}
+\usepackage{minted}
+% to display code
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{bggray}{rgb}{0.90,0.90,0.90}
+% Customize the appearance of inline code
+\setmintedinline{
+    bgcolor=bggray,
+    style=bw, % Black-and-white style for better contrast
+    fontsize=\footnotesize,
+    breaklines=true
+}
+
+\setmonofont{JetBrains Mono}
+
+% Marges
+\geometry{margin=1in}
+
+
+% Interligne de 1.5
+\setstretch{1.5}
+
+% Titres en gras et numérotés
+\titleformat{\section}{\bfseries\Large}{\thesection}{1em}{}
+\titleformat{\subsection}{\bfseries\large}{\thesubsection}{1em}{}
+
+% Commande pour un titre centré
+\newcommand{\reporttitle}[1]{%
+  \begin{center}
+    \LARGE\textbf{#1}
+  \end{center}
+  \vspace{1cm}
+}
+% Début du document
+\begin{document}
+
+% Page de garde
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3cm}
+        \Huge\textbf{Database reverse engineering and assessment for
+            Android applications}\\
+        \vspace{1cm}
+        \Large INFOM218 - Année académique 2024-2025\\
+        \vspace{0cm}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.1]{vespucci.png}
+            \label{fig:logo-vespucci}
+        \end{figure}
+        \vspace{0cm}
+        {\Large\textbf{Groupe 1}}\\
+        \vspace{0.5cm}
+        {\Large François Bechet\\
+            Thibaut Berg}\\
+        Anaé De Baets\\
+        Carine Pochet\\
+        \vspace{1cm}
+        {\Large\textbf{Professeur}}\\
+        \vspace{0.5cm}
+        {\Large Prof. Anthony Cleve}\\
+        \vfill
+        \begin{figure}[h!]
+            \centering
+            \includesvg[width=0.2\textwidth]{logo_unamur}
+            \label{fig:logo-unamur}
+        \end{figure}
+        \Large Université de Namur\\
+        \Large \today
+    \end{center}
+\end{titlepage}
+
+% Table des matières
+\tableofcontents
+\newpage
+
+% Contenu du rapport
+\include{sections/partie_1}
+\newpage
+\include{sections/partie_2}
+\newpage
+\include{sections/partie_3}
+\newpage
+\include{sections/partie_4}
+\newpage
+
+\end{document}

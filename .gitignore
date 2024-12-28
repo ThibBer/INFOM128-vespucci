@@ -3,3 +3,11 @@ __pycache__
 .mypy_cache
 *.class
 *.lst
+
+*.aux
+*.log
+*.out
+*.gz
+*.toc
+*.minted
+*.pdf_tex

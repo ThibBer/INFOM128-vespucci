@@ -1,0 +1,107 @@
+\section{Partie 3}
+
+\subsection{Scénario d'évolution n°1}
+\subsubsection{Scénario}
+Renommer la colonne \mintinline{java}{name} de la table \mintinline{java}{headers}.
+\begin{minted}{python}
+import numpy as np
+\end{minted}
+\subsubsection{Modifications}
+Pour renommer la colonne \mintinline{java}{name} de la table \mintinline{java}{headers}, les étapes suivantes sont nécessaires. Ces changements concernent le code source et le schéma SQL dans différents fichiers du projet.
+
+\begin{enumerate}
+    \item \textbf{Changer la constante qui représente le nom de la colonne}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} : \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L82}{Ligne 82}
+              \item \textbf{Ancien code} :
+                    \begin{lstlisting}[style=Java, caption=Ancien code]
+private static final String HEADER_NAME_FIELD = "name";
+        \end{lstlisting}
+              \item \textbf{Nouveau code} :
+                    \begin{lstlisting}[style=Java, caption=Nouveau code]
+private static final String HEADER_NAME_FIELD = "newName";
+        \end{lstlisting}
+          \end{itemize}
+
+    \item \textbf{Modifier la définition de la table dans la méthode \texttt{createHeadersTable}}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} : \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L161}{Ligne 161}
+              \item \textbf{Ancien code} :
+                    \begin{lstlisting}[style=Java, caption=Ancien code]
+private void createHeadersTable(SQLiteDatabase db) {
+    db.execSQL("CREATE TABLE headers (id TEXT NOT NULL, name TEXT NOT NULL, value TEXT NOT NULL,"
+            + " FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)");
+    db.execSQL("CREATE INDEX headers_idx ON headers(id)");
+}
+        \end{lstlisting}
+              \item \textbf{Nouveau code} :
+                    \begin{lstlisting}[style=Java, caption=Nouveau code]
+private void createHeadersTable(SQLiteDatabase db) {
+    db.execSQL("CREATE TABLE headers (id TEXT NOT NULL, newName TEXT NOT NULL, value TEXT NOT NULL,"
+            + " FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)");
+    db.execSQL("CREATE INDEX headers_idx ON headers(id)");
+}
+        \end{lstlisting}
+          \end{itemize}
+
+    \item \textbf{Mettre à jour la méthode \texttt{getHeadersById} pour refléter le changement}
+          \begin{itemize}
+              \item \textbf{Fichier concerné} : \texttt{TileLayerDatabase.java}
+              \item \textbf{Emplacement} : \href{https://github.com/MarcusWolschon/osmeditor4android/blob/dcabe8084aa15f5551a37c990516bf73398af1bf/src/main/java/de/blau/android/resources/TileLayerDatabase.java#L716}{Ligne 716}
+              \item \textbf{Ancien code} :
+                    \begin{lstlisting}[style=Java, caption=Ancien code]
+            @NonNull
+            private static Map<String, List<Header>> getHeadersById(SQLiteDatabase db, boolean overlay) {
+                Map<String, List<Header>> headersById = new HashMap<>();
+                try (Cursor headerCursor = db.rawQuery(
+                        "SELECT headers.id as id,headers.name as name,value FROM layers,headers WHERE headers.id=layers.id AND overlay=?",
+                        new String[] { boolean2intString(overlay) })) {
+                    if (headerCursor.getCount() >= 1) {
+                        initHeaderFieldIndices(headerCursor);
+                        boolean haveEntry = headerCursor.moveToFirst();
+                        while (haveEntry) {
+                            String id = headerCursor.getString(headerIdFieldIndex);
+                            List<Header> headers = headersById.get(id);
+                            if (headers == null) {
+                                headers = new ArrayList<>();
+                                headersById.put(id, headers);
+                            }
+                            headers.add(getHeaderFromCursor(headerCursor));
+                            haveEntry = headerCursor.moveToNext();
+                        }
+                    }
+                }
+                return headersById;
+            }
+        \end{lstlisting}
+              \item \textbf{Nouveau code} :
+                    \begin{lstlisting}[style=Java, caption=Nouveau code]
+            @NonNull
+            private static Map<String, List<Header>> getHeadersById(SQLiteDatabase db, boolean overlay) {
+                Map<String, List<Header>> headersById = new HashMap<>();
+                try (Cursor headerCursor = db.rawQuery(
+                        "SELECT headers.id as id, headers.newName as newName, value FROM layers, headers WHERE headers.id=layers.id AND overlay=?",
+                        new String[] { boolean2intString(overlay) })) {
+                    if (headerCursor.getCount() >= 1) {
+                        initHeaderFieldIndices(headerCursor);
+                        boolean haveEntry = headerCursor.moveToFirst();
+                        while (haveEntry) {
+                            String id = headerCursor.getString(headerIdFieldIndex);
+                            List<Header> headers = headersById.get(id);
+                            if (headers == null) {
+                                headers = new ArrayList<>();
+                                headersById.put(id, headers);
+                            }
+                            headers.add(getHeaderFromCursor(headerCursor));
+                            haveEntry = headerCursor.moveToNext();
+                        }
+                    }
+                }
+                return headersById;
+            }
+        \end{lstlisting}
+          \end{itemize}
+
+\end{enumerate}
