@@ -16,7 +16,7 @@ Grâce à cette constante, les IDE modernes aident grandement à trouver les end
 Voici toutefois les endroits importants à modifier.
 
 \begin{enumerate}
-    \item \textbf{TDans la méthode getActivePresets, il faut supprimer la constante \mintinline{java}{DESCRIPTION_COL}}
+    \item Dans la méthode getActivePresets, il faut supprimer la constante \mintinline{java}{DESCRIPTION_COL}
           \begin{itemize}
               \item \textbf{Fichier concerné} : \texttt{AdvancedPrefDatabase.java}
               \item \textbf{Emplacement} :
@@ -66,12 +66,12 @@ Voici toutefois les endroits importants à modifier.
                             }
                     \end{minted}
           \end{itemize}
-    \item \textbf{Il faut également supprimer dbresult.getString(5) dans l'appel au constructeur de PresetInfo. De plus, il faut également décaler les index des autres appels à getString(val) car la supprimer d'une colonne sélectionnée décale tout le reste.}
-    \item \textbf{La même modification que ci-dessus est à faire pour la méthode getPresets}
+    \item Il faut également supprimer dbresult.getString(5) dans l'appel au constructeur de PresetInfo. De plus, il faut également décaler les index des autres appels à getString(val) car la supprimer d'une colonne sélectionnée décale tout le reste.
+    \item La même modification que ci-dessus est à faire pour la méthode getPresets
 
-    \item \textbf{La méthode setPresetAdditionalFields est à adapter car elle utilise également la description lors de la modification d'un preset. Pour ce faire, il faut supprimer les lignes 776 à 778. De ce fait, la colonne \mintinline{java}{description} ne sera plus utilisée par le programme pour interagir avec la base de données.}
+    \item La méthode setPresetAdditionalFields est à adapter car elle utilise également la description lors de la modification d'un preset. Pour ce faire, il faut supprimer les lignes 776 à 778. De ce fait, la colonne \mintinline{java}{description} ne sera plus utilisée par le programme pour interagir avec la base de données.
 
-    \item \textbf{La dernière modification à effectuer est la suppression de l'attribut \mintinline{java}{description} de la classe PresetInfo.}
+    \item La dernière modification à effectuer est la suppression de l'attribut \mintinline{java}{description} de la classe PresetInfo.
 
-    \item \textbf{Les modifications engendrées par la suppression de cet attribut ne sont pas expliquées ici mais le compilateur permet de repérer les endroits où l'attribut \mintinline{java}{description} était utilisé. Il est donc aisé d'effectuer les derniers changements.}
+    \item Les modifications engendrées par la suppression de cet attribut ne sont pas expliquées ici mais le compilateur permet de repérer les endroits où l'attribut \mintinline{java}{description} était utilisé. Il est donc aisé d'effectuer les derniers changements.
 \end{enumerate}

@@ -16,12 +16,18 @@ Une seconde analyse des requêtes n'a donné aucun résultat pour le format de j
 \subsubsection{Recherche de patterns}
 Les tables \mintinline{java}{directories} et \mintinline{java}{photos} ont toutes les 2 un attribut « dir ». En analysant le code du fichier \mintinline{java}{PhotoIndex.java}, et plus précisément de la méthode\\\mintinline{java}{private void indexDirectories()}, on remarque qu'une query sur la table \mintinline{java}{photos} utilise la valeur de l'attribut \mintinline{java}{dir} récupéré à partir d'un select sur la table \mintinline{java}{directories}. Il y a donc un lien implicite entre ces 2 tables. Toutefois la requête utilise le mot clef \mintinline{java}{LIKE} qui permet de récupérer les entrés où l'attribut « dir » de la table \mintinline{java}{photos} contient l'attribut \mintinline{java}{dir} de la table \mintinline{java}{directories} suivi ou non d'autres caractères (symbolisé par « \% » dans la requête).
 
+\newpage
 \subsection{Schéma logique}
-
-\subsection{Schéma conceptuel}
-
 \begin{figure}[!ht]
     \centering
-    \includegraphics[scale=1]{images/schema_conceptuel.png}
+    \includegraphics[scale=1]{images/schema_logique.png}
+    \label{fig:schéma logique}
+\end{figure}
+
+\newpage
+\subsection{Schéma conceptuel}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.7]{images/schema_conceptuel.png}
     \label{fig:schéma conceptuel}
 \end{figure}

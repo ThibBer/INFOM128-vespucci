@@ -1,5 +1,168 @@
 \subsection{Scénario d'évolution n°9}
 \subsubsection{Scénario}
-Ajouter une clef étrangère entre photo et directories
+Ajouter une clef étrangère entre la colonne \mintinline{sql}{photo.dir} et \mintinline{sql}{directories.dir}
 
 \subsubsection{Modifications}
+Tous les schémas sont concernés par cette modification, il faut donc les éditer pour faire propager les modifications faites dans le code.
+
+Etant donné qu'une nouvelle contrainte référentielle va être ajoutée, certaines lignes déjà existantes pourraient poser problème.
+Pour qu'une contrainte de clef étrangère puisse exister, il est impératif que la colonne référencée ne contiennent que des valeurs uniques et qu'elles soient de même type.
+Si besoin, certaines entrées de la table directories devront être supprimées pour respecter la contrainte d'unicité.
+
+Pour l'instant, cette contrainte n'est pas totalement existante.
+En effet, il existe déjà une relation entre ces 2 colonnes mais basée sur un \mintinline{sql}{LIKE}. Il n'y a donc aucune contrainte explicitement définie.
+
+
+\begin{enumerate}
+    \item Adapter la requête de création de la table
+    \begin{itemize}
+        \item \textbf{Fichier concerné} : \mintinline{sql}{PhotoIndex.java}
+        \item \textbf{Emplacement} : \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/photos/PhotoIndex.java#L88}{ligne 88}
+        \item \textbf{Méthode} : \mintinline{java}{public synchronized void onCreate(SQLiteDatabase db)}
+    \end{itemize}
+
+    Pour créer une contrainte, il faut tout d'abord adapter la requête de création de la table en y ajoutant la contraite de référence.
+    Les 2 colonnes ayant le même type, il n'y a pas d'autres modifications à apporter afin de pouvoir créer la clef étrangère.
+    \begin{minted}{sql}
+    CREATE TABLE IF NOT EXISTS photos (lat int, lon int, direction int DEFAULT NULL, dir VARCHAR, name VARCHAR, source VARCHAR DEFAULT NULL);
+    \end{minted}
+
+    doit être changée en y ajoutant la contrainte référentielle comme suit :
+    \begin{minted}{sql}
+    CREATE TABLE IF NOT EXISTS photos (lat int, lon int, direction int DEFAULT NULL, dir VARCHAR, name VARCHAR, source VARCHAR DEFAULT NULL) FOREIGN KEY(dir) REFERENCES directories(dir);
+    \end{minted}
+
+    \item Modifier la requête de sélection des photos liée aux directories.
+    \begin{itemize}
+        \item \textbf{Fichier concerné} : \mintinline{sql}{PhotoIndex.java}
+        \item \textbf{Emplacement} : \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/photos/PhotoIndex.java#L236}{ligne 236}
+        \item \textbf{Méthode} : \mintinline{java}{private void indexDirectories()}
+    \end{itemize}
+
+    \begin{minted}{java}
+    private void indexDirectories() {
+        Log.d(DEBUG_TAG, "scanning directories");
+        // determine at least a few of the possible mount points
+        File sdcard = Environment.getExternalStorageDirectory(); // NOSONAR
+        List<String> mountPoints = new ArrayList<>();
+        mountPoints.add(sdcard.getAbsolutePath());
+        mountPoints.add(sdcard.getAbsolutePath() + Paths.DIRECTORY_PATH_EXTERNAL_SD_CARD);
+        mountPoints.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath()); // NOSONAR
+        File storageDir = new File(Paths.DIRECTORY_PATH_STORAGE);
+        File[] list = storageDir.listFiles();
+        if (list != null) {
+            for (File f : list) {
+                if (f.exists() && f.isDirectory() && !sdcard.getAbsolutePath().equals(f.getAbsolutePath())) {
+                    Log.d(DEBUG_TAG, "Adding mount point " + f.getAbsolutePath());
+                    mountPoints.add(f.getAbsolutePath());
+                }
+            }
+        }
+
+        SQLiteDatabase db = null;
+        Cursor dbresult = null;
+
+        try {
+            db = getWritableDatabase();
+            dbresult = db.query(SOURCES_TABLE, new String[] { URI_COLUMN, LAST_SCAN_COLUMN, TAG_COLUMN }, TAG_COLUMN + " is NULL", null, null, null, null,
+                    null);
+            int dirCount = dbresult.getCount();
+            dbresult.moveToFirst();
+            // loop over the directories configured
+            for (int i = 0; i < dirCount; i++) {
+                String dir = dbresult.getString(0);
+                long lastScan = dbresult.getLong(1);
+                Log.d(DEBUG_TAG, dbresult.getString(0) + " " + dbresult.getLong(1));
+                // loop over all possible mount points
+                for (String m : mountPoints) {
+                    File indir = new File(m, dir);
+                    Log.d(DEBUG_TAG, "Scanning directory " + indir.getAbsolutePath());
+                    if (indir.exists()) {
+                        Cursor dbresult2 = null;
+                        try {
+                            dbresult2 = db.query(PHOTOS_TABLE, new String[] { "distinct dir" }, "dir LIKE '" + indir.getAbsolutePath() + "%'", null, null, null,
+                                    null, null);
+                            int dirCount2 = dbresult2.getCount();
+                            dbresult2.moveToFirst();
+                            for (int j = 0; j < dirCount2; j++) {
+                                String photo = dbresult2.getString(0);
+                                File pDir = new File(photo);
+                                if (!pDir.exists()) {
+                                    Log.d(DEBUG_TAG, "Deleting entries for gone photo " + photo);
+                                    db.delete(PHOTOS_TABLE, URI_WHERE, new String[] { photo });
+                                }
+                                dbresult2.moveToNext();
+                            }
+                            dbresult2.close();
+                            scanDir(db, indir.getAbsolutePath(), lastScan);
+                            updateSources(db, indir.getName(), null, System.currentTimeMillis());
+                        } finally {
+                            close(dbresult2);
+                        }
+                        continue;
+                    }
+                    Log.d(DEBUG_TAG, "Directory " + indir.getAbsolutePath() + " doesn't exist");
+                    // remove all entries for this directory
+                    db.delete(PHOTOS_TABLE, URI_WHERE, new String[] { indir.getAbsolutePath() });
+                    db.delete(PHOTOS_TABLE, "dir LIKE ?", new String[] { indir.getAbsolutePath() + "/%" });
+                }
+                dbresult.moveToNext();
+            }
+        } catch (SQLiteException ex) {
+            // Don't crash just report
+            ACRAHelper.nocrashReport(ex, ex.getMessage());
+        } finally {
+            close(dbresult);
+            SavingHelper.close(db);
+        }
+    }
+    \end{minted}
+
+
+    Etant donné qu'une contrainte référentielle existe, il n'est plus nécessaire l'utiliser le mot clef \mintinline{sql}{LIKE} pour récupérer les photos qui appartient à un dossier mais un simple select suffit.
+
+    \item Modifier la méthode d'insertion
+    \begin{itemize}
+        \item \textbf{Fichier concerné} : \mintinline{sql}{PhotoIndex.java}
+        \item \textbf{Emplacement} : \href{https://github.com/MarcusWolschon/osmeditor4android/blob/127fb689ad42c77558e4512e14de754e0561cd27/src/main/java/de/blau/android/photos/PhotoIndex.java#L515}{ligne 515}
+        \item \textbf{Méthode} : \mintinline{java}{private void insertPhoto(@NonNull SQLiteDatabase db, @NonNull Photo photo, @NonNull String name, @Nullable String source)}
+    \end{itemize}
+
+    \begin{minted}{java}
+    private void insertPhoto(@NonNull SQLiteDatabase db, @NonNull Photo photo, @NonNull String name, @Nullable String source) {
+        try {
+            ContentValues values = new ContentValues();
+            values.put(LAT_COLUMN, photo.getLat());
+            values.put(LON_COLUMN, photo.getLon());
+            if (photo.hasDirection()) {
+                values.put(DIRECTION_COLUMN, photo.getDirection());
+            }
+            values.put(URI_COLUMN, photo.getRef());
+            values.put(NAME_COLUMN, name);
+            if (source != null) {
+                values.put(SOURCE_COLUMN, source);
+            }
+            db.insert(PHOTOS_TABLE, null, values);
+        } catch (SQLiteException sqex) {
+            Log.d(DEBUG_TAG, sqex.toString());
+            ACRAHelper.nocrashReport(sqex, sqex.getMessage());
+        } catch (NumberFormatException bfex) {
+            // ignore silently, broken pictures are not our business
+        } catch (Exception ex) {
+            Log.d(DEBUG_TAG, ex.toString());
+            ACRAHelper.nocrashReport(ex, ex.getMessage());
+        } // ignore
+    }
+    \end{minted}
+
+    Cette dernière s'occupe d'insérer une photo. Dorénavent, il faut s'assurer que la propriété \mintinline{java}{dir} de la photo qu'on veut insérer existe dans la table \mintinline{java}{directories}.
+    Une vérification avec un select permet de résoudre ce problème, sinon il est possible d'utiliser l'exception générée par la requete d'insertion.
+
+    L'adaptation du code pourra donc se faire :
+    \begin{itemize}
+        \item dans la méthode ci-dessus, sans rien adapter. La méthode comporte déjà un \mintinline{java}{try/catch} qui empéchera à l'application de planter. Il serait toutefois intéressant de renvoyer l'information pour déterminer si l'insertion a eu lieu ou pas.
+        \item dans la méthode ci-dessus, en y ajoutant un sélect afin de déterminer que le \mintinline{sql}{java} existe bien dans la table \mintinline{java}{directories}
+        \item dans la méthode ci-dessus, en renvoyant une exception qui informe la méthode appellante qu'une erreur s'est produite. Il faudra également modifier l'appel à la méthode \mintinline{java}{insertPhoto} dans les autres classes qui l'utilise pour l'entourer d'un \mintinline{java}{try/catch} et ainsi éviter des crashs.
+    \end
+
+\end{enumerate}
