@@ -158,7 +158,7 @@ En effet, il existe déjà une relation entre ces 2 colonnes mais basée sur un 
     Cette dernière s'occupe d'insérer une photo. Dorénavent, il faut s'assurer que la propriété \mintinline{java}{dir} de la photo qu'on veut insérer existe dans la table \mintinline{java}{directories}.
     Une vérification avec un select permet de résoudre ce problème, sinon il est possible d'utiliser l'exception générée par la requete d'insertion.
 
-    L'adaptation du code pourra donc se faire :
+    \textbf{L'adaptation du code pourra donc se faire :}
     \begin{itemize}
         \item dans la méthode ci-dessus, sans rien adapter. La méthode comporte déjà un \mintinline{java}{try/catch} qui empéchera à l'application de planter. Il serait toutefois intéressant de renvoyer l'information pour déterminer si l'insertion a eu lieu ou pas.
         \item dans la méthode ci-dessus, en y ajoutant un sélect afin de déterminer que le \mintinline{sql}{java} existe bien dans la table \mintinline{java}{directories}
