@@ -1,0 +1,5 @@
+                        private void createHeadersTable(SQLiteDatabase db) {
+                            db.execSQL("CREATE TABLE headers (id TEXT NOT NULL, name TEXT NOT NULL, value TEXT NOT NULL,"
+                                    + " FOREIGN KEY(id) REFERENCES layers(id) ON DELETE CASCADE)");
+                            db.execSQL("CREATE INDEX headers_idx ON headers(id)");
+                        }

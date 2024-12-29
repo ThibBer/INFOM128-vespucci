@@ -163,6 +163,5 @@ En effet, il existe déjà une relation entre ces 2 colonnes mais basée sur un 
         \item dans la méthode ci-dessus, sans rien adapter. La méthode comporte déjà un \mintinline{java}{try/catch} qui empéchera à l'application de planter. Il serait toutefois intéressant de renvoyer l'information pour déterminer si l'insertion a eu lieu ou pas.
         \item dans la méthode ci-dessus, en y ajoutant un sélect afin de déterminer que le \mintinline{sql}{java} existe bien dans la table \mintinline{java}{directories}
         \item dans la méthode ci-dessus, en renvoyant une exception qui informe la méthode appellante qu'une erreur s'est produite. Il faudra également modifier l'appel à la méthode \mintinline{java}{insertPhoto} dans les autres classes qui l'utilise pour l'entourer d'un \mintinline{java}{try/catch} et ainsi éviter des crashs.
-    \end
-
+    \end{itemize}
 \end{enumerate}
