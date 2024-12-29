@@ -382,40 +382,58 @@ public class DatabaseUsageAnalyzer {
                             queries.add(new QueryInfo(qtype, javaFile, lineNo, lineSnippet, complexity));
                         }
 
-                        // Check for "INSERT INTO table VALUES(...)" with no column-list
+                        // ---- NEW CALL: check for "INSERT INTO table
+                        // VALUES(...)" with no column-list
                         checkInsertNoColsUsage(sql, javaFile, lineNo, lineSnippet);
 
                         // CASE 1: "insert", "update", "delete", "replace" pass table name as the first argument
                         if (TABLE_NAME_METHODS.getOrDefault(methodName, false) && !mce.getArguments().isEmpty()) {
                             String tableArgValue = resolveStringValue(mce.getArgument(0));
-                            if (tableArgValue != null && createTableStatements.containsKey(tableArgValue)) {
-                                TableDefinition tableDef = createTableStatements.get(tableArgValue);
-                                if (lineNo != tableDef.lineNumber) { // Exclude the creation line
-                                    addReference(tableReferences, tableArgValue, javaFile, lineNo, lineSnippet);
-                                    // For columns in these calls, we still do a quick check if any known columns appear in the SQL
-                                List<String> knownCols = tableColumns.getOrDefault(tableArgValue, Collections.emptyList());
-                                for (String col : knownCols) {
-                                    if (lineSnippet.contains(col) || lineSnippetContainsConstantForValue(lineSnippet, col)) {
-                                        addColumnReference(tableArgValue, col, javaFile, lineNo, lineSnippet);
-                                    }
+                            if (tableArgValue != null &&
+                                createTableStatements.containsKey(
+                                    tableArgValue)) {
+                              addReference(tableReferences, tableArgValue,
+                                           javaFile, lineNo, lineSnippet);
+                              // For columns in these calls, we still do a quick
+                              // check if any known columns appear in the SQL
+                              List<String> knownCols =
+                                  tableColumns.getOrDefault(
+                                      tableArgValue, Collections.emptyList());
+                              for (String col : knownCols) {
+                                if (lineSnippet.contains(col) ||
+                                    lineSnippetContainsConstantForValue(
+                                        lineSnippet, col)) {
+                                  addColumnReference(tableArgValue, col,
+                                                     javaFile, lineNo,
+                                                     lineSnippet);
                                 }
+                              }
                             }
                         }
                         // CASE 2: For raw SQL methods like rawQuery, query, execSQL, etc., we parse the extracted SQL string
                         else {
                             if (!sql.isEmpty()) {
                                 for (String table : createTableStatements.keySet()) {
-                                    TableDefinition tableDef = createTableStatements.get(table);
-                                    if (lineSnippetContainsTableOrConstant(lineSnippet, table)) {
-                                        addReference(tableReferences, table, javaFile, lineNo, lineSnippet);
-                                        // Then check if we have any known columns from that table
-                                        List<String> knownCols = tableColumns.getOrDefault(table, Collections.emptyList());
-                                        for (String col : knownCols) {
-                                            if (lineSnippet.contains(col) || lineSnippetContainsConstantForValue(lineSnippet, col)) {
-                                                addColumnReference(table, col, javaFile, lineNo, lineSnippet);
-                                            }
-                                        }
+                                  // Only record if the table is found in actual
+                                  // SQL usage
+                                  if (lineSnippetContainsTableOrConstant(
+                                          lineSnippet, table)) {
+                                    addReference(tableReferences, table,
+                                                 javaFile, lineNo, lineSnippet);
+                                    // Then check if we have any known columns
+                                    // from that table
+                                    List<String> knownCols =
+                                        tableColumns.getOrDefault(
+                                            table, Collections.emptyList());
+                                    for (String col : knownCols) {
+                                      if (lineSnippet.contains(col) ||
+                                          lineSnippetContainsConstantForValue(
+                                              lineSnippet, col)) {
+                                        addColumnReference(table, col, javaFile,
+                                                           lineNo, lineSnippet);
+                                      }
                                     }
+                                  }
                                 }
                             }
                         }
@@ -493,11 +511,11 @@ public class DatabaseUsageAnalyzer {
      * @param line    The line number of the reference.
      * @param snippet The code snippet containing the reference.
      */
-    private void addReference(Map<String, List<CodeReference>> map, String table, Path file, int line, String snippet) {
-        TableDefinition tableDef = createTableStatements.get(table);
-        if (tableDef != null && line != tableDef.lineNumber) { // Ensure it's not the creation line
-            map.computeIfAbsent(table, k -> new ArrayList<>()).add(new CodeReference(file, line, snippet));
-        }
+    private void addReference(Map<String, List<CodeReference>> map,
+                              String table, Path file, int line,
+                              String snippet) {
+      map.computeIfAbsent(table, k -> new ArrayList<>())
+          .add(new CodeReference(file, line, snippet));
     }
 
     /**
@@ -523,10 +541,10 @@ public class DatabaseUsageAnalyzer {
     private List<TableDefinition> findUnusedTables() {
         List<TableDefinition> unused = new ArrayList<>();
         for (String table : createTableStatements.keySet()) {
-            List<CodeReference> references = tableReferences.get(table);
-            if (references == null || references.isEmpty()) {
-                unused.add(createTableStatements.get(table));
-            }
+          if (!tableReferences.containsKey(table) ||
+              tableReferences.get(table).isEmpty()) {
+            unused.add(createTableStatements.get(table));
+          }
         }
         return unused;
     }
@@ -718,6 +736,24 @@ public class DatabaseUsageAnalyzer {
     }
 
     /**
+     * NEW helper method to classify references (i.e., code snippets).
+     */
+    private String classifyReferenceSnippet(String snippet) {
+      String upper = snippet.toUpperCase();
+      if (upper.contains("SELECT"))
+        return "SELECT";
+      if (upper.contains("INSERT"))
+        return "INSERT";
+      if (upper.contains("UPDATE"))
+        return "UPDATE";
+      if (upper.contains("DELETE"))
+        return "DELETE";
+      if (upper.contains("CREATE"))
+        return "CREATE";
+      return "UNKNOWN";
+    }
+
+    /**
      * Generates an HTML report summarizing the analysis.
      *
      * @param outputPath    The path to the output HTML file.
@@ -765,68 +801,78 @@ public class DatabaseUsageAnalyzer {
             // Detailed Table Usage
             w.write("<h2>Detailed Table Usage</h2>");
             for (String table : createTableStatements.keySet()) {
-                w.write("<h3 id='" + table + "'>" + table + "</h3>");
-                TableDefinition def = createTableStatements.get(table);
-                String defLink = buildFileLink(repoWebUrl, repoDir, def.file, def.lineNumber, branch);
-                String dateStr = (def.creationDate != null) ? def.creationDate.format(DateTimeFormatter.ISO_LOCAL_DATE) : "Unknown";
-                w.write("<p>Defined in: <a href=\"" + defLink + "\">" +
-                        repoDir.relativize(def.file) + ": line " + def.lineNumber + "</a>" +
-                        ", Created on: " + dateStr + "</p>");
+              w.write("<h3 id='" + table + "'>" + table + "</h3>");
+              TableDefinition def = createTableStatements.get(table);
+              String defLink = buildFileLink(repoWebUrl, repoDir, def.file,
+                                             def.lineNumber, branch);
+              String dateStr = (def.creationDate != null)
+                                   ? def.creationDate.format(
+                                         DateTimeFormatter.ISO_LOCAL_DATE)
+                                   : "Unknown";
+              w.write("<p>Defined in: <a href=\"" + defLink + "\">" +
+                      repoDir.relativize(def.file) + ": line " +
+                      def.lineNumber + "</a>"
+                      + ", Created on: " + dateStr + "</p>");
 
-                // Columns
-                w.write("<h4>Columns</h4><ul>");
-                List<String> cols = tableColumns.getOrDefault(table, Collections.emptyList());
-                for (String col : cols) {
-                    boolean used = columnReferences.containsKey(table) &&
-                                   columnReferences.get(table).containsKey(col) &&
-                                   !columnReferences.get(table).get(col).isEmpty();
-                    if (used) {
-                        w.write("<li>" + col + "</li>");
-                    } else {
-                        w.write("<li>" + col + " - <strong>UNUSED</strong></li>");
-                    }
+              // Columns
+              w.write("<h4>Columns</h4><ul>");
+              List<String> cols =
+                  tableColumns.getOrDefault(table, Collections.emptyList());
+              for (String col : cols) {
+                boolean used = columnReferences.containsKey(table) &&
+                               columnReferences.get(table).containsKey(col) &&
+                               !columnReferences.get(table).get(col).isEmpty();
+                if (used) {
+                  w.write("<li>" + col + "</li>");
+                } else {
+                  w.write("<li>" + col + " - <strong>UNUSED</strong></li>");
+                }
+              }
+              w.write("</ul>");
+
+              // References
+              List<CodeReference> refs = tableReferences.get(table);
+              if (refs != null && !refs.isEmpty()) {
+                // -----------------------------
+                // NEW REFERENCE SUMMARY TABLE
+                // -----------------------------
+                // 1) Tally reference types
+                Map<String, Integer> typeCounts = new LinkedHashMap<>();
+                for (CodeReference cr : refs) {
+                  String refType = classifyReferenceSnippet(cr.snippet);
+                  typeCounts.put(refType,
+                                 typeCounts.getOrDefault(refType, 0) + 1);
+                }
+
+                // 2) Render a summary table
+                w.write("<h4>Reference Summary</h4>");
+                w.write("<table border='1' cellpadding='4' cellspacing='0'>");
+                w.write("<tr><th>Type</th><th>Count</th></tr>");
+                for (Map.Entry<String, Integer> entry : typeCounts.entrySet()) {
+                  w.write("<tr><td>" + entry.getKey() + "</td><td>" +
+                          entry.getValue() + "</td></tr>");
+                }
+                w.write("</table>");
+
+                // Then the normal references listing
+                w.write("<h4>References</h4><ul>");
+                for (CodeReference cr : refs) {
+                  String refLink = buildFileLink(repoWebUrl, repoDir, cr.file,
+                                                 cr.lineNumber, branch);
+                  w.write("<li><a href=\"" + refLink + "\">" +
+                          repoDir.relativize(cr.file) + ": line " +
+                          cr.lineNumber + "</a> - " + escapeHtml(cr.snippet) +
+                          "</li>");
                 }
                 w.write("</ul>");
 
-                // References
-                List<CodeReference> refs = tableReferences.get(table);
-                if (refs != null && !refs.isEmpty()) {
-                    w.write("<h4>References</h4><ul>");
-                    for (CodeReference cr : refs) {
-                        String refLink = buildFileLink(repoWebUrl, repoDir, cr.file, cr.lineNumber, branch);
-                        w.write("<li><a href=\"" + refLink + "\">" +
-                                repoDir.relativize(cr.file) + ": line " + cr.lineNumber + "</a> - " +
-                                escapeHtml(cr.snippet) + "</li>");
-                    }
-                    w.write("</ul>");
-                } else {
-                    w.write("<p>No references found.</p>");
-                }
-
-                // Column references
-                w.write("<h4>Column References</h4>");
-                Map<String, List<CodeReference>> colRefsMap = columnReferences.get(table);
-                if (colRefsMap != null) {
-                    for (String col : colRefsMap.keySet()) {
-                        w.write("<h5>" + col + "</h5>");
-                        List<CodeReference> colRefs = colRefsMap.get(col);
-                        if (!colRefs.isEmpty()) {
-                            w.write("<ul>");
-                            for (CodeReference ccr : colRefs) {
-                                String colRefLink = buildFileLink(repoWebUrl, repoDir, ccr.file, ccr.lineNumber, branch);
-                                w.write("<li><a href=\"" + colRefLink + "\">" +
-                                        repoDir.relativize(ccr.file) + ": line " + ccr.lineNumber + "</a> - " +
-                                        escapeHtml(ccr.snippet) + "</li>");
-                            }
-                            w.write("</ul>");
-                        } else {
-                            w.write("<p>No references found for this column.</p>");
-                        }
-                    }
-                }
+              } else {
+                w.write("<p>No references found.</p>");
+              }
+              w.write("<hr>");
             }
 
-            // Query Statistics
+            // Global Query Statistics
             generateQueryStatisticsSection(w, repoWebUrl, repoDir, branch);
 
             w.write("</body></html>");
