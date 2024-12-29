@@ -2,9 +2,10 @@
 \subsection{Schéma physique}
 Pour extraire les données du schéma physique, nous avons utilisé le plugin SQLInspect sur Eclipse afin de récupérer toutes les requêtes SQL du programme. Un script python a ensuite été créé afin de pouvoir trier les différentes requêtes en fonction de mots-clefs. La combinaison des différentes requêtes de création des tables ainsi que des contrainte a mené à ce résultat. On peut y retrouver 6 clefs étrangères qui ne référencent pas toujours des champs uniques. La seule clef primaire composée est située sur la table \mintinline{java}{tiles}. On retrouve une multitude de champs qui sont nullable. Ces derniers peuvent être utilisés comme référence dans une clef étrangère.
 Toutes les tables présentent des noms qui sont plutôt explicites. On comprend son utilité et les données qui y sont stockées. Il en va de même pour la majorité des noms d'attributs.
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=1]{images/schema_physique.png}
+    \caption{Schéma physique}
     \label{fig:schéma physique}
 \end{figure}
 
@@ -18,16 +19,19 @@ Les tables \mintinline{java}{directories} et \mintinline{java}{photos} ont toute
 
 \newpage
 \subsection{Schéma logique}
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=1]{images/schema_logique.png}
-    \label{fig:schéma logique}
+    \caption{Schéma logique}
+    \label{fig:schéma_logique}
 \end{figure}
+Note: ici le schéma logique est identique au schéma physique.
 
 \newpage
 \subsection{Schéma conceptuel}
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{images/schema_conceptuel.png}
-    \label{fig:schéma conceptuel}
+    \includegraphics[scale=0.8]{images/schema_conceptuel.png}
+    \caption{Schéma conceptuel}
+    \label{fig:schéma_conceptuel}
 \end{figure}
