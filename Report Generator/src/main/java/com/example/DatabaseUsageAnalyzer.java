@@ -1,39 +1,54 @@
 package com.example;
 
-import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
-import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.expr.BinaryExpr;
+import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-
 import com.github.javaparser.resolution.declarations.ResolvedFieldDeclaration;
 import com.github.javaparser.resolution.declarations.ResolvedValueDeclaration;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
-import com.github.javaparser.symbolsolver.resolution.typesolvers.*;
-
-import org.eclipse.jgit.api.BlameCommand;
-import org.eclipse.jgit.api.CloneCommand;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.TransportException;
-import org.eclipse.jgit.blame.BlameResult;
-import org.eclipse.jgit.lib.PersonIdent;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.RevCommit;
-
-import java.io.*;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.ReflectionTypeSolver;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
-import java.time.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.eclipse.jgit.api.BlameCommand;
+import org.eclipse.jgit.api.CloneCommand;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.blame.BlameResult;
+import org.eclipse.jgit.lib.PersonIdent;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
 
 /**
  * DatabaseUsageAnalyzer analyzes Java codebases to identify database table and column usage,
@@ -272,8 +287,8 @@ public class DatabaseUsageAnalyzer {
                     RevCommit commit = blame.getSourceCommit(line);
                     if (commit != null) {
                         PersonIdent author = commit.getCommitterIdent();
-                        Instant commitInstant = author.getWhen().toInstant();
-                        ZoneId zone = author.getTimeZone().toZoneId();
+                        Instant commitInstant = author.getWhenAsInstant();
+                        ZoneId zone = author.getZoneId();
                         LocalDateTime commitDate = LocalDateTime.ofInstant(commitInstant, zone);
                         td.creationDate = commitDate;
                     } else {
@@ -393,7 +408,8 @@ public class DatabaseUsageAnalyzer {
                                 createTableStatements.containsKey(
                                     tableArgValue)) {
                               addReference(tableReferences, tableArgValue,
-                                           javaFile, lineNo, lineSnippet);
+                                           qtype, javaFile, lineNo,
+                                           lineSnippet);
                               // For columns in these calls, we still do a quick
                               // check if any known columns appear in the SQL
                               List<String> knownCols =
@@ -418,7 +434,7 @@ public class DatabaseUsageAnalyzer {
                                   // SQL usage
                                   if (lineSnippetContainsTableOrConstant(
                                           lineSnippet, table)) {
-                                    addReference(tableReferences, table,
+                                    addReference(tableReferences, table, qtype,
                                                  javaFile, lineNo, lineSnippet);
                                     // Then check if we have any known columns
                                     // from that table
@@ -458,7 +474,8 @@ public class DatabaseUsageAnalyzer {
             String tableName = m.group(1);  // e.g. "directories"
             if (createTableStatements.containsKey(tableName)) {
                 // Mark table itself as referenced
-                addReference(tableReferences, tableName, file, lineNo, snippet);
+                addReference(tableReferences, tableName, "INSERT", file, lineNo,
+                             snippet);
 
                 // Mark all columns as referenced
                 List<String> cols = tableColumns.getOrDefault(tableName, Collections.emptyList());
@@ -512,10 +529,10 @@ public class DatabaseUsageAnalyzer {
      * @param snippet The code snippet containing the reference.
      */
     private void addReference(Map<String, List<CodeReference>> map,
-                              String table, Path file, int line,
+                              String table, String refType, Path file, int line,
                               String snippet) {
       map.computeIfAbsent(table, k -> new ArrayList<>())
-          .add(new CodeReference(file, line, snippet));
+          .add(new CodeReference(file, line, snippet, refType));
     }
 
     /**
@@ -528,9 +545,9 @@ public class DatabaseUsageAnalyzer {
      * @param snippet The code snippet containing the reference.
      */
     private void addColumnReference(String table, String column, Path file, int line, String snippet) {
-        columnReferences.computeIfAbsent(table, t -> new HashMap<>())
-                        .computeIfAbsent(column, c -> new ArrayList<>())
-                        .add(new CodeReference(file, line, snippet));
+      columnReferences.computeIfAbsent(table, t -> new HashMap<>())
+          .computeIfAbsent(column, c -> new ArrayList<>())
+          .add(new CodeReference(file, line, snippet, "COLUMN_REF"));
     }
 
     /**
@@ -541,12 +558,45 @@ public class DatabaseUsageAnalyzer {
     private List<TableDefinition> findUnusedTables() {
         List<TableDefinition> unused = new ArrayList<>();
         for (String table : createTableStatements.keySet()) {
-          if (!tableReferences.containsKey(table) ||
-              tableReferences.get(table).isEmpty()) {
+          List<CodeReference> refs = tableReferences.get(table);
+
+          // If there are no references at all, the table is obviously unused
+          if (refs == null || refs.isEmpty()) {
+            unused.add(createTableStatements.get(table));
+            continue;
+          }
+
+          // Filter out references that are creation references only
+          // i.e., references whose refType is "CREATE" or whose snippet
+          // specifically includes "CREATE TABLE"
+          List<CodeReference> nonCreationRefs =
+              refs.stream()
+                  .filter(cr -> !isCreationReference(cr))
+                  .collect(Collectors.toList());
+
+          // If after filtering, we have 0 references left, it's unused
+          if (nonCreationRefs.isEmpty()) {
             unused.add(createTableStatements.get(table));
           }
         }
         return unused;
+    }
+
+    /**
+     * Decide if a reference is just table creation (i.e. we want to exclude it
+     * from usage).
+     */
+    private boolean isCreationReference(CodeReference cr) {
+      // If the code reference type is "CREATE", we treat it as creation.
+      // OR if the snippet itself contains "CREATE TABLE" (case-insensitive).
+      String snippetUpper = cr.snippet.toUpperCase();
+      if (cr.refType.equalsIgnoreCase("CREATE")) {
+        return true;
+      }
+      if (snippetUpper.contains("CREATE TABLE")) {
+        return true;
+      }
+      return false;
     }
 
     /**
@@ -1020,11 +1070,14 @@ public class DatabaseUsageAnalyzer {
         Path file;
         int lineNumber;
         String snippet;
+        String refType; // e.g. SELECT, INSERT, DELETE, CREATE, etc.
 
-        CodeReference(Path file, int lineNumber, String snippet) {
-            this.file = file;
-            this.lineNumber = lineNumber;
-            this.snippet = snippet;
+        CodeReference(Path file, int lineNumber, String snippet,
+                      String refType) {
+          this.file = file;
+          this.lineNumber = lineNumber;
+          this.snippet = snippet;
+          this.refType = refType;
         }
     }
 
@@ -1032,18 +1085,19 @@ public class DatabaseUsageAnalyzer {
      * Represents information about a database query.
      */
     static class QueryInfo {
-        String type;
-        Path file;
-        int lineNumber;
-        String snippet;
-        int complexity;
+      String type; // e.g. SELECT, INSERT, etc.
+      Path file;
+      int lineNumber;
+      String snippet;
+      int complexity;
 
-        QueryInfo(String type, Path file, int lineNumber, String snippet, int complexity) {
-            this.type = type;
-            this.file = file;
-            this.lineNumber = lineNumber;
-            this.snippet = snippet;
-            this.complexity = complexity;
-        }
+      QueryInfo(String type, Path file, int lineNumber, String snippet,
+                int complexity) {
+        this.type = type;
+        this.file = file;
+        this.lineNumber = lineNumber;
+        this.snippet = snippet;
+        this.complexity = complexity;
+      }
     }
 }
